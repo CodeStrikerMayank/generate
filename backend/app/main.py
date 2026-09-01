@@ -6,7 +6,7 @@ from fastapi.responses import FileResponse
 
 from backend.app.database.connection import engine, Base, SessionLocal
 from backend.app.curriculum.loader import seed_curriculum_and_questions
-from backend.app.api import auth, curriculum, assessments, roadmap, upsc, ai, telemetry
+from backend.app.api import auth, curriculum, assessments, roadmap, ai, telemetry
 
 # Initialize DB tables
 Base.metadata.create_all(bind=engine)
@@ -16,9 +16,9 @@ with SessionLocal() as db:
     seed_curriculum_and_questions(db)
 
 app = FastAPI(
-    title="Adaptive Student Intelligence & Roadmap Engine",
-    description="Offline-first, mathematically-grounded adaptive assessment and learning engine for JEE, NEET, and UPSC.",
-    version="1.0.0"
+    title="Adaptive Student Intelligence & Roadmap Engine (JEE Main & NEET)",
+    description="Offline-first, mathematically-grounded adaptive assessment, ML prediction, and dynamic roadmap engine for JEE Main and NEET.",
+    version="1.1.0"
 )
 
 # CORS configuration
@@ -35,7 +35,6 @@ app.include_router(auth.router, prefix="/api")
 app.include_router(curriculum.router, prefix="/api")
 app.include_router(assessments.router, prefix="/api")
 app.include_router(roadmap.router, prefix="/api")
-app.include_router(upsc.router, prefix="/api")
 app.include_router(ai.router, prefix="/api")
 app.include_router(telemetry.router, prefix="/api")
 
@@ -57,9 +56,9 @@ if os.path.exists(FRONTEND_DIR):
 def health_check():
     return {
         "status": "HEALTHY",
-        "engine": "Adaptive Student Intelligence & Roadmap Platform",
-        "supported_exams": ["JEE", "NEET", "UPSC"],
-        "models": ["Baseline_Mastery", "Ebbinghaus_Decay", "BKT", "IRT_2PL", "NetworkX_DAG"]
+        "engine": "Adaptive Student Intelligence & Dynamic Roadmap Platform",
+        "supported_exams": ["JEE", "NEET"],
+        "models": ["MultiFactor_Mastery", "Ebbinghaus_Decay", "BKT_Knowledge_Tracing", "IRT_2PL", "NetworkX_DAG_Prerequisites"]
     }
 
 if __name__ == "__main__":

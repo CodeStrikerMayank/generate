@@ -1,5 +1,5 @@
 /**
- * Master Application State & Event Orchestrator.
+ * Master Application State & Event Orchestrator (JEE Main & NEET Focus).
  */
 const AppState = {
   student: null,
@@ -9,13 +9,12 @@ const AppState = {
   async init() {
     this.graphView = new KnowledgeGraphView('graphCanvas');
 
-    // Check localStorage for student or initialize standard demo profile
     let storedStudentId = localStorage.getItem('adaptive_student_id');
     if (!storedStudentId) {
       try {
         const reg = await API.register({
-          name: 'Arjun Sharma',
-          email: `arjun_${Math.floor(Math.random() * 10000)}@test.com`,
+          name: 'Rohan Sharma',
+          email: `rohan_${Math.floor(Math.random() * 10000)}@test.com`,
           password: 'pass',
           target_exam: 'JEE',
           daily_available_hours: 4.0
@@ -47,11 +46,10 @@ const AppState = {
     const avatar = document.getElementById('userAvatarDisplay');
 
     if (nameElem) nameElem.innerText = this.student.name;
-    if (examBadge) examBadge.innerText = this.student.target_exam;
+    if (examBadge) examBadge.innerText = this.student.target_exam === 'JEE' ? 'JEE Main' : 'NEET-UG';
     if (avatar) avatar.innerText = this.student.name.charAt(0);
     this.currentExam = this.student.target_exam || 'JEE';
 
-    // Highlight current exam pill
     document.querySelectorAll('.exam-pill-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.exam === this.currentExam);
     });
@@ -77,8 +75,6 @@ const AppState = {
 
     if (tabId === 'graph' && this.graphView) {
       setTimeout(() => this.graphView.resize(), 50);
-    } else if (tabId === 'upsc') {
-      UPSCStudioController.initStudio();
     }
   },
 
@@ -87,7 +83,7 @@ const AppState = {
     const studentId = this.student.student_id;
 
     try {
-      // 1. Fetch Profile & Refresh Masteries
+      // 1. Fetch Profile & Masteries
       this.student = await API.getProfile(studentId);
       document.getElementById('overallMasteryVal').innerText = `${Math.round(this.student.overall_mastery * 100)}%`;
       document.getElementById('overallConfidenceVal').innerText = `${Math.round(this.student.overall_confidence * 100)}%`;
@@ -97,13 +93,26 @@ const AppState = {
       const nextAction = await API.getNextAction(studentId);
       RoadmapController.renderRoadmapView(roadmapData, nextAction);
 
-      // 3. Fetch Knowledge Graph
+      // 3. Fetch Knowledge Graph & Compute BKT / IRT stats
       const graphData = await API.getKnowledgeGraph(this.currentExam, studentId);
       if (this.graphView) this.graphView.loadGraphData(graphData);
 
       // 4. Fetch Weaknesses & Priorities
       const weaknesses = await API.getWeaknesses(studentId);
       this.renderWeaknessesList(weaknesses);
+
+      // Compute average IRT & BKT
+      const nodes = graphData.nodes || [];
+      const masteredNodes = nodes.filter(n => (n.mastery || 0) > 0);
+      const avgMastery = masteredNodes.length > 0 ? masteredNodes.reduce((acc, n) => acc + n.mastery, 0) / masteredNodes.length : 0;
+      
+      const bktElem = document.getElementById('bktProbabilityVal');
+      const irtElem = document.getElementById('irtAbilityVal');
+      if (bktElem) bktElem.innerText = `${Math.round(avgMastery * 100)}%`;
+      if (irtElem) {
+        const theta = (avgMastery - 0.5) * 4.0;
+        irtElem.innerText = (theta >= 0 ? '+' : '') + theta.toFixed(2);
+      }
 
       // 5. Fetch Telemetry Stream
       const stream = await API.getTelemetryStream(studentId);

@@ -1,5 +1,5 @@
 /**
- * API client library for the Adaptive Student Intelligence & Roadmap Platform.
+ * API client library for the Adaptive Student Intelligence & Roadmap Platform (JEE Main & NEET).
  */
 const API_BASE = '/api';
 
@@ -106,26 +106,6 @@ const API = {
   async getAssessmentHistory(studentId) {
     const res = await fetch(`${API_BASE}/assessments/history/${studentId}`);
     if (!res.ok) throw new Error('Failed to fetch history');
-    return res.json();
-  },
-
-  async getUPSCQuestions() {
-    const res = await fetch(`${API_BASE}/upsc/questions`);
-    if (!res.ok) throw new Error('Failed to fetch UPSC questions');
-    return res.json();
-  },
-
-  async submitUPSCAnswer(studentId, questionId, answerText, timeTakenSec) {
-    const res = await fetch(`${API_BASE}/upsc/submit/${studentId}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        question_id: questionId,
-        answer_text: answerText,
-        time_taken_seconds: timeTakenSec
-      })
-    });
-    if (!res.ok) throw new Error('Failed to submit UPSC answer');
     return res.json();
   },
 

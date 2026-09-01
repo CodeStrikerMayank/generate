@@ -5,26 +5,26 @@
     "paper": "MAIN",
     "subject": "Physics",
     "chapter": "Mechanics",
-    "topic": "Newton's Laws of Motion",
+    "topic": "Newton's Laws of Motion & Friction",
     "concept_id": "phy_vectors_basic",
     "skill": "conceptual",
     "difficulty": 0.35,
     "discrimination": 1.2,
     "estimated_time": 60,
     "question_type": "multiple_choice",
-    "content": "Two forces of magnitude 3N and 4N act on a point particle at an angle of 90 degrees. What is the magnitude and direction of the resultant force relative to the 3N force?",
+    "content": "Two vectors of equal magnitude A have a resultant also of magnitude A. What is the angle between the two vectors?",
     "options": [
-      {"id": "A", "text": "5 N at tan^-1(4/3) with the 3N force"},
-      {"id": "B", "text": "7 N at 45 degrees with the 3N force"},
-      {"id": "C", "text": "1 N along the 4N force"},
-      {"id": "D", "text": "5 N at tan^-1(3/4) with the 3N force"}
+      {"id": "A", "text": "120 degrees"},
+      {"id": "B", "text": "60 degrees"},
+      {"id": "C", "text": "90 degrees"},
+      {"id": "D", "text": "180 degrees"}
     ],
     "correct_answer": "A",
-    "explanation": "Resultant R = sqrt(3^2 + 4^2 + 2*3*4*cos(90)) = sqrt(9+16) = 5 N. Angle theta with 3N force: tan(theta) = (4*sin 90)/(3 + 4*cos 90) = 4/3. Thus theta = tan^-1(4/3).",
+    "explanation": "R^2 = A^2 + A^2 + 2*A*A*cos(theta) => A^2 = 2*A^2*(1 + cos(theta)) => 1/2 = 1 + cos(theta) => cos(theta) = -1/2 => theta = 120 degrees.",
     "distractor_explanations": {
-      "B": "CALCULATION_ERROR: Directly added scalar magnitudes instead of vector sum.",
-      "C": "CONCEPTUAL_ERROR: Subtracted magnitudes instead of orthogonal Pythagorean sum.",
-      "D": "FORMULA_SELECTION_ERROR: Inverted the perpendicular and base components in tangent formula."
+      "B": "SIGN_ERROR: Evaluated cos(theta) = +1/2 giving 60 degrees.",
+      "C": "CONCEPTUAL_ERROR: Assumed orthogonal vector sum gives magnitude A*sqrt(2).",
+      "D": "CONCEPTUAL_ERROR: Opposing vectors give resultant 0."
     },
     "is_transfer": false,
     "is_prerequisite_check": true
@@ -35,7 +35,7 @@
     "paper": "MAIN",
     "subject": "Physics",
     "chapter": "Mechanics",
-    "topic": "Newton's Laws of Motion",
+    "topic": "Newton's Laws of Motion & Friction",
     "concept_id": "phy_fbd_equilibrium",
     "skill": "application",
     "difficulty": 0.50,
@@ -50,7 +50,7 @@
       {"id": "D", "text": "25*sqrt(3) N"}
     ],
     "correct_answer": "A",
-    "explanation": "Let angles with horizontal be 30 deg and 60 deg. Horizontal equilibrium: T1*cos(30) = T2*cos(60) => T2 = T1*sqrt(3). Vertical equilibrium: T1*sin(30) + T2*sin(60) = 100 N => T1*(1/2) + (T1*sqrt(3))*(sqrt(3)/2) = 100 => T1*(1/2 + 3/2) = 2*T1 = 100 => T1 = 50 N.",
+    "explanation": "Horizontal equilibrium: T1*cos(30) = T2*cos(60) => T2 = T1*sqrt(3). Vertical equilibrium: T1*sin(30) + T2*sin(60) = 100 N => T1*(1/2) + (T1*sqrt(3))*(sqrt(3)/2) = 100 => 2*T1 = 100 => T1 = 50 N.",
     "distractor_explanations": {
       "B": "CALCULATION_ERROR: Calculated T2 instead of T1.",
       "C": "CONCEPTUAL_ERROR: Assumed entire weight is held by a single string.",
@@ -62,29 +62,29 @@
   {
     "question_id": "JEE_PHY_NLM_003",
     "exam": "JEE",
-    "paper": "ADVANCED",
+    "paper": "MAIN",
     "subject": "Physics",
     "chapter": "Mechanics",
-    "topic": "Newton's Laws of Motion",
+    "topic": "Newton's Laws of Motion & Friction",
     "concept_id": "phy_newton_second_law",
-    "skill": "multi_step",
-    "difficulty": 0.68,
-    "discrimination": 1.6,
-    "estimated_time": 100,
+    "skill": "application",
+    "difficulty": 0.65,
+    "discrimination": 1.5,
+    "estimated_time": 80,
     "question_type": "multiple_choice",
-    "content": "A wedge of mass M with angle theta is placed on a smooth horizontal surface. A block of mass m is placed on the smooth incline. What horizontal force F must be applied to the wedge so that the mass m remains stationary relative to the wedge?",
+    "content": "A block of mass m is placed on a smooth wedge of angle theta. If the wedge is accelerated horizontally with acceleration a = g*tan(theta), what is the normal reaction force exerted by the incline on the block?",
     "options": [
-      {"id": "A", "text": "(M + m) * g * tan(theta)"},
-      {"id": "B", "text": "(M + m) * g * sin(theta)"},
-      {"id": "C", "text": "m * g * tan(theta)"},
-      {"id": "D", "text": "(M + m) * g * cot(theta)"}
+      {"id": "A", "text": "m * g / cos(theta)"},
+      {"id": "B", "text": "m * g * cos(theta)"},
+      {"id": "C", "text": "m * g * sin(theta)"},
+      {"id": "D", "text": "m * g"}
     ],
     "correct_answer": "A",
-    "explanation": "For block m to be stationary in wedge frame, pseudo force m*a acts horizontally backward. N*cos(theta) = m*g and N*sin(theta) = m*a => a = g*tan(theta). For the total system (M+m), F = (M+m)*a = (M+m)*g*tan(theta).",
+    "explanation": "In the accelerated wedge frame, pseudo force m*a acts horizontally. Normal force balance along vertical: N*cos(theta) = m*g => N = m*g / cos(theta). Also along horizontal: N*sin(theta) = m*a => N = m*(g*tan(theta))/sin(theta) = m*g/cos(theta).",
     "distractor_explanations": {
-      "B": "CONCEPTUAL_ERROR: Used sin(theta) component instead of resolving along normal and horizontal.",
-      "C": "READING_ERROR: Forgot to include the mass of the wedge M in total force F = (M+m)a.",
-      "D": "FORMULA_SELECTION_ERROR: Inverted the trigonometric ratio."
+      "B": "CONCEPTUAL_ERROR: Used stationary incline reaction N = mg cos(theta) without accounting for horizontal acceleration.",
+      "C": "FORMULA_SELECTION_ERROR: Swapped trigonometric components.",
+      "D": "CARELESS_ERROR: Assumed normal equals true weight directly."
     },
     "is_transfer": true,
     "is_prerequisite_check": false
@@ -92,31 +92,31 @@
   {
     "question_id": "JEE_PHY_FRIC_004",
     "exam": "JEE",
-    "paper": "ADVANCED",
+    "paper": "MAIN",
     "subject": "Physics",
     "chapter": "Mechanics",
-    "topic": "Newton's Laws of Motion",
+    "topic": "Newton's Laws of Motion & Friction",
     "concept_id": "phy_friction",
     "skill": "multi_step",
-    "difficulty": 0.82,
-    "discrimination": 1.8,
-    "estimated_time": 120,
+    "difficulty": 0.78,
+    "discrimination": 1.7,
+    "estimated_time": 90,
     "question_type": "multiple_choice",
-    "content": "A block A of mass 2 kg rests on a block B of mass 4 kg. Coefficient of friction between A and B is mu = 0.4, and between B and the ground is 0. A horizontal force of 12 N is applied to block A. What is the acceleration of block B?",
+    "content": "A body of mass 5 kg is placed on a rough horizontal plane (mu_s = 0.5, mu_k = 0.4). A horizontal force of 20 N is applied. What is the friction force acting on the body? (g = 10 m/s^2)",
     "options": [
-      {"id": "A", "text": "2.0 m/s^2"},
-      {"id": "B", "text": "1.5 m/s^2"},
-      {"id": "C", "text": "3.0 m/s^2"},
-      {"id": "D", "text": "0 m/s^2"}
+      {"id": "A", "text": "20 N (static self-adjusting)"},
+      {"id": "B", "text": "25 N"},
+      {"id": "C", "text": "20 N (kinetic)"},
+      {"id": "D", "text": "0 N"}
     ],
     "correct_answer": "A",
-    "explanation": "Max static friction between A and B: f_max = mu * m_A * g = 0.4 * 2 * 10 = 8 N. Max common acceleration a_max of B caused by friction: a_max = f_max / m_B = 8 / 4 = 2.0 m/s^2. Force needed to produce this common acceleration on combined system (2+4 kg): F_req = (2+4)*2.0 = 12 N. Since applied force is exactly 12 N, the blocks move together without slipping with acceleration a = 12 / (2+4) = 2.0 m/s^2.",
+    "explanation": "Max static limiting friction f_lim = mu_s * m * g = 0.5 * 5 * 10 = 25 N. Since applied force (20 N) < limiting friction (25 N), the body does not move, and static friction self-adjusts exactly to equal the applied force of 20 N.",
     "distractor_explanations": {
-      "B": "CALCULATION_ERROR: Subtracted 8N from 12N and divided by 4kg wrongly assuming slipping.",
-      "C": "CONCEPTUAL_ERROR: Assumed block A accelerates independently at (12-8)/2 = 2 and block B accelerates at 8/2 = 4.",
-      "D": "READING_ERROR: Thought friction prevents motion altogether."
+      "B": "CONCEPTUAL_ERROR: Used maximum limiting friction value instead of self-adjusting static friction.",
+      "C": "CONCEPTUAL_ERROR: Assumed body is slipping and used kinetic friction.",
+      "D": "CARELESS_ERROR: Thought smooth surface with zero friction."
     },
-    "is_transfer": true,
+    "is_transfer": false,
     "is_prerequisite_check": false
   },
   {
@@ -125,11 +125,11 @@
     "paper": "MAIN",
     "subject": "Mathematics",
     "chapter": "Calculus",
-    "topic": "Functions and Graphs",
+    "topic": "Functions & Domain-Range",
     "concept_id": "math_functions_domain_range",
     "skill": "conceptual",
     "difficulty": 0.42,
-    "discrimination": 1.1,
+    "discrimination": 1.2,
     "estimated_time": 60,
     "question_type": "multiple_choice",
     "content": "Find the domain of definition of the real-valued function f(x) = sqrt(x - 2) / (x^2 - 9).",
@@ -170,7 +170,7 @@
       {"id": "D", "text": "0"}
     ],
     "correct_answer": "A",
-    "explanation": "Using Taylor series expansion of sin x around 0: sin x = x - x^3/3! + x^5/5! - x^7/7! + ... => sin x - x + x^3/6 = x^5/120 - x^7/5040 + ... Dividing by x^5 and taking limit x -> 0 yields 1/120.",
+    "explanation": "Taylor series expansion of sin x: sin x = x - x^3/6 + x^5/120 - ... => sin x - x + x^3/6 = x^5/120 - ... Dividing by x^5 as x -> 0 gives 1/120.",
     "distractor_explanations": {
       "B": "SIGN_ERROR: Negated the Taylor expansion sign for x^5 term.",
       "C": "CALCULATION_ERROR: Used 4! = 24 instead of 5! = 120.",
@@ -200,9 +200,9 @@
       {"id": "D", "text": "16"}
     ],
     "correct_answer": "A",
-    "explanation": "LHL = lim (x->0-) (1 - cos 4x)/x^2 = lim 2*sin^2(2x)/x^2 = 2 * 4 * (sin 2x / 2x)^2 = 8. RHL = lim (x->0+) sqrt(x) * (sqrt(16 + sqrt(x)) + 4) / (16 + sqrt(x) - 16) = lim sqrt(x) * (sqrt(16 + sqrt(x)) + 4) / sqrt(x) = 4 + 4 = 8. For continuity at x=0, f(0) = a = LHL = RHL = 8.",
+    "explanation": "LHL = lim (x->0-) (1 - cos 4x)/x^2 = lim 2*sin^2(2x)/x^2 = 2 * 4 * (sin 2x / 2x)^2 = 8. RHL = lim (x->0+) sqrt(x) * (sqrt(16 + sqrt(x)) + 4) / sqrt(x) = 8. For continuity at x=0, a = 8.",
     "distractor_explanations": {
-      "B": "CALCULATION_ERROR: Forgot the factor of 2 in 1 - cos 4x = 2 sin^2(2x).",
+      "B": "CALCULATION_ERROR: Forgot factor of 2 in 1 - cos 4x = 2 sin^2(2x).",
       "C": "FORMULA_SELECTION_ERROR: Did not square the argument multiplier in limit.",
       "D": "CARELESS_ERROR: Double counted denominator multiplier."
     },
@@ -212,15 +212,15 @@
   {
     "question_id": "JEE_MATH_DIFF_004",
     "exam": "JEE",
-    "paper": "ADVANCED",
+    "paper": "MAIN",
     "subject": "Mathematics",
     "chapter": "Calculus",
     "topic": "Limits, Continuity & Differentiability",
     "concept_id": "math_differentiability",
     "skill": "reasoning",
-    "difficulty": 0.86,
-    "discrimination": 1.9,
-    "estimated_time": 110,
+    "difficulty": 0.82,
+    "discrimination": 1.8,
+    "estimated_time": 95,
     "question_type": "multiple_choice",
     "content": "Let f(x) = x^2 * |cos(pi / x)| for x != 0, and f(0) = 0. Which of the following statements is TRUE regarding f(x) at x = 0?",
     "options": [
@@ -230,7 +230,7 @@
       {"id": "D", "text": "f'(0) exists and equals 1"}
     ],
     "correct_answer": "A",
-    "explanation": "Continuity: |f(x) - 0| = x^2 * |cos(pi/x)| <= x^2 -> 0 as x -> 0. Hence continuous. Differentiability: f'(0) = lim (h -> 0) [f(h) - f(0)] / h = lim (h -> 0) [h^2 * |cos(pi/h)|] / h = lim (h -> 0) h * |cos(pi/h)|. Since |cos(pi/h)| is bounded in [0, 1] and h -> 0, by squeeze theorem, f'(0) = 0. Hence f is differentiable at x=0 with f'(0)=0.",
+    "explanation": "Continuity: |f(x)| <= x^2 -> 0 as x -> 0. Differentiability: f'(0) = lim (h -> 0) [h^2 * |cos(pi/h)|] / h = lim h * |cos(pi/h)| = 0 by squeeze theorem.",
     "distractor_explanations": {
       "B": "CONCEPTUAL_ERROR: Assumed presence of modulus |cos| always destroys differentiability.",
       "C": "CONCEPTUAL_ERROR: Thought oscillating factor causes discontinuity despite x^2 dampening.",
@@ -250,9 +250,9 @@
     "skill": "application",
     "difficulty": 0.60,
     "discrimination": 1.3,
-    "estimated_time": 75,
+    "estimated_time": 70,
     "question_type": "multiple_choice",
-    "content": "One mole of an ideal gas expands isothermally and reversibly at 300 K from an initial volume of 10 L to a final volume of 100 L. Calculate the work done by the gas (w_by). [Take R = 8.314 J/mol K, ln 10 = 2.303]",
+    "content": "One mole of an ideal gas expands isothermally and reversibly at 300 K from an initial volume of 10 L to a final volume of 100 L. Calculate the work done by the gas (w_by). [R = 8.314 J/mol K, ln 10 = 2.303]",
     "options": [
       {"id": "A", "text": "5744 J"},
       {"id": "B", "text": "-5744 J"},
@@ -260,10 +260,10 @@
       {"id": "D", "text": "0 J"}
     ],
     "correct_answer": "A",
-    "explanation": "For isothermal reversible expansion, work done BY gas w = n * R * T * ln(V2/V1) = 1 * 8.314 * 300 * 2.303 = 5744.14 J.",
+    "explanation": "Work done by gas in reversible isothermal expansion: w = n*R*T*ln(V2/V1) = 1 * 8.314 * 300 * 2.303 = 5744.14 J.",
     "distractor_explanations": {
-      "B": "SIGN_ERROR: Provided IUPAC work on gas instead of work done BY the gas.",
-      "C": "CALCULATION_ERROR: Forgot to multiply by ln(10) factor.",
+      "B": "SIGN_ERROR: Provided IUPAC work ON gas instead of work done BY the gas.",
+      "C": "CALCULATION_ERROR: Forgot ln(10) factor.",
       "D": "CONCEPTUAL_ERROR: Confused delta U = 0 with work = 0."
     },
     "is_transfer": false,
@@ -280,7 +280,7 @@
     "skill": "conceptual",
     "difficulty": 0.65,
     "discrimination": 1.4,
-    "estimated_time": 70,
+    "estimated_time": 65,
     "question_type": "multiple_choice",
     "content": "Which of the following carbocations is the MOST stable?",
     "options": [
@@ -290,10 +290,10 @@
       {"id": "D", "text": "Benzyl carbocation (PhCH2+)"}
     ],
     "correct_answer": "A",
-    "explanation": "Tropylium cation is an aromatic species with (4n+2) = 6 pi electrons delocalized over all 7 carbon atoms with complete planar resonance stabilization, giving it exceptional thermodynamic stability greater than even triphenylmethyl cation.",
+    "explanation": "Tropylium cation is an aromatic species possessing (4n+2) = 6 pi electrons fully delocalized across all 7 ring carbon atoms, conferring extraordinary thermodynamic stability.",
     "distractor_explanations": {
-      "B": "CONCEPTUAL_ERROR: Overlooked aromaticity of tropylium ion in favor of bulky resonance.",
-      "C": "CONCEPTUAL_ERROR: Evaluated hyperconjugation above aromatic delocalization.",
+      "B": "CONCEPTUAL_ERROR: Overlooked aromaticity of tropylium ion in favor of steric resonance.",
+      "C": "CONCEPTUAL_ERROR: Hyperconjugation is weaker than aromatic stabilization.",
       "D": "CARELESS_ERROR: Benzyl has fewer resonance contributors."
     },
     "is_transfer": false,

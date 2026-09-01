@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adaptive Student Intelligence & Roadmap Engine</title>
+  <title>Adaptive Student Intelligence & Roadmap Engine (JEE Main • NEET)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,23 +16,22 @@
     <div class="brand-container">
       <div class="brand-logo">Δ</div>
       <div>
-        <div class="brand-title">ADAPTIVE INTELLIGENCE ENGINE</div>
-        <div class="brand-subtitle">JEE • NEET • UPSC Learning & Roadmap System</div>
+        <div class="brand-title">ADAPTIVE INTELLIGENCE & ROADMAP ENGINE</div>
+        <div class="brand-subtitle">Machine-Learned Latent Mastery • JEE Main & NEET UG</div>
       </div>
     </div>
 
     <div class="header-controls">
       <div class="exam-pill-selector">
-        <button class="exam-pill-btn active" data-exam="JEE" onclick="AppState.switchExam('JEE')">JEE (Main/Adv)</button>
+        <button class="exam-pill-btn active" data-exam="JEE" onclick="AppState.switchExam('JEE')">JEE Main</button>
         <button class="exam-pill-btn" data-exam="NEET" onclick="AppState.switchExam('NEET')">NEET-UG</button>
-        <button class="exam-pill-btn" data-exam="UPSC" onclick="AppState.switchExam('UPSC')">UPSC (Pre/Mains)</button>
       </div>
 
       <div class="user-badge">
         <div class="avatar-circle" id="userAvatarDisplay">A</div>
         <div>
           <div style="font-size: 0.85rem; font-weight: 600;" id="userNameDisplay">Student</div>
-          <div style="font-size: 0.7rem; color: var(--accent-cyan);" id="userExamBadge">JEE</div>
+          <div style="font-size: 0.7rem; color: var(--accent-cyan);" id="userExamBadge">JEE Main</div>
         </div>
       </div>
     </div>
@@ -43,22 +42,19 @@
     <!-- Sidebar Navigation -->
     <aside class="sidebar-nav">
       <div class="nav-item active" id="nav_dashboard" onclick="AppState.switchTab('dashboard')">
-        <span class="nav-icon">📊</span> Overview & Mastery
+        <span class="nav-icon">📊</span> ML Mastery & Overview
       </div>
       <div class="nav-item" id="nav_roadmap" onclick="AppState.switchTab('roadmap')">
         <span class="nav-icon">🗺️</span> Dynamic Roadmap & NBA
       </div>
       <div class="nav-item" id="nav_assessment" onclick="AppState.switchTab('assessment')">
-        <span class="nav-icon">🎯</span> Assessment Arena
+        <span class="nav-icon">🎯</span> Adaptive Quiz Arena
       </div>
       <div class="nav-item" id="nav_graph" onclick="AppState.switchTab('graph')">
         <span class="nav-icon">🕸️</span> Knowledge Graph DAG
       </div>
-      <div class="nav-item" id="nav_upsc" onclick="AppState.switchTab('upsc')">
-        <span class="nav-icon">✍️</span> UPSC Written Studio
-      </div>
       <div class="nav-item" id="nav_ai" onclick="AppState.switchTab('ai')">
-        <span class="nav-icon">🤖</span> Offline AI Study Mentor
+        <span class="nav-icon">🤖</span> AI Study Mentor
       </div>
       <div class="nav-item" id="nav_telemetry" onclick="AppState.switchTab('telemetry')">
         <span class="nav-icon">📡</span> Telemetry Stream
@@ -68,12 +64,12 @@
     <!-- Main Content Area -->
     <main class="main-content">
 
-      <!-- 1. OVERVIEW DASHBOARD TAB -->
+      <!-- 1. OVERVIEW & ML DASHBOARD TAB -->
       <section class="tab-pane active" id="pane_dashboard">
         <!-- Next Best Action Hero Banner on Dashboard -->
         <div id="nbaHeroContainer"></div>
 
-        <!-- Metric KPI Cards -->
+        <!-- Metric KPI Cards (Multi-factor, BKT, IRT, Retention) -->
         <div class="grid-4" style="margin-bottom: 2rem;">
           <div class="glass-card stat-card">
             <div class="stat-label">Latent Mastery</div>
@@ -86,14 +82,14 @@
             <div class="stat-sub">Calibrated sample variance</div>
           </div>
           <div class="glass-card stat-card">
-            <div class="stat-label">Active Exam Track</div>
-            <div class="stat-val" style="color: var(--accent-purple); font-size: 1.5rem;">JEE / NEET / UPSC</div>
-            <div class="stat-sub">Hierarchical curriculum tree</div>
+            <div class="stat-label">IRT Latent Ability (θ)</div>
+            <div class="stat-val" id="irtAbilityVal" style="color: var(--accent-purple); font-size: 1.6rem;">+0.00</div>
+            <div class="stat-sub">Item Response Theory parameter</div>
           </div>
           <div class="glass-card stat-card">
-            <div class="stat-label">Pedagogy Engine</div>
-            <div class="stat-val" style="color: var(--accent-success); font-size: 1.5rem;">Adaptive</div>
-            <div class="stat-sub">Knowledge Tracing + DAG</div>
+            <div class="stat-label">BKT Probability P(L)</div>
+            <div class="stat-val" id="bktProbabilityVal" style="color: var(--accent-success); font-size: 1.6rem;">--%</div>
+            <div class="stat-sub">Bayesian Knowledge Tracing</div>
           </div>
         </div>
 
@@ -111,7 +107,7 @@
 
           <!-- Quick Action Diagnostic Launcher -->
           <div class="glass-card">
-            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Start Controlled Diagnostic</h3>
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Launch Adaptive Assessment</h3>
             <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
               Take a multi-stage controlled baseline assessment to calibrate difficulty limits and uncover missing prerequisites.
             </p>
@@ -136,7 +132,7 @@
           <div>
             <h2 style="font-size: 1.6rem; font-weight: 800;">Dynamic Learning Roadmap</h2>
             <p style="color: var(--text-secondary); font-size: 0.9rem;">
-              Your roadmap automatically re-evaluates priorities after every assessment attempt.
+              Generated from your quiz assessments. Prerequisite gaps are automatically resolved and sequenced first.
             </p>
           </div>
           <button class="btn-secondary" onclick="API.regenerateRoadmap(AppState.student.student_id).then(() => AppState.refreshAllData())">
@@ -152,7 +148,7 @@
           <div class="glass-card" style="text-align: center; padding: 3rem;">
             <h2 style="font-size: 1.5rem; margin-bottom: 0.75rem;">No Assessment Currently Active</h2>
             <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-              Select an assessment mode or launch practice directly from your Dynamic Roadmap.
+              Launch a baseline diagnostic test or start targeted practice directly from your Dynamic Roadmap.
             </p>
             <button class="btn-primary" onclick="QuizController.startTest(AppState.currentExam, 'DIAGNOSTIC', 1)">
               Start Diagnostic Test →
@@ -174,47 +170,7 @@
         </div>
       </section>
 
-      <!-- 5. UPSC WRITTEN STUDIO TAB -->
-      <section class="tab-pane" id="pane_upsc">
-        <div style="margin-bottom: 1.5rem;">
-          <h2 style="font-size: 1.6rem; font-weight: 800;">UPSC Mains Written Response Studio</h2>
-          <p style="color: var(--text-secondary); font-size: 0.9rem;">
-            Descriptive answer writing evaluated across 7-pillar civil service rubrics (Understanding, Structure, Arguments, Case Laws, Clarity).
-          </p>
-        </div>
-
-        <div class="grid-2">
-          <!-- Question Selector -->
-          <div class="glass-card">
-            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Select Mains Question</h3>
-            <div id="upscQuestionList"></div>
-          </div>
-
-          <!-- Answer Writing Editor -->
-          <div class="glass-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-              <span class="quiz-timer" id="upscWritingTimer">⏱ 00:00</span>
-              <span style="font-weight: 600; color: var(--accent-cyan);" id="upscWordCount">0 Words</span>
-            </div>
-
-            <div style="font-weight: 600; font-size: 0.95rem; margin-bottom: 0.75rem; color: #fff;" id="upscSelectedPrompt">
-              Select a question from the left panel to begin.
-            </div>
-
-            <textarea id="upscAnswerInput" class="upsc-editor" placeholder="Write your structured response here (Introduction -> Core Arguments -> Case Laws -> Way Forward / Conclusion)..." oninput="UPSCStudioController.updateWordCount()"></textarea>
-
-            <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
-              <button class="btn-primary" onclick="UPSCStudioController.submitAnswer()">
-                Submit for 7-Pillar Rubric Evaluation →
-              </button>
-            </div>
-
-            <div id="upscFeedbackBox" class="glass-card" style="margin-top: 1.5rem; display: none;"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 6. OFFLINE AI ASSISTANT TAB -->
+      <!-- 5. OFFLINE AI ASSISTANT TAB -->
       <section class="tab-pane" id="pane_ai">
         <div style="margin-bottom: 1.5rem;">
           <h2 style="font-size: 1.6rem; font-weight: 800;">Offline AI Pedagogical Mentor</h2>
@@ -242,11 +198,11 @@
             <div style="margin-bottom: 1rem;">
               <label style="font-size: 0.8rem; color: var(--text-secondary); display: block; margin-bottom: 4px;">Target Concept</label>
               <select id="genConceptSelect" class="chat-input" style="width: 100%;">
-                <option value="math_limits">Limits & Indeterminate Forms (Math)</option>
-                <option value="phy_friction">Static & Kinetic Friction (Physics)</option>
-                <option value="chem_electronic_effects">Electronic Effects in GOC (Chemistry)</option>
-                <option value="bio_mendelian_laws">Mendel's Laws of Inheritance (Biology)</option>
-                <option value="polity_fundamental_rights_art12_35">Fundamental Rights (UPSC Polity)</option>
+                <option value="math_limits">Limits & Indeterminate Forms (JEE Math)</option>
+                <option value="phy_friction">Static & Kinetic Friction (JEE/NEET Physics)</option>
+                <option value="chem_electronic_effects">Electronic Effects in GOC (JEE/NEET Chemistry)</option>
+                <option value="bio_mendelian_laws">Mendel's Laws of Inheritance (NEET Biology)</option>
+                <option value="bio_cell_cycle_mitosis_meiosis">Cell Cycle & Crossing Over (NEET Biology)</option>
               </select>
             </div>
             <button class="btn-primary" onclick="AIAssistantController.generatePracticeQuestion()">
@@ -257,7 +213,7 @@
         </div>
       </section>
 
-      <!-- 7. TELEMETRY STREAM TAB -->
+      <!-- 6. TELEMETRY STREAM TAB -->
       <section class="tab-pane" id="pane_telemetry">
         <div style="margin-bottom: 1.5rem;">
           <h2 style="font-size: 1.6rem; font-weight: 800;">Interaction Telemetry Stream</h2>
@@ -283,7 +239,6 @@
   <script src="/static/js/graph_view.js"></script>
   <script src="/static/js/quiz.js"></script>
   <script src="/static/js/roadmap.js"></script>
-  <script src="/static/js/upsc.js"></script>
   <script src="/static/js/ai_assistant.js"></script>
   <script src="/static/js/app.js"></script>
 </body>

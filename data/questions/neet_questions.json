@@ -20,7 +20,7 @@
       {"id": "D", "text": "Mitochondria with cristae"}
     ],
     "correct_answer": "A",
-    "explanation": "Prokaryotic cells possess 70S ribosomes and infoldings of plasma membrane called mesosomes for respiration/cell wall formation, but completely lack membrane-bound organelles such as Golgi, ER, and mitochondria.",
+    "explanation": "Prokaryotic cells possess 70S ribosomes and infoldings of plasma membrane called mesosomes, but lack membrane-bound organelles such as Golgi, ER, and mitochondria.",
     "distractor_explanations": {
       "B": "CONCEPTUAL_ERROR: Golgi is exclusively eukaryotic.",
       "C": "CARELESS_ERROR: Prokaryotes possess 70S, not 80S ribosomes.",
@@ -50,11 +50,11 @@
       {"id": "D", "text": "Leptotene"}
     ],
     "correct_answer": "A",
-    "explanation": "Synapsis forms the bivalent/tetrad during Zygotene, but crossing over (exchange of genetic material) occurs specifically during Pachytene stage, mediated by enzyme recombinase.",
+    "explanation": "Crossing over occurs during Pachytene stage, mediated by the enzyme recombinase.",
     "distractor_explanations": {
-      "B": "CONCEPTUAL_ERROR: Zygotene is the stage of synapsis and synaptonemal complex formation, before crossing over.",
+      "B": "CONCEPTUAL_ERROR: Zygotene is the stage of synapsis.",
       "C": "CONCEPTUAL_ERROR: Diplotene is dissolution of synaptonemal complex leaving chiasmata.",
-      "D": "CARELESS_ERROR: Leptotene is chromosome condensation."
+      "D": "CARELESS_ERROR: Leptotene is initial condensation."
     },
     "is_transfer": false,
     "is_prerequisite_check": true
@@ -80,11 +80,11 @@
       {"id": "D", "text": "6.25% (1/16)"}
     ],
     "correct_answer": "A",
-    "explanation": "Test cross of dihybrid TtVv x ttvv yields equal phenotypic ratio of 1:1:1:1 (Tall Violet : Tall White : Dwarf Violet : Dwarf White). Hence Dwarf with Violet flowers is 1/4 or 25%.",
+    "explanation": "Test cross of dihybrid TtVv x ttvv yields equal phenotypic ratio of 1:1:1:1. Hence Dwarf with Violet flowers is 1/4 or 25%.",
     "distractor_explanations": {
-      "B": "CALCULATION_ERROR: Multiplied one trait probability without second trait test ratio.",
+      "B": "CALCULATION_ERROR: Multiplied only single trait ratio.",
       "C": "CARELESS_ERROR: Confused with trihybrid test cross.",
-      "D": "FORMULA_SELECTION_ERROR: Used 1/16 from 9:3:3:1 F2 selfing ratio instead of test cross."
+      "D": "FORMULA_SELECTION_ERROR: Used 1/16 from F2 selfing ratio."
     },
     "is_transfer": false,
     "is_prerequisite_check": true
@@ -110,13 +110,43 @@
       {"id": "D", "text": "Cross A exhibits complete absence of linkage"}
     ],
     "correct_answer": "A",
-    "explanation": "Recombination frequency directly correlates with physical distance between linked genes on the same chromosome. A low recombination frequency of 1.3% indicates very tight linkage (close physical proximity) on the X chromosome.",
+    "explanation": "A lower recombination frequency (1.3%) indicates very tight linkage (closer physical proximity) on the X chromosome.",
     "distractor_explanations": {
-      "B": "CONCEPTUAL_ERROR: Both genes were on X chromosome; 37.2% indicates loose linkage, not independent assortment on different chromosomes.",
-      "C": "CONCEPTUAL_ERROR: Frequency is directly proportional, not inversely proportional to distance.",
+      "B": "CONCEPTUAL_ERROR: Both genes are on X chromosome.",
+      "C": "CONCEPTUAL_ERROR: Recombination frequency is directly proportional to distance.",
       "D": "CARELESS_ERROR: 1.3% recombinant means 98.7% parental, proving strong linkage."
     },
     "is_transfer": true,
     "is_prerequisite_check": false
+  },
+  {
+    "question_id": "NEET_BIO_CIRC_005",
+    "exam": "NEET",
+    "paper": "NEET_UG",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Body Fluids and Circulation",
+    "concept_id": "bio_blood_cardiac_cycle",
+    "skill": "factual_recall",
+    "difficulty": 0.45,
+    "discrimination": 1.2,
+    "estimated_time": 45,
+    "question_type": "multiple_choice",
+    "content": "In a standard Electrocardiogram (ECG), which wave represents the depolarization of ventricles leading to ventricular contraction?",
+    "options": [
+      {"id": "A", "text": "QRS complex"},
+      {"id": "B", "text": "P-wave"},
+      {"id": "C", "text": "T-wave"},
+      {"id": "D", "text": "End of T-wave"}
+    ],
+    "correct_answer": "A",
+    "explanation": "P-wave represents atrial depolarization; QRS complex represents depolarization of the ventricles initiating ventricular contraction; T-wave represents ventricular repolarization.",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: P-wave is atrial depolarization.",
+      "C": "CONCEPTUAL_ERROR: T-wave represents ventricular repolarization (recovery).",
+      "D": "CARELESS_ERROR: End of T-wave marks end of ventricular systole."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
   }
 ]
