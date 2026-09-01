@@ -70,12 +70,34 @@
                   "description": "Potential energy curves, vertical circular motion, spring-mass oscillations."
                 }
               ]
+            },
+            {
+              "topic_id": "JEE_PHY_ROT_GRAV",
+              "name": "Center of Mass, Rotation & Gravitation",
+              "concepts": [
+                {
+                  "concept_id": "phy_center_of_mass_cutoff",
+                  "name": "Center of Mass & Disc Cutoffs",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.94,
+                  "difficulty_weight": 0.72,
+                  "description": "Centroid determination with negative mass removal for symmetrical objects."
+                },
+                {
+                  "concept_id": "phy_shm_oscillations",
+                  "name": "Simple Harmonic Motion (SHM)",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.96,
+                  "difficulty_weight": 0.70,
+                  "description": "Phase diagrams, velocity-displacement elliptical phase space, time period."
+                }
+              ]
             }
           ]
         },
         {
           "chapter_id": "JEE_PHY_ELECTRO",
-          "name": "Electrodynamics",
+          "name": "Electrodynamics & Semiconductors",
           "topics": [
             {
               "topic_id": "JEE_PHY_ELECTROSTAT",
@@ -87,7 +109,7 @@
                   "estimated_minutes": 45,
                   "exam_relevance": 0.92,
                   "difficulty_weight": 0.55,
-                  "description": "Superposition of charges, electric field due to ring, line, and dipoles."
+                  "description": "Superposition of charges, electric field due to point charges and dipoles."
                 },
                 {
                   "concept_id": "phy_gauss_law",
@@ -95,7 +117,7 @@
                   "estimated_minutes": 55,
                   "exam_relevance": 0.96,
                   "difficulty_weight": 0.75,
-                  "description": "Flux calculation through closed surfaces, conducting shell cavities."
+                  "description": "Flux calculation through closed surfaces, cube symmetrically enclosed charges."
                 },
                 {
                   "concept_id": "phy_capacitance_circuits",
@@ -104,6 +126,56 @@
                   "exam_relevance": 0.94,
                   "difficulty_weight": 0.75,
                   "description": "Parallel plate capacitance, series/parallel combinations, energy density with dielectrics."
+                }
+              ]
+            },
+            {
+              "topic_id": "JEE_PHY_CIRCUITS_SEMI",
+              "name": "AC Resonance & Semiconductor Diodes",
+              "concepts": [
+                {
+                  "concept_id": "phy_lcr_resonance",
+                  "name": "LCR Circuits & Resonance",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.72,
+                  "description": "Impedance Z, resonant frequency omega = 1/sqrt(LC), quality factor Q."
+                },
+                {
+                  "concept_id": "phy_zener_logic_gates",
+                  "name": "Zener Breakdown & Logic Gates",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.97,
+                  "difficulty_weight": 0.60,
+                  "description": "Heavily doped p-n junction zener diode breakdown voltage, De Morgan logic gates."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "chapter_id": "JEE_PHY_MODERN",
+          "name": "Modern Physics & Waves",
+          "topics": [
+            {
+              "topic_id": "JEE_PHY_ATOMIC_NUC",
+              "name": "Bohr Model & de Broglie Wavelength",
+              "concepts": [
+                {
+                  "concept_id": "phy_bohr_transitions",
+                  "name": "Bohr Atom Model & Energy Transitions",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.98,
+                  "difficulty_weight": 0.65,
+                  "description": "Energy states E_n = -13.6 Z^2/n^2, Lyman/Balmer spectral frequency max delta E."
+                },
+                {
+                  "concept_id": "phy_de_broglie_waves",
+                  "name": "de Broglie Wavelength & Dual Nature",
+                  "estimated_minutes": 40,
+                  "exam_relevance": 0.94,
+                  "difficulty_weight": 0.62,
+                  "description": "lambda = h/p = h/sqrt(2mqV), ratio of particle velocities with equal wavelength."
                 }
               ]
             }
@@ -173,7 +245,7 @@
             },
             {
               "topic_id": "JEE_MATH_INTEG",
-              "name": "Integral Calculus",
+              "name": "Integral Calculus & Differential Equations",
               "concepts": [
                 {
                   "concept_id": "math_indefinite_integrals",
@@ -190,14 +262,22 @@
                   "exam_relevance": 0.99,
                   "difficulty_weight": 0.90,
                   "description": "Definite integral properties, King's rule f(a+b-x), Leibniz differentiation under integral."
+                },
+                {
+                  "concept_id": "math_area_curves",
+                  "name": "Area Under Curves",
+                  "estimated_minutes": 60,
+                  "exam_relevance": 0.96,
+                  "difficulty_weight": 0.82,
+                  "description": "Enclosed area between parabolas, lines, and trigonometric bounds."
                 }
               ]
             }
           ]
         },
         {
-          "chapter_id": "JEE_MATH_ALG",
-          "name": "Algebra",
+          "chapter_id": "JEE_MATH_ALG_VEC",
+          "name": "Algebra & Vectors",
           "topics": [
             {
               "topic_id": "JEE_MATH_QUAD",
@@ -210,6 +290,20 @@
                   "exam_relevance": 0.92,
                   "difficulty_weight": 0.65,
                   "description": "Sum and product of roots, common root conditions, range of parameters for real roots."
+                }
+              ]
+            },
+            {
+              "topic_id": "JEE_MATH_VEC_3D",
+              "name": "Vectors & 3D Geometry",
+              "concepts": [
+                {
+                  "concept_id": "math_3d_planes_lines",
+                  "name": "Planes & Direction Ratios in 3D",
+                  "estimated_minutes": 60,
+                  "exam_relevance": 0.98,
+                  "difficulty_weight": 0.80,
+                  "description": "Equation of plane through line intersection, perpendicular foot, skew line distance."
                 }
               ]
             }
@@ -288,12 +382,12 @@
                   "description": "Mesomeric stabilization, intermediate stability (carbocations, free radicals), aromaticity."
                 },
                 {
-                  "concept_id": "chem_acid_base_strength",
-                  "name": "Acidic and Basic Strength Comparisons",
-                  "estimated_minutes": 50,
-                  "exam_relevance": 0.95,
-                  "difficulty_weight": 0.78,
-                  "description": "pKa comparisons, substituent effects in phenols, carboxylic acids, and amines."
+                  "concept_id": "chem_nucleophilic_substitution",
+                  "name": "Nucleophilic Substitution & Aryl Halides",
+                  "estimated_minutes": 55,
+                  "exam_relevance": 0.97,
+                  "difficulty_weight": 0.76,
+                  "description": "Order of reactivity in haloarenes with ortho/para -M nitro deactivating substituents."
                 }
               ]
             }
@@ -339,6 +433,13 @@
       "description": "Potential energy formulation requires understanding work done by conservative forces."
     },
     {
+      "from_concept": "phy_conservation_energy",
+      "to_concept": "phy_shm_oscillations",
+      "strength": 0.90,
+      "relationship": "prerequisite",
+      "description": "Energy conservation in harmonic oscillators links potential and kinetic energy phase space."
+    },
+    {
       "from_concept": "math_functions_domain_range",
       "to_concept": "math_limits",
       "strength": 0.90,
@@ -381,6 +482,13 @@
       "description": "Definite integration applies fundamental calculus theorems over indefinite primitives."
     },
     {
+      "from_concept": "math_definite_properties",
+      "to_concept": "math_area_curves",
+      "strength": 0.95,
+      "relationship": "prerequisite",
+      "description": "Area calculation integrates bounded regions using definite integration limits."
+    },
+    {
       "from_concept": "chem_first_law_thermo",
       "to_concept": "chem_entropy_gibbs",
       "strength": 0.92,
@@ -403,10 +511,10 @@
     },
     {
       "from_concept": "chem_electronic_effects",
-      "to_concept": "chem_acid_base_strength",
-      "strength": 0.95,
+      "to_concept": "chem_nucleophilic_substitution",
+      "strength": 0.96,
       "relationship": "prerequisite",
-      "description": "Resonance and inductive stabilization of conjugate ions dictates relative acidity and basicity."
+      "description": "Electron-withdrawing -M/-I effects at ortho/para positions lower activation barrier for nucleophilic attack."
     }
   ]
 }
