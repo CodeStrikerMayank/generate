@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adaptive Student Intelligence & Roadmap Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header>
+    <div class="brand-container">
+      <div class="brand-logo">Δ</div>
+      <div>
+        <div class="brand-title">ADAPTIVE INTELLIGENCE ENGINE</div>
+        <div class="brand-subtitle">JEE • NEET • UPSC Learning & Roadmap System</div>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <div class="exam-pill-selector">
+        <button class="exam-pill-btn active" data-exam="JEE" onclick="AppState.switchExam('JEE')">JEE (Main/Adv)</button>
+        <button class="exam-pill-btn" data-exam="NEET" onclick="AppState.switchExam('NEET')">NEET-UG</button>
+        <button class="exam-pill-btn" data-exam="UPSC" onclick="AppState.switchExam('UPSC')">UPSC (Pre/Mains)</button>
+      </div>
+
+      <div class="user-badge">
+        <div class="avatar-circle" id="userAvatarDisplay">A</div>
+        <div>
+          <div style="font-size: 0.85rem; font-weight: 600;" id="userNameDisplay">Student</div>
+          <div style="font-size: 0.7rem; color: var(--accent-cyan);" id="userExamBadge">JEE</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- App Body Layout -->
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar-nav">
+      <div class="nav-item active" id="nav_dashboard" onclick="AppState.switchTab('dashboard')">
+        <span class="nav-icon">📊</span> Overview & Mastery
+      </div>
+      <div class="nav-item" id="nav_roadmap" onclick="AppState.switchTab('roadmap')">
+        <span class="nav-icon">🗺️</span> Dynamic Roadmap & NBA
+      </div>
+      <div class="nav-item" id="nav_assessment" onclick="AppState.switchTab('assessment')">
+        <span class="nav-icon">🎯</span> Assessment Arena
+      </div>
+      <div class="nav-item" id="nav_graph" onclick="AppState.switchTab('graph')">
+        <span class="nav-icon">🕸️</span> Knowledge Graph DAG
+      </div>
+      <div class="nav-item" id="nav_upsc" onclick="AppState.switchTab('upsc')">
+        <span class="nav-icon">✍️</span> UPSC Written Studio
+      </div>
+      <div class="nav-item" id="nav_ai" onclick="AppState.switchTab('ai')">
+        <span class="nav-icon">🤖</span> Offline AI Study Mentor
+      </div>
+      <div class="nav-item" id="nav_telemetry" onclick="AppState.switchTab('telemetry')">
+        <span class="nav-icon">📡</span> Telemetry Stream
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- 1. OVERVIEW DASHBOARD TAB -->
+      <section class="tab-pane active" id="pane_dashboard">
+        <!-- Next Best Action Hero Banner on Dashboard -->
+        <div id="nbaHeroContainer"></div>
+
+        <!-- Metric KPI Cards -->
+        <div class="grid-4" style="margin-bottom: 2rem;">
+          <div class="glass-card stat-card">
+            <div class="stat-label">Latent Mastery</div>
+            <div class="stat-val" id="overallMasteryVal">--%</div>
+            <div class="stat-sub">Multi-factor knowledge estimate</div>
+          </div>
+          <div class="glass-card stat-card">
+            <div class="stat-label">Model Confidence</div>
+            <div class="stat-val" id="overallConfidenceVal" style="color: var(--accent-cyan);">--%</div>
+            <div class="stat-sub">Calibrated sample variance</div>
+          </div>
+          <div class="glass-card stat-card">
+            <div class="stat-label">Active Exam Track</div>
+            <div class="stat-val" style="color: var(--accent-purple); font-size: 1.5rem;">JEE / NEET / UPSC</div>
+            <div class="stat-sub">Hierarchical curriculum tree</div>
+          </div>
+          <div class="glass-card stat-card">
+            <div class="stat-label">Pedagogy Engine</div>
+            <div class="stat-val" style="color: var(--accent-success); font-size: 1.5rem;">Adaptive</div>
+            <div class="stat-sub">Knowledge Tracing + DAG</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Root Cause Weakness Diagnostics -->
+          <div class="glass-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 style="font-size: 1.1rem; font-weight: 700;">Root-Cause Weakness Ranking</h3>
+              <span class="nba-tag">Explainable</span>
+            </div>
+            <div id="weaknessRankingList">
+              <div style="color: var(--text-secondary); padding: 1rem;">Loading weaknesses...</div>
+            </div>
+          </div>
+
+          <!-- Quick Action Diagnostic Launcher -->
+          <div class="glass-card">
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Start Controlled Diagnostic</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+              Take a multi-stage controlled baseline assessment to calibrate difficulty limits and uncover missing prerequisites.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <button class="btn-primary" onclick="QuizController.startTest(AppState.currentExam, 'DIAGNOSTIC', 1)">
+                🚀 Launch Baseline Diagnostic (Stage 1)
+              </button>
+              <button class="btn-secondary" onclick="QuizController.startTest(AppState.currentExam, 'RETENTION_TEST', 2)">
+                🔄 Run Spaced Retention Test
+              </button>
+              <button class="btn-secondary" onclick="QuizController.startTest(AppState.currentExam, 'TRANSFER_TEST', 3)">
+                🔀 Run Transfer Problem Test
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. DYNAMIC ROADMAP TAB -->
+      <section class="tab-pane" id="pane_roadmap">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <div>
+            <h2 style="font-size: 1.6rem; font-weight: 800;">Dynamic Learning Roadmap</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">
+              Your roadmap automatically re-evaluates priorities after every assessment attempt.
+            </p>
+          </div>
+          <button class="btn-secondary" onclick="API.regenerateRoadmap(AppState.student.student_id).then(() => AppState.refreshAllData())">
+            ↻ Recalculate Roadmap
+          </button>
+        </div>
+        <div id="roadmapTimelineContainer" class="roadmap-timeline"></div>
+      </section>
+
+      <!-- 3. ASSESSMENT ARENA TAB -->
+      <section class="tab-pane" id="pane_assessment">
+        <div id="quizArena">
+          <div class="glass-card" style="text-align: center; padding: 3rem;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 0.75rem;">No Assessment Currently Active</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+              Select an assessment mode or launch practice directly from your Dynamic Roadmap.
+            </p>
+            <button class="btn-primary" onclick="QuizController.startTest(AppState.currentExam, 'DIAGNOSTIC', 1)">
+              Start Diagnostic Test →
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. KNOWLEDGE GRAPH DAG TAB -->
+      <section class="tab-pane" id="pane_graph">
+        <div style="margin-bottom: 1rem;">
+          <h2 style="font-size: 1.6rem; font-weight: 800;">Curriculum Knowledge Graph (NetworkX DAG)</h2>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+            Interactive concept dependency graph. Green = Mastered, Indigo = Progressing, Amber = Moderate, Red = Prerequisite Blockage.
+          </p>
+        </div>
+        <div class="glass-card" style="padding: 1rem;">
+          <canvas id="graphCanvas"></canvas>
+        </div>
+      </section>
+
+      <!-- 5. UPSC WRITTEN STUDIO TAB -->
+      <section class="tab-pane" id="pane_upsc">
+        <div style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.6rem; font-weight: 800;">UPSC Mains Written Response Studio</h2>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+            Descriptive answer writing evaluated across 7-pillar civil service rubrics (Understanding, Structure, Arguments, Case Laws, Clarity).
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <!-- Question Selector -->
+          <div class="glass-card">
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;">Select Mains Question</h3>
+            <div id="upscQuestionList"></div>
+          </div>
+
+          <!-- Answer Writing Editor -->
+          <div class="glass-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+              <span class="quiz-timer" id="upscWritingTimer">⏱ 00:00</span>
+              <span style="font-weight: 600; color: var(--accent-cyan);" id="upscWordCount">0 Words</span>
+            </div>
+
+            <div style="font-weight: 600; font-size: 0.95rem; margin-bottom: 0.75rem; color: #fff;" id="upscSelectedPrompt">
+              Select a question from the left panel to begin.
+            </div>
+
+            <textarea id="upscAnswerInput" class="upsc-editor" placeholder="Write your structured response here (Introduction -> Core Arguments -> Case Laws -> Way Forward / Conclusion)..." oninput="UPSCStudioController.updateWordCount()"></textarea>
+
+            <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
+              <button class="btn-primary" onclick="UPSCStudioController.submitAnswer()">
+                Submit for 7-Pillar Rubric Evaluation →
+              </button>
+            </div>
+
+            <div id="upscFeedbackBox" class="glass-card" style="margin-top: 1.5rem; display: none;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. OFFLINE AI ASSISTANT TAB -->
+      <section class="tab-pane" id="pane_ai">
+        <div style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.6rem; font-weight: 800;">Offline AI Pedagogical Mentor</h2>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+            Ollama-compatible offline study assistant. Explains roadmap decisions, generates study briefs, and generates validated practice questions.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <!-- Chat Interface -->
+          <div class="chat-window">
+            <div class="chat-messages" id="chatMessagesContainer"></div>
+            <div class="chat-input-row">
+              <input type="text" id="chatInput" class="chat-input" placeholder="Ask a study question or request an explanation of your roadmap..." onkeydown="if(event.key === 'Enter') AIAssistantController.sendMessage()">
+              <button class="btn-primary" onclick="AIAssistantController.sendMessage()">Send</button>
+            </div>
+          </div>
+
+          <!-- Question Generator Sandbox -->
+          <div class="glass-card">
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem;">AI Practice Question Generator</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              Generates candidate multiple-choice questions with automatic validation checks before bank admission.
+            </p>
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.8rem; color: var(--text-secondary); display: block; margin-bottom: 4px;">Target Concept</label>
+              <select id="genConceptSelect" class="chat-input" style="width: 100%;">
+                <option value="math_limits">Limits & Indeterminate Forms (Math)</option>
+                <option value="phy_friction">Static & Kinetic Friction (Physics)</option>
+                <option value="chem_electronic_effects">Electronic Effects in GOC (Chemistry)</option>
+                <option value="bio_mendelian_laws">Mendel's Laws of Inheritance (Biology)</option>
+                <option value="polity_fundamental_rights_art12_35">Fundamental Rights (UPSC Polity)</option>
+              </select>
+            </div>
+            <button class="btn-primary" onclick="AIAssistantController.generatePracticeQuestion()">
+              ⚡ Generate Validated Practice Question
+            </button>
+            <div id="genQuestionOutput"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. TELEMETRY STREAM TAB -->
+      <section class="tab-pane" id="pane_telemetry">
+        <div style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.6rem; font-weight: 800;">Interaction Telemetry Stream</h2>
+          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+            Append-only telemetry audit trail capturing every interaction, quiz attempt, and roadmap transition.
+          </p>
+        </div>
+        <div class="glass-card" id="telemetryStreamContainer">
+          <div style="color: var(--text-secondary); padding: 1rem;">Loading telemetry stream...</div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Global Diagnostic Result Modal -->
+  <div class="modal-backdrop" id="resultModal">
+    <div class="modal-box" id="resultModalContent"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/graph_view.js"></script>
+  <script src="/static/js/quiz.js"></script>
+  <script src="/static/js/roadmap.js"></script>
+  <script src="/static/js/upsc.js"></script>
+  <script src="/static/js/ai_assistant.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

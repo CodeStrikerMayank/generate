@@ -1,0 +1,493 @@
+{
+  "exam_id": "JEE",
+  "name": "Joint Entrance Examination (JEE Main & Advanced)",
+  "tracks": ["JEE_MAIN", "JEE_ADVANCED"],
+  "subjects": [
+    {
+      "subject_id": "JEE_PHY",
+      "name": "Physics",
+      "chapters": [
+        {
+          "chapter_id": "JEE_PHY_MECH",
+          "name": "Mechanics",
+          "topics": [
+            {
+              "topic_id": "JEE_PHY_NLM",
+              "name": "Newton's Laws of Motion",
+              "concepts": [
+                {
+                  "concept_id": "phy_vectors_basic",
+                  "name": "Vectors & Resolution of Forces",
+                  "estimated_minutes": 30,
+                  "exam_relevance": 0.85,
+                  "difficulty_weight": 0.35,
+                  "description": "Vector addition, scalar/vector products, resolution in orthogonal axes."
+                },
+                {
+                  "concept_id": "phy_fbd_equilibrium",
+                  "name": "Free Body Diagrams & Equilibrium",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.90,
+                  "difficulty_weight": 0.50,
+                  "description": "Drawing isolated bodies, normal contact forces, tension, Newton's 1st and 3rd laws."
+                },
+                {
+                  "concept_id": "phy_newton_second_law",
+                  "name": "Newton's Second Law & Accelerated Frames",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.65,
+                  "description": "F_net = ma, pseudo forces in non-inertial reference frames, constraint relations."
+                },
+                {
+                  "concept_id": "phy_friction",
+                  "name": "Static & Kinetic Friction",
+                  "estimated_minutes": 60,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.75,
+                  "description": "Coefficient of friction, limiting friction, two-block problems, direction of friction."
+                },
+                {
+                  "concept_id": "phy_circular_dynamics",
+                  "name": "Dynamics of Circular Motion",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.90,
+                  "difficulty_weight": 0.80,
+                  "description": "Centripetal acceleration, banking of roads, vertical circular motion critical velocity."
+                }
+              ]
+            },
+            {
+              "topic_id": "JEE_PHY_WEP",
+              "name": "Work, Energy and Power",
+              "concepts": [
+                {
+                  "concept_id": "phy_work_energy_thm",
+                  "name": "Work-Energy Theorem",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.70,
+                  "description": "Work done by variable forces, kinetic energy change, conservative and non-conservative forces."
+                },
+                {
+                  "concept_id": "phy_conservation_energy",
+                  "name": "Conservation of Mechanical Energy & Potential Energy",
+                  "estimated_minutes": 55,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.80,
+                  "description": "Potential energy curves U(x), equilibrium stability (dU/dx=0), spring mass systems."
+                }
+              ]
+            },
+            {
+              "topic_id": "JEE_PHY_ROT",
+              "name": "Rotational Motion",
+              "concepts": [
+                {
+                  "concept_id": "phy_moment_inertia",
+                  "name": "Moment of Inertia & Theorems",
+                  "estimated_minutes": 60,
+                  "exam_relevance": 0.90,
+                  "difficulty_weight": 0.75,
+                  "description": "Parallel and perpendicular axis theorems, radius of gyration, continuous body integration."
+                },
+                {
+                  "concept_id": "phy_torque_ang_momentum",
+                  "name": "Torque and Conservation of Angular Momentum",
+                  "estimated_minutes": 70,
+                  "exam_relevance": 0.98,
+                  "difficulty_weight": 0.90,
+                  "description": "Tau = I*alpha, angular momentum L = r x p = I*omega, conservation in collision problems."
+                },
+                {
+                  "concept_id": "phy_rolling_motion",
+                  "name": "Pure Rolling & Combined Translation-Rotation",
+                  "estimated_minutes": 75,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.95,
+                  "description": "Condition v = omega*R, friction in rolling, acceleration on inclined planes."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "chapter_id": "JEE_PHY_ELECTRO",
+          "name": "Electrodynamics",
+          "topics": [
+            {
+              "topic_id": "JEE_PHY_ELECTROSTAT",
+              "name": "Electrostatics",
+              "concepts": [
+                {
+                  "concept_id": "phy_coulomb_field",
+                  "name": "Coulomb's Law & Electric Field",
+                  "estimated_minutes": 40,
+                  "exam_relevance": 0.88,
+                  "difficulty_weight": 0.55,
+                  "description": "Point charges, superposition principle, continuous charge distributions (ring, line)."
+                },
+                {
+                  "concept_id": "phy_gauss_law",
+                  "name": "Gauss's Law & Flux",
+                  "estimated_minutes": 60,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.78,
+                  "description": "Electric flux, spherical, cylindrical, and planar symmetric Gauss surfaces, conductor cavities."
+                },
+                {
+                  "concept_id": "phy_electric_potential",
+                  "name": "Electric Potential and Capacitance",
+                  "estimated_minutes": 65,
+                  "exam_relevance": 0.92,
+                  "difficulty_weight": 0.80,
+                  "description": "Potential gradient E = -grad(V), capacitance, dielectrics, energy stored in capacitors."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subject_id": "JEE_MATH",
+      "name": "Mathematics",
+      "chapters": [
+        {
+          "chapter_id": "JEE_MATH_CALC",
+          "name": "Calculus",
+          "topics": [
+            {
+              "topic_id": "JEE_MATH_FUNCS",
+              "name": "Functions and Graphs",
+              "concepts": [
+                {
+                  "concept_id": "math_functions_domain_range",
+                  "name": "Functions, Domain and Range",
+                  "estimated_minutes": 40,
+                  "exam_relevance": 0.90,
+                  "difficulty_weight": 0.45,
+                  "description": "Types of functions (injective, surjective, bijective), domain determination, composite functions."
+                },
+                {
+                  "concept_id": "math_graph_transformations",
+                  "name": "Graph Transformations & Modulus",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.88,
+                  "difficulty_weight": 0.60,
+                  "description": "Transformations f(x+a), af(x), |f(x)|, f(|x|), greatest integer [x], fractional part {x}."
+                }
+              ]
+            },
+            {
+              "topic_id": "JEE_MATH_LCD",
+              "name": "Limits, Continuity & Differentiability",
+              "concepts": [
+                {
+                  "concept_id": "math_limits",
+                  "name": "Limits & Indeterminate Forms",
+                  "estimated_minutes": 60,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.70,
+                  "description": "Evaluation of 0/0, inf/inf, 1^inf forms, L'Hopital's Rule, Taylor standard expansions."
+                },
+                {
+                  "concept_id": "math_continuity",
+                  "name": "Continuity of Functions",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.92,
+                  "difficulty_weight": 0.75,
+                  "description": "LHL = RHL = f(a), types of discontinuities, Intermediate Value Theorem."
+                },
+                {
+                  "concept_id": "math_differentiability",
+                  "name": "Differentiability & Derivatives",
+                  "estimated_minutes": 65,
+                  "exam_relevance": 0.96,
+                  "difficulty_weight": 0.85,
+                  "description": "Right-hand and left-hand derivatives, corner points, differentiability implies continuity."
+                },
+                {
+                  "concept_id": "math_aod_monotonocity",
+                  "name": "Application of Derivatives: Monotonicity & Extrema",
+                  "estimated_minutes": 70,
+                  "exam_relevance": 0.98,
+                  "difficulty_weight": 0.88,
+                  "description": "f'(x) sign analysis, maxima and minima, Rolle's and Lagrange Mean Value Theorems."
+                }
+              ]
+            },
+            {
+              "topic_id": "JEE_MATH_INTEG",
+              "name": "Integral Calculus",
+              "concepts": [
+                {
+                  "concept_id": "math_indefinite_integrals",
+                  "name": "Indefinite Integration Techniques",
+                  "estimated_minutes": 60,
+                  "exam_relevance": 0.88,
+                  "difficulty_weight": 0.75,
+                  "description": "Substitution, integration by parts, partial fractions, special standard integrals."
+                },
+                {
+                  "concept_id": "math_definite_properties",
+                  "name": "Definite Integrals & King's Property",
+                  "estimated_minutes": 75,
+                  "exam_relevance": 0.98,
+                  "difficulty_weight": 0.90,
+                  "description": "Properties integral f(a+b-x)dx, Leibniz rule of differentiation under integral sign."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "chapter_id": "JEE_MATH_ALG",
+          "name": "Algebra",
+          "topics": [
+            {
+              "topic_id": "JEE_MATH_QUAD",
+              "name": "Quadratic Equations",
+              "concepts": [
+                {
+                  "concept_id": "math_quadratic_roots",
+                  "name": "Roots, Discriminant & Location of Roots",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.92,
+                  "difficulty_weight": 0.65,
+                  "description": "Sum and product of roots, condition for common roots, location of roots relative to k."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subject_id": "JEE_CHEM",
+      "name": "Chemistry",
+      "chapters": [
+        {
+          "chapter_id": "JEE_CHEM_PHYS",
+          "name": "Physical Chemistry",
+          "topics": [
+            {
+              "topic_id": "JEE_CHEM_THERMO",
+              "name": "Chemical Thermodynamics",
+              "concepts": [
+                {
+                  "concept_id": "chem_first_law_thermo",
+                  "name": "First Law of Thermodynamics & Enthalpy",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.90,
+                  "difficulty_weight": 0.65,
+                  "description": "delta U = q + w, work in reversible/irreversible isothermal and adiabatic processes, delta H."
+                },
+                {
+                  "concept_id": "chem_entropy_gibbs",
+                  "name": "Entropy, Gibbs Free Energy & Spontaneity",
+                  "estimated_minutes": 60,
+                  "exam_relevance": 0.96,
+                  "difficulty_weight": 0.82,
+                  "description": "Second Law, delta S_univ > 0, delta G = delta H - T*delta S, equilibrium constant relation."
+                }
+              ]
+            },
+            {
+              "topic_id": "JEE_CHEM_EQUIL",
+              "name": "Chemical & Ionic Equilibrium",
+              "concepts": [
+                {
+                  "concept_id": "chem_chemical_equil_kp_kc",
+                  "name": "Law of Mass Action, Kp & Kc",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.88,
+                  "difficulty_weight": 0.60,
+                  "description": "Relationship Kp = Kc(RT)^delta_n, Le Chatelier principle, reaction quotient Q."
+                },
+                {
+                  "concept_id": "chem_ionic_ph_buffer",
+                  "name": "pH Calculations, Buffers & Solubility Product",
+                  "estimated_minutes": 70,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.85,
+                  "description": "Ostwald dilution, Henderson-Hasselbalch equation for buffers, Ksp precipitation condition."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "chapter_id": "JEE_CHEM_ORG",
+          "name": "Organic Chemistry",
+          "topics": [
+            {
+              "topic_id": "JEE_CHEM_GOC",
+              "name": "General Organic Chemistry (GOC)",
+              "concepts": [
+                {
+                  "concept_id": "chem_electronic_effects",
+                  "name": "Inductive, Resonance & Hyperconjugation Effects",
+                  "estimated_minutes": 55,
+                  "exam_relevance": 0.98,
+                  "difficulty_weight": 0.70,
+                  "description": "Mesomeric effect, stability of carbocations, carbanions, free radicals, aromaticity (Huckel Rule)."
+                },
+                {
+                  "concept_id": "chem_acid_base_strength",
+                  "name": "Acidic and Basic Strength Comparisons",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.78,
+                  "description": "pKa comparisons, ortho effect in benzoic acids, substituted anilines and phenols."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "prerequisites": [
+    {
+      "from_concept": "phy_vectors_basic",
+      "to_concept": "phy_fbd_equilibrium",
+      "strength": 0.95,
+      "relationship": "prerequisite",
+      "description": "Resolving components is required to construct free body diagram equations."
+    },
+    {
+      "from_concept": "phy_fbd_equilibrium",
+      "to_concept": "phy_newton_second_law",
+      "strength": 0.90,
+      "relationship": "prerequisite",
+      "description": "Equilibrium FBD is the foundation for accelerated frame dynamic equations."
+    },
+    {
+      "from_concept": "phy_newton_second_law",
+      "to_concept": "phy_friction",
+      "strength": 0.90,
+      "relationship": "prerequisite",
+      "description": "Normal reaction determination from NLM is required to compute limiting friction."
+    },
+    {
+      "from_concept": "phy_newton_second_law",
+      "to_concept": "phy_circular_dynamics",
+      "strength": 0.85,
+      "relationship": "prerequisite",
+      "description": "Centripetal acceleration dynamics builds on Newton's second law."
+    },
+    {
+      "from_concept": "phy_newton_second_law",
+      "to_concept": "phy_work_energy_thm",
+      "strength": 0.85,
+      "relationship": "prerequisite",
+      "description": "Work-energy theorem integrates Newton's second law over displacement."
+    },
+    {
+      "from_concept": "phy_work_energy_thm",
+      "to_concept": "phy_conservation_energy",
+      "strength": 0.90,
+      "relationship": "prerequisite",
+      "description": "Conservative forces and potential energy define mechanical energy conservation."
+    },
+    {
+      "from_concept": "phy_fbd_equilibrium",
+      "to_concept": "phy_torque_ang_momentum",
+      "strength": 0.80,
+      "relationship": "prerequisite",
+      "description": "Torque requires lever arm and force decomposition from equilibrium concepts."
+    },
+    {
+      "from_concept": "phy_moment_inertia",
+      "to_concept": "phy_torque_ang_momentum",
+      "strength": 0.92,
+      "relationship": "prerequisite",
+      "description": "Rotational dynamics Tau = I*alpha requires moment of inertia."
+    },
+    {
+      "from_concept": "phy_torque_ang_momentum",
+      "to_concept": "phy_rolling_motion",
+      "strength": 0.95,
+      "relationship": "prerequisite",
+      "description": "Rolling motion combines translational NLM and rotational torque equations."
+    },
+    {
+      "from_concept": "math_functions_domain_range",
+      "to_concept": "math_graph_transformations",
+      "strength": 0.85,
+      "relationship": "prerequisite",
+      "description": "Function definition and behavior are needed for graphing transformations."
+    },
+    {
+      "from_concept": "math_functions_domain_range",
+      "to_concept": "math_limits",
+      "strength": 0.90,
+      "relationship": "prerequisite",
+      "description": "Understanding domain and function behavior around critical points is needed for limits."
+    },
+    {
+      "from_concept": "math_limits",
+      "to_concept": "math_continuity",
+      "strength": 0.98,
+      "relationship": "prerequisite",
+      "description": "Continuity at x=a is defined strictly through limit existence (LHL = RHL = f(a))."
+    },
+    {
+      "from_concept": "math_continuity",
+      "to_concept": "math_differentiability",
+      "strength": 0.95,
+      "relationship": "prerequisite",
+      "description": "A function must be continuous to be differentiable; derivative limits rely on continuity."
+    },
+    {
+      "from_concept": "math_differentiability",
+      "to_concept": "math_aod_monotonocity",
+      "strength": 0.95,
+      "relationship": "prerequisite",
+      "description": "Monotonicity and extremum detection require calculating first and second derivatives."
+    },
+    {
+      "from_concept": "math_differentiability",
+      "to_concept": "math_indefinite_integrals",
+      "strength": 0.85,
+      "relationship": "prerequisite",
+      "description": "Integration is the anti-derivative process."
+    },
+    {
+      "from_concept": "math_indefinite_integrals",
+      "to_concept": "math_definite_properties",
+      "strength": 0.92,
+      "relationship": "prerequisite",
+      "description": "Definite integrals apply fundamental theorem of calculus over indefinite primitives."
+    },
+    {
+      "from_concept": "chem_first_law_thermo",
+      "to_concept": "chem_entropy_gibbs",
+      "strength": 0.92,
+      "relationship": "prerequisite",
+      "description": "Enthalpy delta H from First Law is required to calculate Gibbs Free Energy delta G."
+    },
+    {
+      "from_concept": "chem_entropy_gibbs",
+      "to_concept": "chem_chemical_equil_kp_kc",
+      "strength": 0.85,
+      "relationship": "prerequisite",
+      "description": "Spontaneity delta G_0 = -RT ln K connects thermodynamics with chemical equilibrium."
+    },
+    {
+      "from_concept": "chem_chemical_equil_kp_kc",
+      "to_concept": "chem_ionic_ph_buffer",
+      "strength": 0.90,
+      "relationship": "prerequisite",
+      "description": "Ionic equilibrium applies mass action laws to weak electrolyte dissociation."
+    },
+    {
+      "from_concept": "chem_electronic_effects",
+      "to_concept": "chem_acid_base_strength",
+      "strength": 0.95,
+      "relationship": "prerequisite",
+      "description": "Resonance and inductive stabilization of conjugate bases determines acid strength."
+    }
+  ]
+}

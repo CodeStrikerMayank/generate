@@ -1,0 +1,302 @@
+[
+  {
+    "question_id": "JEE_PHY_VEC_001",
+    "exam": "JEE",
+    "paper": "MAIN",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "topic": "Newton's Laws of Motion",
+    "concept_id": "phy_vectors_basic",
+    "skill": "conceptual",
+    "difficulty": 0.35,
+    "discrimination": 1.2,
+    "estimated_time": 60,
+    "question_type": "multiple_choice",
+    "content": "Two forces of magnitude 3N and 4N act on a point particle at an angle of 90 degrees. What is the magnitude and direction of the resultant force relative to the 3N force?",
+    "options": [
+      {"id": "A", "text": "5 N at tan^-1(4/3) with the 3N force"},
+      {"id": "B", "text": "7 N at 45 degrees with the 3N force"},
+      {"id": "C", "text": "1 N along the 4N force"},
+      {"id": "D", "text": "5 N at tan^-1(3/4) with the 3N force"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Resultant R = sqrt(3^2 + 4^2 + 2*3*4*cos(90)) = sqrt(9+16) = 5 N. Angle theta with 3N force: tan(theta) = (4*sin 90)/(3 + 4*cos 90) = 4/3. Thus theta = tan^-1(4/3).",
+    "distractor_explanations": {
+      "B": "CALCULATION_ERROR: Directly added scalar magnitudes instead of vector sum.",
+      "C": "CONCEPTUAL_ERROR: Subtracted magnitudes instead of orthogonal Pythagorean sum.",
+      "D": "FORMULA_SELECTION_ERROR: Inverted the perpendicular and base components in tangent formula."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "JEE_PHY_FBD_002",
+    "exam": "JEE",
+    "paper": "MAIN",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "topic": "Newton's Laws of Motion",
+    "concept_id": "phy_fbd_equilibrium",
+    "skill": "application",
+    "difficulty": 0.50,
+    "discrimination": 1.4,
+    "estimated_time": 75,
+    "question_type": "multiple_choice",
+    "content": "A block of mass 10 kg is suspended in equilibrium by two strings making angles 30 deg and 60 deg with a horizontal ceiling. What is the tension T1 in the string making 30 deg with the ceiling? (g = 10 m/s^2)",
+    "options": [
+      {"id": "A", "text": "50 N"},
+      {"id": "B", "text": "50*sqrt(3) N"},
+      {"id": "C", "text": "100 N"},
+      {"id": "D", "text": "25*sqrt(3) N"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Let angles with horizontal be 30 deg and 60 deg. Horizontal equilibrium: T1*cos(30) = T2*cos(60) => T2 = T1*sqrt(3). Vertical equilibrium: T1*sin(30) + T2*sin(60) = 100 N => T1*(1/2) + (T1*sqrt(3))*(sqrt(3)/2) = 100 => T1*(1/2 + 3/2) = 2*T1 = 100 => T1 = 50 N.",
+    "distractor_explanations": {
+      "B": "CALCULATION_ERROR: Calculated T2 instead of T1.",
+      "C": "CONCEPTUAL_ERROR: Assumed entire weight is held by a single string.",
+      "D": "FORMULA_SELECTION_ERROR: Swapped sine and cosine components during resolution."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "JEE_PHY_NLM_003",
+    "exam": "JEE",
+    "paper": "ADVANCED",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "topic": "Newton's Laws of Motion",
+    "concept_id": "phy_newton_second_law",
+    "skill": "multi_step",
+    "difficulty": 0.68,
+    "discrimination": 1.6,
+    "estimated_time": 100,
+    "question_type": "multiple_choice",
+    "content": "A wedge of mass M with angle theta is placed on a smooth horizontal surface. A block of mass m is placed on the smooth incline. What horizontal force F must be applied to the wedge so that the mass m remains stationary relative to the wedge?",
+    "options": [
+      {"id": "A", "text": "(M + m) * g * tan(theta)"},
+      {"id": "B", "text": "(M + m) * g * sin(theta)"},
+      {"id": "C", "text": "m * g * tan(theta)"},
+      {"id": "D", "text": "(M + m) * g * cot(theta)"}
+    ],
+    "correct_answer": "A",
+    "explanation": "For block m to be stationary in wedge frame, pseudo force m*a acts horizontally backward. N*cos(theta) = m*g and N*sin(theta) = m*a => a = g*tan(theta). For the total system (M+m), F = (M+m)*a = (M+m)*g*tan(theta).",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: Used sin(theta) component instead of resolving along normal and horizontal.",
+      "C": "READING_ERROR: Forgot to include the mass of the wedge M in total force F = (M+m)a.",
+      "D": "FORMULA_SELECTION_ERROR: Inverted the trigonometric ratio."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "JEE_PHY_FRIC_004",
+    "exam": "JEE",
+    "paper": "ADVANCED",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "topic": "Newton's Laws of Motion",
+    "concept_id": "phy_friction",
+    "skill": "multi_step",
+    "difficulty": 0.82,
+    "discrimination": 1.8,
+    "estimated_time": 120,
+    "question_type": "multiple_choice",
+    "content": "A block A of mass 2 kg rests on a block B of mass 4 kg. Coefficient of friction between A and B is mu = 0.4, and between B and the ground is 0. A horizontal force of 12 N is applied to block A. What is the acceleration of block B?",
+    "options": [
+      {"id": "A", "text": "2.0 m/s^2"},
+      {"id": "B", "text": "1.5 m/s^2"},
+      {"id": "C", "text": "3.0 m/s^2"},
+      {"id": "D", "text": "0 m/s^2"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Max static friction between A and B: f_max = mu * m_A * g = 0.4 * 2 * 10 = 8 N. Max common acceleration a_max of B caused by friction: a_max = f_max / m_B = 8 / 4 = 2.0 m/s^2. Force needed to produce this common acceleration on combined system (2+4 kg): F_req = (2+4)*2.0 = 12 N. Since applied force is exactly 12 N, the blocks move together without slipping with acceleration a = 12 / (2+4) = 2.0 m/s^2.",
+    "distractor_explanations": {
+      "B": "CALCULATION_ERROR: Subtracted 8N from 12N and divided by 4kg wrongly assuming slipping.",
+      "C": "CONCEPTUAL_ERROR: Assumed block A accelerates independently at (12-8)/2 = 2 and block B accelerates at 8/2 = 4.",
+      "D": "READING_ERROR: Thought friction prevents motion altogether."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "JEE_MATH_FUNC_001",
+    "exam": "JEE",
+    "paper": "MAIN",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Functions and Graphs",
+    "concept_id": "math_functions_domain_range",
+    "skill": "conceptual",
+    "difficulty": 0.42,
+    "discrimination": 1.1,
+    "estimated_time": 60,
+    "question_type": "multiple_choice",
+    "content": "Find the domain of definition of the real-valued function f(x) = sqrt(x - 2) / (x^2 - 9).",
+    "options": [
+      {"id": "A", "text": "[2, 3) U (3, inf)"},
+      {"id": "B", "text": "[2, inf)"},
+      {"id": "C", "text": "(-inf, -3) U (3, inf)"},
+      {"id": "D", "text": "(3, inf)"}
+    ],
+    "correct_answer": "A",
+    "explanation": "For numerator: x - 2 >= 0 => x >= 2. For denominator: x^2 - 9 != 0 => x != +-3. Combining x in [2, inf) with x != 3 gives the domain [2, 3) U (3, inf). Note -3 is already outside [2, inf).",
+    "distractor_explanations": {
+      "B": "CARELESS_ERROR: Forgot denominator cannot be zero at x = 3.",
+      "C": "CONCEPTUAL_ERROR: Inverted the square root condition.",
+      "D": "CONCEPTUAL_ERROR: Excluded the valid interval [2, 3)."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "JEE_MATH_LIM_002",
+    "exam": "JEE",
+    "paper": "MAIN",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Limits, Continuity & Differentiability",
+    "concept_id": "math_limits",
+    "skill": "application",
+    "difficulty": 0.65,
+    "discrimination": 1.5,
+    "estimated_time": 80,
+    "question_type": "multiple_choice",
+    "content": "Evaluate the limit: lim (x -> 0) [ (sin x - x + x^3 / 6) / x^5 ].",
+    "options": [
+      {"id": "A", "text": "1 / 120"},
+      {"id": "B", "text": "-1 / 120"},
+      {"id": "C", "text": "1 / 24"},
+      {"id": "D", "text": "0"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Using Taylor series expansion of sin x around 0: sin x = x - x^3/3! + x^5/5! - x^7/7! + ... => sin x - x + x^3/6 = x^5/120 - x^7/5040 + ... Dividing by x^5 and taking limit x -> 0 yields 1/120.",
+    "distractor_explanations": {
+      "B": "SIGN_ERROR: Negated the Taylor expansion sign for x^5 term.",
+      "C": "CALCULATION_ERROR: Used 4! = 24 instead of 5! = 120.",
+      "D": "CARELESS_ERROR: Truncated expansion too early."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "JEE_MATH_CONT_003",
+    "exam": "JEE",
+    "paper": "MAIN",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Limits, Continuity & Differentiability",
+    "concept_id": "math_continuity",
+    "skill": "application",
+    "difficulty": 0.72,
+    "discrimination": 1.5,
+    "estimated_time": 90,
+    "question_type": "multiple_choice",
+    "content": "If f(x) = (1 - cos 4x) / x^2 for x < 0, f(0) = a, and f(x) = sqrt(x) / sqrt(16 + sqrt(x) - 4) for x > 0. For what value of a is f(x) continuous at x = 0?",
+    "options": [
+      {"id": "A", "text": "8"},
+      {"id": "B", "text": "4"},
+      {"id": "C", "text": "2"},
+      {"id": "D", "text": "16"}
+    ],
+    "correct_answer": "A",
+    "explanation": "LHL = lim (x->0-) (1 - cos 4x)/x^2 = lim 2*sin^2(2x)/x^2 = 2 * 4 * (sin 2x / 2x)^2 = 8. RHL = lim (x->0+) sqrt(x) * (sqrt(16 + sqrt(x)) + 4) / (16 + sqrt(x) - 16) = lim sqrt(x) * (sqrt(16 + sqrt(x)) + 4) / sqrt(x) = 4 + 4 = 8. For continuity at x=0, f(0) = a = LHL = RHL = 8.",
+    "distractor_explanations": {
+      "B": "CALCULATION_ERROR: Forgot the factor of 2 in 1 - cos 4x = 2 sin^2(2x).",
+      "C": "FORMULA_SELECTION_ERROR: Did not square the argument multiplier in limit.",
+      "D": "CARELESS_ERROR: Double counted denominator multiplier."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "JEE_MATH_DIFF_004",
+    "exam": "JEE",
+    "paper": "ADVANCED",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Limits, Continuity & Differentiability",
+    "concept_id": "math_differentiability",
+    "skill": "reasoning",
+    "difficulty": 0.86,
+    "discrimination": 1.9,
+    "estimated_time": 110,
+    "question_type": "multiple_choice",
+    "content": "Let f(x) = x^2 * |cos(pi / x)| for x != 0, and f(0) = 0. Which of the following statements is TRUE regarding f(x) at x = 0?",
+    "options": [
+      {"id": "A", "text": "f(x) is both continuous and differentiable at x = 0 with f'(0) = 0"},
+      {"id": "B", "text": "f(x) is continuous at x = 0 but not differentiable at x = 0"},
+      {"id": "C", "text": "f(x) is discontinuous at x = 0"},
+      {"id": "D", "text": "f'(0) exists and equals 1"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Continuity: |f(x) - 0| = x^2 * |cos(pi/x)| <= x^2 -> 0 as x -> 0. Hence continuous. Differentiability: f'(0) = lim (h -> 0) [f(h) - f(0)] / h = lim (h -> 0) [h^2 * |cos(pi/h)|] / h = lim (h -> 0) h * |cos(pi/h)|. Since |cos(pi/h)| is bounded in [0, 1] and h -> 0, by squeeze theorem, f'(0) = 0. Hence f is differentiable at x=0 with f'(0)=0.",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: Assumed presence of modulus |cos| always destroys differentiability.",
+      "C": "CONCEPTUAL_ERROR: Thought oscillating factor causes discontinuity despite x^2 dampening.",
+      "D": "CALCULATION_ERROR: Incorrect limit evaluation."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "JEE_CHEM_THERMO_001",
+    "exam": "JEE",
+    "paper": "MAIN",
+    "subject": "Chemistry",
+    "chapter": "Physical Chemistry",
+    "topic": "Chemical Thermodynamics",
+    "concept_id": "chem_first_law_thermo",
+    "skill": "application",
+    "difficulty": 0.60,
+    "discrimination": 1.3,
+    "estimated_time": 75,
+    "question_type": "multiple_choice",
+    "content": "One mole of an ideal gas expands isothermally and reversibly at 300 K from an initial volume of 10 L to a final volume of 100 L. Calculate the work done by the gas (w_by). [Take R = 8.314 J/mol K, ln 10 = 2.303]",
+    "options": [
+      {"id": "A", "text": "5744 J"},
+      {"id": "B", "text": "-5744 J"},
+      {"id": "C", "text": "2494 J"},
+      {"id": "D", "text": "0 J"}
+    ],
+    "correct_answer": "A",
+    "explanation": "For isothermal reversible expansion, work done BY gas w = n * R * T * ln(V2/V1) = 1 * 8.314 * 300 * 2.303 = 5744.14 J.",
+    "distractor_explanations": {
+      "B": "SIGN_ERROR: Provided IUPAC work on gas instead of work done BY the gas.",
+      "C": "CALCULATION_ERROR: Forgot to multiply by ln(10) factor.",
+      "D": "CONCEPTUAL_ERROR: Confused delta U = 0 with work = 0."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "JEE_CHEM_GOC_002",
+    "exam": "JEE",
+    "paper": "MAIN",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "General Organic Chemistry (GOC)",
+    "concept_id": "chem_electronic_effects",
+    "skill": "conceptual",
+    "difficulty": 0.65,
+    "discrimination": 1.4,
+    "estimated_time": 70,
+    "question_type": "multiple_choice",
+    "content": "Which of the following carbocations is the MOST stable?",
+    "options": [
+      {"id": "A", "text": "Tropylium cation (cycloheptatrienyl cation)"},
+      {"id": "B", "text": "Triphenylmethyl carbocation (Ph3C+)"},
+      {"id": "C", "text": "tert-Butyl carbocation ((CH3)3C+)"},
+      {"id": "D", "text": "Benzyl carbocation (PhCH2+)"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Tropylium cation is an aromatic species with (4n+2) = 6 pi electrons delocalized over all 7 carbon atoms with complete planar resonance stabilization, giving it exceptional thermodynamic stability greater than even triphenylmethyl cation.",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: Overlooked aromaticity of tropylium ion in favor of bulky resonance.",
+      "C": "CONCEPTUAL_ERROR: Evaluated hyperconjugation above aromatic delocalization.",
+      "D": "CARELESS_ERROR: Benzyl has fewer resonance contributors."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  }
+]

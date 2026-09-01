@@ -1,0 +1,67 @@
+import os
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+from backend.app.database.connection import engine, Base, SessionLocal
+from backend.app.curriculum.loader import seed_curriculum_and_questions
+from backend.app.api import auth, curriculum, assessments, roadmap, upsc, ai, telemetry
+
+# Initialize DB tables
+Base.metadata.create_all(bind=engine)
+
+# Seed curriculum and question bank on startup
+with SessionLocal() as db:
+    seed_curriculum_and_questions(db)
+
+app = FastAPI(
+    title="Adaptive Student Intelligence & Roadmap Engine",
+    description="Offline-first, mathematically-grounded adaptive assessment and learning engine for JEE, NEET, and UPSC.",
+    version="1.0.0"
+)
+
+# CORS configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Register API Routers
+app.include_router(auth.router, prefix="/api")
+app.include_router(curriculum.router, prefix="/api")
+app.include_router(assessments.router, prefix="/api")
+app.include_router(roadmap.router, prefix="/api")
+app.include_router(upsc.router, prefix="/api")
+app.include_router(ai.router, prefix="/api")
+app.include_router(telemetry.router, prefix="/api")
+
+# Static frontend files path
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
+
+if os.path.exists(FRONTEND_DIR):
+    app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
+
+    @app.get("/")
+    def serve_frontend_index():
+        index_file = os.path.join(FRONTEND_DIR, "index.html")
+        if os.path.exists(index_file):
+            return FileResponse(index_file)
+        return {"message": "Adaptive Student Intelligence Engine API is active."}
+
+@app.get("/api/health")
+def health_check():
+    return {
+        "status": "HEALTHY",
+        "engine": "Adaptive Student Intelligence & Roadmap Platform",
+        "supported_exams": ["JEE", "NEET", "UPSC"],
+        "models": ["Baseline_Mastery", "Ebbinghaus_Decay", "BKT", "IRT_2PL", "NetworkX_DAG"]
+    }
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("backend.app.main:app", host="127.0.0.1", port=8000, reload=True)

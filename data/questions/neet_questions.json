@@ -1,0 +1,122 @@
+[
+  {
+    "question_id": "NEET_BIO_CELL_001",
+    "exam": "NEET",
+    "paper": "NEET_UG",
+    "subject": "Biology",
+    "chapter": "Cell Biology & Genetics",
+    "topic": "Cell: The Unit of Life",
+    "concept_id": "bio_prokaryote_vs_eukaryote",
+    "skill": "factual_recall",
+    "difficulty": 0.38,
+    "discrimination": 1.1,
+    "estimated_time": 45,
+    "question_type": "multiple_choice",
+    "content": "Which of the following structures is present in prokaryotes but lacks membrane-bound compartmentalization?",
+    "options": [
+      {"id": "A", "text": "Mesosome and 70S Ribosomes"},
+      {"id": "B", "text": "Golgi complex"},
+      {"id": "C", "text": "80S Ribosomes in cytoplasm"},
+      {"id": "D", "text": "Mitochondria with cristae"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Prokaryotic cells possess 70S ribosomes and infoldings of plasma membrane called mesosomes for respiration/cell wall formation, but completely lack membrane-bound organelles such as Golgi, ER, and mitochondria.",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: Golgi is exclusively eukaryotic.",
+      "C": "CARELESS_ERROR: Prokaryotes possess 70S, not 80S ribosomes.",
+      "D": "CONCEPTUAL_ERROR: Mitochondria are membrane-bound eukaryotic organelles."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_BIO_MIT_002",
+    "exam": "NEET",
+    "paper": "NEET_UG",
+    "subject": "Biology",
+    "chapter": "Cell Biology & Genetics",
+    "topic": "Cell: The Unit of Life",
+    "concept_id": "bio_cell_cycle_mitosis_meiosis",
+    "skill": "application",
+    "difficulty": 0.62,
+    "discrimination": 1.5,
+    "estimated_time": 50,
+    "question_type": "multiple_choice",
+    "content": "During which sub-stage of Prophase I of Meiosis does crossing over between non-sister chromatids of homologous chromosomes take place?",
+    "options": [
+      {"id": "A", "text": "Pachytene (mediated by recombinase enzyme)"},
+      {"id": "B", "text": "Zygotene"},
+      {"id": "C", "text": "Diplotene"},
+      {"id": "D", "text": "Leptotene"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Synapsis forms the bivalent/tetrad during Zygotene, but crossing over (exchange of genetic material) occurs specifically during Pachytene stage, mediated by enzyme recombinase.",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: Zygotene is the stage of synapsis and synaptonemal complex formation, before crossing over.",
+      "C": "CONCEPTUAL_ERROR: Diplotene is dissolution of synaptonemal complex leaving chiasmata.",
+      "D": "CARELESS_ERROR: Leptotene is chromosome condensation."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_BIO_GEN_003",
+    "exam": "NEET",
+    "paper": "NEET_UG",
+    "subject": "Biology",
+    "chapter": "Cell Biology & Genetics",
+    "topic": "Principles of Inheritance and Variation",
+    "concept_id": "bio_mendelian_laws",
+    "skill": "application",
+    "difficulty": 0.55,
+    "discrimination": 1.3,
+    "estimated_time": 60,
+    "question_type": "multiple_choice",
+    "content": "A heterozygous tall pea plant with violet flowers (TtVv) is test crossed with a dwarf white plant (ttvv). What proportion of progeny will be dwarf with violet flowers assuming independent assortment?",
+    "options": [
+      {"id": "A", "text": "25% (1/4)"},
+      {"id": "B", "text": "50% (1/2)"},
+      {"id": "C", "text": "12.5% (1/8)"},
+      {"id": "D", "text": "6.25% (1/16)"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Test cross of dihybrid TtVv x ttvv yields equal phenotypic ratio of 1:1:1:1 (Tall Violet : Tall White : Dwarf Violet : Dwarf White). Hence Dwarf with Violet flowers is 1/4 or 25%.",
+    "distractor_explanations": {
+      "B": "CALCULATION_ERROR: Multiplied one trait probability without second trait test ratio.",
+      "C": "CARELESS_ERROR: Confused with trihybrid test cross.",
+      "D": "FORMULA_SELECTION_ERROR: Used 1/16 from 9:3:3:1 F2 selfing ratio instead of test cross."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_BIO_LINK_004",
+    "exam": "NEET",
+    "paper": "NEET_UG",
+    "subject": "Biology",
+    "chapter": "Cell Biology & Genetics",
+    "topic": "Principles of Inheritance and Variation",
+    "concept_id": "bio_dihybrid_linkage",
+    "skill": "reasoning",
+    "difficulty": 0.82,
+    "discrimination": 1.7,
+    "estimated_time": 75,
+    "question_type": "multiple_choice",
+    "content": "In Morgan's experiments with Drosophila, cross A (yellow body, white eyes) showed 1.3% recombination, while cross B (white eye, miniature wing) showed 37.2% recombination. What conclusion follows regarding the genes?",
+    "options": [
+      {"id": "A", "text": "Body color and eye color genes are tightly linked (physically closer on the X-chromosome)"},
+      {"id": "B", "text": "Eye color and wing size genes are located on different autosomes"},
+      {"id": "C", "text": "Recombination frequency is inversely proportional to physical distance between genes"},
+      {"id": "D", "text": "Cross A exhibits complete absence of linkage"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Recombination frequency directly correlates with physical distance between linked genes on the same chromosome. A low recombination frequency of 1.3% indicates very tight linkage (close physical proximity) on the X chromosome.",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: Both genes were on X chromosome; 37.2% indicates loose linkage, not independent assortment on different chromosomes.",
+      "C": "CONCEPTUAL_ERROR: Frequency is directly proportional, not inversely proportional to distance.",
+      "D": "CARELESS_ERROR: 1.3% recombinant means 98.7% parental, proving strong linkage."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  }
+]

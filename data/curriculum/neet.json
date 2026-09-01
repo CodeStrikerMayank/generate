@@ -1,0 +1,188 @@
+{
+  "exam_id": "NEET",
+  "name": "National Eligibility cum Entrance Test (NEET-UG)",
+  "tracks": ["NEET_UG"],
+  "subjects": [
+    {
+      "subject_id": "NEET_BIO",
+      "name": "Biology",
+      "chapters": [
+        {
+          "chapter_id": "NEET_BIO_CELL",
+          "name": "Cell Biology & Genetics",
+          "topics": [
+            {
+              "topic_id": "NEET_BIO_CELL_UNIT",
+              "name": "Cell: The Unit of Life",
+              "concepts": [
+                {
+                  "concept_id": "bio_prokaryote_vs_eukaryote",
+                  "name": "Prokaryotic vs Eukaryotic Cell Structure",
+                  "estimated_minutes": 35,
+                  "exam_relevance": 0.92,
+                  "difficulty_weight": 0.40,
+                  "description": "Cell wall, plasma membrane, mesosomes, inclusion bodies, membrane-bound organelles."
+                },
+                {
+                  "concept_id": "bio_cell_organelles",
+                  "name": "Endomembrane System & Organelles",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.60,
+                  "description": "ER, Golgi apparatus, Lysosomes, Vacuoles, Mitochondria, Plastids, Ribosomes (70S vs 80S)."
+                },
+                {
+                  "concept_id": "bio_cell_cycle_mitosis_meiosis",
+                  "name": "Cell Cycle, Mitosis and Meiosis",
+                  "estimated_minutes": 60,
+                  "exam_relevance": 0.98,
+                  "difficulty_weight": 0.75,
+                  "description": "Phases of cell cycle (G1, S, G2, M), stages of prophase I (leptotene to diakinesis), crossing over."
+                }
+              ]
+            },
+            {
+              "topic_id": "NEET_BIO_GENETICS",
+              "name": "Principles of Inheritance and Variation",
+              "concepts": [
+                {
+                  "concept_id": "bio_mendelian_laws",
+                  "name": "Mendel's Laws of Inheritance & Monohybrid Cross",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.55,
+                  "description": "Dominance, segregation, test cross ratio 1:1, incomplete dominance and codominance (ABO blood)."
+                },
+                {
+                  "concept_id": "bio_dihybrid_linkage",
+                  "name": "Dihybrid Cross, Independent Assortment & Linkage",
+                  "estimated_minutes": 65,
+                  "exam_relevance": 0.98,
+                  "difficulty_weight": 0.85,
+                  "description": "Morgan's experiments on Drosophila, linkage vs recombination frequency, genetic maps."
+                },
+                {
+                  "concept_id": "bio_pedigree_disorders",
+                  "name": "Pedigree Analysis & Genetic Disorders",
+                  "estimated_minutes": 60,
+                  "exam_relevance": 0.96,
+                  "difficulty_weight": 0.80,
+                  "description": "Autosomal vs sex-linked dominant/recessive traits, Hemophilia, Sickle-cell anemia, Down syndrome."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "chapter_id": "NEET_BIO_PHYS",
+          "name": "Human Physiology",
+          "topics": [
+            {
+              "topic_id": "NEET_BIO_CIRCULATION",
+              "name": "Body Fluids and Circulation",
+              "concepts": [
+                {
+                  "concept_id": "bio_blood_cardiac_cycle",
+                  "name": "Blood Components, Cardiac Cycle & ECG",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.65,
+                  "description": "Formed elements, blood groups, cardiac output, pacemaker action potential, P-QRS-T waves."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subject_id": "NEET_PHY",
+      "name": "Physics",
+      "chapters": [
+        {
+          "chapter_id": "NEET_PHY_OPTICS",
+          "name": "Optics",
+          "topics": [
+            {
+              "topic_id": "NEET_PHY_RAY",
+              "name": "Ray Optics & Optical Instruments",
+              "concepts": [
+                {
+                  "concept_id": "phy_refraction_tir",
+                  "name": "Refraction at Spherical Surfaces & Total Internal Reflection",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.94,
+                  "difficulty_weight": 0.60,
+                  "description": "Snell's Law, critical angle, optical fibers, prism formula, lens maker's formula."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subject_id": "NEET_CHEM",
+      "name": "Chemistry",
+      "chapters": [
+        {
+          "chapter_id": "NEET_CHEM_ORG",
+          "name": "Biomolecules & Organic Chemistry",
+          "topics": [
+            {
+              "topic_id": "NEET_CHEM_BIOMOL",
+              "name": "Biomolecules",
+              "concepts": [
+                {
+                  "concept_id": "chem_carbohydrates_proteins",
+                  "name": "Carbohydrates, Amino Acids and Peptide Bonds",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.90,
+                  "difficulty_weight": 0.55,
+                  "description": "Reducing sugars, zwitterion, peptide linkages, alpha-helix vs beta-pleated structures, vitamins."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "prerequisites": [
+    {
+      "from_concept": "bio_prokaryote_vs_eukaryote",
+      "to_concept": "bio_cell_organelles",
+      "strength": 0.95,
+      "relationship": "prerequisite",
+      "description": "Cellular compartmentalization understanding is needed for individual organelle functions."
+    },
+    {
+      "from_concept": "bio_cell_organelles",
+      "to_concept": "bio_cell_cycle_mitosis_meiosis",
+      "strength": 0.90,
+      "relationship": "prerequisite",
+      "description": "Centrosome and chromatin structure understanding is required for chromosome separation."
+    },
+    {
+      "from_concept": "bio_cell_cycle_mitosis_meiosis",
+      "to_concept": "bio_mendelian_laws",
+      "strength": 0.92,
+      "relationship": "prerequisite",
+      "description": "Meiotic reduction division is the physical basis of Mendel's law of segregation."
+    },
+    {
+      "from_concept": "bio_mendelian_laws",
+      "to_concept": "bio_dihybrid_linkage",
+      "strength": 0.95,
+      "relationship": "prerequisite",
+      "description": "Dihybrid cross and independent assortment are modified by chromosomal linkage."
+    },
+    {
+      "from_concept": "bio_dihybrid_linkage",
+      "to_concept": "bio_pedigree_disorders",
+      "strength": 0.90,
+      "relationship": "prerequisite",
+      "description": "Tracing inheritance modes in human families requires Mendelian and linkage principles."
+    }
+  ]
+}

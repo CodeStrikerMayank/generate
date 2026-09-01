@@ -1,0 +1,148 @@
+[
+  {
+    "question_id": "UPSC_PRE_POL_001",
+    "exam": "UPSC",
+    "paper": "PRELIMS_GS",
+    "subject": "Indian Polity and Governance",
+    "chapter": "Constitutional Framework",
+    "topic": "Preamble & Fundamental Rights",
+    "concept_id": "polity_preamble_philosophy",
+    "skill": "conceptual",
+    "difficulty": 0.45,
+    "discrimination": 1.2,
+    "estimated_time": 60,
+    "question_type": "multiple_choice",
+    "content": "With reference to the Preamble of the Constitution of India, consider the following statements:\n1. The Preamble is a source of substantive power to the legislature.\n2. The Preamble is part of the Constitution and can be amended under Article 368 without altering the basic structure.\nWhich of the statements given above is/are correct?",
+    "options": [
+      {"id": "A", "text": "2 only"},
+      {"id": "B", "text": "1 only"},
+      {"id": "C", "text": "Both 1 and 2"},
+      {"id": "D", "text": "Neither 1 nor 2"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Statement 1 is incorrect: The Preamble is neither a source of power to the legislature nor a prohibition upon the powers of the legislature (non-justiciable). Statement 2 is correct: In Kesavananda Bharati (1973), Supreme Court held that Preamble is part of Constitution and can be amended under Article 368 subject to Basic Structure doctrine.",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: Thought Preamble confers independent legislative power.",
+      "C": "CONCEPTUAL_ERROR: Overlooked the non-justiciable and non-power-granting nature of Preamble.",
+      "D": "CARELESS_ERROR: Thought Preamble cannot be amended at all (confusing with Berubari case)."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "UPSC_PRE_POL_002",
+    "exam": "UPSC",
+    "paper": "PRELIMS_GS",
+    "subject": "Indian Polity and Governance",
+    "chapter": "Constitutional Framework",
+    "topic": "Preamble & Fundamental Rights",
+    "concept_id": "polity_fundamental_rights_art12_35",
+    "skill": "reasoning",
+    "difficulty": 0.72,
+    "discrimination": 1.6,
+    "estimated_time": 75,
+    "question_type": "multiple_choice",
+    "content": "Which of the following writs can be issued against private individuals as well as public authorities?",
+    "options": [
+      {"id": "A", "text": "Habeas Corpus only"},
+      {"id": "B", "text": "Mandamus and Quo-Warranto"},
+      {"id": "C", "text": "Certiorari and Prohibition"},
+      {"id": "D", "text": "Mandamus only"}
+    ],
+    "correct_answer": "A",
+    "explanation": "The writ of Habeas Corpus can be issued against both public authorities and private individuals who have illegally detained a person. Mandamus, Prohibition, and Certiorari are issued only against public bodies, courts, or tribunals.",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: Mandamus cannot be issued against a private individual or body.",
+      "C": "CONCEPTUAL_ERROR: Certiorari and Prohibition are judicial/quasi-judicial remedies.",
+      "D": "CARELESS_ERROR: Mandamus requires public statutory duty."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "UPSC_PRE_ECON_003",
+    "exam": "UPSC",
+    "paper": "PRELIMS_GS",
+    "subject": "Indian Economy and Development",
+    "chapter": "Macroeconomic Fundamentals & Banking",
+    "topic": "Monetary Policy & Inflation",
+    "concept_id": "econ_rbi_monetary_tools",
+    "skill": "application",
+    "difficulty": 0.68,
+    "discrimination": 1.5,
+    "estimated_time": 70,
+    "question_type": "multiple_choice",
+    "content": "If the Reserve Bank of India decides to adopt an expansionary monetary policy, which of the following actions would it NOT do?\n1. Cut and optimize the Statutory Liquidity Ratio (SLR)\n2. Increase the Marginal Standing Facility (MSF) rate\n3. Cut the Bank Rate and Repo Rate\nSelect the correct answer using the code below:",
+    "options": [
+      {"id": "A", "text": "2 only"},
+      {"id": "B", "text": "1 and 2 only"},
+      {"id": "C", "text": "1 and 3 only"},
+      {"id": "D", "text": "2 and 3 only"}
+    ],
+    "correct_answer": "A",
+    "explanation": "An expansionary (dovish) monetary policy aims to inject liquidity and lower borrowing costs: RBI would cut SLR, Repo Rate, and Bank Rate. Increasing the MSF rate tightens liquidity (contractionary policy), so RBI would NOT increase MSF rate.",
+    "distractor_explanations": {
+      "B": "READING_ERROR: Overlooked that cutting SLR expands liquidity.",
+      "C": "CONCEPTUAL_ERROR: Confused expansionary policy with contractionary policy.",
+      "D": "CARELESS_ERROR: Selected tools it WOULD do instead of what it would NOT do."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "UPSC_MAIN_POL_001",
+    "exam": "UPSC",
+    "paper": "MAINS_GS2",
+    "subject": "Indian Polity and Governance",
+    "chapter": "Constitutional Framework",
+    "topic": "Preamble & Fundamental Rights",
+    "concept_id": "polity_basic_structure_doctrine",
+    "skill": "analytical_writing",
+    "difficulty": 0.88,
+    "discrimination": 1.8,
+    "estimated_time": 900,
+    "question_type": "descriptive",
+    "content": "Critically examine the evolution and significance of the 'Basic Structure Doctrine' in safeguarding Indian constitutionalism. Has judicial review under this doctrine led to judicial overreach? Discuss with relevant case laws. (250 words / 15 Marks)",
+    "correct_answer": "Model Answer Outline:\n1. Introduction (30-40 words): Define Basic Structure Doctrine origin in Kesavananda Bharati (1973) balancing Article 368 amendment powers with constitutional supremacy.\n2. Evolution (60-70 words): Shankari Prasad -> Golaknath -> 24th Amendment -> Kesavananda -> Indira Gandhi v. Raj Narain (Rule of law) -> Minerva Mills (FR-DPSP balance) -> I.R. Coelho (9th schedule review).\n3. Significance (50-60 words): Prevents majoritarian tyranny, guarantees core democratic ethos, checks arbitrary executive power.\n4. Critique/Overreach debate (50-60 words): Lack of textual definition in Constitution, striking down NJAC (99th amendment), delicate boundary of separation of powers vs executive accountability.\n5. Conclusion (30-40 words): Basic structure is the ultimate safety valve preserving the living soul of the Constitution.",
+    "explanation": "Descriptive question evaluating analytical depth, structural clarity, constitutional case law citations, and balanced critique of judicial activism vs overreach.",
+    "rubrics": {
+      "understanding": {"max_score": 2.5, "criteria": "Demonstrates grasp of Article 368, basic structure doctrine, and constitutional philosophy."},
+      "structure": {"max_score": 2.0, "criteria": "Clear Introduction, chronological evolutionary flow, arguments, counter-arguments, and synthesis conclusion."},
+      "relevance": {"max_score": 2.0, "criteria": "Directly addresses judicial overreach question without deviating into generic polity notes."},
+      "argumentation": {"max_score": 2.5, "criteria": "Balanced evaluation of checks & balances versus democratic mandate and legislative sovereignty."},
+      "case_laws_examples": {"max_score": 2.5, "criteria": "Cites landmark judgements: Kesavananda Bharati, Minerva Mills, NJAC 4th Judges case, I.R. Coelho."},
+      "clarity": {"max_score": 2.0, "criteria": "Concise language, subheadings, bulleted structure, and professional civil-service tone."},
+      "conclusion": {"max_score": 1.5, "criteria": "Forward-looking, balanced concluding perspective on constitutionalism."}
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "UPSC_MAIN_ETH_002",
+    "exam": "UPSC",
+    "paper": "MAINS_GS4",
+    "subject": "Ethics, Integrity and Aptitude (GS-IV)",
+    "chapter": "Ethics in Public Administration",
+    "topic": "Moral Philosophies & Public Service Values",
+    "concept_id": "ethics_case_study_resolution",
+    "skill": "case_study",
+    "difficulty": 0.90,
+    "discrimination": 1.9,
+    "estimated_time": 900,
+    "question_type": "descriptive",
+    "content": "You are the District Magistrate of an aspirational tribal district. An internationally funded multi-million dollar infrastructure highway is approved through a sacred forest belt. While the project promises connectivity and employment, local tribal communities are protesting fiercely against desecration of ancestral sacred groves. As the administrative head, how would you resolve this ethical dilemma? (250 words / 15 Marks)",
+    "correct_answer": "Model Answer Outline:\n1. Ethical Dilemma Identification: Utilitarian economic development vs Deontological duty to protect tribal cultural rights and indigenous heritage (Article 29/21, FRA 2006).\n2. Stakeholder Analysis: Tribal elders/Gram Sabha, Central/State government, project contractors, future generations, district administration.\n3. Options Available & Evaluation: (A) Forceful eviction (unethical, violates rights), (B) Cancel project (halts national infrastructure), (C) Consultative mediation, technological realignment, and community-led conservation (Optimal).\n4. Step-by-Step Action Plan: Engage Gram Sabha via PESA Act provisions, explore green engineering tunnel/flyover route realignment around sacred grove, establish community skill center, ensure transparent compensation.\n5. Foundational Values: Empathy, objectivity, constitutional morality, inclusive development.",
+    "explanation": "Evaluates ethical reasoning, stakeholder empathy, conflict resolution framework, and adherence to constitutional and legal provisions (PESA, FRA).",
+    "rubrics": {
+      "understanding": {"max_score": 2.5, "criteria": "Identifies core ethical tensions (development vs indigenous rights, utilitarianism vs duty)."},
+      "structure": {"max_score": 2.0, "criteria": "Stakeholder mapping, options analysis with pros/cons, recommended course of action."},
+      "relevance": {"max_score": 2.0, "criteria": "Tailored to tribal district administration, PESA Act, Forest Rights Act 2006."},
+      "argumentation": {"max_score": 2.5, "criteria": "Practical, legal, and compassionate synthesis of modern development with cultural conservation."},
+      "case_laws_examples": {"max_score": 2.5, "criteria": "Applies Nolan Committee principles of Leadership, Openness, and Integrity."},
+      "clarity": {"max_score": 2.0, "criteria": "Actionable administrative decisions and clear step-by-step resolution."},
+      "conclusion": {"max_score": 1.5, "criteria": "Synthesizes sustainable inclusive growth with constitutional morality."}
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  }
+]
