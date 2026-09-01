@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Adaptive Student Intelligence & Roadmap Engine (JEE Main • NEET)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
@@ -16,8 +16,8 @@
     <div class="brand-container">
       <div class="brand-logo">Δ</div>
       <div>
-        <div class="brand-title">ADAPTIVE INTELLIGENCE & ROADMAP ENGINE</div>
-        <div class="brand-subtitle">Machine-Learned Latent Mastery • JEE Main & NEET UG</div>
+        <div class="brand-title">ADAPTIVE ENGINE</div>
+        <div class="brand-subtitle">JEE Main & NEET Intelligence</div>
       </div>
     </div>
 
@@ -27,11 +27,11 @@
         <button class="exam-pill-btn" data-exam="NEET" onclick="AppState.switchExam('NEET')">NEET-UG</button>
       </div>
 
-      <div class="user-badge">
+      <div class="user-badge" onclick="AppState.showOnboardingModal()">
         <div class="avatar-circle" id="userAvatarDisplay">A</div>
         <div>
-          <div style="font-size: 0.85rem; font-weight: 600;" id="userNameDisplay">Student</div>
-          <div style="font-size: 0.7rem; color: var(--accent-cyan);" id="userExamBadge">JEE Main</div>
+          <div style="font-size: 0.82rem; font-weight: 700;" id="userNameDisplay">Student</div>
+          <div style="font-size: 0.68rem; color: var(--accent-cyan);" id="userExamBadge">JEE Main</div>
         </div>
       </div>
     </div>
@@ -39,19 +39,19 @@
 
   <!-- App Body Layout -->
   <div class="app-container">
-    <!-- Sidebar Navigation -->
+    <!-- Sidebar Navigation (Desktop) -->
     <aside class="sidebar-nav">
       <div class="nav-item active" id="nav_dashboard" onclick="AppState.switchTab('dashboard')">
-        <span class="nav-icon">📊</span> ML Mastery & Overview
+        <span class="nav-icon">📊</span> ML Mastery
       </div>
       <div class="nav-item" id="nav_roadmap" onclick="AppState.switchTab('roadmap')">
-        <span class="nav-icon">🗺️</span> Dynamic Roadmap & NBA
+        <span class="nav-icon">🗺️</span> Dynamic Roadmap
       </div>
       <div class="nav-item" id="nav_assessment" onclick="AppState.switchTab('assessment')">
-        <span class="nav-icon">🎯</span> Adaptive Quiz Arena
+        <span class="nav-icon">🎯</span> Quiz Arena
       </div>
       <div class="nav-item" id="nav_graph" onclick="AppState.switchTab('graph')">
-        <span class="nav-icon">🕸️</span> Knowledge Graph DAG
+        <span class="nav-icon">🕸️</span> Tactical Map
       </div>
       <div class="nav-item" id="nav_ai" onclick="AppState.switchTab('ai')">
         <span class="nav-icon">🤖</span> AI Study Mentor
@@ -70,53 +70,53 @@
         <div id="nbaHeroContainer"></div>
 
         <!-- Metric KPI Cards (Multi-factor, BKT, IRT, Retention) -->
-        <div class="grid-4" style="margin-bottom: 2rem;">
+        <div class="grid-4" style="margin-bottom: 1.5rem;">
           <div class="glass-card stat-card">
             <div class="stat-label">Latent Mastery</div>
             <div class="stat-val" id="overallMasteryVal">--%</div>
             <div class="stat-sub">Multi-factor knowledge estimate</div>
           </div>
           <div class="glass-card stat-card">
-            <div class="stat-label">Model Confidence</div>
+            <div class="stat-label">Confidence</div>
             <div class="stat-val" id="overallConfidenceVal" style="color: var(--accent-cyan);">--%</div>
-            <div class="stat-sub">Calibrated sample variance</div>
+            <div class="stat-sub">Calibrated uncertainty</div>
           </div>
           <div class="glass-card stat-card">
-            <div class="stat-label">IRT Latent Ability (θ)</div>
-            <div class="stat-val" id="irtAbilityVal" style="color: var(--accent-purple); font-size: 1.6rem;">+0.00</div>
-            <div class="stat-sub">Item Response Theory parameter</div>
+            <div class="stat-label">IRT Ability (θ)</div>
+            <div class="stat-val" id="irtAbilityVal" style="color: var(--accent-purple); font-size: 1.5rem;">+0.00</div>
+            <div class="stat-sub">Item Response parameter</div>
           </div>
           <div class="glass-card stat-card">
-            <div class="stat-label">BKT Probability P(L)</div>
-            <div class="stat-val" id="bktProbabilityVal" style="color: var(--accent-success); font-size: 1.6rem;">--%</div>
-            <div class="stat-sub">Bayesian Knowledge Tracing</div>
+            <div class="stat-label">BKT P(L)</div>
+            <div class="stat-val" id="bktProbabilityVal" style="color: var(--accent-emerald); font-size: 1.5rem;">--%</div>
+            <div class="stat-sub">Bayesian Tracing</div>
           </div>
         </div>
 
         <div class="grid-2">
           <!-- Root Cause Weakness Diagnostics -->
           <div class="glass-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-              <h3 style="font-size: 1.1rem; font-weight: 700;">Root-Cause Weakness Ranking</h3>
-              <span class="nba-tag">Explainable</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem;">
+              <h3 style="font-size: 1.05rem; font-weight: 700;">Root-Cause Weakness Ranking</h3>
+              <span class="nba-tag">Tactical</span>
             </div>
             <div id="weaknessRankingList">
-              <div style="color: var(--text-secondary); padding: 1rem;">Loading weaknesses...</div>
+              <div style="color: var(--text-secondary); padding: 0.75rem;">Loading weaknesses...</div>
             </div>
           </div>
 
           <!-- Quick Action Diagnostic Launcher -->
           <div class="glass-card">
-            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Launch Adaptive Assessment</h3>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-              Take a multi-stage controlled baseline assessment to calibrate difficulty limits and uncover missing prerequisites.
+            <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.35rem;">Adaptive Quiz Arena</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              Launch short controlled assessments to calibrate difficulty limits and unlock new roadmap milestones.
             </p>
-            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.65rem;">
               <button class="btn-primary" onclick="QuizController.startTest(AppState.currentExam, 'DIAGNOSTIC', 1)">
-                🚀 Launch Baseline Diagnostic (Stage 1)
+                🚀 Launch Baseline Quiz (Stage 1)
               </button>
               <button class="btn-secondary" onclick="QuizController.startTest(AppState.currentExam, 'RETENTION_TEST', 2)">
-                🔄 Run Spaced Retention Test
+                🔄 Run Retention Spaced Test
               </button>
               <button class="btn-secondary" onclick="QuizController.startTest(AppState.currentExam, 'TRANSFER_TEST', 3)">
                 🔀 Run Transfer Problem Test
@@ -128,15 +128,15 @@
 
       <!-- 2. DYNAMIC ROADMAP TAB -->
       <section class="tab-pane" id="pane_roadmap">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
           <div>
-            <h2 style="font-size: 1.6rem; font-weight: 800;">Dynamic Learning Roadmap</h2>
-            <p style="color: var(--text-secondary); font-size: 0.9rem;">
-              Generated from your quiz assessments. Prerequisite gaps are automatically resolved and sequenced first.
+            <h2 style="font-size: 1.4rem; font-weight: 800;">Dynamic Learning Roadmap</h2>
+            <p style="color: var(--text-secondary); font-size: 0.85rem;">
+              Generated compulsory from your assessments. Prerequisite gaps are prioritized first.
             </p>
           </div>
           <button class="btn-secondary" onclick="API.regenerateRoadmap(AppState.student.student_id).then(() => AppState.refreshAllData())">
-            ↻ Recalculate Roadmap
+            ↻ Recalculate
           </button>
         </div>
         <div id="roadmapTimelineContainer" class="roadmap-timeline"></div>
@@ -145,13 +145,13 @@
       <!-- 3. ASSESSMENT ARENA TAB -->
       <section class="tab-pane" id="pane_assessment">
         <div id="quizArena">
-          <div class="glass-card" style="text-align: center; padding: 3rem;">
-            <h2 style="font-size: 1.5rem; margin-bottom: 0.75rem;">No Assessment Currently Active</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-              Launch a baseline diagnostic test or start targeted practice directly from your Dynamic Roadmap.
+          <div class="glass-card" style="text-align: center; padding: 2.5rem 1.5rem;">
+            <h2 style="font-size: 1.3rem; margin-bottom: 0.5rem;">No Assessment Active</h2>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1.25rem;">
+              Select a quiz mode or launch targeted practice directly from your Dynamic Roadmap.
             </p>
             <button class="btn-primary" onclick="QuizController.startTest(AppState.currentExam, 'DIAGNOSTIC', 1)">
-              Start Diagnostic Test →
+              Start Diagnostic Quiz →
             </button>
           </div>
         </div>
@@ -159,23 +159,23 @@
 
       <!-- 4. KNOWLEDGE GRAPH DAG TAB -->
       <section class="tab-pane" id="pane_graph">
-        <div style="margin-bottom: 1rem;">
-          <h2 style="font-size: 1.6rem; font-weight: 800;">Curriculum Knowledge Graph (NetworkX DAG)</h2>
-          <p style="color: var(--text-secondary); font-size: 0.9rem;">
-            Interactive concept dependency graph. Green = Mastered, Indigo = Progressing, Amber = Moderate, Red = Prerequisite Blockage.
+        <div style="margin-bottom: 0.85rem;">
+          <h2 style="font-size: 1.4rem; font-weight: 800;">Tactical Concept Map (NetworkX DAG)</h2>
+          <p style="color: var(--text-secondary); font-size: 0.85rem;">
+            Interactive skill tree. Green = Mastered, Indigo = Progressing, Amber = Moderate, Red = Prerequisite Blockage.
           </p>
         </div>
-        <div class="glass-card" style="padding: 1rem;">
+        <div class="glass-card" style="padding: 0.75rem;">
           <canvas id="graphCanvas"></canvas>
         </div>
       </section>
 
       <!-- 5. OFFLINE AI ASSISTANT TAB -->
       <section class="tab-pane" id="pane_ai">
-        <div style="margin-bottom: 1.5rem;">
-          <h2 style="font-size: 1.6rem; font-weight: 800;">Offline AI Pedagogical Mentor</h2>
-          <p style="color: var(--text-secondary); font-size: 0.9rem;">
-            Ollama-compatible offline study assistant. Explains roadmap decisions, generates study briefs, and generates validated practice questions.
+        <div style="margin-bottom: 1.25rem;">
+          <h2 style="font-size: 1.4rem; font-weight: 800;">AI Pedagogical Study Mentor</h2>
+          <p style="color: var(--text-secondary); font-size: 0.85rem;">
+            Offline AI mentor explaining roadmap decisions and generating validated practice questions.
           </p>
         </div>
 
@@ -184,19 +184,19 @@
           <div class="chat-window">
             <div class="chat-messages" id="chatMessagesContainer"></div>
             <div class="chat-input-row">
-              <input type="text" id="chatInput" class="chat-input" placeholder="Ask a study question or request an explanation of your roadmap..." onkeydown="if(event.key === 'Enter') AIAssistantController.sendMessage()">
+              <input type="text" id="chatInput" class="chat-input" placeholder="Ask a study question or roadmap briefing..." onkeydown="if(event.key === 'Enter') AIAssistantController.sendMessage()">
               <button class="btn-primary" onclick="AIAssistantController.sendMessage()">Send</button>
             </div>
           </div>
 
           <!-- Question Generator Sandbox -->
           <div class="glass-card">
-            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem;">AI Practice Question Generator</h3>
-            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
-              Generates candidate multiple-choice questions with automatic validation checks before bank admission.
+            <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;">AI Practice Question Generator</h3>
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.85rem;">
+              Generates candidate multiple-choice questions with automatic validation checks.
             </p>
-            <div style="margin-bottom: 1rem;">
-              <label style="font-size: 0.8rem; color: var(--text-secondary); display: block; margin-bottom: 4px;">Target Concept</label>
+            <div style="margin-bottom: 0.85rem;">
+              <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 3px;">Target Concept</label>
               <select id="genConceptSelect" class="chat-input" style="width: 100%;">
                 <option value="math_limits">Limits & Indeterminate Forms (JEE Math)</option>
                 <option value="phy_friction">Static & Kinetic Friction (JEE/NEET Physics)</option>
@@ -206,7 +206,7 @@
               </select>
             </div>
             <button class="btn-primary" onclick="AIAssistantController.generatePracticeQuestion()">
-              ⚡ Generate Validated Practice Question
+              ⚡ Generate Practice Question
             </button>
             <div id="genQuestionOutput"></div>
           </div>
@@ -215,18 +215,80 @@
 
       <!-- 6. TELEMETRY STREAM TAB -->
       <section class="tab-pane" id="pane_telemetry">
-        <div style="margin-bottom: 1.5rem;">
-          <h2 style="font-size: 1.6rem; font-weight: 800;">Interaction Telemetry Stream</h2>
-          <p style="color: var(--text-secondary); font-size: 0.9rem;">
+        <div style="margin-bottom: 1.25rem;">
+          <h2 style="font-size: 1.4rem; font-weight: 800;">Interaction Telemetry Stream</h2>
+          <p style="color: var(--text-secondary); font-size: 0.85rem;">
             Append-only telemetry audit trail capturing every interaction, quiz attempt, and roadmap transition.
           </p>
         </div>
         <div class="glass-card" id="telemetryStreamContainer">
-          <div style="color: var(--text-secondary); padding: 1rem;">Loading telemetry stream...</div>
+          <div style="color: var(--text-secondary); padding: 0.75rem;">Loading telemetry stream...</div>
         </div>
       </section>
 
     </main>
+  </div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <div class="bottom-nav-item active" id="bnav_dashboard" onclick="AppState.switchTab('dashboard')">
+      <span class="bottom-nav-icon">📊</span>
+      <span>Mastery</span>
+    </div>
+    <div class="bottom-nav-item" id="bnav_roadmap" onclick="AppState.switchTab('roadmap')">
+      <span class="bottom-nav-icon">🗺️</span>
+      <span>Roadmap</span>
+    </div>
+    <div class="bottom-nav-item" id="bnav_assessment" onclick="AppState.switchTab('assessment')">
+      <span class="bottom-nav-icon">🎯</span>
+      <span>Quiz</span>
+    </div>
+    <div class="bottom-nav-item" id="bnav_graph" onclick="AppState.switchTab('graph')">
+      <span class="bottom-nav-icon">🕸️</span>
+      <span>Map</span>
+    </div>
+    <div class="bottom-nav-item" id="bnav_ai" onclick="AppState.switchTab('ai')">
+      <span class="bottom-nav-icon">🤖</span>
+      <span>AI Mentor</span>
+    </div>
+  </nav>
+
+  <!-- Onboarding & Login Modal with @ Email Check -->
+  <div class="modal-backdrop" id="onboardingModal">
+    <div class="modal-box">
+      <div style="text-align: center; margin-bottom: 1.25rem;">
+        <div class="brand-logo" style="margin: 0 auto 0.75rem auto;">Δ</div>
+        <h2 style="font-size: 1.4rem; font-weight: 800;">Welcome to Adaptive Engine</h2>
+        <p style="color: var(--text-secondary); font-size: 0.85rem;">Sign up to initialize your compulsory dynamic learning roadmap.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div>
+          <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 4px;">Student Name</label>
+          <input type="text" id="onboardName" class="chat-input" style="width: 100%;" placeholder="e.g. Maya Patel" value="Maya Patel">
+        </div>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+            <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);">Email Address</label>
+            <span id="emailValidateBadge" style="font-size: 0.75rem; font-weight: 700; color: var(--accent-emerald);">✓ Valid @</span>
+          </div>
+          <input type="email" id="onboardEmail" class="chat-input" style="width: 100%;" placeholder="student@example.com" value="maya@prep.edu" oninput="AppState.validateEmailInput(this.value)">
+        </div>
+
+        <div>
+          <label style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 4px;">Target Examination Track</label>
+          <select id="onboardExam" class="chat-input" style="width: 100%;">
+            <option value="JEE">JEE Main (Physics, Chemistry, Mathematics)</option>
+            <option value="NEET">NEET-UG (Biology, Physics, Chemistry)</option>
+          </select>
+        </div>
+
+        <button class="btn-primary" style="width: 100%; justify-content: center; padding: 0.75rem; font-size: 0.95rem; margin-top: 0.5rem;" onclick="AppState.completeOnboarding()">
+          ✨ Generate Compulsory First Roadmap →
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- Global Diagnostic Result Modal -->
