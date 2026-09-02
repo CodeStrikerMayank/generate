@@ -18,6 +18,82 @@ from backend.app.models.schema import (
 
 router = APIRouter(prefix="/supporting", tags=["Supporting Features"])
 
+admin_router = APIRouter(prefix="/admin", tags=["Admin"])
+
+ADMIN_KEY = "1234admin"
+
+def _verify_admin(request_key: str):
+    if request_key != ADMIN_KEY:
+        raise HTTPException(status_code=403, detail="Admin access denied")
+
+@admin_router.post("/reset-db")
+def reset_database(db: Session = Depends(get_db), x_admin_key: Optional[str] = None):
+    """Hard reset: wipe all student data, preserve curriculum and question bank."""
+    from fastapi import Header
+    from backend.app.models.schema import (
+        Student, StudentConceptMastery, StudentErrorLog,
+        AssessmentAttempt, StudentAttemptItem, Roadmap, RoadmapAction,
+        TelemetryEvent, Session as SessionModel
+    )
+    from backend.app.database.connection import engine, Base
+    import sqlalchemy
+
+    _verify_admin(x_admin_key or "")
+
+    # Delete in FK-safe order
+    try:
+        db.execute(sqlalchemy.text("DELETE FROM student_attempt_items"))
+        db.execute(sqlalchemy.text("DELETE FROM assessment_attempts"))
+        db.execute(sqlalchemy.text("DELETE FROM student_error_logs"))
+        db.execute(sqlalchemy.text("DELETE FROM student_concept_mastery"))
+        db.execute(sqlalchemy.text("DELETE FROM roadmap_actions"))
+        db.execute(sqlalchemy.text("DELETE FROM roadmaps"))
+        db.execute(sqlalchemy.text("DELETE FROM telemetry_events"))
+        db.execute(sqlalchemy.text("DELETE FROM sessions"))
+        db.execute(sqlalchemy.text("DELETE FROM students"))
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=f"Reset failed: {str(e)}")
+
+    return {"status": "RESET_COMPLETE", "message": "All student data wiped. Question bank and curriculum preserved."}
+
+
+@admin_router.get("/stats")
+def get_admin_stats(db: Session = Depends(get_db), x_admin_key: Optional[str] = None):
+    """Admin dashboard stats."""
+    from backend.app.models.schema import AssessmentAttempt, Question
+    _verify_admin(x_admin_key or "")
+
+    students_all = db.query(Student).order_by(Student.created_at.desc()).limit(20).all()
+    total_attempts = db.query(AssessmentAttempt).count()
+    total_questions = db.query(Question).count() if hasattr(db.query(Student), 'count') else 0
+    try:
+        from backend.app.models.schema import Question as Q
+        total_questions = db.query(Q).count()
+    except Exception:
+        total_questions = 0
+
+    students_data = []
+    for s in students_all:
+        attempts = db.query(AssessmentAttempt).filter(AssessmentAttempt.student_id == s.student_id).count()
+        students_data.append({
+            "student_id": s.student_id,
+            "name": s.name,
+            "target_exam": s.target_exam,
+            "attempts": attempts,
+            "created_at": s.created_at.isoformat() if s.created_at else None
+        })
+
+    return {
+        "total_students": db.query(Student).count(),
+        "total_attempts": total_attempts,
+        "total_questions": total_questions,
+        "students": students_data
+    }
+
+
+
 
 @router.get("/review-queue/{student_id}")
 def get_review_queue(student_id: str, db: Session = Depends(get_db)) -> Dict[str, Any]:
