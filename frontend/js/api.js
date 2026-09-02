@@ -52,6 +52,7 @@ const API = {
 
   async getNextAction(studentId) {
     const res = await fetch(`${API_BASE}/roadmap/next-action/${studentId}`);
+    if (res.status === 404) return null; // No action available yet — normal state
     if (!res.ok) throw new Error('Failed to load next best action');
     return res.json();
   },

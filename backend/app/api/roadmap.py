@@ -1,7 +1,7 @@
 import datetime
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 from backend.app.database.connection import get_db
 from backend.app.models.schema import Roadmap, RoadmapAction, Concept, Chapter, Subject, Topic, Student
@@ -64,13 +64,10 @@ def get_active_roadmap(student_id: str, db: Session = Depends(get_db)):
         actions=actions_list
     )
 
-@router.get("/next-action/{student_id}", response_model=NextActionResponse)
+@router.get("/next-action/{student_id}", response_model=Optional[NextActionResponse])
 def get_next_action(student_id: str, db: Session = Depends(get_db)):
     next_engine = NextActionEngine(db)
-    nba = next_engine.get_next_best_action(student_id)
-    if not nba:
-        raise HTTPException(status_code=404, detail="No action available.")
-    return nba
+    return next_engine.get_next_best_action(student_id)
 
 @router.post("/action/complete/{action_id}")
 def mark_action_completed(action_id: int, db: Session = Depends(get_db)):

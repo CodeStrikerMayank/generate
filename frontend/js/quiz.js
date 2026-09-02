@@ -1,5 +1,7 @@
 /**
- * Quiz & Assessment Testing Engine UI controller.
+ * Quiz & Assessment Testing Engine UI Controller
+ * Adaptive Student Intelligence & Dynamic Roadmap Engine
+ * JEE Main & NEET — PYQ Adapted Assessments & AI Skill Extraction
  */
 const QuizController = {
   currentAttempt: null,
@@ -7,10 +9,11 @@ const QuizController = {
   userResponses: new Map(),
   timerInterval: null,
   remainingSeconds: 0,
+  keyHandlerBound: false,
 
   async startTest(exam, type = 'DIAGNOSTIC', stage = 1, targetConcept = null) {
     if (!AppState.student) {
-      alert('Please register or log in first.');
+      AppState.showDiagnosticGateway();
       return;
     }
 
@@ -19,14 +22,45 @@ const QuizController = {
       this.currentAttempt = data;
       this.currentIndex = 0;
       this.userResponses.clear();
-      this.remainingSeconds = data.duration_minutes * 60;
+      this.remainingSeconds = (data.duration_minutes || 20) * 60;
 
       AppState.switchTab('assessment');
+      this.bindKeyboardShortcuts();
       this.renderQuizArena();
       this.startTimer();
     } catch (err) {
       alert('Error starting assessment: ' + err.message);
     }
+  },
+
+  bindKeyboardShortcuts() {
+    if (this.keyHandlerBound) return;
+    window.addEventListener('keydown', (e) => {
+      // Only process when quiz tab is active and attempt exists
+      const pane = document.getElementById('pane_assessment');
+      if (!pane || !pane.classList.contains('active') || !this.currentAttempt) return;
+
+      // Avoid typing inside inputs
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) return;
+
+      const q = this.currentAttempt.questions[this.currentIndex];
+      if (!q || !q.options) return;
+
+      // Option selection via 1-4 or A-D
+      const key = e.key.toUpperCase();
+      if (['1', '2', '3', '4'].includes(key)) {
+        const idx = parseInt(key, 10) - 1;
+        if (q.options[idx]) this.selectOption(q.options[idx].id);
+      } else if (['A', 'B', 'C', 'D'].includes(key)) {
+        const found = q.options.find(opt => opt.id === key);
+        if (found) this.selectOption(found.id);
+      } else if (e.key === 'ArrowRight') {
+        this.nextQuestion();
+      } else if (e.key === 'ArrowLeft') {
+        this.prevQuestion();
+      }
+    });
+    this.keyHandlerBound = true;
   },
 
   startTimer() {
@@ -37,7 +71,7 @@ const QuizController = {
       this.remainingSeconds--;
       if (this.remainingSeconds <= 0) {
         clearInterval(this.timerInterval);
-        alert('Time is up! Submitting your assessment automatically.');
+        alert('Time is up! Submitting your diagnostic assessment automatically.');
         this.submitQuiz(true);
         return;
       }
@@ -46,6 +80,11 @@ const QuizController = {
       const secs = this.remainingSeconds % 60;
       if (timerElem) {
         timerElem.innerText = `⏱ ${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        if (this.remainingSeconds < 180) {
+          timerElem.style.color = 'var(--accent-rose)';
+        } else {
+          timerElem.style.color = 'var(--text-primary)';
+        }
       }
     }, 1000);
   },
@@ -57,72 +96,106 @@ const QuizController = {
     const q = this.currentAttempt.questions[this.currentIndex];
     const total = this.currentAttempt.questions.length;
     const selectedAns = this.userResponses.get(q.question_id) || null;
+    const progressPct = Math.round(((this.currentIndex + 1) / total) * 100);
 
     let optionsHtml = '';
     if (q.options) {
-      optionsHtml = q.options.map(opt => `
+      optionsHtml = q.options.map((opt, i) => `
         <div class="option-item ${selectedAns === opt.id ? 'selected' : ''}" onclick="QuizController.selectOption('${opt.id}')">
           <div class="opt-id">${opt.id}</div>
           <div class="opt-text">${opt.text}</div>
+          <span style="margin-left:auto;font-size:0.68rem;color:var(--text-faint);font-family:var(--font-mono);">[${i+1}]</span>
         </div>
       `).join('');
     }
 
+    const paperTag = q.paper ? q.paper.replace(/_/g, ' ') : 'PYQ';
+    const isLast = (this.currentIndex === total - 1);
+    const allAnswered = this.currentAttempt.questions.every(item => this.userResponses.has(item.question_id));
+
     container.innerHTML = `
-      <div class="quiz-container">
-        <div class="quiz-header">
+      <div class="quiz-container" style="max-width:860px;margin:0 auto;">
+        <!-- Header Row -->
+        <div class="quiz-header" style="padding:0.75rem 0 0.5rem 0;">
           <div>
-            <span class="nba-tag">${this.currentAttempt.title}</span>
-            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
-              Question ${this.currentIndex + 1} of ${total} • Subject: ${q.subject} • Concept: ${q.concept_id}
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span class="nba-tag" style="margin:0;">${this.currentAttempt.title}</span>
+              <span class="subject-pill ${q.subject}">${q.subject}</span>
+              <span class="pyq-tag">📌 ${paperTag} (Data-Adapted)</span>
+            </div>
+            <div style="font-size:0.82rem;color:var(--text-secondary);margin-top:6px;">
+              Question ${this.currentIndex + 1} of ${total} • Concept: <code style="color:var(--accent-cyan);">${q.concept_id}</code>
             </div>
           </div>
-          <div id="quizTimer" class="quiz-timer">⏱ --:--</div>
+          <div id="quizTimer" class="quiz-timer" style="font-size:1.1rem;font-weight:700;font-family:var(--font-mono);">⏱ --:--</div>
         </div>
 
-        <div class="glass-card question-card">
-          <div class="q-meta">
+        <!-- Progress Bar -->
+        <div class="quiz-progress-track">
+          <div class="quiz-progress-fill" style="width:${progressPct}%;"></div>
+        </div>
+
+        <!-- Main Question Card -->
+        <div class="glass-card question-card" style="margin-bottom:1.25rem;">
+          <div class="q-meta" style="margin-bottom:0.85rem;display:flex;gap:6px;flex-wrap:wrap;">
             <span class="badge-learn">${q.skill.toUpperCase()}</span>
             <span class="reason-tag">Difficulty: ${Math.round(q.difficulty * 100)}%</span>
             <span class="reason-tag">Est. Time: ${q.estimated_time}s</span>
+            <span class="reason-tag" style="color:var(--accent-emerald);">Direct Solution Included</span>
           </div>
-          <div class="q-text">${q.content}</div>
+
+          <div class="q-text" style="font-size:1.05rem;line-height:1.6;margin-bottom:1.25rem;white-space:pre-line;font-weight:500;">
+            ${q.content}
+          </div>
+
           <div class="option-list">
             ${optionsHtml}
           </div>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <!-- Navigation Row -->
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:0.75rem;flex-wrap:wrap;">
           <button class="btn-secondary" onclick="QuizController.prevQuestion()" ${this.currentIndex === 0 ? 'disabled' : ''}>
             ← Previous
           </button>
-          <div style="display: flex; gap: 0.5rem;">
-            ${this.currentAttempt.questions.map((_, i) => `
-              <button class="exam-pill-btn ${i === this.currentIndex ? 'active' : ''}" onclick="QuizController.jumpTo(${i})">
-                ${i + 1}
-              </button>
-            `).join('')}
+
+          <!-- Question Pills -->
+          <div style="display:flex;gap:0.35rem;flex-wrap:wrap;justify-content:center;">
+            ${this.currentAttempt.questions.map((item, i) => {
+              const isAnswered = this.userResponses.has(item.question_id);
+              const isCurr = (i === this.currentIndex);
+              let pillClass = 'exam-pill-btn';
+              if (isCurr) pillClass += ' active';
+              return `
+                <button class="${pillClass}" style="${isAnswered && !isCurr ? 'border-color:var(--accent-emerald);color:var(--accent-emerald);' : ''}" onclick="QuizController.jumpTo(${i})" title="${item.subject}">
+                  ${i + 1}${isAnswered ? '✓' : ''}
+                </button>
+              `;
+            }).join('')}
           </div>
-          ${this.currentIndex < total - 1 ? `
-            <button class="btn-primary" onclick="QuizController.nextQuestion()">Next →</button>
-          ` : `
-            <button class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669);" onclick="QuizController.submitQuiz(false)">
-              Submit Test ✓
+
+          <div style="display:flex;gap:0.5rem;">
+            ${!isLast ? `
+              <button class="btn-primary" onclick="QuizController.nextQuestion()">Next →</button>
+            ` : ''}
+            <button class="btn-primary" style="background:var(--grad-emerald);" onclick="QuizController.submitQuiz(false)">
+              ${allAnswered ? 'Submit Diagnostic Assessment ✓' : 'Finish & Submit Test ✓'}
             </button>
-          `}
+          </div>
         </div>
       </div>
     `;
   },
 
   selectOption(optId) {
+    if (!this.currentAttempt) return;
     const q = this.currentAttempt.questions[this.currentIndex];
     this.userResponses.set(q.question_id, optId);
     this.renderQuizArena();
   },
 
   nextQuestion() {
-    if (this.currentIndex < this.currentAttempt.questions.length - 1) {
+    if (this.currentAttempt && this.currentIndex < this.currentAttempt.questions.length - 1) {
       this.currentIndex++;
       this.renderQuizArena();
     }
@@ -136,12 +209,16 @@ const QuizController = {
   },
 
   jumpTo(index) {
-    this.currentIndex = index;
-    this.renderQuizArena();
+    if (this.currentAttempt && index >= 0 && index < this.currentAttempt.questions.length) {
+      this.currentIndex = index;
+      this.renderQuizArena();
+    }
   },
 
   async submitQuiz(isAuto = false) {
     clearInterval(this.timerInterval);
+    if (!this.currentAttempt) return;
+
     const responsesPayload = this.currentAttempt.questions.map(q => ({
       question_id: q.question_id,
       student_answer: this.userResponses.get(q.question_id) || null,
@@ -152,8 +229,8 @@ const QuizController = {
     try {
       const result = await API.submitAssessment(this.currentAttempt.attempt_id, responsesPayload);
       this.renderResultModal(result);
-      // Refresh user roadmap and stats
-      AppState.refreshAllData();
+      // Refresh dashboard, roadmap, graph
+      await AppState.refreshAllData();
     } catch (err) {
       alert('Submission error: ' + err.message);
     }
@@ -164,53 +241,185 @@ const QuizController = {
     const content = document.getElementById('resultModalContent');
     if (!modal || !content) return;
 
-    let itemsHtml = result.items_feedback.map(item => `
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 0.75rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-          <span style="font-weight: 700; color: ${item.is_correct ? 'var(--accent-success)' : 'var(--accent-danger)'}">
-            ${item.is_correct ? '✓ Correct' : '✗ Incorrect'}
+    // 1. Calculate subject breakdown
+    const subjectStats = {};
+    const qMap = {};
+    if (this.currentAttempt && this.currentAttempt.questions) {
+      this.currentAttempt.questions.forEach(q => { qMap[q.question_id] = q; });
+    }
+
+    result.items_feedback.forEach(item => {
+      const q = qMap[item.question_id] || {};
+      const sub = q.subject || 'General';
+      if (!subjectStats[sub]) {
+        subjectStats[sub] = { total: 0, correct: 0, subject: sub };
+      }
+      subjectStats[sub].total++;
+      if (item.is_correct) subjectStats[sub].correct++;
+    });
+
+    const subjectColors = {
+      'Physics': 'var(--accent-cyan)',
+      'Chemistry': 'var(--accent-emerald)',
+      'Mathematics': 'var(--accent-purple)',
+      'Biology': 'var(--accent-amber)'
+    };
+
+    let subjectBarsHtml = Object.values(subjectStats).map(st => {
+      const pct = Math.round((st.correct / Math.max(st.total, 1)) * 100);
+      const col = subjectColors[st.subject] || 'var(--accent-primary)';
+      let statusLabel = pct >= 75 ? '🟢 High Mastery' : (pct >= 50 ? '🟡 Moderate Mastery' : '🔴 Prerequisite Gap');
+      return `
+        <div style="margin-bottom:0.75rem;">
+          <div class="skill-meter-row">
+            <span style="font-weight:700;color:${col};">${st.subject}</span>
+            <span style="font-size:0.75rem;color:var(--text-muted);">${statusLabel}</span>
+            <span style="font-family:var(--font-mono);font-weight:700;">${st.correct}/${st.total} (${pct}%)</span>
+          </div>
+          <div class="skill-meter-track" style="margin:0;">
+            <div class="skill-meter-fill" style="width:${pct}%;background:${col};"></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // 2. Cognitive Error Diagnoses
+    const errorTypesCount = {};
+    result.items_feedback.forEach(item => {
+      if (!item.is_correct && item.error_type) {
+        errorTypesCount[item.error_type] = (errorTypesCount[item.error_type] || 0) + 1;
+      }
+    });
+    const errorEntries = Object.entries(errorTypesCount);
+
+    let errorSummaryHtml = '';
+    if (errorEntries.length > 0) {
+      errorSummaryHtml = `
+        <div style="background:rgba(244,63,94,0.08);border:1px solid rgba(244,63,94,0.25);border-radius:var(--radius-sm);padding:0.75rem 1rem;margin:1rem 0;">
+          <div style="font-size:0.82rem;font-weight:800;color:var(--accent-rose);margin-bottom:4px;">
+            ⚠️ Identified Cognitive Error Patterns:
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            ${errorEntries.map(([err, count]) => `
+              <span class="reason-tag" style="background:rgba(244,63,94,0.15);color:var(--accent-rose);border-color:rgba(244,63,94,0.3);">
+                ${err.replace(/_/g, ' ')} (${count})
+              </span>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    } else {
+      errorSummaryHtml = `
+        <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:var(--radius-sm);padding:0.75rem 1rem;margin:1rem 0;">
+          <div style="font-size:0.82rem;font-weight:800;color:var(--accent-emerald);">
+            🎉 Flawless Execution! No critical error patterns detected.
+          </div>
+        </div>
+      `;
+    }
+
+    // 3. Question-by-question feedback
+    let itemsHtml = result.items_feedback.map((item, idx) => `
+      <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:0.85rem 1rem;margin-bottom:0.65rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
+          <span style="font-weight:800;font-size:0.85rem;color:${item.is_correct ? 'var(--accent-emerald)' : 'var(--accent-rose)'};">
+            Q${idx+1}: ${item.is_correct ? '✓ Correct' : '✗ Incorrect'}
           </span>
-          <span class="reason-tag">${item.error_type ? item.error_type.replace('_', ' ') : 'Mastered'}</span>
+          <span class="reason-tag" style="margin:0;">${item.error_type ? item.error_type.replace(/_/g, ' ') : 'Mastered'}</span>
         </div>
-        <div style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.4rem;">
-          Your Answer: <strong>${item.student_answer || 'Skipped'}</strong> • Correct: <strong>${item.correct_answer}</strong>
+        <div style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:0.3rem;">
+          Your Answer: <strong>${item.student_answer || 'Skipped'}</strong> • Correct: <strong style="color:var(--accent-emerald);">${item.correct_answer}</strong>
         </div>
-        <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+        <div style="font-size:0.8rem;color:var(--text-muted);line-height:1.45;">
           ${item.explanation}
         </div>
         ${item.distractor_note ? `
-          <div style="font-size: 0.8rem; color: #fca5a5; margin-top: 0.35rem;">
-            💡 Diagnostic Note: ${item.distractor_note}
+          <div style="font-size:0.78rem;color:#fca5a5;margin-top:0.3rem;">
+            💡 <em>Diagnostic Note: ${item.distractor_note}</em>
           </div>
         ` : ''}
       </div>
     `).join('');
 
+    // Estimate IRT theta
+    const thetaEst = (result.updated_masteries && result.updated_masteries.length > 0)
+      ? (result.updated_masteries.reduce((a, b) => a + (b.irt_ability || 0), 0) / result.updated_masteries.length).toFixed(2)
+      : '+0.00';
+
     content.innerHTML = `
-      <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Assessment Completed!</h2>
-      <div style="display: flex; gap: 1.5rem; margin: 1.25rem 0; padding: 1rem; background: rgba(99,102,241,0.1); border-radius: var(--radius-sm); border: 1px solid var(--border-highlight);">
-        <div>
-          <div style="font-size: 0.8rem; color: var(--text-secondary);">SCORE</div>
-          <div style="font-size: 1.8rem; font-weight: 800; color: #fff;">${result.score_percentage}%</div>
+      <div style="text-align:center;margin-bottom:1.25rem;">
+        <div class="onboard-logo" style="width:48px;height:48px;font-size:1.5rem;margin-bottom:0.5rem;">🧠</div>
+        <h2 style="font-size:1.5rem;font-weight:900;margin-bottom:0.25rem;">AI Cognitive Skills Extracted!</h2>
+        <p style="color:var(--text-secondary);font-size:0.84rem;">
+          Baseline diagnostic complete. Your responses have calibrated your Latent Ability and Prerequisite Graph.
+        </p>
+      </div>
+
+      <!-- KPI Grid -->
+      <div class="grid-4" style="margin-bottom:1rem;">
+        <div class="glass-card stat-card" style="padding:0.75rem;">
+          <div class="stat-label">Score</div>
+          <div class="stat-val" style="font-size:1.35rem;color:#fff;">${result.score_percentage}%</div>
+          <div class="stat-sub">${result.correct_count} of ${result.total_questions} correct</div>
         </div>
-        <div>
-          <div style="font-size: 0.8rem; color: var(--text-secondary);">ACCURACY</div>
-          <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent-success);">${result.correct_count} / ${result.total_questions}</div>
+        <div class="glass-card stat-card" style="padding:0.75rem;">
+          <div class="stat-label">Latent Ability (θ)</div>
+          <div class="stat-val" style="font-size:1.35rem;color:var(--accent-cyan);">${thetaEst > 0 ? '+' : ''}${thetaEst}</div>
+          <div class="stat-sub">Item Response Theory</div>
         </div>
-        <div>
-          <div style="font-size: 0.8rem; color: var(--text-secondary);">ROADMAP STATUS</div>
-          <div style="font-size: 1rem; font-weight: 700; color: var(--accent-cyan); margin-top: 0.4rem;">Recalibrated & Updated</div>
+        <div class="glass-card stat-card" style="padding:0.75rem;">
+          <div class="stat-label">Total Time</div>
+          <div class="stat-val" style="font-size:1.35rem;color:var(--accent-purple);">${Math.round(result.time_taken_seconds)}s</div>
+          <div class="stat-sub">Avg ~${Math.round(result.time_taken_seconds / Math.max(result.total_questions,1))}s/q</div>
+        </div>
+        <div class="glass-card stat-card" style="padding:0.75rem;">
+          <div class="stat-label">Roadmap Engine</div>
+          <div class="stat-val" style="font-size:1.15rem;color:var(--accent-emerald);">Ready</div>
+          <div class="stat-sub">Personalized Sequence</div>
         </div>
       </div>
-      <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Question Feedback & Error Diagnostics:</h3>
-      ${itemsHtml}
-      <div style="text-align: right; margin-top: 1.5rem;">
-        <button class="btn-primary" onclick="document.getElementById('resultModal').classList.remove('active'); AppState.switchTab('roadmap');">
-          View Updated Roadmap →
-        </button>
+
+      <!-- Subject Skill Profile -->
+      <div class="glass-card" style="padding:1rem;margin-bottom:1rem;">
+        <div style="font-size:0.88rem;font-weight:800;margin-bottom:0.65rem;color:var(--text-primary);">
+          📊 Subject-by-Subject Skill Breakdown
+        </div>
+        ${subjectBarsHtml}
       </div>
+
+      <!-- Cognitive Error Analysis -->
+      ${errorSummaryHtml}
+
+      <!-- Detailed Question Feedback -->
+      <details style="margin:1rem 0;">
+        <summary style="cursor:pointer;font-size:0.85rem;font-weight:700;color:var(--accent-neon);margin-bottom:0.5rem;">
+          🔍 View Detailed Question-by-Question Solutions & Error Notes
+        </summary>
+        <div style="max-height:260px;overflow-y:auto;padding-right:4px;">
+          ${itemsHtml}
+        </div>
+      </details>
+
+      <!-- Primary Roadmap Button -->
+      <button class="btn-primary glow-pulse" style="width:100%;justify-content:center;padding:0.95rem;font-size:1.05rem;border-radius:var(--radius-md);background:var(--grad-hero);margin-top:0.5rem;" onclick="QuizController.closeAndOpenRoadmap()">
+        🗺️ Unlock My Personalized Roadmap Engine →
+      </button>
     `;
 
     modal.classList.add('active');
+  },
+
+  closeAndOpenRoadmap() {
+    const modal = document.getElementById('resultModal');
+    if (modal) modal.classList.remove('active');
+
+    AppState.switchTab('roadmap');
+    AppState._toast('🗺️ Your custom AI study roadmap is active!', 'success');
+
+    // Smooth scroll to roadmap
+    const timeline = document.getElementById('roadmapTimelineContainer');
+    if (timeline) {
+      timeline.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 };

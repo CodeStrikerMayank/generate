@@ -2,7 +2,7 @@
   {
     "question_id": "NEET_BIO_CELL_001",
     "exam": "NEET",
-    "paper": "NEET_UG",
+    "paper": "NEET_UG_2021_ADAPTED",
     "subject": "Biology",
     "chapter": "Cell Biology & Genetics",
     "topic": "Cell: The Unit of Life",
@@ -12,7 +12,7 @@
     "discrimination": 1.1,
     "estimated_time": 45,
     "question_type": "multiple_choice",
-    "content": "Which of the following structures is present in prokaryotes but lacks membrane-bound compartmentalization?",
+    "content": "[NEET-UG Adapted] Which of the following structures is present in prokaryotes but lacks membrane-bound compartmentalization?",
     "options": [
       {"id": "A", "text": "Mesosome and 70S Ribosomes"},
       {"id": "B", "text": "Golgi complex"},
@@ -32,7 +32,7 @@
   {
     "question_id": "NEET_BIO_MIT_002",
     "exam": "NEET",
-    "paper": "NEET_UG",
+    "paper": "NEET_UG_2022_ADAPTED",
     "subject": "Biology",
     "chapter": "Cell Biology & Genetics",
     "topic": "Cell: The Unit of Life",
@@ -42,7 +42,7 @@
     "discrimination": 1.5,
     "estimated_time": 50,
     "question_type": "multiple_choice",
-    "content": "During which sub-stage of Prophase I of Meiosis does crossing over between non-sister chromatids of homologous chromosomes take place?",
+    "content": "[NEET-UG Adapted] During which sub-stage of Prophase I of Meiosis does crossing over between non-sister chromatids of homologous chromosomes take place?",
     "options": [
       {"id": "A", "text": "Pachytene (mediated by recombinase enzyme)"},
       {"id": "B", "text": "Zygotene"},
@@ -62,7 +62,7 @@
   {
     "question_id": "NEET_BIO_GEN_003",
     "exam": "NEET",
-    "paper": "NEET_UG",
+    "paper": "NEET_UG_2023_ADAPTED",
     "subject": "Biology",
     "chapter": "Cell Biology & Genetics",
     "topic": "Principles of Inheritance and Variation",
@@ -72,7 +72,7 @@
     "discrimination": 1.3,
     "estimated_time": 60,
     "question_type": "multiple_choice",
-    "content": "A heterozygous tall pea plant with violet flowers (TtVv) is test crossed with a dwarf white plant (ttvv). What proportion of progeny will be dwarf with violet flowers assuming independent assortment?",
+    "content": "[NEET-UG Adapted] A heterozygous tall pea plant with violet flowers (TtVv) is test crossed with a dwarf white plant (ttvv). What proportion of progeny will be dwarf with violet flowers assuming independent assortment?",
     "options": [
       {"id": "A", "text": "25% (1/4)"},
       {"id": "B", "text": "50% (1/2)"},
@@ -92,17 +92,17 @@
   {
     "question_id": "NEET_BIO_LINK_004",
     "exam": "NEET",
-    "paper": "NEET_UG",
+    "paper": "NEET_UG_2021_ADAPTED",
     "subject": "Biology",
     "chapter": "Cell Biology & Genetics",
     "topic": "Principles of Inheritance and Variation",
     "concept_id": "bio_dihybrid_linkage",
     "skill": "reasoning",
-    "difficulty": 0.82,
+    "difficulty": 0.78,
     "discrimination": 1.7,
     "estimated_time": 75,
     "question_type": "multiple_choice",
-    "content": "In Morgan's experiments with Drosophila, cross A (yellow body, white eyes) showed 1.3% recombination, while cross B (white eye, miniature wing) showed 37.2% recombination. What conclusion follows regarding the genes?",
+    "content": "[NEET-UG Adapted] In Morgan's experiments with Drosophila, cross A (yellow body, white eyes) showed 1.3% recombination, while cross B (white eye, miniature wing) showed 37.2% recombination. What conclusion follows regarding the genes?",
     "options": [
       {"id": "A", "text": "Body color and eye color genes are tightly linked (physically closer on the X-chromosome)"},
       {"id": "B", "text": "Eye color and wing size genes are located on different autosomes"},
@@ -122,7 +122,7 @@
   {
     "question_id": "NEET_BIO_CIRC_005",
     "exam": "NEET",
-    "paper": "NEET_UG",
+    "paper": "NEET_UG_2022_ADAPTED",
     "subject": "Biology",
     "chapter": "Human Physiology",
     "topic": "Body Fluids and Circulation",
@@ -132,7 +132,7 @@
     "discrimination": 1.2,
     "estimated_time": 45,
     "question_type": "multiple_choice",
-    "content": "In a standard Electrocardiogram (ECG), which wave represents the depolarization of ventricles leading to ventricular contraction?",
+    "content": "[NEET-UG Adapted] In a standard Electrocardiogram (ECG), which wave represents the depolarization of ventricles leading to ventricular contraction?",
     "options": [
       {"id": "A", "text": "QRS complex"},
       {"id": "B", "text": "P-wave"},
@@ -145,6 +145,306 @@
       "B": "CONCEPTUAL_ERROR: P-wave is atrial depolarization.",
       "C": "CONCEPTUAL_ERROR: T-wave represents ventricular repolarization (recovery).",
       "D": "CARELESS_ERROR: End of T-wave marks end of ventricular systole."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_BIO_PHYS_006",
+    "exam": "NEET",
+    "paper": "NEET_UG_2021_ADAPTED",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Body Fluids and Circulation",
+    "concept_id": "bio_blood_cardiac_cycle",
+    "skill": "application",
+    "difficulty": 0.52,
+    "discrimination": 1.35,
+    "estimated_time": 50,
+    "question_type": "multiple_choice",
+    "content": "[NEET-UG 2021 Adapted - Modified Data] A healthy human adult has a resting heart rate of 72 beats per minute. If the End-Diastolic Volume is 125 mL and End-Systolic Volume is 50 mL, the calculated cardiac output of this individual is :",
+    "options": [
+      {"id": "A", "text": "5.40 L/min"},
+      {"id": "B", "text": "7.20 L/min"},
+      {"id": "C", "text": "3.60 L/min"},
+      {"id": "D", "text": "9.00 L/min"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Stroke volume SV = End-Diastolic Volume - End-Systolic Volume = 125 mL - 50 mL = 75 mL. Cardiac Output = Heart Rate x Stroke Volume = 72 bpm x 75 mL = 5400 mL/min = 5.40 L/min.",
+    "distractor_explanations": {
+      "B": "CALCULATION_ERROR: Multiplied 72 by 100 mL without subtracting End-Systolic Volume.",
+      "C": "FORMULA_SELECTION_ERROR: Multiplied Heart rate by End-Systolic Volume (72 x 50 = 3600 mL).",
+      "D": "CALCULATION_ERROR: Added End-Diastolic and End-Systolic volumes."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_PHY_OPT_001",
+    "exam": "NEET",
+    "paper": "NEET_UG_2022_ADAPTED",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "topic": "Ray Optics & Optical Instruments",
+    "concept_id": "phy_refraction_tir",
+    "skill": "application",
+    "difficulty": 0.58,
+    "discrimination": 1.40,
+    "estimated_time": 60,
+    "question_type": "multiple_choice",
+    "content": "[NEET-UG 2022 Adapted - Modified Data] A monochromatic light beam travels from glass of refractive index 1.50 (3/2) into water of refractive index 1.33 (4/3). The critical angle of incidence for total internal reflection at this interface is :",
+    "options": [
+      {"id": "A", "text": "arcsin(8/9)"},
+      {"id": "B", "text": "arcsin(3/4)"},
+      {"id": "C", "text": "arcsin(2/3)"},
+      {"id": "D", "text": "arcsin(9/8)"}
+    ],
+    "correct_answer": "A",
+    "explanation": "For total internal reflection from denser medium 1 to rarer medium 2: sin(C) = mu_rarer / mu_denser = (4/3) / (3/2) = (4/3) * (2/3) = 8/9. Hence critical angle C = arcsin(8/9).",
+    "distractor_explanations": {
+      "B": "FORMULA_SELECTION_ERROR: Assumed medium 1 is air with refractive index 1.",
+      "C": "CALCULATION_ERROR: Multiplied fractions incorrectly.",
+      "D": "CONCEPTUAL_ERROR: Sin of an angle cannot exceed 1; inverted the ratio."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_PHY_MECH_002",
+    "exam": "NEET",
+    "paper": "NEET_UG_2023_ADAPTED",
+    "subject": "Physics",
+    "chapter": "Mechanics & Laws of Motion",
+    "topic": "Kinematics & Work-Energy",
+    "concept_id": "phy_work_energy_power_neet",
+    "skill": "application",
+    "difficulty": 0.60,
+    "discrimination": 1.45,
+    "estimated_time": 65,
+    "question_type": "multiple_choice",
+    "content": "[NEET-UG 2023 Adapted - Modified Data] A small stone of mass 0.4 kg is launched vertically upwards with an initial kinetic energy of 80 J. Neglecting air resistance and taking g = 10 m/s^2, the kinetic energy of the stone when it reaches half of its maximum height will be :",
+    "options": [
+      {"id": "A", "text": "40 J"},
+      {"id": "B", "text": "20 J"},
+      {"id": "C", "text": "60 J"},
+      {"id": "D", "text": "80 J"}
+    ],
+    "correct_answer": "A",
+    "explanation": "By conservation of mechanical energy: Total Energy E = KE_initial = 80 J. At maximum height H, KE = 0 and PE = mgH = 80 J. At half maximum height (H/2), PE = mg(H/2) = 40 J. Therefore KE = Total Energy - PE = 80 - 40 = 40 J.",
+    "distractor_explanations": {
+      "B": "CALCULATION_ERROR: Subtracted 3/4th of energy instead of 1/2.",
+      "C": "CALCULATION_ERROR: Arithmetic error during energy conservation.",
+      "D": "CONCEPTUAL_ERROR: Failed to account for gravitational potential energy gain."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "NEET_PHY_KIN_003",
+    "exam": "NEET",
+    "paper": "NEET_UG_2021_ADAPTED",
+    "subject": "Physics",
+    "chapter": "Mechanics & Laws of Motion",
+    "topic": "Kinematics & Work-Energy",
+    "concept_id": "phy_kinematics_1d_2d",
+    "skill": "application",
+    "difficulty": 0.48,
+    "discrimination": 1.30,
+    "estimated_time": 55,
+    "question_type": "multiple_choice",
+    "content": "[NEET-UG 2021 Adapted - Modified Data] A sports car moving with an initial speed of 30 m/s is brought to a stop with uniform deceleration over a straight braking distance of 45 m. The magnitude of its deceleration is :",
+    "options": [
+      {"id": "A", "text": "10 m/s^2"},
+      {"id": "B", "text": "5 m/s^2"},
+      {"id": "C", "text": "15 m/s^2"},
+      {"id": "D", "text": "20 m/s^2"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Using third equation of motion: v^2 = u^2 - 2*a*s. With final velocity v = 0, initial velocity u = 30 m/s, and distance s = 45 m: 0 = 30^2 - 2*a*45 => 90*a = 900 => a = 10 m/s^2.",
+    "distractor_explanations": {
+      "B": "CALCULATION_ERROR: Computed a = u / (2s) = 30 / 90.",
+      "C": "CARELESS_ERROR: Used incorrect kinematic equation.",
+      "D": "SIGN_ERROR: Doubled the deceleration magnitude."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_CHEM_BIOMOL_001",
+    "exam": "NEET",
+    "paper": "NEET_UG_2022_ADAPTED",
+    "subject": "Chemistry",
+    "chapter": "Biomolecules & Organic Chemistry",
+    "topic": "Biomolecules",
+    "concept_id": "chem_carbohydrates_proteins",
+    "skill": "conceptual",
+    "difficulty": 0.42,
+    "discrimination": 1.25,
+    "estimated_time": 45,
+    "question_type": "multiple_choice",
+    "content": "[NEET-UG 2022 Adapted - Modified Data] A straight-chain oligopeptide molecule is synthesized by the sequential condensation of 10 amino acid residues. How many peptide linkages (-CO-NH-) are present in this unbranched peptide chain?",
+    "options": [
+      {"id": "A", "text": "9"},
+      {"id": "B", "text": "10"},
+      {"id": "C", "text": "8"},
+      {"id": "D", "text": "11"}
+    ],
+    "correct_answer": "A",
+    "explanation": "In an unbranched peptide formed from n amino acid residues, condensation eliminates (n - 1) water molecules, forming (n - 1) peptide bonds. For 10 amino acids: 10 - 1 = 9 peptide linkages.",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: Assumed cyclic peptide or 1 bond per amino acid.",
+      "C": "CALCULATION_ERROR: Subtracted 2 instead of 1.",
+      "D": "SIGN_ERROR: Added 1 instead of subtracting."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_CHEM_EQUIL_002",
+    "exam": "NEET",
+    "paper": "NEET_UG_2023_ADAPTED",
+    "subject": "Chemistry",
+    "chapter": "Physical Chemistry & Equilibrium",
+    "topic": "Ionic Equilibrium & Acids/Bases",
+    "concept_id": "chem_ionic_ph_buffer_neet",
+    "skill": "application",
+    "difficulty": 0.65,
+    "discrimination": 1.50,
+    "estimated_time": 70,
+    "question_type": "multiple_choice",
+    "content": "[NEET-UG 2023 Adapted - Modified Data] What is the pH of a 0.01 M (10^-2 M) aqueous solution of a monobasic weak acid HA having an acid dissociation constant Ka = 1.0 x 10^-6 at 298 K?",
+    "options": [
+      {"id": "A", "text": "4.0"},
+      {"id": "B", "text": "3.0"},
+      {"id": "C", "text": "5.0"},
+      {"id": "D", "text": "2.0"}
+    ],
+    "correct_answer": "A",
+    "explanation": "For a weak monobasic acid where degree of dissociation alpha << 1: [H+] = sqrt(Ka * C) = sqrt(10^-6 * 10^-2) = sqrt(10^-8) = 10^-4 M. Therefore pH = -log[H+] = -log(10^-4) = 4.0.",
+    "distractor_explanations": {
+      "B": "CALCULATION_ERROR: Took [H+] = sqrt(Ka) without factoring in concentration C.",
+      "C": "FORMULA_SELECTION_ERROR: Miscalculated exponent in square root (used 10^-10 instead of 10^-8).",
+      "D": "CONCEPTUAL_ERROR: Assumed strong acid complete dissociation pH = -log(0.01) = 2."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "NEET_CHEM_CARB_003",
+    "exam": "NEET",
+    "paper": "NEET_UG_2021_ADAPTED",
+    "subject": "Chemistry",
+    "chapter": "Biomolecules & Organic Chemistry",
+    "topic": "Biomolecules",
+    "concept_id": "chem_carbohydrates_proteins",
+    "skill": "conceptual",
+    "difficulty": 0.50,
+    "discrimination": 1.30,
+    "estimated_time": 50,
+    "question_type": "multiple_choice",
+    "content": "[NEET-UG 2021 Adapted] Which of the following disaccharides is classified as a non-reducing sugar due to the involvement of the reducing groups of both monosaccharide units in the glycosidic bond?",
+    "options": [
+      {"id": "A", "text": "Sucrose (alpha-D-glucopyranosyl beta-D-fructofuranoside)"},
+      {"id": "B", "text": "Maltose (alpha-1,4-glucosidic bond)"},
+      {"id": "C", "text": "Lactose (beta-1,4-galactosidic bond)"},
+      {"id": "D", "text": "Cellobiose (beta-1,4-glucosidic bond)"}
+    ],
+    "correct_answer": "A",
+    "explanation": "In sucrose, the glycosidic linkage is formed between C1 of alpha-glucose and C2 of beta-fructose. Since both reducing groups (hemiacetal and hemiketal) are tied in the linkage, sucrose does not reduce Fehling's or Tollens' reagents and is a non-reducing sugar.",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: Maltose has a free hemiacetal group at C1 of the second glucose unit.",
+      "C": "CONCEPTUAL_ERROR: Lactose has a free hemiacetal OH group at C1 of glucose.",
+      "D": "CARELESS_ERROR: Cellobiose is a reducing disaccharide."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_PHY_OPT_004",
+    "exam": "NEET",
+    "paper": "NEET_UG_2022_ADAPTED",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "topic": "Ray Optics & Optical Instruments",
+    "concept_id": "phy_refraction_tir",
+    "skill": "application",
+    "difficulty": 0.62,
+    "discrimination": 1.40,
+    "estimated_time": 60,
+    "question_type": "multiple_choice",
+    "content": "[NEET-UG 2022 Adapted - Modified Data] An equilateral glass prism has an angle of prism A = 60 deg. If the refractive index of the glass material is mu = sqrt(3), then the angle of minimum deviation (Dm) produced by this prism is :",
+    "options": [
+      {"id": "A", "text": "60 deg"},
+      {"id": "B", "text": "30 deg"},
+      {"id": "C", "text": "45 deg"},
+      {"id": "D", "text": "90 deg"}
+    ],
+    "correct_answer": "A",
+    "explanation": "From the prism formula: mu = sin((A + Dm)/2) / sin(A/2). With A = 60 deg, sin(A/2) = sin(30 deg) = 1/2. Thus sqrt(3) = sin((60 + Dm)/2) / (1/2) => sin((60 + Dm)/2) = sqrt(3)/2. Therefore (60 + Dm)/2 = 60 deg => 60 + Dm = 120 deg => Dm = 60 deg.",
+    "distractor_explanations": {
+      "B": "CALCULATION_ERROR: Confused (60 + Dm)/2 with Dm itself.",
+      "C": "CARELESS_ERROR: Assumed Dm = 45 deg from standard glass index 1.5.",
+      "D": "SIGN_ERROR: Added angle of prism twice."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_PHY_KIN_005",
+    "exam": "NEET",
+    "paper": "NEET_UG_2023_ADAPTED",
+    "subject": "Physics",
+    "chapter": "Mechanics & Laws of Motion",
+    "topic": "Kinematics & Work-Energy",
+    "concept_id": "phy_work_energy_power_neet",
+    "skill": "application",
+    "difficulty": 0.65,
+    "discrimination": 1.45,
+    "estimated_time": 65,
+    "question_type": "multiple_choice",
+    "content": "[NEET-UG 2023 Adapted - Modified Data] A variable force F = (3*x^2 + 2*x) N acts on a particle moving along the x-axis. The total work done by this force in displacing the particle from position x = 0 to x = 2 m is :",
+    "options": [
+      {"id": "A", "text": "12 J"},
+      {"id": "B", "text": "16 J"},
+      {"id": "C", "text": "8 J"},
+      {"id": "D", "text": "24 J"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Work done W = integral_{0}^{2} F dx = integral_{0}^{2} (3*x^2 + 2*x) dx = [x^3 + x^2]_{0}^{2} = (2^3 + 2^2) - 0 = 8 + 4 = 12 J.",
+    "distractor_explanations": {
+      "B": "CALCULATION_ERROR: Evaluated 3*(2^2) + 2*(2) = 12 + 4 = 16 (plugged into force instead of integrating).",
+      "C": "CALCULATION_ERROR: Integrated only the first term (2^3 = 8 J).",
+      "D": "SIGN_ERROR: Doubled the integral value."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "NEET_CHEM_EQUIL_004",
+    "exam": "NEET",
+    "paper": "NEET_UG_2021_ADAPTED",
+    "subject": "Chemistry",
+    "chapter": "Physical Chemistry & Equilibrium",
+    "topic": "Ionic Equilibrium & Acids/Bases",
+    "concept_id": "chem_ionic_ph_buffer_neet",
+    "skill": "application",
+    "difficulty": 0.68,
+    "discrimination": 1.55,
+    "estimated_time": 70,
+    "question_type": "multiple_choice",
+    "content": "[NEET-UG 2021 Adapted - Modified Data] The solubility product (Ksp) of silver chloride (AgCl) in water is 1.6 x 10^-10 at 298 K. The molar solubility of AgCl in a 0.10 M aqueous sodium chloride (NaCl) solution is :",
+    "options": [
+      {"id": "A", "text": "1.6 x 10^-9 M"},
+      {"id": "B", "text": "1.26 x 10^-5 M"},
+      {"id": "C", "text": "1.6 x 10^-11 M"},
+      {"id": "D", "text": "1.6 x 10^-8 M"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Due to common ion effect from 0.10 M NaCl: [Cl-] approx 0.10 M. Since Ksp = [Ag+] * [Cl-] => [Ag+] = Ksp / [Cl-] = (1.6 x 10^-10) / 0.10 = 1.6 x 10^-9 M.",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: Calculated pure water solubility sqrt(Ksp) = sqrt(1.6 x 10^-10) approx 1.26 x 10^-5 M ignoring common ion effect.",
+      "C": "CALCULATION_ERROR: Multiplied by 0.1 instead of dividing.",
+      "D": "CALCULATION_ERROR: Exponent arithmetic error."
     },
     "is_transfer": false,
     "is_prerequisite_check": true

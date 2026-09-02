@@ -100,6 +100,34 @@
       "name": "Physics",
       "chapters": [
         {
+          "chapter_id": "NEET_PHY_MECH",
+          "name": "Mechanics & Laws of Motion",
+          "topics": [
+            {
+              "topic_id": "NEET_PHY_KIN",
+              "name": "Kinematics & Work-Energy",
+              "concepts": [
+                {
+                  "concept_id": "phy_kinematics_1d_2d",
+                  "name": "Kinematics & Projectile Motion",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.92,
+                  "difficulty_weight": 0.50,
+                  "description": "Equations of motion, projectile maximum height and range, vertical projectile motion under gravity."
+                },
+                {
+                  "concept_id": "phy_work_energy_power_neet",
+                  "name": "Work, Kinetic Energy & Conservation of Energy",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.94,
+                  "difficulty_weight": 0.55,
+                  "description": "Work-energy theorem, potential energy of springs, conservation of mechanical energy."
+                }
+              ]
+            }
+          ]
+        },
+        {
           "chapter_id": "NEET_PHY_OPTICS",
           "name": "Optics",
           "topics": [
@@ -144,6 +172,26 @@
               ]
             }
           ]
+        },
+        {
+          "chapter_id": "NEET_CHEM_PHYS",
+          "name": "Physical Chemistry & Equilibrium",
+          "topics": [
+            {
+              "topic_id": "NEET_CHEM_EQUIL",
+              "name": "Ionic Equilibrium & Acids/Bases",
+              "concepts": [
+                {
+                  "concept_id": "chem_ionic_ph_buffer_neet",
+                  "name": "pH Calculation, Ostwald Dilution & Buffers",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.60,
+                  "description": "Weak acid/base dissociation constant Ka, Ostwald's dilution law, pH calculations, common ion effect."
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -183,6 +231,20 @@
       "strength": 0.90,
       "relationship": "prerequisite",
       "description": "Tracing inheritance modes in human families requires Mendelian and linkage principles."
+    },
+    {
+      "from_concept": "phy_kinematics_1d_2d",
+      "to_concept": "phy_work_energy_power_neet",
+      "strength": 0.90,
+      "relationship": "prerequisite",
+      "description": "Kinematics equations are fundamental to work-energy calculations."
+    },
+    {
+      "from_concept": "chem_carbohydrates_proteins",
+      "to_concept": "bio_cell_organelles",
+      "strength": 0.85,
+      "relationship": "prerequisite",
+      "description": "Protein and phospholipid chemistry underpins organelle membrane structure."
     }
   ]
 }

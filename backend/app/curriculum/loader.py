@@ -5,7 +5,10 @@ from backend.app.models.schema import (
     Exam, Subject, Chapter, Topic, Concept, Prerequisite, Question
 )
 
-DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+if not os.path.exists(os.path.join(DATA_DIR, "curriculum")):
+    DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")
 
 def seed_curriculum_and_questions(db: Session):
     """
@@ -142,5 +145,17 @@ def seed_curriculum_and_questions(db: Session):
                         is_prerequisite_check=q_data.get("is_prerequisite_check", False)
                     )
                     db.add(question)
+                else:
+                    existing_q.content = q_data["content"]
+                    existing_q.options = q_data.get("options")
+                    existing_q.correct_answer = q_data["correct_answer"]
+                    existing_q.explanation = q_data.get("explanation", "")
+                    existing_q.distractor_explanations = q_data.get("distractor_explanations")
+                    existing_q.paper = q_data.get("paper")
+                    existing_q.difficulty = q_data.get("difficulty", existing_q.difficulty)
+                    existing_q.subject = q_data.get("subject", existing_q.subject)
+                    existing_q.chapter = q_data.get("chapter", existing_q.chapter)
+                    existing_q.topic = q_data.get("topic", existing_q.topic)
+                    existing_q.concept_id = q_data.get("concept_id", existing_q.concept_id)
 
     db.commit()

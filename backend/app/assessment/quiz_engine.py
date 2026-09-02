@@ -73,7 +73,7 @@ class QuizEngine:
             diagnostic_goal=assessment_type,
             desired_difficulty=None,
             student_theta=student_theta,
-            count=6 if assessment_type == "DIAGNOSTIC" else 4
+            count=9 if assessment_type == "DIAGNOSTIC" else 4
         )
 
         attempt = AssessmentAttempt(

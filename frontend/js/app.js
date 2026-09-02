@@ -1,9 +1,11 @@
 /**
- * Master Application Controller with Mobile & Gen-Z Onboarding (JEE Main & NEET).
+ * Master Application Controller — Adaptive Student Intelligence Engine
+ * JEE Main & NEET | Hyper-Realistic Gen-Z Mobile-First UI
  */
 const AppState = {
   student: null,
   currentExam: 'JEE',
+  gatewaySelectedTrack: 'JEE',
   graphView: null,
 
   async init() {
@@ -11,75 +13,104 @@ const AppState = {
 
     let storedStudentId = localStorage.getItem('adaptive_student_id');
     if (!storedStudentId) {
-      this.showOnboardingModal();
+      this.showDiagnosticGateway();
     } else {
       try {
         this.student = await API.getProfile(storedStudentId);
         this.updateHeaderProfile();
         await this.refreshAllData();
+
+        // Check if student has taken at least 1 assessment
+        const history = await API.getAssessmentHistory(storedStudentId);
+        if (!history || history.length === 0) {
+          // Compulsory quiz not yet completed
+          this.showDiagnosticGateway();
+        }
       } catch (err) {
+        console.warn('Profile load failed, re-onboarding:', err);
         localStorage.removeItem('adaptive_student_id');
-        this.showOnboardingModal();
+        this.showDiagnosticGateway();
       }
     }
 
     AIAssistantController.renderChat();
   },
 
-  showOnboardingModal() {
+  showDiagnosticGateway() {
     const modal = document.getElementById('onboardingModal');
-    if (modal) modal.classList.add('active');
+    if (modal) {
+      modal.classList.add('active');
+      this.selectGatewayTrack(this.currentExam || 'JEE');
+    }
   },
 
-  validateEmailInput(val) {
-    const indicator = document.getElementById('emailValidateBadge');
-    const isValid = val.includes('@') && val.includes('.') && val.length > 5;
-    if (indicator) {
-      indicator.innerText = isValid ? '✓ Valid @' : '⚠️ Enter valid @ email';
-      indicator.style.color = isValid ? 'var(--accent-emerald)' : 'var(--accent-amber)';
-    }
-    return isValid;
+  showOnboardingModal() {
+    this.showDiagnosticGateway();
   },
 
-  async completeOnboarding() {
-    const name = document.getElementById('onboardName')?.value.trim();
-    const email = document.getElementById('onboardEmail')?.value.trim();
-    const exam = document.getElementById('onboardExam')?.value || 'JEE';
+  selectGatewayTrack(track) {
+    this.gatewaySelectedTrack = track;
+    const jeeCard = document.getElementById('trackCardJEE');
+    const neetCard = document.getElementById('trackCardNEET');
+    if (jeeCard) jeeCard.classList.toggle('active', track === 'JEE');
+    if (neetCard) neetCard.classList.toggle('active', track === 'NEET');
+  },
 
-    if (!name || name.length < 2) {
-      alert('Please enter your name.');
-      return;
+  async startCompulsoryDiagnostic() {
+    let name = document.getElementById('onboardName')?.value.trim();
+    if (!name) {
+      name = 'Aspirant ' + Math.floor(100 + Math.random() * 900);
     }
-    if (!email || !email.includes('@')) {
-      alert('Please enter a valid email address with @ symbol.');
-      return;
+    const track = this.gatewaySelectedTrack || 'JEE';
+    const email = `aspirant_${Date.now()}_${Math.floor(Math.random()*1000)}@adaptive.local`;
+
+    const btn = document.getElementById('onboardSubmitBtn');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerText = '⚡ Initializing Diagnostic AI Engine…';
     }
 
     try {
-      const reg = await API.register({
-        name,
-        email,
-        password: 'student_pass',
-        target_exam: exam,
-        daily_available_hours: 4.0
-      });
-      this.student = reg;
-      this.currentExam = exam;
-      localStorage.setItem('adaptive_student_id', reg.student_id);
+      let reg;
+      try {
+        reg = await API.register({
+          name,
+          email,
+          password: 'student_pass',
+          target_exam: track,
+          daily_available_hours: 4.0
+        });
+      } catch (e) {
+        // Fallback or retry with new email
+        const fallbackEmail = `user_${Date.now()}@adaptive.local`;
+        reg = await API.register({
+          name,
+          email: fallbackEmail,
+          password: 'student_pass',
+          target_exam: track,
+          daily_available_hours: 4.0
+        });
+      }
 
-      // Compulsory First Roadmap Generation on Onboarding
-      await API.regenerateRoadmap(reg.student_id);
+      this.student = reg;
+      this.currentExam = track;
+      localStorage.setItem('adaptive_student_id', reg.student_id);
 
       const modal = document.getElementById('onboardingModal');
       if (modal) modal.classList.remove('active');
 
       this.updateHeaderProfile();
-      await this.refreshAllData();
+      this._toast(`🚀 Welcome ${name}! Compulsory Diagnostic Started.`, 'success');
 
-      // Show welcome toast / switch to roadmap
-      this.switchTab('roadmap');
+      // Immediately launch the compulsory diagnostic assessment
+      await QuizController.startTest(track, 'DIAGNOSTIC', 1);
+
     } catch (err) {
-      alert('Registration error: ' + err.message);
+      this._toast('Error starting diagnostic: ' + err.message, 'error');
+      if (btn) {
+        btn.disabled = false;
+        btn.innerText = '🚀 Launch Compulsory Diagnostic Quiz →';
+      }
     }
   },
 
@@ -88,12 +119,10 @@ const AppState = {
     const nameElem = document.getElementById('userNameDisplay');
     const examBadge = document.getElementById('userExamBadge');
     const avatar = document.getElementById('userAvatarDisplay');
-
     if (nameElem) nameElem.innerText = this.student.name;
     if (examBadge) examBadge.innerText = this.student.target_exam === 'JEE' ? 'JEE Main' : 'NEET-UG';
     if (avatar) avatar.innerText = this.student.name.charAt(0).toUpperCase();
     this.currentExam = this.student.target_exam || 'JEE';
-
     document.querySelectorAll('.exam-pill-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.exam === this.currentExam);
     });
@@ -111,48 +140,50 @@ const AppState = {
     document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.bottom-nav-item').forEach(el => el.classList.remove('active'));
-
     const targetPane = document.getElementById(`pane_${tabId}`);
     const targetNav = document.getElementById(`nav_${tabId}`);
     const targetBottom = document.getElementById(`bnav_${tabId}`);
-
     if (targetPane) targetPane.classList.add('active');
     if (targetNav) targetNav.classList.add('active');
     if (targetBottom) targetBottom.classList.add('active');
-
-    if (tabId === 'graph' && this.graphView) {
-      setTimeout(() => this.graphView.resize(), 50);
-    }
+    if (tabId === 'graph' && this.graphView) { setTimeout(() => this.graphView.resize(), 50); }
   },
 
   async refreshAllData() {
     if (!this.student) return;
     const studentId = this.student.student_id;
 
-    try {
-      // 1. Fetch Profile & Masteries
-      this.student = await API.getProfile(studentId);
-      document.getElementById('overallMasteryVal').innerText = `${Math.round(this.student.overall_mastery * 100)}%`;
-      document.getElementById('overallConfidenceVal').innerText = `${Math.round(this.student.overall_confidence * 100)}%`;
+    // Run all fetches in parallel — each failure is handled independently
+    const [profile, roadmapData, nextAction, graphData, weaknesses, telemetry] = await Promise.allSettled([
+      API.getProfile(studentId),
+      API.getActiveRoadmap(studentId),
+      API.getNextAction(studentId),       // May 404 — that's OK
+      API.getKnowledgeGraph(this.currentExam, studentId),
+      API.getWeaknesses(studentId),
+      API.getTelemetryStream(studentId)
+    ]);
 
-      // 2. Fetch Active Roadmap & Next Action
-      const roadmapData = await API.getActiveRoadmap(studentId);
-      const nextAction = await API.getNextAction(studentId);
-      RoadmapController.renderRoadmapView(roadmapData, nextAction);
+    // ── 1. Profile & ML Stats ──
+    if (profile.status === 'fulfilled') {
+      this.student = profile.value;
+      const mastery = Math.round((this.student.overall_mastery || 0) * 100);
+      const confidence = Math.round((this.student.overall_confidence || 0) * 100);
+      this._setEl('overallMasteryVal', `${mastery}%`);
+      this._setEl('overallConfidenceVal', `${confidence}%`);
+    }
 
-      // 3. Fetch Knowledge Graph & Compute BKT / IRT stats
-      const graphData = await API.getKnowledgeGraph(this.currentExam, studentId);
-      if (this.graphView) this.graphView.loadGraphData(graphData);
+    // ── 2. Roadmap & NBA ──
+    const roadmap = roadmapData.status === 'fulfilled' ? roadmapData.value : null;
+    const nba = nextAction.status === 'fulfilled' ? nextAction.value : null;
+    RoadmapController.renderRoadmapView(roadmap, nba);
 
-      // 4. Fetch Weaknesses & Priorities
-      const weaknesses = await API.getWeaknesses(studentId);
-      this.renderWeaknessesList(weaknesses);
-
-      // Compute average IRT & BKT
-      const nodes = graphData.nodes || [];
+    // ── 3. Knowledge Graph ──
+    if (graphData.status === 'fulfilled') {
+      if (this.graphView) this.graphView.loadGraphData(graphData.value);
+      const nodes = graphData.value.nodes || [];
       const masteredNodes = nodes.filter(n => (n.mastery || 0) > 0);
-      const avgMastery = masteredNodes.length > 0 ? masteredNodes.reduce((acc, n) => acc + n.mastery, 0) / masteredNodes.length : 0;
-      
+      const avgMastery = masteredNodes.length > 0
+        ? masteredNodes.reduce((acc, n) => acc + n.mastery, 0) / masteredNodes.length : 0;
       const bktElem = document.getElementById('bktProbabilityVal');
       const irtElem = document.getElementById('irtAbilityVal');
       if (bktElem) bktElem.innerText = `${Math.round(avgMastery * 100)}%`;
@@ -160,34 +191,42 @@ const AppState = {
         const theta = (avgMastery - 0.5) * 4.0;
         irtElem.innerText = (theta >= 0 ? '+' : '') + theta.toFixed(2);
       }
+    }
 
-      // 5. Fetch Telemetry Stream
-      const stream = await API.getTelemetryStream(studentId);
-      this.renderTelemetryStream(stream);
+    // ── 4. Weaknesses ──
+    if (weaknesses.status === 'fulfilled') {
+      this.renderWeaknessesList(weaknesses.value);
+    } else {
+      this._setEl('weaknessRankingList', `<div style="color:var(--text-secondary);padding:1rem;">Take a quiz to reveal your weakness profile.</div>`);
+    }
 
-    } catch (err) {
-      console.error('Error refreshing app data:', err);
+    // ── 5. Telemetry ──
+    if (telemetry.status === 'fulfilled') {
+      this.renderTelemetryStream(telemetry.value);
+    } else {
+      this._setEl('telemetryStreamContainer', `<div style="color:var(--text-secondary);padding:1rem;">No telemetry events yet.</div>`);
     }
   },
 
   renderWeaknessesList(weaknesses) {
     const listElem = document.getElementById('weaknessRankingList');
     if (!listElem) return;
-
     if (!weaknesses || weaknesses.length === 0) {
-      listElem.innerHTML = `<div style="color: var(--text-secondary); padding: 1rem;">No critical weaknesses identified. Great progress!</div>`;
+      listElem.innerHTML = `<div style="color:var(--text-secondary);padding:1rem;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:0.5rem;">🌟</div>
+        No critical weaknesses! Keep taking quizzes to map your profile.
+      </div>`;
       return;
     }
-
     listElem.innerHTML = weaknesses.slice(0, 5).map((w, idx) => `
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 0.85rem; border-bottom: 1px solid var(--border-color);">
-        <div>
-          <div style="font-weight: 700; font-size: 0.92rem;">${idx + 1}. ${w.concept_name} <span style="font-size: 0.75rem; color: var(--text-secondary);">(${w.subject})</span></div>
-          <div style="font-size: 0.78rem; color: #fca5a5; margin-top: 3px;">${(w.reasons || []).join(' • ')}</div>
+      <div class="weakness-item">
+        <div class="weakness-rank">${idx + 1}</div>
+        <div class="weakness-body">
+          <div class="weakness-name">${w.concept_name} <span class="weakness-sub">${w.subject}</span></div>
+          <div class="weakness-reasons">${(w.reasons || []).map(r => `<span class="reason-tag">${r}</span>`).join('')}</div>
         </div>
-        <div style="text-align: right;">
-          <div style="font-weight: 800; color: var(--accent-rose);">${Math.round(w.mastery * 100)}%</div>
-          <div style="font-size: 0.7rem; color: var(--text-muted);">${w.weakness_type.replace(/_/g, ' ')}</div>
+        <div class="weakness-score" style="color:${w.mastery < 0.35 ? 'var(--accent-rose)' : w.mastery < 0.6 ? 'var(--accent-amber)' : 'var(--accent-emerald)'};">
+          ${Math.round(w.mastery * 100)}%
         </div>
       </div>
     `).join('');
@@ -196,22 +235,34 @@ const AppState = {
   renderTelemetryStream(events) {
     const streamElem = document.getElementById('telemetryStreamContainer');
     if (!streamElem) return;
-
     if (!events || events.length === 0) {
-      streamElem.innerHTML = `<div style="color: var(--text-secondary); padding: 1rem;">No telemetry events recorded.</div>`;
+      streamElem.innerHTML = `<div style="color:var(--text-secondary);padding:1rem;">No telemetry events recorded yet.</div>`;
       return;
     }
-
-    streamElem.innerHTML = events.slice(0, 8).map(e => `
-      <div style="font-family: var(--font-mono); font-size: 0.75rem; padding: 0.35rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text-secondary);">
-        <span style="color: var(--accent-cyan);">${new Date(e.timestamp).toLocaleTimeString()}</span> • 
-        <strong style="color: #fff;">${e.event_type}</strong> 
-        ${e.resource_id ? `[${e.resource_id}]` : ''}
+    streamElem.innerHTML = events.slice(0, 12).map(e => `
+      <div class="telemetry-row">
+        <span class="telem-time">${new Date(e.timestamp).toLocaleTimeString()}</span>
+        <span class="telem-dot">•</span>
+        <strong class="telem-type">${e.event_type}</strong>
+        ${e.resource_id ? `<span class="telem-resource">[${e.resource_id.slice(0,14)}]</span>` : ''}
       </div>
     `).join('');
+  },
+
+  _setEl(id, html) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  },
+
+  _toast(msg, type = 'info') {
+    const colors = { success: '#10b981', warn: '#f59e0b', error: '#f43f5e', info: '#6366f1' };
+    const toast = document.createElement('div');
+    toast.className = 'app-toast';
+    toast.style.cssText = `position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:${colors[type]};color:#fff;padding:10px 20px;border-radius:100px;font-size:0.88rem;font-weight:700;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.4);animation:toastIn 0.3s ease;`;
+    toast.innerText = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
   }
 };
 
-window.addEventListener('DOMContentLoaded', () => {
-  AppState.init();
-});
+window.addEventListener('DOMContentLoaded', () => { AppState.init(); });

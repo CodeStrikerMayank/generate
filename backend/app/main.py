@@ -44,12 +44,17 @@ FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
 
 if os.path.exists(FRONTEND_DIR):
     app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
+    app.mount("/css", StaticFiles(directory=os.path.join(FRONTEND_DIR, "css")), name="css")
+    app.mount("/js", StaticFiles(directory=os.path.join(FRONTEND_DIR, "js")), name="js")
 
     @app.get("/")
     def serve_frontend_index():
         index_file = os.path.join(FRONTEND_DIR, "index.html")
         if os.path.exists(index_file):
-            return FileResponse(index_file)
+            return FileResponse(
+                index_file,
+                headers={"Cache-Control": "no-cache, no-store, must-revalidate", "Pragma": "no-cache", "Expires": "0"}
+            )
         return {"message": "Adaptive Student Intelligence Engine API is active."}
 
 @app.get("/api/health")

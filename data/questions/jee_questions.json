@@ -358,5 +358,95 @@
     },
     "is_transfer": true,
     "is_prerequisite_check": false
+  },
+  {
+    "question_id": "JEE_2022_CHEM_EQUIL_001",
+    "exam": "JEE",
+    "paper": "MAIN_2022_JULY25_S1",
+    "subject": "Chemistry",
+    "chapter": "Physical Chemistry",
+    "topic": "Chemical Thermodynamics",
+    "concept_id": "chem_chemical_equil_kp_kc",
+    "skill": "application",
+    "difficulty": 0.52,
+    "discrimination": 1.35,
+    "estimated_time": 60,
+    "question_type": "multiple_choice",
+    "content": "[JEE Main 2022 Adapted - Modified Data] For the gaseous equilibrium reaction: N2(g) + 3 H2(g) <=> 2 NH3(g) maintained at 500 K, the numerical ratio of Kp to Kc (in terms of gas constant R and temperature T in Kelvin) is equal to :",
+    "options": [
+      {"id": "A", "text": "(RT)^-2"},
+      {"id": "B", "text": "(RT)^2"},
+      {"id": "C", "text": "(RT)^-1"},
+      {"id": "D", "text": "(RT)^1"}
+    ],
+    "correct_answer": "A",
+    "explanation": "The relationship between Kp and Kc is Kp = Kc * (RT)^(Delta n_g). Here Delta n_g = moles of gaseous products - moles of gaseous reactants = 2 - (1 + 3) = 2 - 4 = -2. Therefore Kp / Kc = (RT)^(-2) = 1 / (RT)^2.",
+    "distractor_explanations": {
+      "B": "SIGN_ERROR: Inverted Delta n_g as +2 (4 - 2 instead of 2 - 4).",
+      "C": "CALCULATION_ERROR: Used Delta n_g = -1.",
+      "D": "CONCEPTUAL_ERROR: Miscalculated stoichiometric difference."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "JEE_2023_CHEM_BUFFER_001",
+    "exam": "JEE",
+    "paper": "MAIN_2023_JAN25_S1",
+    "subject": "Chemistry",
+    "chapter": "Physical Chemistry",
+    "topic": "Ionic Equilibrium",
+    "concept_id": "chem_ionic_ph_buffer",
+    "skill": "application",
+    "difficulty": 0.58,
+    "discrimination": 1.40,
+    "estimated_time": 65,
+    "question_type": "multiple_choice",
+    "content": "[JEE Main 2023 Adapted - Modified Data] An acidic buffer solution is prepared by mixing 0.20 M acetic acid (CH3COOH, pKa = 4.74) and 0.02 M sodium acetate (CH3COONa). The calculated pH of this resulting buffer solution is :",
+    "options": [
+      {"id": "A", "text": "3.74"},
+      {"id": "B", "text": "5.74"},
+      {"id": "C", "text": "4.74"},
+      {"id": "D", "text": "2.74"}
+    ],
+    "correct_answer": "A",
+    "explanation": "According to the Henderson-Hasselbalch equation: pH = pKa + log([Conjugate Base] / [Acid]) = 4.74 + log(0.02 / 0.20) = 4.74 + log(0.10) = 4.74 + (-1.00) = 3.74.",
+    "distractor_explanations": {
+      "B": "SIGN_ERROR: Inverted the ratio log(Acid/Salt) adding 1 instead of subtracting 1.",
+      "C": "CONCEPTUAL_ERROR: Assumed equimolar buffer where pH = pKa.",
+      "D": "CALCULATION_ERROR: Subtracted 2 units instead of 1 unit."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "JEE_2023_MATH_LIMIT_001",
+    "exam": "JEE",
+    "paper": "MAIN_2023_JAN24_S2",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Limits, Continuity & Differentiability",
+    "concept_id": "math_limits",
+    "skill": "application",
+    "difficulty": 0.60,
+    "discrimination": 1.45,
+    "estimated_time": 60,
+    "question_type": "multiple_choice",
+    "content": "[JEE Main 2023 Adapted - Modified Data] The value of the limit lim_{x -> 0} [ (1 - cos 4x) / (x * sin 2x) ] is equal to :",
+    "options": [
+      {"id": "A", "text": "4"},
+      {"id": "B", "text": "2"},
+      {"id": "C", "text": "8"},
+      {"id": "D", "text": "1"}
+    ],
+    "correct_answer": "A",
+    "explanation": "Rewrite 1 - cos 4x = 2*sin^2(2x). Then expression = [2*sin^2(2x)] / [x*sin(2x)] = 2 * [sin(2x) / x] = 2 * 2 * [sin(2x)/(2x)]. As x -> 0, sin(2x)/(2x) -> 1, so the limit evaluates to 2 * 2 * 1 = 4.",
+    "distractor_explanations": {
+      "B": "CALCULATION_ERROR: Forgot multiplier 2 from sin(2x)/x.",
+      "C": "CALCULATION_ERROR: Multiplied by extra factor of 2.",
+      "D": "FORMULA_SELECTION_ERROR: Misapplied standard limit formula."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
   }
 ]

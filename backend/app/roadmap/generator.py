@@ -30,64 +30,121 @@ class RoadmapGenerator:
         exam: str = "JEE"
     ) -> Dict[str, Any]:
         """
-        Determines the pedagogical action type and question parameterization based on mastery state.
+        Determines the pedagogical action type and question parameterization based on mastery state,
+        customized deeply for JEE Main vs NEET-UG tracks.
         """
         if forgetting_risk > 0.40 and mastery >= 0.50:
             return {
-                "action_type": "RETENTION_TEST",
+                "action_type": f"{exam}_RETENTION_DRILL",
                 "questions_count": 5,
                 "estimated_minutes": 20,
-                "target_difficulty": 0.60
+                "target_difficulty": 0.60,
+                "strategy": "Spaced repetition drill targeting Ebbinghaus forgetting curve"
             }
 
         if mastery < 0.35:
+            if exam == "JEE":
+                action = "JEE_FOUNDATION_REBUILD"
+                time_est = 45
+                diff = 0.40
+                strat = "First-principles derivation, coordinate axis setup & FBD equilibrium"
+            elif exam == "NEET":
+                action = "NEET_NCERT_CORE_RECALL"
+                time_est = 35
+                diff = 0.35
+                strat = "NCERT line-by-line concept consolidation & biological definition mastery"
+            else:
+                action = "LEARN_CONCEPT"
+                time_est = 40
+                diff = 0.35
+                strat = "Foundational conceptual study"
+
             return {
-                "action_type": "LEARN_CONCEPT",
-                "questions_count": 4,
-                "estimated_minutes": 40,
-                "target_difficulty": 0.35
+                "action_type": action,
+                "questions_count": 5,
+                "estimated_minutes": time_est,
+                "target_difficulty": diff,
+                "strategy": strat
             }
         elif mastery < 0.55:
+            if exam == "JEE":
+                action = "JEE_MAIN_SPRINT"
+                time_est = 30
+                diff = 0.55
+                strat = "Speed-accuracy calibration for JEE Main single-choice & numerical sections"
+            elif exam == "NEET":
+                action = "NEET_HIGH_SPEED_DRILL"
+                time_est = 25
+                diff = 0.50
+                strat = "Rapid-fire 45s/question pace, eliminating careless reads and sign slips"
+            else:
+                action = "BASIC_PRACTICE"
+                time_est = 25
+                diff = 0.50
+                strat = "Basic application practice"
+
             return {
-                "action_type": "BASIC_PRACTICE",
-                "questions_count": 6,
-                "estimated_minutes": 25,
-                "target_difficulty": 0.50
+                "action_type": action,
+                "questions_count": 7,
+                "estimated_minutes": time_est,
+                "target_difficulty": diff,
+                "strategy": strat
             }
         elif mastery < 0.75:
             if exam == "JEE":
-                action = "MEDIUM_PRACTICE"
+                action = "JEE_MULTI_CONCEPT_DRILL"
+                time_est = 35
+                diff = 0.70
+                strat = "Multi-concept synthesis linking calculus with kinematics & electrodynamics"
             elif exam == "NEET":
-                action = "NEET_PRACTICE"
+                action = "NEET_APPLICATION_PRACTICE"
+                time_est = 30
+                diff = 0.65
+                strat = "Assertion-reasoning, match-the-column & physiological multi-step numericals"
             else:
                 action = "UPSC_PRELIMS_PRACTICE"
+                time_est = 30
+                diff = 0.70
+                strat = "Standard prelims practice"
 
             return {
                 "action_type": action,
                 "questions_count": 6,
-                "estimated_minutes": 30,
-                "target_difficulty": 0.70
+                "estimated_minutes": time_est,
+                "target_difficulty": diff,
+                "strategy": strat
             }
         elif mastery < 0.88:
             if exam == "JEE":
                 action = "JEE_ADVANCED_PRACTICE"
-            elif exam == "UPSC":
-                action = "UPSC_MAINS_WRITING"
+                time_est = 40
+                diff = 0.85
+                strat = "Multi-correct, matrix match & paragraph questions with penalty risk control"
+            elif exam == "NEET":
+                action = "NEET_720_TARGET_SPRINT"
+                time_est = 30
+                diff = 0.80
+                strat = "Zero-unforced-error speed drill targeting 700+ marks"
             else:
-                action = "TIMED_PRACTICE"
+                action = "UPSC_MAINS_WRITING"
+                time_est = 35
+                diff = 0.85
+                strat = "Answer writing practice"
 
             return {
                 "action_type": action,
                 "questions_count": 5,
-                "estimated_minutes": 35,
-                "target_difficulty": 0.85
+                "estimated_minutes": time_est,
+                "target_difficulty": diff,
+                "strategy": strat
             }
         else:
             return {
-                "action_type": "TRANSFER_TEST",
+                "action_type": f"{exam}_TRANSFER_TEST",
                 "questions_count": 4,
                 "estimated_minutes": 20,
-                "target_difficulty": 0.80
+                "target_difficulty": 0.85,
+                "strategy": "Transfer problem testing across unencountered problem variants"
             }
 
     def generate_roadmap(
@@ -158,6 +215,7 @@ class RoadmapGenerator:
                         action_details = self.determine_action_type(b_mastery, b_risk, exam=exam_id)
                         node_name = broken["name"]
 
+                        exam_prefix = f"[{exam_id} Prerequisite Fix]"
                         action = RoadmapAction(
                             roadmap_id=roadmap_id,
                             sequence_order=len(actions) + 1,
@@ -165,8 +223,9 @@ class RoadmapGenerator:
                             concept_id=b_cid,
                             priority_score=0.95,
                             reasons=[
-                                f"Root prerequisite gap blocking {p['concept_name']}",
-                                f"Mastery is only {int(b_mastery * 100)}%"
+                                f"{exam_prefix} Root foundational gap blocking '{p['concept_name']}'",
+                                f"Current mastery {int(b_mastery * 100)}% (Requires >= 70% to unlock downstream topics)",
+                                f"Strategy: {action_details.get('strategy', 'Remediate foundation')}"
                             ],
                             target_questions_count=action_details["questions_count"],
                             estimated_minutes=action_details["estimated_minutes"],
@@ -184,6 +243,7 @@ class RoadmapGenerator:
                 forgetting_risk = m_rec.forgetting_risk if m_rec else 0.0
 
                 action_details = self.determine_action_type(mastery, forgetting_risk, exam=exam_id)
+                exam_prefix = f"[{exam_id} Priority Action]"
 
                 action = RoadmapAction(
                     roadmap_id=roadmap_id,
@@ -191,7 +251,7 @@ class RoadmapGenerator:
                     action_type=action_details["action_type"],
                     concept_id=target_cid,
                     priority_score=p["priority_score"],
-                    reasons=p["reasons"],
+                    reasons=[f"{exam_prefix} {r}" for r in p["reasons"][:2]] + [f"Strategy: {action_details.get('strategy', 'Standard target')}"] ,
                     target_questions_count=action_details["questions_count"],
                     estimated_minutes=action_details["estimated_minutes"],
                     target_difficulty=action_details["target_difficulty"],

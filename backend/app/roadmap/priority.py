@@ -33,8 +33,16 @@ class PriorityEngine:
         # 1. Knowledge Gap (0.0 to 1.0)
         knowledge_gap = 1.0 - mastery
 
-        # 2. Exam Importance (0.0 to 1.0)
+        # 2. Exam Importance (0.0 to 1.0) with exam-specific weighting
         exam_importance = concept.exam_relevance
+        sub_name = concept.topic.chapter.subject.name if (concept.topic and concept.topic.chapter and concept.topic.chapter.subject) else ""
+
+        # NEET: Biology carries 50% total marks (360/720), so amplify Biology importance
+        if self.exam_id == "NEET" and sub_name == "Biology":
+            exam_importance = min(1.0, exam_importance * 1.25)
+        # JEE: Multi-concept problems require heavy emphasis on foundational mechanics & calculus
+        elif self.exam_id == "JEE" and sub_name in ["Physics", "Mathematics"]:
+            prereq_impact = min(1.0, prereq_impact * 1.20)
 
         # 3. Prerequisite Impact (0.1 to 1.0)
         prereq_impact = self.graph.get_prerequisite_impact(concept.concept_id)
@@ -43,16 +51,30 @@ class PriorityEngine:
         # its immediate study priority is adjusted to prioritize ancestors first.
         prereq_check = self.prereq_resolver.analyze_prerequisite_chain(student_id, concept.concept_id)
 
-        # Multi-factor score
-        raw_score = (
-            knowledge_gap * 0.35 +
-            exam_importance * 0.25 +
-            prereq_impact * 0.20 +
-            forgetting_risk * 0.10 +
-            (1.0 - confidence) * 0.10
-        )
+        # Multi-factor score tailored to exam
+        if self.exam_id == "NEET":
+            raw_score = (
+                knowledge_gap * 0.40 +
+                exam_importance * 0.30 +
+                prereq_impact * 0.15 +
+                forgetting_risk * 0.10 +
+                (1.0 - confidence) * 0.05
+            )
+        else:
+            raw_score = (
+                knowledge_gap * 0.35 +
+                exam_importance * 0.25 +
+                prereq_impact * 0.25 +
+                forgetting_risk * 0.08 +
+                (1.0 - confidence) * 0.07
+            )
 
         reasons = []
+        if self.exam_id == "NEET" and sub_name == "Biology":
+            reasons.append("NEET 50% Paper Weight: High-Yield NCERT Biology domain")
+        elif self.exam_id == "JEE" and prereq_impact >= 0.5:
+            reasons.append("JEE Multi-Concept Pivot: Unlocks advanced problem-solving sequences")
+
         if mastery < 0.40:
             reasons.append(f"Critical knowledge gap (mastery {int(mastery * 100)}%)")
         elif mastery < 0.70:

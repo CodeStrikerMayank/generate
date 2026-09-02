@@ -57,7 +57,7 @@ def test_dynamic_roadmap_regeneration_on_mastery_change(roadmap_db):
 
     # The Next-Best-Action MUST be Limits (foundational prerequisite)
     assert nba1["concept_id"] == "c_limits"
-    assert nba1["action_type"] in ["LEARN_CONCEPT", "BASIC_PRACTICE"]
+    assert nba1["action_type"] in ["LEARN_CONCEPT", "BASIC_PRACTICE", "JEE_FOUNDATION_REBUILD"]
 
     # Student now studies and masters Limits (mastery updates to 0.85)
     m1.mastery = 0.85

@@ -84,14 +84,29 @@ class QuestionSelector:
 
             return score
 
-        # Sort candidate pool by score and pick top N
+        # Sort candidate pool by score
         sorted_candidates = sorted(candidate_pool, key=scoring_function, reverse=True)
+
+        # For multi-subject diagnostic assessment, balance question quotas across subjects
+        if diagnostic_goal in ["DIAGNOSTIC", "BASELINE"] and not target_concept_id:
+            subjects = ["Physics", "Chemistry", "Mathematics"] if exam == "JEE" else ["Biology", "Physics", "Chemistry"] if exam == "NEET" else []
+            if subjects:
+                per_subject_count = max(1, count // len(subjects))
+                selected = []
+                for sub in subjects:
+                    sub_pool = [q for q in candidate_pool if q.subject == sub]
+                    if not sub_pool:
+                        sub_pool = [q for q in available_questions if q.subject == sub]
+                    sorted_sub = sorted(sub_pool, key=scoring_function, reverse=True)
+                    selected.extend(sorted_sub[:per_subject_count])
+
+                # If still under total count, backfill from remaining sorted candidates
+                if len(selected) < count:
+                    selected_ids = {q.question_id for q in selected}
+                    remaining = [q for q in sorted_candidates if q.question_id not in selected_ids]
+                    selected.extend(remaining[:(count - len(selected))])
+
+                return selected[:count]
+
         selected = sorted_candidates[:count]
-
-        # Shuffle option order within each selected question for assessment integrity
-        shuffled_selected = []
-        for q in selected:
-            # Create shallow copy or preserve options dict
-            shuffled_selected.append(q)
-
-        return shuffled_selected
+        return selected
