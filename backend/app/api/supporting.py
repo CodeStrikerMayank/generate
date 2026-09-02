@@ -6,7 +6,8 @@ Platform Upgrade v3.0:
 3. Printable/Exportable Report Card
 """
 import datetime
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Header
+
 from sqlalchemy.orm import Session
 from typing import Dict, Any, List, Optional
 
@@ -27,30 +28,27 @@ def _verify_admin(request_key: str):
         raise HTTPException(status_code=403, detail="Admin access denied")
 
 @admin_router.post("/reset-db")
-def reset_database(db: Session = Depends(get_db), x_admin_key: Optional[str] = None):
+def reset_database(db: Session = Depends(get_db), x_admin_key: Optional[str] = Header(None)):
     """Hard reset: wipe all student data, preserve curriculum and question bank."""
-    from fastapi import Header
-    from backend.app.models.schema import (
-        Student, StudentConceptMastery, StudentErrorLog,
-        AssessmentAttempt, StudentAttemptItem, Roadmap, RoadmapAction,
-        TelemetryEvent, Session as SessionModel
-    )
-    from backend.app.database.connection import engine, Base
     import sqlalchemy
 
     _verify_admin(x_admin_key or "")
 
-    # Delete in FK-safe order
+    # Delete in FK-safe order (leaf tables first, then parents)
+    # Preserves: exams, subjects, chapters, topics, concepts, prerequisites, questions, assessments
+    tables_to_clear = [
+        "student_attempt_items",
+        "assessment_attempts",
+        "student_error_logs",
+        "student_concept_mastery",
+        "roadmap_actions",
+        "roadmaps",
+        "learning_events",
+        "students",
+    ]
     try:
-        db.execute(sqlalchemy.text("DELETE FROM student_attempt_items"))
-        db.execute(sqlalchemy.text("DELETE FROM assessment_attempts"))
-        db.execute(sqlalchemy.text("DELETE FROM student_error_logs"))
-        db.execute(sqlalchemy.text("DELETE FROM student_concept_mastery"))
-        db.execute(sqlalchemy.text("DELETE FROM roadmap_actions"))
-        db.execute(sqlalchemy.text("DELETE FROM roadmaps"))
-        db.execute(sqlalchemy.text("DELETE FROM telemetry_events"))
-        db.execute(sqlalchemy.text("DELETE FROM sessions"))
-        db.execute(sqlalchemy.text("DELETE FROM students"))
+        for table in tables_to_clear:
+            db.execute(sqlalchemy.text(f"DELETE FROM {table}"))
         db.commit()
     except Exception as e:
         db.rollback()
@@ -59,8 +57,10 @@ def reset_database(db: Session = Depends(get_db), x_admin_key: Optional[str] = N
     return {"status": "RESET_COMPLETE", "message": "All student data wiped. Question bank and curriculum preserved."}
 
 
+
+
 @admin_router.get("/stats")
-def get_admin_stats(db: Session = Depends(get_db), x_admin_key: Optional[str] = None):
+def get_admin_stats(db: Session = Depends(get_db), x_admin_key: Optional[str] = Header(None)):
     """Admin dashboard stats."""
     from backend.app.models.schema import AssessmentAttempt, Question
     _verify_admin(x_admin_key or "")

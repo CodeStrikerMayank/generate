@@ -4,13 +4,115 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="Adaptive Student Intelligence Engine for JEE Main & NEET — AI-powered personalized roadmaps, quiz assessments, and mastery tracking.">
-  <title>Adaptive Engine — JEE Main & NEET</title>
+  <title>Adaptive Engine — JEE Main &amp; NEET</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+
+  <!-- ╔══════════════════════════════════════════════════════════╗ -->
+  <!-- ║   ADMIN LOGIN OVERLAY (shown before anything else)      ║ -->
+  <!-- ╚══════════════════════════════════════════════════════════╝ -->
+  <div id="adminLoginOverlay" class="admin-overlay">
+    <canvas id="adminParticleCanvas" class="admin-particle-canvas"></canvas>
+    <div class="admin-login-box" id="adminLoginBox">
+      <div class="admin-login-logo">Δ</div>
+      <div style="text-align:center;margin-bottom:1.5rem;">
+        <div class="admin-login-badge">🔐 PROTOTYPE ACCESS CONTROL</div>
+        <h1 class="admin-login-title">Adaptive Intelligence Engine</h1>
+        <p class="admin-login-sub">Admin authentication required to access this prototype</p>
+      </div>
+
+      <div class="form-field" style="margin-bottom:0.85rem;">
+        <label class="form-label">Username</label>
+        <input type="text" id="adminUsername" class="form-input admin-input" placeholder="Enter admin username" autocomplete="username">
+      </div>
+      <div class="form-field" style="margin-bottom:1rem;">
+        <label class="form-label">Password</label>
+        <div style="position:relative;">
+          <input type="password" id="adminPassword" class="form-input admin-input" placeholder="Enter admin password" autocomplete="current-password">
+          <button onclick="const p=document.getElementById('adminPassword');p.type=p.type==='password'?'text':'password'" 
+            style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:1.1rem;">👁</button>
+        </div>
+      </div>
+
+      <div id="adminLoginError" class="admin-login-error" style="display:none;"></div>
+
+      <button id="adminLoginBtn" class="btn-primary glow-pulse" style="width:100%;justify-content:center;padding:0.9rem;font-size:1rem;font-weight:800;border-radius:var(--radius-md);letter-spacing:0.02em;" onclick="AdminAuth.login()">
+        🔐 Authenticate →
+      </button>
+
+      <div style="text-align:center;margin-top:1rem;font-size:0.72rem;color:var(--text-faint);">
+        Prototype access only · Offline-first · No data leaves this machine
+      </div>
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════════════════════════════════╗ -->
+  <!-- ║   LAUNCHER SCREEN (post-admin-login chooser)            ║ -->
+  <!-- ╚══════════════════════════════════════════════════════════╝ -->
+  <div id="launcherModal" class="modal-backdrop launcher-backdrop">
+    <div class="modal-box launcher-box">
+      <div style="text-align:center;margin-bottom:2rem;">
+        <div class="onboard-logo" style="width:56px;height:56px;font-size:1.7rem;margin-bottom:0.75rem;">Δ</div>
+        <div class="admin-login-badge" style="display:inline-flex;margin-bottom:0.5rem;">✅ ADMIN AUTHENTICATED</div>
+        <h2 style="font-size:1.65rem;font-weight:900;letter-spacing:-0.02em;margin-bottom:0.4rem;">Welcome, Admin</h2>
+        <p style="color:var(--text-secondary);font-size:0.88rem;">Choose how to proceed with this prototype session.</p>
+      </div>
+
+      <div class="launcher-card-grid">
+        <!-- New Student Account -->
+        <div class="launcher-card" onclick="AppState.newStudentAccount()">
+          <div class="launcher-card-icon">🎓</div>
+          <div class="launcher-card-title">New Student Account</div>
+          <div class="launcher-card-desc">Create a fresh student profile, select JEE or NEET, and run the full compulsory diagnostic flow.</div>
+          <div class="launcher-card-cta">Start New Session →</div>
+        </div>
+
+        <!-- Guest Account -->
+        <div class="launcher-card" onclick="AppState.createGuestAccount()">
+          <div class="launcher-card-icon">👤</div>
+          <div class="launcher-card-title">Guest Account</div>
+          <div class="launcher-card-desc">Instantly creates a random-name guest student and launches the diagnostic quiz immediately.</div>
+          <div class="launcher-card-cta">Quick Guest Entry →</div>
+        </div>
+
+        <!-- Admin Panel -->
+        <div class="launcher-card danger-card" onclick="AdminAuth.showPanel()">
+          <div class="launcher-card-icon">⚙️</div>
+          <div class="launcher-card-title">Admin Panel</div>
+          <div class="launcher-card-desc">View platform stats, student roster, and perform a hard DB reset to test a fresh prototype run.</div>
+          <div class="launcher-card-cta" style="color:var(--accent-rose);">Open Admin Tools →</div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:1.5rem;">
+        <button class="btn-secondary" style="font-size:0.78rem;padding:0.4rem 1rem;" onclick="AdminAuth.hardLogout()">
+          🔓 Full Logout (Clear Admin Session)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════════════════════════════════╗ -->
+  <!-- ║   ADMIN PANEL MODAL                                     ║ -->
+  <!-- ╚══════════════════════════════════════════════════════════╝ -->
+  <div class="modal-backdrop" id="adminPanelModal">
+    <div class="modal-box" style="max-width:720px;max-height:90vh;overflow-y:auto;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
+        <div>
+          <h2 style="font-size:1.3rem;font-weight:900;">⚙️ Admin Control Panel</h2>
+          <div style="font-size:0.78rem;color:var(--text-muted);">Prototype Management Dashboard</div>
+        </div>
+        <button class="btn-secondary" style="padding:0.4rem 0.85rem;" onclick="AdminAuth.closePanel()">✕ Close</button>
+      </div>
+      <div id="adminPanelContent">
+        <div style="text-align:center;padding:2rem;color:var(--text-secondary);">Loading…</div>
+      </div>
+    </div>
+  </div>
 
   <!-- ╔═══════════════════════════════════════╗ -->
   <!-- ║          TOP HEADER BAR               ║ -->
@@ -25,29 +127,38 @@
     </div>
 
     <div class="header-controls">
-      <button class="btn-secondary" style="padding:0.4rem 0.65rem;font-size:0.75rem;font-weight:700;display:flex;align-items:center;gap:4px;" onclick="SupportingFeatures.showReviewQueueModal()" title="Spaced-repetition review queue">
+      <!-- Live Clock -->
+      <div id="liveClock" style="font-family:var(--font-mono);font-size:0.78rem;color:var(--text-muted);font-weight:600;letter-spacing:0.04em;display:flex;align-items:center;gap:4px;">
+        🕐 --:--:--
+      </div>
+
+      <button class="btn-secondary student-session-only" style="padding:0.4rem 0.65rem;font-size:0.75rem;font-weight:700;display:none;align-items:center;gap:4px;" onclick="SupportingFeatures.showReviewQueueModal()" title="Spaced-repetition review queue">
         🔄 Review Queue
       </button>
-      <button class="btn-secondary" style="padding:0.4rem 0.65rem;font-size:0.75rem;font-weight:700;display:flex;align-items:center;gap:4px;" onclick="SupportingFeatures.showErrorTrendsModal()" title="Error pattern trends">
+      <button class="btn-secondary student-session-only" style="padding:0.4rem 0.65rem;font-size:0.75rem;font-weight:700;display:none;align-items:center;gap:4px;" onclick="SupportingFeatures.showErrorTrendsModal()" title="Error pattern trends">
         📉 Errors
       </button>
-      <button class="btn-secondary" style="padding:0.4rem 0.65rem;font-size:0.75rem;font-weight:700;display:flex;align-items:center;gap:4px;" onclick="SupportingFeatures.showReportCardModal()" title="Printable performance scorecard">
+      <button class="btn-secondary student-session-only" style="padding:0.4rem 0.65rem;font-size:0.75rem;font-weight:700;display:none;align-items:center;gap:4px;" onclick="SupportingFeatures.showReportCardModal()" title="Printable performance scorecard">
         📑 Report Card
       </button>
-      <button class="btn-secondary" style="padding:0.4rem 0.8rem;font-size:0.78rem;font-weight:700;display:flex;align-items:center;gap:5px;border-color:var(--border-highlight);" onclick="AppState.showDiagnosticGateway()" title="Take or retake the compulsory diagnostic quiz">
+      <button class="btn-secondary student-session-only" style="padding:0.4rem 0.8rem;font-size:0.78rem;font-weight:700;display:none;align-items:center;gap:5px;border-color:var(--border-highlight);" onclick="AppState.showDiagnosticGateway()" title="Take or retake the compulsory diagnostic quiz">
         🎯 Diagnostic Quiz
       </button>
-      <div class="exam-pill-selector">
+      <div class="exam-pill-selector student-session-only" style="display:none;">
         <button class="exam-pill-btn active" data-exam="JEE" onclick="AppState.switchExam('JEE')">JEE</button>
         <button class="exam-pill-btn" data-exam="NEET" onclick="AppState.switchExam('NEET')">NEET</button>
       </div>
-      <div class="user-badge" onclick="AppState.showDiagnosticGateway()" id="userBadge" title="Your profile">
+      <div class="user-badge student-session-only" onclick="AppState.showDiagnosticGateway()" id="userBadge" title="Your profile" style="display:none;">
         <div class="avatar-circle" id="userAvatarDisplay">A</div>
         <div>
           <div style="font-size:0.82rem;font-weight:700;" id="userNameDisplay">Student</div>
           <div style="font-size:0.66rem;color:var(--accent-cyan);" id="userExamBadge">JEE Main</div>
         </div>
       </div>
+      <!-- Logout Button (visible only when student is active) -->
+      <button id="headerLogoutBtn" onclick="AppState.logout()" style="display:none;align-items:center;gap:5px;padding:0.4rem 0.85rem;font-size:0.78rem;font-weight:700;background:rgba(244,63,94,0.12);border:1px solid rgba(244,63,94,0.3);color:var(--accent-rose);border-radius:var(--radius-full);cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(244,63,94,0.22)'" onmouseout="this.style.background='rgba(244,63,94,0.12)'">
+        🚪 Logout
+      </button>
     </div>
   </header>
 
@@ -75,6 +186,14 @@
       </div>
       <div class="nav-item" id="nav_telemetry" onclick="AppState.switchTab('telemetry')">
         <span class="nav-icon">📡</span> Telemetry
+      </div>
+      <div style="margin-top:auto;padding-top:1rem;border-top:1px solid var(--border-subtle);">
+        <div class="nav-item" onclick="AdminAuth.showPanel()" style="color:var(--accent-amber);">
+          <span class="nav-icon">⚙️</span> Admin
+        </div>
+        <div class="nav-item" onclick="AppState.logout()" style="color:var(--accent-rose);">
+          <span class="nav-icon">🚪</span> Logout
+        </div>
       </div>
     </aside>
 
@@ -152,6 +271,18 @@
             </div>
           </div>
         </div>
+
+        <!-- Weakness Rankings -->
+        <div class="glass-card" style="margin-top:1rem;padding:0;">
+          <div style="padding:1rem 1.25rem;border-bottom:1px solid var(--border-subtle);display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-size:1rem;font-weight:800;">🧠 AI Weakness Ranking</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);">Concepts with highest priority gap</div>
+            </div>
+            <button class="btn-secondary" style="font-size:0.75rem;padding:3px 8px;" onclick="AppState.switchTab('roadmap')">View Roadmap →</button>
+          </div>
+          <div id="weaknessRankingList" style="padding:0.5rem;"></div>
+        </div>
       </section>
 
       <!-- ═══════════════════════════════════════════════ -->
@@ -164,7 +295,6 @@
             <div class="section-sub">Prerequisite DAG ordering and adaptive mastery tracking.</div>
           </div>
           <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
-            <!-- Segmented View Switcher -->
             <div class="segmented-control" style="background:rgba(255,255,255,0.06);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:2px;display:flex;gap:2px;">
               <button class="segmented-btn roadmap-view-tab active" data-view="timeline" style="border:none;background:transparent;color:var(--text-primary);padding:4px 10px;font-size:0.78rem;font-weight:700;border-radius:var(--radius-sm);cursor:pointer;" onclick="RoadmapVisualizer.switchView('timeline')">🗺️ Step Sequence</button>
               <button class="segmented-btn roadmap-view-tab" data-view="dag" style="border:none;background:transparent;color:var(--text-muted);padding:4px 10px;font-size:0.78rem;font-weight:700;border-radius:var(--radius-sm);cursor:pointer;" onclick="RoadmapVisualizer.switchView('dag')">🕸️ Visual DAG Graph</button>
@@ -238,7 +368,7 @@
             <div class="chat-quick-prompts">
               <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('Analyze my quiz mistakes')">📊 Analyze My Mistakes</button>
               <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('Explain my roadmap sequence')">🗺️ Explain My Roadmap</button>
-              <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('How can I improve my speed and accuracy?')">⚡ Speed & Accuracy Tips</button>
+              <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('How can I improve my speed and accuracy?')">⚡ Speed &amp; Accuracy Tips</button>
               <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('Give me exam strategy tips')">🎯 Exam Strategy</button>
             </div>
             <div class="chat-input-row">
@@ -258,11 +388,11 @@
             <div class="form-field" style="margin-bottom:0.85rem;">
               <label class="form-label">Target Concept</label>
               <select id="genConceptSelect" class="form-input">
-                <option value="math_limits">Limits & Indeterminate Forms (JEE Math)</option>
-                <option value="phy_friction">Static & Kinetic Friction (JEE/NEET Physics)</option>
+                <option value="math_limits">Limits &amp; Indeterminate Forms (JEE Math)</option>
+                <option value="phy_friction">Static &amp; Kinetic Friction (JEE/NEET Physics)</option>
                 <option value="chem_electronic_effects">Electronic Effects in GOC (JEE/NEET Chemistry)</option>
                 <option value="bio_mendelian_laws">Mendel's Laws of Inheritance (NEET Biology)</option>
-                <option value="bio_cell_cycle_mitosis_meiosis">Cell Cycle & Crossing Over (NEET Biology)</option>
+                <option value="bio_cell_cycle_mitosis_meiosis">Cell Cycle &amp; Crossing Over (NEET Biology)</option>
               </select>
             </div>
             <button class="btn-primary" style="width:100%;justify-content:center;" onclick="AIAssistantController.generatePracticeQuestion()">
@@ -340,7 +470,6 @@
           <span>Step 1:</span> Choose Your Examination Battleground
         </label>
         <div class="gateway-track-grid">
-          <!-- JEE Card -->
           <div class="gateway-track-card active" id="trackCardJEE" onclick="AppState.selectGatewayTrack('JEE')">
             <div class="track-check">✓</div>
             <div class="track-icon">🔭</div>
@@ -352,14 +481,13 @@
               <span class="track-tag" style="color:var(--accent-emerald);">Organic Chem</span>
             </div>
           </div>
-          <!-- NEET Card -->
           <div class="gateway-track-card" id="trackCardNEET" onclick="AppState.selectGatewayTrack('NEET')">
             <div class="track-check">✓</div>
             <div class="track-icon">🧬</div>
             <div class="track-title">NEET-UG (PCB)</div>
             <div class="track-desc">Biology (Botany/Zoology) · Physics · Chemistry</div>
             <div class="track-tags">
-              <span class="track-tag" style="color:var(--accent-amber);">Cell & Genetics</span>
+              <span class="track-tag" style="color:var(--accent-amber);">Cell &amp; Genetics</span>
               <span class="track-tag" style="color:var(--accent-rose);">Physiology</span>
               <span class="track-tag" style="color:var(--accent-cyan);">Optics</span>
             </div>
@@ -375,13 +503,13 @@
         <input type="text" id="onboardName" class="form-input" placeholder="e.g. Arjun Sharma (or your name)" value="">
       </div>
 
-      <!-- Step 3: Diagnostic Briefing -->
+      <!-- Step 3: Info Box -->
       <div class="gateway-info-box">
         <div style="font-weight:800;color:var(--text-primary);margin-bottom:4px;display:flex;align-items:center;gap:6px;">
           <span>🧠</span> How the AI Diagnostic Baseline Works:
         </div>
         <ul style="padding-left:1.25rem;margin:0;display:flex;flex-direction:column;gap:3px;">
-          <li><strong>6 Authentic PYQs Adapted:</strong> Real past year questions with modified numerical parameters to test true analytical skills.</li>
+          <li><strong>9 Authentic PYQs Adapted:</strong> Real past year questions with modified numerical parameters to test true analytical skills.</li>
           <li><strong>AI Skill Extraction:</strong> Measures Latent Ability (θ), Bayesian mastery P(L), speed, and prerequisite gaps.</li>
           <li><strong>Roadmap Generation:</strong> Directly calibrates and unlocks your personalized study sequence upon completion.</li>
         </ul>
@@ -391,7 +519,13 @@
         🚀 Launch Compulsory Diagnostic Quiz →
       </button>
 
-      <p style="font-size:0.72rem;color:var(--text-muted);text-align:center;margin-top:0.75rem;">
+      <div style="display:flex;justify-content:center;gap:0.75rem;margin-top:0.75rem;">
+        <button class="btn-secondary" style="font-size:0.78rem;padding:0.4rem 1rem;" onclick="AppState.showLauncherScreen()">
+          ← Back to Launcher
+        </button>
+      </div>
+
+      <p style="font-size:0.72rem;color:var(--text-muted);text-align:center;margin-top:0.5rem;">
         Offline-First Engine · Data stored locally · No external API keys required
       </p>
     </div>
@@ -404,19 +538,20 @@
     <div class="modal-box" id="resultModalContent" style="max-width:620px;max-height:90vh;overflow-y:auto;"></div>
   </div>
 
-  <!-- Supporting Features Modal (Review Queue / Errors / Report Card) -->
+  <!-- Supporting Features Modal -->
   <div class="modal-backdrop" id="supportingModal">
     <div class="modal-box" id="supportingModalContent" style="max-width:740px;max-height:90vh;overflow-y:auto;"></div>
   </div>
 
-  <!-- Scripts -->
-  <script src="/static/js/api.js?v=3.0"></script>
-  <script src="/static/js/graph_view.js?v=3.0"></script>
-  <script src="/static/js/quiz.js?v=3.0"></script>
-  <script src="/static/js/roadmap.js?v=3.0"></script>
-  <script src="/static/js/roadmap_visual.js?v=3.0"></script>
-  <script src="/static/js/supporting.js?v=3.0"></script>
-  <script src="/static/js/ai_assistant.js?v=3.0"></script>
-  <script src="/static/js/app.js?v=3.0"></script>
+  <!-- Scripts (admin_auth.js must be FIRST) -->
+  <script src="/static/js/admin_auth.js?v=4.0"></script>
+  <script src="/static/js/api.js?v=4.0"></script>
+  <script src="/static/js/graph_view.js?v=4.0"></script>
+  <script src="/static/js/quiz.js?v=4.0"></script>
+  <script src="/static/js/roadmap.js?v=4.0"></script>
+  <script src="/static/js/roadmap_visual.js?v=4.0"></script>
+  <script src="/static/js/supporting.js?v=4.0"></script>
+  <script src="/static/js/ai_assistant.js?v=4.0"></script>
+  <script src="/static/js/app.js?v=4.0"></script>
 </body>
 </html>
