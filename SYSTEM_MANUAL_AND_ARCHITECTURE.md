@@ -1,6 +1,6 @@
 # Adaptive Student Intelligence & Dynamic Roadmap Engine: System Manual & Technical Specification
 
-> **Platform Version**: 2.5 (Production Ready)  
+> **Platform Version**: 3.0 (Production Ready)  
 > **Supported Exam Tracks**: JEE Main (PCM), NEET-UG (PCB), UPSC (Civil Services)  
 > **Offline-First Architecture**: 100% Local Inference & Embedded SQLite — Zero External Cloud Dependency Required
 
@@ -272,8 +272,10 @@ Every learning action is immutably recorded in the `telemetry_events` table for 
 * `GET /api/curriculum/concept/{concept_id}` — Detailed concept metadata and prerequisites.
 
 ### Assessments & Diagnostic Testing
-* `POST /api/assessments/start?student_id={id}` — Start adaptive assessment (`exam`, `assessment_type`, `stage`, `target_concept_id`).
-* `POST /api/assessments/submit` — Submit answers (`attempt_id`, `responses`), triggers grading, mastery update, and roadmap regeneration.
+* `POST /api/assessments/start?student_id={id}` — Start Tier 1 adaptive screener assessment (9 Qs balanced across subjects).
+* `POST /api/assessments/start-drill?student_id={id}&subject={s}&chapter_id={c}` — Start Tier 2 targeted topic drill (5 Qs).
+* `POST /api/assessments/start-full-scan?student_id={id}&exam={e}` — Start Tier 3 full syllabus deep scan (15 Qs).
+* `POST /api/assessments/submit` — Submit answers (`attempt_id`, `responses`), triggers grading, mastery update, weak subject detection, and roadmap regeneration.
 * `GET /api/assessments/history/{student_id}` — List past assessment attempts.
 * `GET /api/assessments/attempt/{attempt_id}` — Get question-by-question feedback and distractor notes.
 
@@ -285,8 +287,13 @@ Every learning action is immutably recorded in the `telemetry_events` table for 
 * `GET /api/roadmap/weaknesses/{student_id}` — Get ranked list of active knowledge gaps.
 
 ### AI Study Mentor
-* `POST /api/ai/chat/{student_id}` — Context-grounded chat (`prompt`, `include_student_state`).
+* `POST /api/ai/chat/{student_id}` — Context-grounded chat using deterministic `IntentClassifier` (`prompt`, `include_student_state`).
 * `POST /api/ai/generate-question` — Generate practice question with distractor analysis.
+
+### Supporting Features
+* `GET /api/supporting/review-queue/{student_id}` — Query concepts due for spaced review via Ebbinghaus retention decay ($R(t) < 0.65$).
+* `GET /api/supporting/error-trends/{student_id}` — Aggregated cognitive error patterns and subject tendencies.
+* `GET /api/supporting/report-card/{student_id}` — Complete printable scorecard data for PDF export.
 
 ### Telemetry Stream
 * `GET /api/telemetry/stream/{student_id}` — Fetch append-only audit trail.
@@ -334,7 +341,7 @@ Every learning action is immutably recorded in the `telemetry_events` table for 
 ```bash
 python -m pytest -v
 ```
-*Executes all 12 tests across IRT, BKT, DAG Prerequisites, Priority Engine, and Roadmap Regeneration.*
+*Executes all 15 automated test suites across IRT, BKT, DAG Prerequisites, Priority Engine, Roadmap Regeneration, Chatbot Intent Classifier, and Supporting Features.*
 
 ### 12.3. Starting the Server
 ```bash
