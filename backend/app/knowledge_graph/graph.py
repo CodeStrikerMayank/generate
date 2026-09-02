@@ -21,13 +21,22 @@ class CurriculumGraph:
 
         concepts = query.all()
         for c in concepts:
+            sub_name = c.topic.chapter.subject.name if (c.topic and c.topic.chapter and c.topic.chapter.subject) else "General"
+            ch_name = c.topic.chapter.name if (c.topic and c.topic.chapter) else "General"
+            ch_id = c.topic.chapter_id if c.topic else "ch_gen"
+            top_name = c.topic.name if c.topic else "General"
+
             self.graph.add_node(
                 c.concept_id,
                 name=c.name,
+                subject=sub_name,
+                chapter_id=ch_id,
+                chapter_name=ch_name,
+                topic_id=c.topic_id,
+                topic_name=top_name,
                 estimated_minutes=c.estimated_minutes,
                 exam_relevance=c.exam_relevance,
                 difficulty_weight=c.difficulty_weight,
-                topic_id=c.topic_id,
                 description=c.description
             )
 
@@ -66,7 +75,7 @@ class CurriculumGraph:
             return list(ancestors)
 
     def get_dependents(self, concept_id: str) -> List[str]:
-        """Returns concepts that depend on this concept as a prerequisite."""
+        """Returns downstream concept nodes that depend on this concept."""
         if concept_id not in self.graph:
             return []
         return list(self.graph.successors(concept_id))
@@ -78,17 +87,13 @@ class CurriculumGraph:
         return list(nx.descendants(self.graph, concept_id))
 
     def get_prerequisite_impact(self, concept_id: str) -> float:
-        """
-        Calculates the prerequisite importance of a concept based on its downstream dependents.
-        Concepts that unlock many advanced topics have higher impact (0.0 - 1.0 normalized).
-        """
+        """Calculates impact score (0.1 to 1.0) based on how many concepts this unlocks."""
         if concept_id not in self.graph:
             return 0.5
         descendants = nx.descendants(self.graph, concept_id)
         total_nodes = len(self.graph.nodes)
         if total_nodes <= 1:
             return 0.5
-        # Impact scales with direct out-degree and total downstream reach
         direct_out = len(list(self.graph.successors(concept_id)))
         downstream_ratio = len(descendants) / max(total_nodes - 1, 1)
         impact = 0.4 * min(direct_out / 3.0, 1.0) + 0.6 * downstream_ratio
@@ -102,10 +107,17 @@ class CurriculumGraph:
 
         for node_id, data in self.graph.nodes(data=True):
             m = masteries.get(node_id, 0.0)
+            status = "mastered" if m >= 0.70 else ("developing" if m >= 0.40 else "weak")
             nodes.append({
                 "id": node_id,
                 "label": data.get("name", node_id),
                 "mastery": m,
+                "status": status,
+                "subject": data.get("subject", "General"),
+                "chapter_id": data.get("chapter_id", "ch_gen"),
+                "chapter_name": data.get("chapter_name", "General"),
+                "topic_id": data.get("topic_id", "top_gen"),
+                "topic_name": data.get("topic_name", "General"),
                 "exam_relevance": data.get("exam_relevance", 0.8),
                 "difficulty_weight": data.get("difficulty_weight", 0.5),
                 "estimated_minutes": data.get("estimated_minutes", 45)

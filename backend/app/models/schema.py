@@ -112,6 +112,8 @@ class Question(Base):
     subject = Column(String(64), nullable=False)
     chapter = Column(String(64), nullable=False)
     topic = Column(String(64), nullable=False)
+    chapter_id = Column(String(64), nullable=True, index=True)
+    topic_id = Column(String(64), nullable=True, index=True)
     concept_id = Column(String(64), ForeignKey("concepts.concept_id"), nullable=False, index=True)
     skill = Column(String(64), default="conceptual")  # conceptual, numerical, multi_step, reasoning, factual_recall, case_study, analytical_writing
     difficulty = Column(Float, default=0.50)  # 0.0 - 1.0
@@ -162,6 +164,7 @@ class AssessmentAttempt(Base):
     score_percentage = Column(Float, default=0.0)
     is_completed = Column(Boolean, default=False)
     status = Column(String(32), default="IN_PROGRESS")  # IN_PROGRESS, COMPLETED, AUTO_SUBMITTED, TIMED_OUT
+    test_tier = Column(String(32), default="SCREENER")  # SCREENER, TOPIC_DRILL, FULL_SCAN
 
     student = relationship("Student", back_populates="attempts")
     assessment = relationship("Assessment", back_populates="attempts")

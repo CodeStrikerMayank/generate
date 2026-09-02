@@ -121,14 +121,21 @@ def seed_curriculum_and_questions(db: Session):
             for q_data in q_list:
                 qid = q_data["question_id"]
                 existing_q = db.query(Question).filter(Question.question_id == qid).first()
+                c_rec = db.query(Concept).filter(Concept.concept_id == q_data["concept_id"]).first()
+                t_id = c_rec.topic_id if c_rec else None
+                top_rec = db.query(Topic).filter(Topic.topic_id == t_id).first() if t_id else None
+                ch_id = top_rec.chapter_id if top_rec else None
+
                 if not existing_q:
                     question = Question(
-                        question_id=qid,
+                        question_id=q_data["question_id"],
                         exam=q_data["exam"],
                         paper=q_data.get("paper"),
                         subject=q_data["subject"],
                         chapter=q_data["chapter"],
                         topic=q_data["topic"],
+                        chapter_id=ch_id,
+                        topic_id=t_id,
                         concept_id=q_data["concept_id"],
                         skill=q_data.get("skill", "conceptual"),
                         difficulty=q_data.get("difficulty", 0.5),
@@ -156,6 +163,8 @@ def seed_curriculum_and_questions(db: Session):
                     existing_q.subject = q_data.get("subject", existing_q.subject)
                     existing_q.chapter = q_data.get("chapter", existing_q.chapter)
                     existing_q.topic = q_data.get("topic", existing_q.topic)
+                    existing_q.chapter_id = ch_id
+                    existing_q.topic_id = t_id
                     existing_q.concept_id = q_data.get("concept_id", existing_q.concept_id)
 
     db.commit()

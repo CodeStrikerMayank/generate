@@ -6,7 +6,7 @@ from fastapi.responses import FileResponse
 
 from backend.app.database.connection import engine, Base, SessionLocal
 from backend.app.curriculum.loader import seed_curriculum_and_questions
-from backend.app.api import auth, curriculum, assessments, roadmap, ai, telemetry
+from backend.app.api import auth, curriculum, assessments, roadmap, ai, telemetry, supporting
 
 # Initialize DB tables
 Base.metadata.create_all(bind=engine)
@@ -37,6 +37,7 @@ app.include_router(assessments.router, prefix="/api")
 app.include_router(roadmap.router, prefix="/api")
 app.include_router(ai.router, prefix="/api")
 app.include_router(telemetry.router, prefix="/api")
+app.include_router(supporting.router, prefix="/api")
 
 # Static frontend files path
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

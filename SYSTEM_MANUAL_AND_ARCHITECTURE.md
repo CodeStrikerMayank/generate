@@ -345,3 +345,28 @@ python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
 * **Web UI**: Open `http://127.0.0.1:8000/` in Google Chrome, Edge, or Firefox.
 * **Interactive OpenAPI Docs**: `http://127.0.0.1:8000/docs`
 * **Alternative ReDoc**: `http://127.0.0.1:8000/redoc`
+
+---
+
+## 13. Platform Upgrade v3.0 Architecture Additions
+
+### 13.1. Tiered Diagnostic Testing Pipeline
+* **Tier 1 — Screener**: 9-Question compulsory balanced diagnostic. Calculates overall latent ability and flags weak subjects ($< 60\%$ accuracy).
+* **Tier 2 — Topic Drill (`POST /api/assessments/start-drill`)**: 5-Question focused PYQ drills targeting isolated chapters/concepts for weak subjects.
+* **Tier 3 — Full Syllabus Deep Scan (`POST /api/assessments/start-full-scan`)**: 15-Question balanced deep scan covering all major syllabus chapters.
+
+### 13.2. Hardened Offline Chatbot (`IntentClassifier` + `templates.py`)
+* Two-stage deterministic classification (Regex/Keyword + Levenshtein fuzzy distance matching).
+* Fixed intent set: `ANALYZE_MISTAKES`, `EXPLAIN_ROADMAP`, `STRATEGY_TIPS`, `EXPLAIN_CONCEPT`, `UNKNOWN`.
+* Zero hallucinations: slot-filling templates populate directly from the student's quiz answers, distractor traps, and roadmap DAG.
+
+### 13.3. Interactive Visual Roadmap
+* **Visual DAG Graph**: Native SVG rendering with directional prerequisite arrows, zoom/pan controls, and color-coded status badges (🟢 Mastered $\ge 70\%$, 🟡 Developing $40-69\%$, 🔴 Weak $< 40\%$).
+* **Chapter Heatmap**: Aggregated chapter-level mastery cards with weak-gap indicators and direct drill triggers.
+* **Dashboard Widgets**: Circular SVG Progress Ring and Next 3 Priority Milestones.
+
+### 13.4. Supporting Features
+* **Spaced Repetition Review Queue (`GET /api/supporting/review-queue/{id}`)**: Schedules practice based on Ebbinghaus memory decay ($R(t) = e^{-t/S} < 0.65$).
+* **Cognitive Error Trends (`GET /api/supporting/error-trends/{id}`)**: Aggregates distractor tendencies across subjects and categories (time pressure, calculation slips, conceptual confusion).
+* **Printable / Exportable Report Card (`GET /api/supporting/report-card/{id}`)**: Official audit scorecard with clean `@media print` CSS for PDF generation.
+

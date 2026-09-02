@@ -90,6 +90,7 @@ class AssessmentSessionResponse(BaseModel):
     session_id: str
     exam: str
     title: str
+    test_tier: Optional[str] = "SCREENER"
     assessment_type: str
     duration_minutes: int
     total_questions: int
@@ -114,11 +115,13 @@ class AssessmentItemFeedback(BaseModel):
 
 class AssessmentResultResponse(BaseModel):
     attempt_id: str
+    test_tier: Optional[str] = "SCREENER"
     total_questions: int
     correct_count: int
     score_percentage: float
     time_taken_seconds: int
     status: str
+    weak_subjects: Optional[List[Dict[str, Any]]] = None
     items_feedback: List[AssessmentItemFeedback]
     updated_masteries: List[Dict[str, Any]]
     new_roadmap_summary: Optional[Dict[str, Any]]

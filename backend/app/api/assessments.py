@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 from backend.app.database.connection import get_db
 from backend.app.models.schema import AssessmentAttempt, Assessment
@@ -27,6 +27,38 @@ def start_assessment(
         stage=req.stage,
         duration_minutes=req.duration_minutes or 30,
         target_concept_id=req.target_concept_id
+    )
+    return session_data
+
+@router.post("/start-drill", response_model=AssessmentSessionResponse)
+def start_drill_assessment(
+    student_id: str,
+    subject: str,
+    exam: str = "JEE",
+    chapter_id: Optional[str] = None,
+    db: Session = Depends(get_db)
+):
+    engine = QuizEngine(db)
+    session_data = engine.start_drill_assessment(
+        student_id=student_id,
+        exam=exam,
+        subject=subject,
+        chapter_id=chapter_id,
+        duration_minutes=15
+    )
+    return session_data
+
+@router.post("/start-full-scan", response_model=AssessmentSessionResponse)
+def start_full_scan_assessment(
+    student_id: str,
+    exam: str = "JEE",
+    db: Session = Depends(get_db)
+):
+    engine = QuizEngine(db)
+    session_data = engine.start_full_scan_assessment(
+        student_id=student_id,
+        exam=exam,
+        duration_minutes=40
     )
     return session_data
 

@@ -91,6 +91,20 @@ const API = {
     return res.json();
   },
 
+  async startDrill(studentId, exam, subject, chapterId = null) {
+    const url = `${API_BASE}/assessments/start-drill?student_id=${studentId}&subject=${encodeURIComponent(subject)}&exam=${exam}${chapterId ? '&chapter_id=' + encodeURIComponent(chapterId) : ''}`;
+    const res = await fetch(url, { method: 'POST' });
+    if (!res.ok) throw new Error('Failed to start topic drill');
+    return res.json();
+  },
+
+  async startFullScan(studentId, exam) {
+    const url = `${API_BASE}/assessments/start-full-scan?student_id=${studentId}&exam=${exam}`;
+    const res = await fetch(url, { method: 'POST' });
+    if (!res.ok) throw new Error('Failed to start full scan');
+    return res.json();
+  },
+
   async submitAssessment(attemptId, responses) {
     const res = await fetch(`${API_BASE}/assessments/submit`, {
       method: 'POST',
@@ -143,6 +157,24 @@ const API = {
   async getTelemetryStream(studentId) {
     const res = await fetch(`${API_BASE}/telemetry/stream/${studentId}`);
     if (!res.ok) throw new Error('Failed to load telemetry');
+    return res.json();
+  },
+
+  async getReviewQueue(studentId) {
+    const res = await fetch(`${API_BASE}/supporting/review-queue/${studentId}`);
+    if (!res.ok) throw new Error('Failed to load review queue');
+    return res.json();
+  },
+
+  async getErrorTrends(studentId) {
+    const res = await fetch(`${API_BASE}/supporting/error-trends/${studentId}`);
+    if (!res.ok) throw new Error('Failed to load error trends');
+    return res.json();
+  },
+
+  async getReportCard(studentId) {
+    const res = await fetch(`${API_BASE}/supporting/report-card/${studentId}`);
+    if (!res.ok) throw new Error('Failed to load report card');
     return res.json();
   }
 };

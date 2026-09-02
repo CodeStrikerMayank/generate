@@ -76,6 +76,44 @@ class QuizEngine:
             count=9 if assessment_type == "DIAGNOSTIC" else 4
         )
 
+        return self._create_assessment_session(
+            student_id=student_id,
+            exam=exam,
+            title=title,
+            assessment_type=assessment_type,
+            stage=stage,
+            duration_minutes=duration_minutes,
+            questions=questions,
+            test_tier="SCREENER" if assessment_type == "DIAGNOSTIC" else "TOPIC_DRILL"
+        )
+
+    def _create_assessment_session(
+        self,
+        student_id: str,
+        exam: str,
+        title: str,
+        assessment_type: str,
+        stage: int,
+        duration_minutes: int,
+        questions: List[Question],
+        test_tier: str = "SCREENER"
+    ) -> Dict[str, Any]:
+        assessment_id = f"asmt_{uuid.uuid4().hex[:12]}"
+        attempt_id = f"att_{uuid.uuid4().hex[:12]}"
+        session_id = f"sess_{uuid.uuid4().hex[:16]}"
+
+        assessment = Assessment(
+            assessment_id=assessment_id,
+            exam=exam,
+            title=title,
+            assessment_type=assessment_type,
+            stage=stage,
+            duration_minutes=duration_minutes,
+            is_strict_timed=True
+        )
+        self.db.add(assessment)
+        self.db.flush()
+
         attempt = AssessmentAttempt(
             attempt_id=attempt_id,
             assessment_id=assessment_id,
@@ -84,23 +122,22 @@ class QuizEngine:
             started_at=datetime.datetime.utcnow(),
             total_questions=len(questions),
             is_completed=False,
-            status="IN_PROGRESS"
+            status="IN_PROGRESS",
+            test_tier=test_tier
         )
         self.db.add(attempt)
         self.db.flush()
 
-        # Log event
         EventCollector.log_event(
             db=self.db,
             student_id=student_id,
             session_id=session_id,
             event_type="QUIZ_STARTED",
             resource_id=assessment_id,
-            metadata={"exam": exam, "stage": stage, "question_count": len(questions)}
+            metadata={"exam": exam, "stage": stage, "test_tier": test_tier, "question_count": len(questions)}
         )
         self.db.commit()
 
-        # Format questions for client (shuffling option display order)
         formatted_questions = []
         for q in questions:
             shuffled_options = list(q.options) if q.options else []
@@ -110,7 +147,9 @@ class QuizEngine:
                 "exam": q.exam,
                 "subject": q.subject,
                 "chapter": q.chapter,
+                "chapter_id": getattr(q, "chapter_id", None),
                 "topic": q.topic,
+                "topic_id": getattr(q, "topic_id", None),
                 "concept_id": q.concept_id,
                 "skill": q.skill,
                 "difficulty": q.difficulty,
@@ -127,12 +166,63 @@ class QuizEngine:
             "session_id": session_id,
             "exam": exam,
             "title": title,
+            "test_tier": test_tier,
             "assessment_type": assessment_type,
             "duration_minutes": duration_minutes,
             "total_questions": len(questions),
             "questions": formatted_questions,
             "started_at": attempt.started_at
         }
+
+    def start_drill_assessment(
+        self,
+        student_id: str,
+        exam: str,
+        subject: str,
+        chapter_id: Optional[str] = None,
+        duration_minutes: int = 15
+    ) -> Dict[str, Any]:
+        """Tier 2: Focuses on a weak subject and chapter with 5 PYQs."""
+        questions = self.selector.select_drill_questions(
+            exam=exam,
+            subject=subject,
+            chapter_id=chapter_id,
+            student_id=student_id,
+            count=5
+        )
+        return self._create_assessment_session(
+            student_id=student_id,
+            exam=exam,
+            title=f"{exam} {subject} Topic Drill",
+            assessment_type="CONCEPT_FOCUS",
+            stage=2,
+            duration_minutes=duration_minutes,
+            questions=questions,
+            test_tier="TOPIC_DRILL"
+        )
+
+    def start_full_scan_assessment(
+        self,
+        student_id: str,
+        exam: str,
+        duration_minutes: int = 40
+    ) -> Dict[str, Any]:
+        """Tier 3: Full Syllabus Deep Scan (15 balanced questions)."""
+        questions = self.selector.select_full_scan_questions(
+            exam=exam,
+            student_id=student_id,
+            count=15
+        )
+        return self._create_assessment_session(
+            student_id=student_id,
+            exam=exam,
+            title=f"{exam} Full Syllabus Deep Scan",
+            assessment_type="DIAGNOSTIC",
+            stage=3,
+            duration_minutes=duration_minutes,
+            questions=questions,
+            test_tier="FULL_SCAN"
+        )
 
     def submit_assessment(
         self,
@@ -331,15 +421,44 @@ class QuizEngine:
             }
         )
 
+        # Calculate subject-level accuracies and flag weak subjects (< 60% accuracy)
+        sub_stats = {}
+        for item in items_feedback:
+            q_obj = next((q for q in questions if q.question_id == item["question_id"]), None)
+            if q_obj:
+                s = q_obj.subject
+                if s not in sub_stats:
+                    sub_stats[s] = {"correct": 0, "total": 0, "chapters": set()}
+                sub_stats[s]["total"] += 1
+                if item["is_correct"]:
+                    sub_stats[s]["correct"] += 1
+                if getattr(q_obj, "chapter_id", None):
+                    sub_stats[s]["chapters"].add(q_obj.chapter_id)
+
+        weak_subjects = []
+        for s, d in sub_stats.items():
+            acc = (d["correct"] / max(d["total"], 1)) * 100
+            if acc < 60.0:
+                weak_subjects.append({
+                    "subject": s,
+                    "accuracy_pct": round(acc, 1),
+                    "correct": d["correct"],
+                    "total": d["total"],
+                    "chapter_ids": list(d["chapters"]),
+                    "drill_recommended": True
+                })
+
         self.db.commit()
 
         return {
             "attempt_id": attempt_id,
+            "test_tier": getattr(attempt, "test_tier", "SCREENER"),
             "total_questions": total_questions,
             "correct_count": correct_count,
             "score_percentage": score_pct,
             "time_taken_seconds": total_time_taken,
             "status": attempt.status,
+            "weak_subjects": weak_subjects,
             "items_feedback": items_feedback,
             "updated_masteries": updated_masteries
         }

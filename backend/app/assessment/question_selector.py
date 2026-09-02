@@ -110,3 +110,60 @@ class QuestionSelector:
 
         selected = sorted_candidates[:count]
         return selected
+
+    def select_drill_questions(
+        self,
+        exam: str,
+        subject: str,
+        chapter_id: Optional[str] = None,
+        student_id: Optional[str] = None,
+        count: int = 5
+    ) -> List[Question]:
+        """Selects questions specifically targeting a weak subject and chapter."""
+        query = self.db.query(Question).filter(
+            Question.exam == exam,
+            Question.subject == subject
+        )
+        if chapter_id:
+            query = query.filter(Question.chapter_id == chapter_id)
+
+        candidates = query.all()
+        if not candidates:
+            # Fallback to subject-only
+            candidates = self.db.query(Question).filter(
+                Question.exam == exam,
+                Question.subject == subject
+            ).all()
+
+        # Shuffle and pick up to count
+        random.shuffle(candidates)
+        return candidates[:count]
+
+    def select_full_scan_questions(
+        self,
+        exam: str,
+        student_id: Optional[str] = None,
+        count: int = 15
+    ) -> List[Question]:
+        """Selects comprehensive balanced questions across all chapters for full-scan diagnostic."""
+        all_q = self.db.query(Question).filter(Question.exam == exam).all()
+        if not all_q:
+            return []
+
+        subjects = ["Physics", "Chemistry", "Mathematics"] if exam == "JEE" else ["Biology", "Physics", "Chemistry"]
+        per_sub = max(1, count // len(subjects))
+
+        selected = []
+        for sub in subjects:
+            sub_qs = [q for q in all_q if q.subject == sub]
+            random.shuffle(sub_qs)
+            selected.extend(sub_qs[:per_sub])
+
+        # Fill any remainder
+        if len(selected) < count:
+            chosen_ids = {q.question_id for q in selected}
+            remaining = [q for q in all_q if q.question_id not in chosen_ids]
+            random.shuffle(remaining)
+            selected.extend(remaining[:(count - len(selected))])
+
+        return selected[:count]

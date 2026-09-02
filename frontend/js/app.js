@@ -123,6 +123,7 @@ const AppState = {
     if (examBadge) examBadge.innerText = this.student.target_exam === 'JEE' ? 'JEE Main' : 'NEET-UG';
     if (avatar) avatar.innerText = this.student.name.charAt(0).toUpperCase();
     this.currentExam = this.student.target_exam || 'JEE';
+    document.body.className = (this.currentExam === 'NEET' ? 'theme-neet' : 'theme-jee');
     document.querySelectorAll('.exam-pill-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.exam === this.currentExam);
     });
@@ -130,6 +131,7 @@ const AppState = {
 
   async switchExam(examId) {
     this.currentExam = examId;
+    document.body.className = (examId === 'NEET' ? 'theme-neet' : 'theme-jee');
     document.querySelectorAll('.exam-pill-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.exam === examId);
     });
@@ -170,12 +172,18 @@ const AppState = {
       const confidence = Math.round((this.student.overall_confidence || 0) * 100);
       this._setEl('overallMasteryVal', `${mastery}%`);
       this._setEl('overallConfidenceVal', `${confidence}%`);
+      if (typeof RoadmapVisualizer !== 'undefined') {
+        RoadmapVisualizer.renderDashboardProgressRing('dashboardProgressRingContainer', mastery);
+      }
     }
 
     // ── 2. Roadmap & NBA ──
     const roadmap = roadmapData.status === 'fulfilled' ? roadmapData.value : null;
     const nba = nextAction.status === 'fulfilled' ? nextAction.value : null;
     RoadmapController.renderRoadmapView(roadmap, nba);
+    if (roadmap && roadmap.actions && typeof RoadmapVisualizer !== 'undefined') {
+      RoadmapVisualizer.renderNextThreeActions('dashboardNextActionsContainer', roadmap.actions);
+    }
 
     // ── 3. Knowledge Graph ──
     if (graphData.status === 'fulfilled') {

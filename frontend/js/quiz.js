@@ -33,6 +33,50 @@ const QuizController = {
     }
   },
 
+  async startDrill(subject, chapterId = null) {
+    if (!AppState.student) return;
+    try {
+      const modal = document.getElementById('resultModal');
+      if (modal) modal.classList.remove('active');
+
+      const data = await API.startDrill(AppState.student.student_id, AppState.currentExam, subject, chapterId);
+      this.currentAttempt = data;
+      this.currentIndex = 0;
+      this.userResponses.clear();
+      this.remainingSeconds = (data.duration_minutes || 15) * 60;
+
+      AppState.switchTab('assessment');
+      this.bindKeyboardShortcuts();
+      this.renderQuizArena();
+      this.startTimer();
+      AppState._toast(`🎯 Started Topic Drill for ${subject}!`, 'info');
+    } catch (err) {
+      alert('Error starting topic drill: ' + err.message);
+    }
+  },
+
+  async startFullScan() {
+    if (!AppState.student) return;
+    try {
+      const modal = document.getElementById('resultModal');
+      if (modal) modal.classList.remove('active');
+
+      const data = await API.startFullScan(AppState.student.student_id, AppState.currentExam);
+      this.currentAttempt = data;
+      this.currentIndex = 0;
+      this.userResponses.clear();
+      this.remainingSeconds = (data.duration_minutes || 40) * 60;
+
+      AppState.switchTab('assessment');
+      this.bindKeyboardShortcuts();
+      this.renderQuizArena();
+      this.startTimer();
+      AppState._toast(`🔬 Started Full Syllabus Deep Scan (15 Qs)!`, 'info');
+    } catch (err) {
+      alert('Error starting full scan: ' + err.message);
+    }
+  },
+
   bindKeyboardShortcuts() {
     if (this.keyHandlerBound) return;
     window.addEventListener('keydown', (e) => {
@@ -400,10 +444,30 @@ const QuizController = {
         </div>
       </details>
 
-      <!-- Primary Roadmap Button -->
-      <button class="btn-primary glow-pulse" style="width:100%;justify-content:center;padding:0.95rem;font-size:1.05rem;border-radius:var(--radius-md);background:var(--grad-hero);margin-top:0.5rem;" onclick="QuizController.closeAndOpenRoadmap()">
-        🗺️ Unlock My Personalized Roadmap Engine →
-      </button>
+      <!-- Tier 2 & Tier 3 Diagnostics Triggers -->
+      ${result.weak_subjects && result.weak_subjects.length > 0 ? `
+        <div style="background:rgba(244,63,94,0.08);border:1px solid rgba(244,63,94,0.25);border-radius:var(--radius-sm);padding:0.85rem 1rem;margin:1rem 0;">
+          <div style="font-weight:800;font-size:0.85rem;color:var(--accent-rose);margin-bottom:0.5rem;">
+            ⚠️ Weak Subject Identified (&lt;60% Accuracy) — Recommended Drill:
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+            ${result.weak_subjects.map(w => `
+              <button class="btn-primary" style="background:var(--grad-rose);padding:0.45rem 0.85rem;font-size:0.8rem;border-radius:var(--radius-sm);" onclick="QuizController.startDrill('${w.subject}')">
+                🎯 Launch 5-Q Drill: ${w.subject} (${w.accuracy_pct}%) →
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
+
+      <div style="display:flex;gap:0.5rem;margin-top:0.75rem;">
+        <button class="btn-secondary" style="flex:1;justify-content:center;font-size:0.85rem;padding:0.75rem;" onclick="QuizController.startFullScan()">
+          🔬 15-Q Full Syllabus Scan
+        </button>
+        <button class="btn-primary glow-pulse" style="flex:2;justify-content:center;padding:0.75rem;font-size:0.95rem;background:var(--grad-hero);" onclick="QuizController.closeAndOpenRoadmap()">
+          🗺️ Unlock My Personalized Roadmap →
+        </button>
+      </div>
     `;
 
     modal.classList.add('active');

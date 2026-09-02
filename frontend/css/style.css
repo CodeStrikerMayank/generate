@@ -1032,4 +1032,146 @@ select.form-input { cursor: pointer; }
   transform: translateY(-1px);
 }
 
+/* ================================================================
+   PLATFORM UPGRADE V3.0 — EXAM THEMES (JEE vs NEET)
+   ================================================================ */
+body.theme-jee, :root[data-theme="jee"] {
+  --bg-void: #070a13;
+  --bg-primary: #0a0f1d;
+  --bg-secondary: #0f172a;
+  --bg-card: rgba(15, 23, 42, 0.82);
+  --bg-card-hover: rgba(30, 41, 59, 0.95);
+  --accent-primary: #6366f1;
+  --accent-cyan: #38bdf8;
+  --border-subtle: rgba(148, 163, 184, 0.12);
+  --border-mid: rgba(148, 163, 184, 0.22);
+  --border-glow: rgba(99, 102, 241, 0.35);
+  --grad-hero: linear-gradient(135deg, #6366f1 0%, #4f46e5 50%, #0284c7 100%);
+  --grad-card: linear-gradient(145deg, rgba(99,102,241,0.06) 0%, rgba(56,189,248,0.03) 100%);
+  --shadow-card: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+body.theme-neet, :root[data-theme="neet"] {
+  --bg-void: #040e0c;
+  --bg-primary: #071714;
+  --bg-secondary: #0b241f;
+  --bg-card: rgba(11, 36, 31, 0.82);
+  --bg-card-hover: rgba(15, 50, 43, 0.95);
+  --accent-primary: #10b981;
+  --accent-cyan: #14b8a6;
+  --border-subtle: rgba(45, 212, 191, 0.12);
+  --border-mid: rgba(45, 212, 191, 0.22);
+  --border-glow: rgba(16, 185, 129, 0.35);
+  --grad-hero: linear-gradient(135deg, #059669 0%, #0d9488 50%, #0891b2 100%);
+  --grad-card: linear-gradient(145deg, rgba(16,185,129,0.06) 0%, rgba(20,184,166,0.03) 100%);
+  --shadow-card: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* ================================================================
+   MOBILE-FIRST RESPONSIVE QUIZ ARENA
+   ================================================================ */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0.65rem 0.85rem;
+  }
+  .header-brand {
+    font-size: 0.95rem;
+  }
+  .tab-nav {
+    overflow-x: auto;
+    padding: 0.4rem 0.65rem;
+    gap: 0.35rem;
+  }
+  .tab-btn {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+  .grid-4, .grid-3, .grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Sticky Quiz Header */
+  .quiz-status-bar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Full-width touch-friendly options */
+  .option-item {
+    min-height: 52px;
+    padding: 0.85rem 1rem;
+  }
+  .option-item .opt-id {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+  .option-item .opt-text {
+    font-size: 0.95rem;
+  }
+
+  .quiz-actions-row {
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+  }
+  .quiz-actions-row button {
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem;
+  }
+
+  /* Modal responsive fits */
+  .modal-box {
+    width: 95vw !important;
+    padding: 1.25rem !important;
+    max-height: 92vh !important;
+  }
+}
+
+/* ================================================================
+   PRINTABLE REPORT CARD OPTIMIZATIONS (@media print)
+   ================================================================ */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+  .app-header, .tab-nav, .no-print, .modal-backdrop:not(#supportingModal) {
+    display: none !important;
+  }
+  #supportingModal {
+    position: static !important;
+    background: transparent !important;
+    display: block !important;
+  }
+  #supportingModal .modal-box {
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    color: #0f172a !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .printable-report-card {
+    color: #0f172a !important;
+  }
+  .printable-report-card .glass-card {
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+  }
+  .printable-report-card h2, .printable-report-card h4 {
+    color: #0f172a !important;
+  }
+}
+
+
+
 

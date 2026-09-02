@@ -25,6 +25,15 @@
     </div>
 
     <div class="header-controls">
+      <button class="btn-secondary" style="padding:0.4rem 0.65rem;font-size:0.75rem;font-weight:700;display:flex;align-items:center;gap:4px;" onclick="SupportingFeatures.showReviewQueueModal()" title="Spaced-repetition review queue">
+        🔄 Review Queue
+      </button>
+      <button class="btn-secondary" style="padding:0.4rem 0.65rem;font-size:0.75rem;font-weight:700;display:flex;align-items:center;gap:4px;" onclick="SupportingFeatures.showErrorTrendsModal()" title="Error pattern trends">
+        📉 Errors
+      </button>
+      <button class="btn-secondary" style="padding:0.4rem 0.65rem;font-size:0.75rem;font-weight:700;display:flex;align-items:center;gap:4px;" onclick="SupportingFeatures.showReportCardModal()" title="Printable performance scorecard">
+        📑 Report Card
+      </button>
       <button class="btn-secondary" style="padding:0.4rem 0.8rem;font-size:0.78rem;font-weight:700;display:flex;align-items:center;gap:5px;border-color:var(--border-highlight);" onclick="AppState.showDiagnosticGateway()" title="Take or retake the compulsory diagnostic quiz">
         🎯 Diagnostic Quiz
       </button>
@@ -80,15 +89,18 @@
         <!-- Next-Best-Action Hero -->
         <div id="nbaHeroContainer"></div>
 
-        <!-- 4 KPI Cards -->
+        <!-- 4 KPI Cards & Mastery Gauge -->
         <div class="grid-4" style="margin-bottom:1rem;">
-          <div class="glass-card stat-card">
-            <div class="stat-label">Latent Mastery</div>
-            <div class="stat-val" id="overallMasteryVal" style="color:#c7d2fe;">--%</div>
-            <div class="stat-sub">Multi-factor estimate</div>
+          <div class="glass-card stat-card" style="display:flex;align-items:center;justify-content:space-between;padding:1rem;">
+            <div>
+              <div class="stat-label">Overall Mastery</div>
+              <div class="stat-val" id="overallMasteryVal" style="color:#c7d2fe;">--%</div>
+              <div class="stat-sub">Syllabus coverage</div>
+            </div>
+            <div id="dashboardProgressRingContainer"></div>
           </div>
           <div class="glass-card stat-card">
-            <div class="stat-label">Confidence</div>
+            <div class="stat-label">Confidence Score</div>
             <div class="stat-val" id="overallConfidenceVal" style="color:var(--accent-cyan);">--%</div>
             <div class="stat-sub">Calibrated uncertainty</div>
           </div>
@@ -98,45 +110,44 @@
             <div class="stat-sub">Item Response Theory</div>
           </div>
           <div class="glass-card stat-card">
-            <div class="stat-label">BKT P(L)</div>
+            <div class="stat-label">BKT Knowledge P(L)</div>
             <div class="stat-val" id="bktProbabilityVal" style="color:var(--accent-emerald);">--%</div>
             <div class="stat-sub">Bayesian Knowledge Tracing</div>
           </div>
         </div>
 
         <div class="grid-2">
-          <!-- Weakness Ranking -->
+          <!-- Next 3 Priority Milestones -->
           <div class="glass-card" style="padding:0;">
             <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid var(--border-subtle);">
               <div>
-                <div style="font-size:1rem;font-weight:800;">Root-Cause Weakness Ranking</div>
-                <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;">Concepts blocking your progress</div>
+                <div style="font-size:1rem;font-weight:800;">⚡ Upcoming Study Milestones</div>
+                <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;">Dynamic DAG priority sequence</div>
               </div>
-              <span class="nba-tag" style="margin:0;">Tactical</span>
+              <button class="btn-secondary" style="font-size:0.75rem;padding:3px 8px;" onclick="AppState.switchTab('roadmap')">View All →</button>
             </div>
-            <div id="weaknessRankingList">
-              <div style="color:var(--text-secondary);padding:1.5rem;text-align:center;">
-                <div style="font-size:1.5rem;margin-bottom:0.5rem">📊</div>
-                Take a quiz to populate your weakness profile.
+            <div id="dashboardNextActionsContainer" style="padding:0.75rem;">
+              <div style="color:var(--text-secondary);padding:1rem;text-align:center;">
+                Take your diagnostic assessment to generate your personalized action sequence.
               </div>
             </div>
           </div>
 
-          <!-- Quick Quiz Launcher -->
+          <!-- Tiered Testing Suite -->
           <div class="glass-card">
-            <h3 style="font-size:1rem;font-weight:800;margin-bottom:0.35rem;">Adaptive Quiz Arena</h3>
-            <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:1.1rem;line-height:1.5;">
-              Short focused quizzes calibrate your mastery and unlock personalized roadmap milestones.
+            <h3 style="font-size:1rem;font-weight:800;margin-bottom:0.35rem;">Adaptive Testing Arena</h3>
+            <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.45;">
+              3-tier diagnostic system: quick screener, targeted chapter drills, and full-syllabus deep scans.
             </p>
-            <div style="display:flex;flex-direction:column;gap:0.6rem;">
-              <button class="btn-primary" style="width:100%;justify-content:center;" onclick="QuizController.startTest(AppState.currentExam,'DIAGNOSTIC',1)">
-                🚀 Baseline Diagnostic (Stage 1)
+            <div style="display:flex;flex-direction:column;gap:0.5rem;">
+              <button class="btn-primary" style="width:100%;justify-content:center;padding:0.65rem;" onclick="QuizController.startTest(AppState.currentExam,'DIAGNOSTIC',1)">
+                🚀 9-Q Compulsory Screener
               </button>
-              <button class="btn-secondary" style="width:100%;justify-content:center;" onclick="QuizController.startTest(AppState.currentExam,'RETENTION_TEST',2)">
-                🔄 Spaced Retention Test
+              <button class="btn-secondary" style="width:100%;justify-content:center;padding:0.6rem;" onclick="QuizController.startDrill('Physics')">
+                🎯 5-Q Targeted Topic Drill
               </button>
-              <button class="btn-secondary" style="width:100%;justify-content:center;" onclick="QuizController.startTest(AppState.currentExam,'TRANSFER_TEST',3)">
-                🔀 Transfer Problem Test
+              <button class="btn-secondary" style="width:100%;justify-content:center;padding:0.6rem;" onclick="QuizController.startFullScan()">
+                🔬 15-Q Full Syllabus Deep Scan
               </button>
             </div>
           </div>
@@ -147,16 +158,27 @@
       <!-- 2. DYNAMIC ROADMAP TAB                          -->
       <!-- ═══════════════════════════════════════════════ -->
       <section class="tab-pane" id="pane_roadmap">
-        <div class="section-heading" style="margin-bottom:1.1rem;">
+        <div class="section-heading" style="margin-bottom:1rem;flex-wrap:wrap;gap:0.75rem;">
           <div>
             <div class="section-title">Dynamic Learning Roadmap</div>
-            <div class="section-sub">Generated after every quiz. Prerequisite gaps resolved first.</div>
+            <div class="section-sub">Prerequisite DAG ordering and adaptive mastery tracking.</div>
           </div>
-          <button class="btn-secondary" onclick="API.regenerateRoadmap(AppState.student?.student_id).then(()=>AppState.refreshAllData())">
-            ↻ Recalculate
-          </button>
+          <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+            <!-- Segmented View Switcher -->
+            <div class="segmented-control" style="background:rgba(255,255,255,0.06);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:2px;display:flex;gap:2px;">
+              <button class="segmented-btn roadmap-view-tab active" data-view="timeline" style="border:none;background:transparent;color:var(--text-primary);padding:4px 10px;font-size:0.78rem;font-weight:700;border-radius:var(--radius-sm);cursor:pointer;" onclick="RoadmapVisualizer.switchView('timeline')">🗺️ Step Sequence</button>
+              <button class="segmented-btn roadmap-view-tab" data-view="dag" style="border:none;background:transparent;color:var(--text-muted);padding:4px 10px;font-size:0.78rem;font-weight:700;border-radius:var(--radius-sm);cursor:pointer;" onclick="RoadmapVisualizer.switchView('dag')">🕸️ Visual DAG Graph</button>
+              <button class="segmented-btn roadmap-view-tab" data-view="heatmap" style="border:none;background:transparent;color:var(--text-muted);padding:4px 10px;font-size:0.78rem;font-weight:700;border-radius:var(--radius-sm);cursor:pointer;" onclick="RoadmapVisualizer.switchView('heatmap')">📊 Chapter Heatmap</button>
+            </div>
+            <button class="btn-secondary" onclick="API.regenerateRoadmap(AppState.student?.student_id).then(()=>AppState.refreshAllData())">
+              ↻ Recalculate
+            </button>
+          </div>
         </div>
+
         <div id="roadmapTimelineContainer" class="roadmap-timeline"></div>
+        <div id="roadmapSvgDagContainer" style="display:none;margin-top:1rem;"></div>
+        <div id="roadmapChapterHeatmapContainer" style="display:none;margin-top:1rem;"></div>
       </section>
 
       <!-- ═══════════════════════════════════════════════ -->
@@ -382,12 +404,19 @@
     <div class="modal-box" id="resultModalContent" style="max-width:620px;max-height:90vh;overflow-y:auto;"></div>
   </div>
 
+  <!-- Supporting Features Modal (Review Queue / Errors / Report Card) -->
+  <div class="modal-backdrop" id="supportingModal">
+    <div class="modal-box" id="supportingModalContent" style="max-width:740px;max-height:90vh;overflow-y:auto;"></div>
+  </div>
+
   <!-- Scripts -->
-  <script src="/static/js/api.js"></script>
-  <script src="/static/js/graph_view.js"></script>
-  <script src="/static/js/quiz.js"></script>
-  <script src="/static/js/roadmap.js"></script>
-  <script src="/static/js/ai_assistant.js"></script>
-  <script src="/static/js/app.js"></script>
+  <script src="/static/js/api.js?v=3.0"></script>
+  <script src="/static/js/graph_view.js?v=3.0"></script>
+  <script src="/static/js/quiz.js?v=3.0"></script>
+  <script src="/static/js/roadmap.js?v=3.0"></script>
+  <script src="/static/js/roadmap_visual.js?v=3.0"></script>
+  <script src="/static/js/supporting.js?v=3.0"></script>
+  <script src="/static/js/ai_assistant.js?v=3.0"></script>
+  <script src="/static/js/app.js?v=3.0"></script>
 </body>
 </html>
