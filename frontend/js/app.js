@@ -44,6 +44,14 @@ const AppState = {
 
   // ─── Launcher (post-admin-login) ───────────────────────────
   showLauncherScreen() {
+    // Set dynamic username in launcher welcome
+    const currentUser = (typeof AdminAuth !== 'undefined' && AdminAuth.getLoggedInUser)
+      ? AdminAuth.getLoggedInUser() : null;
+    const usernameEl = document.getElementById('launcherUsername');
+    if (usernameEl) usernameEl.innerText = currentUser
+      ? currentUser.charAt(0).toUpperCase() + currentUser.slice(1)
+      : 'Operator';
+
     // Hide the main app, show the launcher
     const launcher = document.getElementById('launcherModal');
     if (launcher) launcher.classList.add('active');

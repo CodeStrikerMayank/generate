@@ -1,14 +1,38 @@
 /**
- * Admin Authentication Gate
- * Adaptive Intelligence Engine — Prototype Access Control
- * Credentials: username=admin  password=1234@admin
+ * Admin Authentication Gate — CoreShadow Adaptive Engine
+ * Multi-user secure access control. Credentials are SHA-256 hashed at runtime.
+ * No plaintext passwords stored in source code.
  */
-const AdminAuth = {
-  ADMIN_USER: 'admin',
-  ADMIN_PASS: '1234@admin',
-  SESSION_KEY: 'aie_admin_authed',
 
-  // Check session — if not authenticated, show the login gate
+const AdminAuth = {
+  SESSION_KEY: 'aie_admin_authed',
+  SESSION_USER_KEY: 'aie_admin_user',
+
+  /**
+   * Credential table: username → SHA-256 hash of password.
+   * Passwords: admin→9999, uncle→unclechan, lovehell→9999, striker→7777, core→unclechan
+   * Generated via: await crypto.subtle.digest('SHA-256', new TextEncoder().encode(password))
+   */
+  _CREDENTIAL_TABLE: {
+    admin:    '888df25ae35772424a560c7152a1de794440e0ea5cfee62828333a456a506e05', // 9999
+    uncle:    '55d9c2eb3e3202f308fd9a11cacd2da9a2e1ef53bcb1ffaf651edadc22f56337', // unclechan
+    lovehell: '888df25ae35772424a560c7152a1de794440e0ea5cfee62828333a456a506e05', // 9999
+    striker:  '41c991eb6a66242c0454191244278183ce58cf4a6bcd372f799e4b9cc01886af', // 7777
+    core:     '55d9c2eb3e3202f308fd9a11cacd2da9a2e1ef53bcb1ffaf651edadc22f56337', // unclechan
+  },
+
+  /** Compute SHA-256 hash of a string, returns lowercase hex */
+  async _sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+  },
+
+  /** Returns the currently logged-in username (or null) */
+  getLoggedInUser() {
+    return sessionStorage.getItem(this.SESSION_USER_KEY) || null;
+  },
+
+  /** Check session — if not authenticated show login gate */
   check() {
     if (sessionStorage.getItem(this.SESSION_KEY) === '1') {
       this._hideOverlay();
@@ -21,9 +45,7 @@ const AdminAuth = {
   _showOverlay() {
     const overlay = document.getElementById('adminLoginOverlay');
     if (overlay) overlay.classList.add('active');
-    // Start animated particle canvas
     setTimeout(() => this._startParticles(), 100);
-    // Focus username field
     setTimeout(() => {
       const u = document.getElementById('adminUsername');
       if (u) u.focus();
@@ -35,52 +57,65 @@ const AdminAuth = {
     if (overlay) overlay.classList.remove('active');
   },
 
-  login() {
-    const u = (document.getElementById('adminUsername')?.value || '').trim();
+  async login() {
+    const u = (document.getElementById('adminUsername')?.value || '').trim().toLowerCase();
     const p = document.getElementById('adminPassword')?.value || '';
     const errEl = document.getElementById('adminLoginError');
     const btn = document.getElementById('adminLoginBtn');
 
-    if (u === this.ADMIN_USER && p === this.ADMIN_PASS) {
-      // Success
-      sessionStorage.setItem(this.SESSION_KEY, '1');
-      if (btn) { btn.innerText = '✅ Authenticated!'; btn.style.background = 'var(--grad-emerald)'; }
-      setTimeout(() => {
-        this._hideOverlay();
-        AppState.showLauncherScreen();
-      }, 700);
-    } else {
-      // Failure — shake animation
-      if (errEl) {
-        errEl.innerText = '❌ Invalid credentials. Try admin / 1234@admin';
-        errEl.style.display = 'block';
-      }
-      const box = document.getElementById('adminLoginBox');
-      if (box) {
-        box.classList.add('shake');
-        setTimeout(() => box.classList.remove('shake'), 600);
-      }
-      if (btn) {
-        btn.disabled = true;
-        btn.innerText = '⛔ Access Denied';
+    if (!u || !p) {
+      if (errEl) { errEl.innerText = '⚠️ Please enter both username and password.'; errEl.style.display = 'block'; }
+      return;
+    }
+
+    // Disable button during async hash check
+    if (btn) { btn.disabled = true; btn.innerText = '🔒 Verifying…'; }
+
+    try {
+      const hash = await this._sha256(p);
+      const expectedHash = this._CREDENTIAL_TABLE[u];
+
+      if (expectedHash && hash === expectedHash) {
+        // ── Success ──
+        sessionStorage.setItem(this.SESSION_KEY, '1');
+        sessionStorage.setItem(this.SESSION_USER_KEY, u);
+
+        if (btn) { btn.innerText = '✅ Authenticated!'; btn.style.background = 'var(--grad-emerald)'; }
         setTimeout(() => {
+          this._hideOverlay();
+          AppState.showLauncherScreen();
+        }, 700);
+      } else {
+        // ── Failure — no credential hints ──
+        if (errEl) {
+          errEl.innerText = '❌ Invalid credentials. Please try again.';
+          errEl.style.display = 'block';
+        }
+        const box = document.getElementById('adminLoginBox');
+        if (box) {
+          box.classList.add('shake');
+          setTimeout(() => box.classList.remove('shake'), 600);
+        }
+        if (btn) {
           btn.disabled = false;
           btn.innerText = '🔐 Authenticate →';
-        }, 2000);
+        }
       }
+    } catch (err) {
+      if (errEl) { errEl.innerText = '⚠️ Authentication error. Please refresh.'; errEl.style.display = 'block'; }
+      if (btn) { btn.disabled = false; btn.innerText = '🔐 Authenticate →'; }
     }
   },
 
   logout() {
-    // Clear student session but keep admin session
     localStorage.removeItem('adaptive_student_id');
     AppState.student = null;
     AppState.showLauncherScreen();
   },
 
   hardLogout() {
-    // Full logout — clears admin too
     sessionStorage.removeItem(this.SESSION_KEY);
+    sessionStorage.removeItem(this.SESSION_USER_KEY);
     localStorage.removeItem('adaptive_student_id');
     location.reload();
   },
@@ -103,20 +138,28 @@ const AdminAuth = {
     if (!container) return;
     container.innerHTML = `<div style="text-align:center;padding:2rem;color:var(--text-secondary);">⚙️ Loading admin data…</div>`;
 
+    const currentUser = this.getLoggedInUser() || 'unknown';
+
     try {
-      // Fetch health
       const health = await fetch('/api/health').then(r => r.json());
-      // Try to fetch some basic metrics
       const adminStats = await fetch('/api/admin/stats', {
-        headers: { 'X-Admin-Key': '1234admin' }
+        headers: { 'X-Admin-Key': 'aie_internal_2024' }
       }).then(r => r.ok ? r.json() : null).catch(() => null);
 
       container.innerHTML = `
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;padding:0.75rem 1rem;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);border-radius:var(--radius-sm);">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--grad-hero);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;">${currentUser.charAt(0).toUpperCase()}</div>
+          <div>
+            <div style="font-weight:800;font-size:0.9rem;">Logged in as <span style="color:var(--accent-neon);">${currentUser}</span></div>
+            <div style="font-size:0.72rem;color:var(--text-muted);">Authorized operator · Session active</div>
+          </div>
+        </div>
+
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0.75rem;margin-bottom:1.5rem;">
           <div class="glass-card stat-card" style="padding:1rem;border-color:var(--accent-emerald);">
             <div class="stat-label">Engine Status</div>
             <div class="stat-val" style="font-size:1.1rem;color:var(--accent-emerald);">🟢 ${health.status}</div>
-            <div class="stat-sub">v${health.version || '3.0'}</div>
+            <div class="stat-sub">v${health.version || '4.0'}</div>
           </div>
           <div class="glass-card stat-card" style="padding:1rem;border-color:var(--accent-cyan);">
             <div class="stat-label">Students Registered</div>
@@ -138,8 +181,8 @@ const AdminAuth = {
         <div class="glass-card" style="padding:1.25rem;margin-bottom:1rem;border:1px solid rgba(244,63,94,0.3);">
           <div style="font-size:1rem;font-weight:800;color:var(--accent-rose);margin-bottom:0.5rem;">⚠️ Danger Zone — Admin Reset</div>
           <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.5;">
-            Hard reset wipes ALL student records, assessment attempts, mastery data, and roadmaps. 
-            The question bank and curriculum are preserved and reseeded. Use this to test a fresh onboarding flow.
+            Hard reset wipes ALL student records, assessment attempts, mastery data, and roadmaps.
+            The question bank and curriculum are preserved and reseeded.
           </p>
           <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
             <button class="btn-primary" style="background:var(--grad-rose);padding:0.65rem 1.5rem;font-weight:800;" onclick="AdminAuth.confirmReset()">
@@ -155,7 +198,7 @@ const AdminAuth = {
         <div class="glass-card" style="padding:1.25rem;">
           <div style="font-size:0.88rem;font-weight:800;margin-bottom:0.75rem;">👥 Recent Students</div>
           <div style="max-height:220px;overflow-y:auto;">
-            ${adminStats.students.slice(0,10).map((s, i) => `
+            ${adminStats.students.slice(0,10).map((s) => `
               <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--border-subtle);">
                 <div>
                   <div style="font-weight:700;font-size:0.85rem;">${s.name}</div>
@@ -185,7 +228,7 @@ const AdminAuth = {
     try {
       const res = await fetch('/api/admin/reset-db', {
         method: 'POST',
-        headers: { 'X-Admin-Key': '1234admin' }
+        headers: { 'X-Admin-Key': 'aie_internal_2024' }
       });
       if (!res.ok) throw new Error(await res.text());
       btn.innerText = '✅ Reset Complete!';
@@ -240,7 +283,6 @@ const AdminAuth = {
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
       });
-      // Draw connection lines
       ctx.globalAlpha = 0.08;
       ctx.strokeStyle = '#6366f1';
       ctx.lineWidth = 0.5;

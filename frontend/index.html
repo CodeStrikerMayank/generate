@@ -8,7 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/style.css?v=5.0">
+
 </head>
 <body>
 
@@ -57,9 +58,9 @@
     <div class="modal-box launcher-box">
       <div style="text-align:center;margin-bottom:2rem;">
         <div class="onboard-logo" style="width:56px;height:56px;font-size:1.7rem;margin-bottom:0.75rem;">Δ</div>
-        <div class="admin-login-badge" style="display:inline-flex;margin-bottom:0.5rem;">✅ ADMIN AUTHENTICATED</div>
-        <h2 style="font-size:1.65rem;font-weight:900;letter-spacing:-0.02em;margin-bottom:0.4rem;">Welcome, Admin</h2>
-        <p style="color:var(--text-secondary);font-size:0.88rem;">Choose how to proceed with this prototype session.</p>
+        <div class="admin-login-badge" style="display:inline-flex;margin-bottom:0.5rem;">✅ ACCESS GRANTED</div>
+        <h2 style="font-size:1.65rem;font-weight:900;letter-spacing:-0.02em;margin-bottom:0.4rem;">Welcome, <span id="launcherUsername" style="color:var(--accent-neon);">Operator</span></h2>
+        <p style="color:var(--text-secondary);font-size:0.88rem;">Choose how to proceed with this session.</p>
       </div>
 
       <div class="launcher-card-grid">
@@ -292,7 +293,7 @@
         <div class="section-heading" style="margin-bottom:1rem;flex-wrap:wrap;gap:0.75rem;">
           <div>
             <div class="section-title">Dynamic Learning Roadmap</div>
-            <div class="section-sub">Prerequisite DAG ordering and adaptive mastery tracking.</div>
+            <div class="section-sub">Prerequisite DAG ordering · Adaptive mastery · Topic importance ribbons.</div>
           </div>
           <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
             <div class="segmented-control" style="background:rgba(255,255,255,0.06);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:2px;display:flex;gap:2px;">
@@ -306,7 +307,13 @@
           </div>
         </div>
 
-        <div id="roadmapTimelineContainer" class="roadmap-timeline"></div>
+        <!-- Roadmap + Info Panel side-by-side on desktop -->
+        <div style="display:flex;gap:1rem;align-items:flex-start;">
+          <div style="flex:1;min-width:0;">
+            <div id="roadmapTimelineContainer" class="roadmap-timeline"></div>
+          </div>
+          <div id="roadmapInfoPanel" style="width:260px;flex-shrink:0;"></div>
+        </div>
         <div id="roadmapSvgDagContainer" style="display:none;margin-top:1rem;"></div>
         <div id="roadmapChapterHeatmapContainer" style="display:none;margin-top:1rem;"></div>
       </section>
@@ -357,48 +364,26 @@
         <div class="section-heading" style="margin-bottom:1.1rem;">
           <div>
             <div class="section-title">AI Study Mentor</div>
-            <div class="section-sub">Offline AI explains your roadmap decisions and generates practice.</div>
+            <div class="section-sub">Offline AI explains your roadmap decisions, diagnoses weak concepts, and provides exam strategy.</div>
           </div>
         </div>
 
-        <div class="grid-2">
-          <!-- Chat Interface -->
-          <div class="chat-window">
-            <div class="chat-messages" id="chatMessagesContainer"></div>
-            <div class="chat-quick-prompts">
-              <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('Analyze my quiz mistakes')">📊 Analyze My Mistakes</button>
-              <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('Explain my roadmap sequence')">🗺️ Explain My Roadmap</button>
-              <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('How can I improve my speed and accuracy?')">⚡ Speed &amp; Accuracy Tips</button>
-              <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('Give me exam strategy tips')">🎯 Exam Strategy</button>
-            </div>
-            <div class="chat-input-row">
-              <input type="text" id="chatInput" class="chat-input"
-                placeholder="Ask about a concept, your quiz mistakes, or roadmap…"
-                onkeydown="if(event.key==='Enter')AIAssistantController.sendMessage()">
-              <button class="btn-primary" onclick="AIAssistantController.sendMessage()">Send</button>
-            </div>
+        <!-- Full-width chat (Practice Generator removed) -->
+        <div class="chat-window" style="max-width:900px;margin:0 auto;">
+          <div class="chat-messages" id="chatMessagesContainer"></div>
+          <div class="chat-quick-prompts">
+            <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('Analyze my quiz mistakes')">📊 Analyze My Mistakes</button>
+            <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('Explain my roadmap sequence')">🗺️ Explain My Roadmap</button>
+            <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('Which topics should I study first for maximum rank improvement?')">🏆 Max Rank Impact</button>
+            <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('How can I improve my speed and accuracy?')">⚡ Speed &amp; Accuracy</button>
+            <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('Give me exam strategy tips')">🎯 Exam Strategy</button>
+            <button class="quick-prompt-btn" onclick="AIAssistantController.sendQuickPrompt('What are my biggest weak areas right now?')">🔍 My Weak Areas</button>
           </div>
-
-          <!-- Practice Generator -->
-          <div class="glass-card">
-            <h3 style="font-size:1rem;font-weight:800;margin-bottom:0.4rem;">AI Practice Generator</h3>
-            <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.5;">
-              Auto-generates validated MCQs with distractor analysis for any concept.
-            </p>
-            <div class="form-field" style="margin-bottom:0.85rem;">
-              <label class="form-label">Target Concept</label>
-              <select id="genConceptSelect" class="form-input">
-                <option value="math_limits">Limits &amp; Indeterminate Forms (JEE Math)</option>
-                <option value="phy_friction">Static &amp; Kinetic Friction (JEE/NEET Physics)</option>
-                <option value="chem_electronic_effects">Electronic Effects in GOC (JEE/NEET Chemistry)</option>
-                <option value="bio_mendelian_laws">Mendel's Laws of Inheritance (NEET Biology)</option>
-                <option value="bio_cell_cycle_mitosis_meiosis">Cell Cycle &amp; Crossing Over (NEET Biology)</option>
-              </select>
-            </div>
-            <button class="btn-primary" style="width:100%;justify-content:center;" onclick="AIAssistantController.generatePracticeQuestion()">
-              ⚡ Generate Question
-            </button>
-            <div id="genQuestionOutput" style="margin-top:1rem;"></div>
+          <div class="chat-input-row">
+            <input type="text" id="chatInput" class="chat-input"
+              placeholder="Ask about a concept, your quiz mistakes, roadmap, or exam strategy…"
+              onkeydown="if(event.key==='Enter')AIAssistantController.sendMessage()">
+            <button class="btn-primary" onclick="AIAssistantController.sendMessage()">Send</button>
           </div>
         </div>
       </section>
@@ -543,15 +528,26 @@
     <div class="modal-box" id="supportingModalContent" style="max-width:740px;max-height:90vh;overflow-y:auto;"></div>
   </div>
 
+  <!-- ╔═══════════════════════════════════════╗ -->
+  <!-- ║   CORESHADOW CREATOR WATERMARK        ║ -->
+  <!-- ╚═══════════════════════════════════════╝ -->
+  <div class="creator-watermark" title="Created by CoreShadow">
+    <div class="watermark-icon">◈</div>
+    <div class="watermark-text">
+      <div class="watermark-name">CoreShadow</div>
+      <div class="watermark-role">Creator &amp; Architect</div>
+    </div>
+  </div>
+
   <!-- Scripts (admin_auth.js must be FIRST) -->
-  <script src="/static/js/admin_auth.js?v=4.0"></script>
-  <script src="/static/js/api.js?v=4.0"></script>
-  <script src="/static/js/graph_view.js?v=4.0"></script>
-  <script src="/static/js/quiz.js?v=4.0"></script>
-  <script src="/static/js/roadmap.js?v=4.0"></script>
-  <script src="/static/js/roadmap_visual.js?v=4.0"></script>
-  <script src="/static/js/supporting.js?v=4.0"></script>
-  <script src="/static/js/ai_assistant.js?v=4.0"></script>
-  <script src="/static/js/app.js?v=4.0"></script>
+  <script src="/static/js/admin_auth.js?v=5.0"></script>
+  <script src="/static/js/api.js?v=5.0"></script>
+  <script src="/static/js/graph_view.js?v=5.0"></script>
+  <script src="/static/js/quiz.js?v=5.0"></script>
+  <script src="/static/js/roadmap.js?v=5.0"></script>
+  <script src="/static/js/roadmap_visual.js?v=5.0"></script>
+  <script src="/static/js/supporting.js?v=5.0"></script>
+  <script src="/static/js/ai_assistant.js?v=5.0"></script>
+  <script src="/static/js/app.js?v=5.0"></script>
 </body>
 </html>

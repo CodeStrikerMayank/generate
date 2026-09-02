@@ -1215,3 +1215,106 @@ body.theme-neet, :root[data-theme="neet"] {
 @keyframes toastIn{from{transform:translateX(-50%) translateY(30px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
 .sidebar-nav{display:flex;flex-direction:column}
 .student-session-only{transition:opacity .2s}
+
+/* ================================================================
+   CORESHADOW CREATOR WATERMARK
+   ================================================================ */
+.creator-watermark {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.9rem 0.55rem 0.65rem;
+  background: rgba(7, 9, 26, 0.72);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(99, 102, 241, 0.22);
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.45), 0 0 18px rgba(99,102,241,0.08);
+  opacity: 0.52;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  user-select: none;
+}
+.creator-watermark:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.45);
+  pointer-events: auto;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.5), 0 0 28px rgba(99,102,241,0.18);
+}
+.watermark-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--accent-neon);
+  filter: drop-shadow(0 0 6px rgba(34,211,238,0.55));
+  flex-shrink: 0;
+}
+.watermark-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1;
+}
+.watermark-name {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+.watermark-role {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* ================================================================
+   IMPORTANCE RIBBONS & BADGES (roadmap step cards)
+   ================================================================ */
+.importance-ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 0.35rem 0;
+}
+.importance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 9px;
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.035em;
+  white-space: nowrap;
+  line-height: 1.6;
+}
+/* 🔥 High Weightage */
+.importance-badge.hw {
+  background: rgba(245, 158, 11, 0.14);
+  border: 1px solid rgba(245, 158, 11, 0.38);
+  color: var(--accent-amber);
+}
+/* 🎯 PYQ Favourite */
+.importance-badge.pyq {
+  background: rgba(99, 102, 241, 0.14);
+  border: 1px solid rgba(99, 102, 241, 0.38);
+  color: var(--accent-neon);
+}
+/* 📌 Prerequisite for N Topics */
+.importance-badge.pre {
+  background: rgba(168, 85, 247, 0.14);
+  border: 1px solid rgba(168, 85, 247, 0.38);
+  color: var(--accent-purple);
+}
+/* ⚡ Very Frequent in Exams */
+.importance-badge.vhf {
+  background: rgba(244, 63, 94, 0.14);
+  border: 1px solid rgba(244, 63, 94, 0.38);
+  color: var(--accent-rose);
+}
+

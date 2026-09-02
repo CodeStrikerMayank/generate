@@ -7,9 +7,42 @@ const QuizController = {
   currentAttempt: null,
   currentIndex: 0,
   userResponses: new Map(),
+  _shuffledOptions: new Map(), // question_id → shuffled option array
   timerInterval: null,
   remainingSeconds: 0,
   keyHandlerBound: false,
+
+  /** Shuffle an array using Fisher-Yates (seeded by questionId for stability within a session) */
+  _shuffleArray(arr, seed) {
+    const a = [...arr];
+    let s = seed;
+    for (let i = a.length - 1; i > 0; i--) {
+      s = ((s * 1664525 + 1013904223) >>> 0);
+      const j = s % (i + 1);
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  },
+
+  /** Get or create the shuffled options for a question (stable within a session) */
+  _getShuffledOptions(q) {
+    if (!q.options) return [];
+    if (!this._shuffledOptions.has(q.question_id)) {
+      // Seed from question_id string hash for session-stable shuffling
+      const seed = q.question_id.split('').reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 17);
+      this._shuffledOptions.set(q.question_id, this._shuffleArray(q.options, seed));
+    }
+    return this._shuffledOptions.get(q.question_id);
+  },
+
+  /** Map difficulty [0..1] to a toughness label + color */
+  _getToughnessInfo(difficulty) {
+    if (difficulty < 0.25) return { label: '🟢 Easy', color: 'var(--accent-emerald)', meter: 1 };
+    if (difficulty < 0.45) return { label: '🔵 Medium', color: 'var(--accent-cyan)', meter: 2 };
+    if (difficulty < 0.65) return { label: '🟡 Hard', color: 'var(--accent-amber)', meter: 3 };
+    if (difficulty < 0.82) return { label: '🔴 Expert', color: 'var(--accent-rose)', meter: 4 };
+    return { label: '☠️ Nightmare', color: '#e879f9', meter: 5 };
+  },
 
   async startTest(exam, type = 'DIAGNOSTIC', stage = 1, targetConcept = null) {
     if (!AppState.student) {
@@ -22,6 +55,7 @@ const QuizController = {
       this.currentAttempt = data;
       this.currentIndex = 0;
       this.userResponses.clear();
+      this._shuffledOptions.clear(); // Reset shuffles for new attempt
       this.remainingSeconds = (data.duration_minutes || 20) * 60;
 
       AppState.switchTab('assessment');
@@ -43,6 +77,7 @@ const QuizController = {
       this.currentAttempt = data;
       this.currentIndex = 0;
       this.userResponses.clear();
+      this._shuffledOptions.clear();
       this.remainingSeconds = (data.duration_minutes || 15) * 60;
 
       AppState.switchTab('assessment');
@@ -65,6 +100,7 @@ const QuizController = {
       this.currentAttempt = data;
       this.currentIndex = 0;
       this.userResponses.clear();
+      this._shuffledOptions.clear();
       this.remainingSeconds = (data.duration_minutes || 40) * 60;
 
       AppState.switchTab('assessment');
@@ -90,13 +126,14 @@ const QuizController = {
       const q = this.currentAttempt.questions[this.currentIndex];
       if (!q || !q.options) return;
 
-      // Option selection via 1-4 or A-D
+      // Option selection via 1-4 (maps to shuffled positions) or A-D (maps to original IDs)
       const key = e.key.toUpperCase();
+      const shuffled = this._getShuffledOptions(q);
       if (['1', '2', '3', '4'].includes(key)) {
         const idx = parseInt(key, 10) - 1;
-        if (q.options[idx]) this.selectOption(q.options[idx].id);
+        if (shuffled[idx]) this.selectOption(shuffled[idx].id);
       } else if (['A', 'B', 'C', 'D'].includes(key)) {
-        const found = q.options.find(opt => opt.id === key);
+        const found = shuffled.find((opt, i) => String.fromCharCode(65 + i) === key);
         if (found) this.selectOption(found.id);
       } else if (e.key === 'ArrowRight') {
         this.nextQuestion();
@@ -141,12 +178,15 @@ const QuizController = {
     const total = this.currentAttempt.questions.length;
     const selectedAns = this.userResponses.get(q.question_id) || null;
     const progressPct = Math.round(((this.currentIndex + 1) / total) * 100);
+    const toughness = this._getToughnessInfo(q.difficulty || 0.5);
+    const displayLabels = ['A','B','C','D','E'];
 
     let optionsHtml = '';
     if (q.options) {
-      optionsHtml = q.options.map((opt, i) => `
+      const shuffled = this._getShuffledOptions(q);
+      optionsHtml = shuffled.map((opt, i) => `
         <div class="option-item ${selectedAns === opt.id ? 'selected' : ''}" onclick="QuizController.selectOption('${opt.id}')">
-          <div class="opt-id">${opt.id}</div>
+          <div class="opt-id">${displayLabels[i]}</div>
           <div class="opt-text">${opt.text}</div>
           <span style="margin-left:auto;font-size:0.68rem;color:var(--text-faint);font-family:var(--font-mono);">[${i+1}]</span>
         </div>
@@ -181,11 +221,14 @@ const QuizController = {
 
         <!-- Main Question Card -->
         <div class="glass-card question-card" style="margin-bottom:1.25rem;">
-          <div class="q-meta" style="margin-bottom:0.85rem;display:flex;gap:6px;flex-wrap:wrap;">
+          <div class="q-meta" style="margin-bottom:0.85rem;display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
             <span class="badge-learn">${q.skill.toUpperCase()}</span>
-            <span class="reason-tag">Difficulty: ${Math.round(q.difficulty * 100)}%</span>
-            <span class="reason-tag">Est. Time: ${q.estimated_time}s</span>
-            <span class="reason-tag" style="color:var(--accent-emerald);">Direct Solution Included</span>
+            <span class="toughness-badge" style="background:rgba(0,0,0,0.3);border:1px solid ${toughness.color};color:${toughness.color};padding:2px 9px;border-radius:100px;font-size:0.72rem;font-weight:800;letter-spacing:0.04em;">${toughness.label}</span>
+            <span class="reason-tag">⏱ Est. ${q.estimated_time}s</span>
+            <span class="reason-tag">📊 ${Math.round(q.difficulty * 100)}% difficulty</span>
+            <span style="margin-left:auto;display:flex;gap:2px;align-items:center;" title="Toughness level ${toughness.meter}/5">
+              ${[1,2,3,4,5].map(n => `<span style="width:7px;height:14px;border-radius:2px;background:${n <= toughness.meter ? toughness.color : 'rgba(255,255,255,0.1)'};"></span>`).join('')}
+            </span>
           </div>
 
           <div class="q-text" style="font-size:1.05rem;line-height:1.6;margin-bottom:1.25rem;white-space:pre-line;font-weight:500;">
