@@ -1,4 +1,4 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from sqlalchemy.orm import Session
 
 from backend.app.models.schema import StudentConceptMastery, Concept, Topic, Chapter, Subject
@@ -37,15 +37,15 @@ class PriorityEngine:
         exam_importance = concept.exam_relevance
         sub_name = concept.topic.chapter.subject.name if (concept.topic and concept.topic.chapter and concept.topic.chapter.subject) else ""
 
+        # 3. Prerequisite Impact (0.1 to 1.0) — must be fetched before exam-specific amplification
+        prereq_impact = self.graph.get_prerequisite_impact(concept.concept_id)
+
         # NEET: Biology carries 50% total marks (360/720), so amplify Biology importance
         if self.exam_id == "NEET" and sub_name == "Biology":
             exam_importance = min(1.0, exam_importance * 1.25)
         # JEE: Multi-concept problems require heavy emphasis on foundational mechanics & calculus
         elif self.exam_id == "JEE" and sub_name in ["Physics", "Mathematics"]:
             prereq_impact = min(1.0, prereq_impact * 1.20)
-
-        # 3. Prerequisite Impact (0.1 to 1.0)
-        prereq_impact = self.graph.get_prerequisite_impact(concept.concept_id)
 
         # 4. Prerequisite readiness check: If this concept's own ancestors are broken,
         # its immediate study priority is adjusted to prioritize ancestors first.
