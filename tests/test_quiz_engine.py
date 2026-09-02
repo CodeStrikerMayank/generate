@@ -95,3 +95,56 @@ def test_quiz_lifecycle_and_grading(quiz_db):
     assert m_rec.attempts_count == 1
     assert m_rec.correct_count == 1
     assert m_rec.mastery > 0.0
+
+def test_advanced_challenge_lifecycle(quiz_db):
+    engine = QuizEngine(quiz_db)
+
+    # Add an advanced question to the fixture
+    q_adv = Question(
+        question_id="JEE_ADV_PHY_TEST",
+        exam="JEE",
+        subject="Physics",
+        chapter="Mechanics",
+        topic="NLM",
+        concept_id="phy_fbd",
+        difficulty=0.85,
+        discrimination=1.8,
+        estimated_time=110,
+        question_type="multiple_choice",
+        tier="ADVANCED",
+        content="Advanced rigid body question?",
+        options=[{"id": "A", "text": "Correct"}, {"id": "B", "text": "Wrong"}],
+        correct_answer="A",
+        explanation="Advanced derivation.",
+        distractor_explanations={"B": "CONCEPTUAL_ERROR: Misunderstood rotation."}
+    )
+    quiz_db.add(q_adv)
+    quiz_db.commit()
+
+    # Start Tier 4 Advanced Challenge
+    start_data = engine.start_advanced_challenge(
+        student_id="s1",
+        exam="JEE",
+        subject="Physics",
+        duration_minutes=20
+    )
+
+    assert start_data["test_tier"] == "ADVANCED_CHALLENGE"
+    assert start_data["total_questions"] >= 1
+    assert any(q["question_id"] == "JEE_ADV_PHY_TEST" for q in start_data["questions"])
+
+    # Submit and verify eligibility flag
+    submit_res = engine.submit_assessment(
+        attempt_id=start_data["attempt_id"],
+        responses=[
+            {
+                "question_id": "JEE_ADV_PHY_TEST",
+                "student_answer": "A",
+                "time_taken_seconds": 90,
+                "confidence_estimate": 0.9
+            }
+        ]
+    )
+
+    assert submit_res["score_percentage"] == 100.0
+    assert submit_res["advanced_challenge_eligible"] is True

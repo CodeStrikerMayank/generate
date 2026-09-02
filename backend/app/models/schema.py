@@ -129,6 +129,7 @@ class Question(Base):
     rubrics = Column(JSON, nullable=True)  # for descriptive questions
     is_transfer = Column(Boolean, default=False)
     is_prerequisite_check = Column(Boolean, default=False)
+    tier = Column(String(32), default="STANDARD", index=True)  # STANDARD, ADVANCED
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
     concept = relationship("Concept", back_populates="questions")

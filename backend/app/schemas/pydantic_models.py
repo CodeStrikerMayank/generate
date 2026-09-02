@@ -122,6 +122,7 @@ class AssessmentResultResponse(BaseModel):
     time_taken_seconds: int
     status: str
     weak_subjects: Optional[List[Dict[str, Any]]] = None
+    advanced_challenge_eligible: Optional[bool] = False
     items_feedback: List[AssessmentItemFeedback]
     updated_masteries: List[Dict[str, Any]]
     new_roadmap_summary: Optional[Dict[str, Any]]

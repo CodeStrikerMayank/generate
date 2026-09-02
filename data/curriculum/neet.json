@@ -1,7 +1,9 @@
 {
   "exam_id": "NEET",
   "name": "National Eligibility cum Entrance Test (NEET-UG)",
-  "tracks": ["NEET_UG"],
+  "tracks": [
+    "NEET_UG"
+  ],
   "subjects": [
     {
       "subject_id": "NEET_BIO",
@@ -20,7 +22,7 @@
                   "name": "Prokaryotic vs Eukaryotic Cell Structure",
                   "estimated_minutes": 35,
                   "exam_relevance": 0.92,
-                  "difficulty_weight": 0.40,
+                  "difficulty_weight": 0.4,
                   "description": "Cell wall, plasma membrane, mesosomes, inclusion bodies, membrane-bound organelles."
                 },
                 {
@@ -28,7 +30,7 @@
                   "name": "Endomembrane System & Organelles",
                   "estimated_minutes": 50,
                   "exam_relevance": 0.95,
-                  "difficulty_weight": 0.60,
+                  "difficulty_weight": 0.6,
                   "description": "ER, Golgi apparatus, Lysosomes, Vacuoles, Mitochondria, Plastids, Ribosomes (70S vs 80S)."
                 },
                 {
@@ -38,6 +40,14 @@
                   "exam_relevance": 0.98,
                   "difficulty_weight": 0.75,
                   "description": "Phases of cell cycle (G1, S, G2, M), stages of prophase I (leptotene to diakinesis), crossing over."
+                },
+                {
+                  "concept_id": "bio_c4_pathway_hatch_slack",
+                  "name": "C4 Photosynthetic Pathway (Hatch-Slack)",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.8,
+                  "description": "Kranz anatomy, PEP carboxylase initial CO2 fixation, and OAA synthesis."
                 }
               ]
             },
@@ -66,8 +76,24 @@
                   "name": "Pedigree Analysis & Genetic Disorders",
                   "estimated_minutes": 60,
                   "exam_relevance": 0.96,
-                  "difficulty_weight": 0.80,
+                  "difficulty_weight": 0.8,
                   "description": "Autosomal vs sex-linked dominant/recessive traits, Hemophilia, Sickle-cell anemia, Down syndrome."
+                },
+                {
+                  "concept_id": "bio_gene_interaction_epistasis",
+                  "name": "Gene Interaction & Non-Mendelian Epistasis",
+                  "estimated_minutes": 55,
+                  "exam_relevance": 0.94,
+                  "difficulty_weight": 0.85,
+                  "description": "Recessive and dominant epistasis modifying standard dihybrid 9:3:3:1 ratios."
+                },
+                {
+                  "concept_id": "bio_population_ecology_logistic_growth",
+                  "name": "Population Ecology & Logistic Growth Model",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.92,
+                  "difficulty_weight": 0.78,
+                  "description": "Verhulst-Pearl logistic equation, carrying capacity K, and maximum growth rate at K/2."
                 }
               ]
             }
@@ -88,6 +114,14 @@
                   "exam_relevance": 0.95,
                   "difficulty_weight": 0.65,
                   "description": "Formed elements, blood groups, cardiac output, pacemaker action potential, P-QRS-T waves."
+                },
+                {
+                  "concept_id": "bio_nephron_countercurrent_mechanism",
+                  "name": "Nephron Physiology & Countercurrent Multiplier",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.96,
+                  "difficulty_weight": 0.82,
+                  "description": "Henle's loop ion transport, water permeability, and medullary osmotic gradient."
                 }
               ]
             }
@@ -112,7 +146,7 @@
                   "name": "Kinematics & Projectile Motion",
                   "estimated_minutes": 45,
                   "exam_relevance": 0.92,
-                  "difficulty_weight": 0.50,
+                  "difficulty_weight": 0.5,
                   "description": "Equations of motion, projectile maximum height and range, vertical projectile motion under gravity."
                 },
                 {
@@ -122,6 +156,22 @@
                   "exam_relevance": 0.94,
                   "difficulty_weight": 0.55,
                   "description": "Work-energy theorem, potential energy of springs, conservation of mechanical energy."
+                },
+                {
+                  "concept_id": "phy_wheatstone_bridge_balance",
+                  "name": "Wheatstone Bridge & Balanced Resistance Networks",
+                  "estimated_minutes": 40,
+                  "exam_relevance": 0.92,
+                  "difficulty_weight": 0.75,
+                  "description": "Null deflection condition P/Q = R/S in resistance bridges."
+                },
+                {
+                  "concept_id": "phy_escape_velocity_scaling",
+                  "name": "Gravitational Potential & Escape Velocity Scaling",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.93,
+                  "difficulty_weight": 0.77,
+                  "description": "Planetary escape velocity formula and mass/radius proportionality."
                 }
               ]
             }
@@ -140,8 +190,24 @@
                   "name": "Refraction at Spherical Surfaces & Total Internal Reflection",
                   "estimated_minutes": 45,
                   "exam_relevance": 0.94,
-                  "difficulty_weight": 0.60,
+                  "difficulty_weight": 0.6,
                   "description": "Snell's Law, critical angle, optical fibers, prism formula, lens maker's formula."
+                },
+                {
+                  "concept_id": "phy_faraday_law_induced_emf",
+                  "name": "Faraday's Law of Induction & Induced EMF",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.94,
+                  "difficulty_weight": 0.78,
+                  "description": "Time-varying magnetic flux, induced electromotive force, and Lenz's law."
+                },
+                {
+                  "concept_id": "phy_photoelectric_effect_kmax",
+                  "name": "Photoelectric Effect & Einstein's Equation",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.96,
+                  "difficulty_weight": 0.8,
+                  "description": "Photon energy, work function threshold, and maximum kinetic energy."
                 }
               ]
             }
@@ -165,9 +231,25 @@
                   "concept_id": "chem_carbohydrates_proteins",
                   "name": "Carbohydrates, Amino Acids and Peptide Bonds",
                   "estimated_minutes": 45,
-                  "exam_relevance": 0.90,
+                  "exam_relevance": 0.9,
                   "difficulty_weight": 0.55,
                   "description": "Reducing sugars, zwitterion, peptide linkages, alpha-helix vs beta-pleated structures, vitamins."
+                },
+                {
+                  "concept_id": "chem_pblock_nitrogen_oxides",
+                  "name": "Oxides of Nitrogen & Chemical Structures",
+                  "estimated_minutes": 40,
+                  "exam_relevance": 0.91,
+                  "difficulty_weight": 0.75,
+                  "description": "Preparation, oxidation states, and linear sp structure of nitrous oxide (N2O)."
+                },
+                {
+                  "concept_id": "chem_alcohol_to_haloalkane_mechanism",
+                  "name": "Nucleophilic Substitution Mechanisms (SN2 vs SNi)",
+                  "estimated_minutes": 55,
+                  "exam_relevance": 0.96,
+                  "difficulty_weight": 0.88,
+                  "description": "Thionyl chloride with pyridine inversion vs retention stereochemistry."
                 }
               ]
             }
@@ -186,8 +268,24 @@
                   "name": "pH Calculation, Ostwald Dilution & Buffers",
                   "estimated_minutes": 50,
                   "exam_relevance": 0.95,
-                  "difficulty_weight": 0.60,
+                  "difficulty_weight": 0.6,
                   "description": "Weak acid/base dissociation constant Ka, Ostwald's dilution law, pH calculations, common ion effect."
+                },
+                {
+                  "concept_id": "chem_hybridization_expanded_octet",
+                  "name": "Chemical Bonding & Expanded Octet Hybridization",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.94,
+                  "difficulty_weight": 0.72,
+                  "description": "VSEPR theory, steric number, and sp3d2 octahedral geometry in SF6."
+                },
+                {
+                  "concept_id": "chem_standard_cell_potential",
+                  "name": "Standard Cell Potential & Galvanic Cell EMF",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.78,
+                  "description": "Standard reduction potentials, cathode minus anode EMF calculation."
                 }
               ]
             }
@@ -207,7 +305,7 @@
     {
       "from_concept": "bio_cell_organelles",
       "to_concept": "bio_cell_cycle_mitosis_meiosis",
-      "strength": 0.90,
+      "strength": 0.9,
       "relationship": "prerequisite",
       "description": "Centrosome and chromatin structure understanding is required for chromosome separation."
     },
@@ -228,14 +326,14 @@
     {
       "from_concept": "bio_dihybrid_linkage",
       "to_concept": "bio_pedigree_disorders",
-      "strength": 0.90,
+      "strength": 0.9,
       "relationship": "prerequisite",
       "description": "Tracing inheritance modes in human families requires Mendelian and linkage principles."
     },
     {
       "from_concept": "phy_kinematics_1d_2d",
       "to_concept": "phy_work_energy_power_neet",
-      "strength": 0.90,
+      "strength": 0.9,
       "relationship": "prerequisite",
       "description": "Kinematics equations are fundamental to work-energy calculations."
     },

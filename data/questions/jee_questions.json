@@ -8,16 +8,28 @@
     "topic": "AC Resonance & Semiconductor Diodes",
     "concept_id": "phy_zener_logic_gates",
     "skill": "conceptual",
-    "difficulty": 0.40,
+    "difficulty": 0.4,
     "discrimination": 1.25,
     "estimated_time": 45,
     "question_type": "multiple_choice",
     "content": "Zener breakdown occurs in a p-n junction diode having p and n regions both :\n(1) lightly doped and have wide depletion layer.\n(2) heavily doped and have narrow depletion layer.\n(3) heavily doped and have wide depletion layer.\n(4) lightly doped and have narrow depletion layer.",
     "options": [
-      {"id": "A", "text": "lightly doped and have wide depletion layer."},
-      {"id": "B", "text": "heavily doped and have narrow depletion layer."},
-      {"id": "C", "text": "heavily doped and have wide depletion layer."},
-      {"id": "D", "text": "lightly doped and have narrow depletion layer."}
+      {
+        "id": "A",
+        "text": "lightly doped and have wide depletion layer."
+      },
+      {
+        "id": "B",
+        "text": "heavily doped and have narrow depletion layer."
+      },
+      {
+        "id": "C",
+        "text": "heavily doped and have wide depletion layer."
+      },
+      {
+        "id": "D",
+        "text": "lightly doped and have narrow depletion layer."
+      }
     ],
     "correct_answer": "B",
     "explanation": "Zener breakdown occurs in heavily doped p-n junctions due to intense electric field (high tunneling probability) across the extremely narrow depletion region.",
@@ -27,7 +39,8 @@
       "D": "CARELESS_ERROR: Light doping produces a wide depletion layer."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2021_PHY_002",
@@ -39,15 +52,27 @@
     "concept_id": "phy_bohr_transitions",
     "skill": "conceptual",
     "difficulty": 0.45,
-    "discrimination": 1.30,
+    "discrimination": 1.3,
     "estimated_time": 50,
     "question_type": "multiple_choice",
     "content": "According to the Bohr atom model, in which of the following transitions will the emitted photon frequency be maximum?\n(1) n = 2 to n = 1\n(2) n = 4 to n = 3\n(3) n = 5 to n = 4\n(4) n = 3 to n = 2",
     "options": [
-      {"id": "A", "text": "n = 2 to n = 1"},
-      {"id": "B", "text": "n = 4 to n = 3"},
-      {"id": "C", "text": "n = 5 to n = 4"},
-      {"id": "D", "text": "n = 3 to n = 2"}
+      {
+        "id": "A",
+        "text": "n = 2 to n = 1"
+      },
+      {
+        "id": "B",
+        "text": "n = 4 to n = 3"
+      },
+      {
+        "id": "C",
+        "text": "n = 5 to n = 4"
+      },
+      {
+        "id": "D",
+        "text": "n = 3 to n = 2"
+      }
     ],
     "correct_answer": "A",
     "explanation": "Energy delta E = h*f = 13.6 * (1/n1^2 - 1/n2^2). For n=2 -> n=1: delta E = 13.6 * (1 - 1/4) = 10.2 eV, which is greater than any other adjacent transition in hydrogen.",
@@ -57,7 +82,8 @@
       "D": "CONCEPTUAL_ERROR: 3->2 transition (Balmer alpha) gives 1.89 eV, much less than Lyman alpha."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2021_PHY_005",
@@ -74,10 +100,22 @@
     "question_type": "multiple_choice",
     "content": "A circular hole of radius (a/2) is cut out of a circular disc of radius 'a' such that the hole touches the outer edge and the disc center. The centroid of the remaining circular portion with respect to origin 'O' at the left circumference will be :",
     "options": [
-      {"id": "A", "text": "10/11 a"},
-      {"id": "B", "text": "2/3 a"},
-      {"id": "C", "text": "1/6 a"},
-      {"id": "D", "text": "5/6 a"}
+      {
+        "id": "A",
+        "text": "10/11 a"
+      },
+      {
+        "id": "B",
+        "text": "2/3 a"
+      },
+      {
+        "id": "C",
+        "text": "1/6 a"
+      },
+      {
+        "id": "D",
+        "text": "5/6 a"
+      }
     ],
     "correct_answer": "D",
     "explanation": "Let surface density be sigma. Original disc mass M1 = sigma*pi*a^2 with COM at x1 = a. Removed hole mass M2 = sigma*pi*(a/2)^2 = M1/4 with COM at x2 = 3a/2. Remaining centroid X_com = (M1*a - (M1/4)*(3a/2)) / (M1 - M1/4) = (a - 3a/8) / (3/4) = (5a/8) / (3/4) = 5a/6.",
@@ -87,7 +125,8 @@
       "C": "SIGN_ERROR: Shift from original center is a/6, but relative to O at edge it is a - a/6 = 5a/6."
     },
     "is_transfer": true,
-    "is_prerequisite_check": false
+    "is_prerequisite_check": false,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2021_PHY_007",
@@ -98,16 +137,28 @@
     "topic": "Center of Mass, Rotation & Gravitation",
     "concept_id": "phy_shm_oscillations",
     "skill": "conceptual",
-    "difficulty": 0.50,
+    "difficulty": 0.5,
     "discrimination": 1.35,
     "estimated_time": 60,
     "question_type": "multiple_choice",
     "content": "When a particle executes Simple Harmonic Motion (SHM), the nature of graphical representation of velocity as a function of displacement (v vs x) is :",
     "options": [
-      {"id": "A", "text": "Elliptical"},
-      {"id": "B", "text": "Parabolic"},
-      {"id": "C", "text": "Straight line"},
-      {"id": "D", "text": "Circular"}
+      {
+        "id": "A",
+        "text": "Elliptical"
+      },
+      {
+        "id": "B",
+        "text": "Parabolic"
+      },
+      {
+        "id": "C",
+        "text": "Straight line"
+      },
+      {
+        "id": "D",
+        "text": "Circular"
+      }
     ],
     "correct_answer": "A",
     "explanation": "In SHM, velocity v = omega*sqrt(A^2 - x^2) => v^2 = omega^2(A^2 - x^2) => v^2/(omega*A)^2 + x^2/A^2 = 1. This represents an ellipse with semi-axes A and omega*A in the (x, v) phase plane.",
@@ -117,7 +168,8 @@
       "D": "CONCEPTUAL_ERROR: Only circular if omega = 1 with identical scale axes; standard representation is elliptical."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2021_PHY_016",
@@ -129,15 +181,27 @@
     "concept_id": "phy_de_broglie_waves",
     "skill": "application",
     "difficulty": 0.55,
-    "discrimination": 1.40,
+    "discrimination": 1.4,
     "estimated_time": 65,
     "question_type": "multiple_choice",
     "content": "The de Broglie wavelength of a proton and an alpha-particle are equal. The ratio of their velocities (v_p : v_alpha) is :",
     "options": [
-      {"id": "A", "text": "4 : 2"},
-      {"id": "B", "text": "4 : 1"},
-      {"id": "C", "text": "1 : 4"},
-      {"id": "D", "text": "4 : 3"}
+      {
+        "id": "A",
+        "text": "4 : 2"
+      },
+      {
+        "id": "B",
+        "text": "4 : 1"
+      },
+      {
+        "id": "C",
+        "text": "1 : 4"
+      },
+      {
+        "id": "D",
+        "text": "4 : 3"
+      }
     ],
     "correct_answer": "B",
     "explanation": "lambda = h / (m*v). Since lambda_p = lambda_alpha => m_p * v_p = m_alpha * v_alpha => v_p / v_alpha = m_alpha / m_p. Since m_alpha approx 4 * m_p, the ratio of velocities is 4 : 1.",
@@ -147,7 +211,8 @@
       "D": "CARELESS_ERROR: Used mass of triton instead of alpha particle."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2021_CHEM_001",
@@ -164,10 +229,22 @@
     "question_type": "multiple_choice",
     "content": "The correct order of the following compounds showing increasing tendency towards nucleophilic aromatic substitution reaction is :\n(i) Chlorobenzene\n(ii) 1-Chloro-4-nitrobenzene\n(iii) 1-Chloro-2,4-dinitrobenzene\n(iv) 1-Chloro-2,4,6-trinitrobenzene (Picryl chloride)",
     "options": [
-      {"id": "A", "text": "(iv) < (i) < (iii) < (ii)"},
-      {"id": "B", "text": "(iv) < (i) < (ii) < (iii)"},
-      {"id": "C", "text": "(i) < (ii) < (iii) < (iv)"},
-      {"id": "D", "text": "(iv) < (iii) < (ii) < (i)"}
+      {
+        "id": "A",
+        "text": "(iv) < (i) < (iii) < (ii)"
+      },
+      {
+        "id": "B",
+        "text": "(iv) < (i) < (ii) < (iii)"
+      },
+      {
+        "id": "C",
+        "text": "(i) < (ii) < (iii) < (iv)"
+      },
+      {
+        "id": "D",
+        "text": "(iv) < (iii) < (ii) < (i)"
+      }
     ],
     "correct_answer": "C",
     "explanation": "Nucleophilic aromatic substitution in aryl halides proceeds via addition-elimination (Meisenheimer complex). Strong electron-withdrawing -NO2 groups (-M, -I) at ortho and para positions stabilize the carbanionic intermediate, drastically accelerating substitution: Chlorobenzene < Mono-nitro < Di-nitro < Tri-nitro.",
@@ -177,7 +254,8 @@
       "D": "SIGN_ERROR: Inverted the direction of the inequality (descending instead of increasing)."
     },
     "is_transfer": true,
-    "is_prerequisite_check": false
+    "is_prerequisite_check": false,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2021_CHEM_006",
@@ -188,16 +266,28 @@
     "topic": "General Organic Chemistry (GOC)",
     "concept_id": "chem_electronic_effects",
     "skill": "application",
-    "difficulty": 0.60,
+    "difficulty": 0.6,
     "discrimination": 1.45,
     "estimated_time": 70,
     "question_type": "multiple_choice",
     "content": "Which one of the following carbonyl compounds CANNOT be prepared by addition of water on an alkyne in the presence of HgSO4 and H2SO4 (Kucherov Reaction)?",
     "options": [
-      {"id": "A", "text": "CH3-CH2-CHO (Propanal)"},
-      {"id": "B", "text": "Cyclohexyl methyl ketone"},
-      {"id": "C", "text": "CH3-CHO (Acetaldehyde)"},
-      {"id": "D", "text": "CH3-CO-CH2-CH3 (Butan-2-one)"}
+      {
+        "id": "A",
+        "text": "CH3-CH2-CHO (Propanal)"
+      },
+      {
+        "id": "B",
+        "text": "Cyclohexyl methyl ketone"
+      },
+      {
+        "id": "C",
+        "text": "CH3-CHO (Acetaldehyde)"
+      },
+      {
+        "id": "D",
+        "text": "CH3-CO-CH2-CH3 (Butan-2-one)"
+      }
     ],
     "correct_answer": "A",
     "explanation": "Kucherov hydration follows Markovnikov's addition of water across alkynes. Only ethyne (HC#CH) yields an aldehyde (acetaldehyde CH3CHO). All higher terminal and internal alkynes (e.g., propyne) yield ketones (e.g. acetone), never higher aldehydes like propanal.",
@@ -207,7 +297,8 @@
       "D": "CONCEPTUAL_ERROR: But-1-yne or but-2-yne yields butan-2-one."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2021_CHEM_011",
@@ -219,15 +310,27 @@
     "concept_id": "chem_first_law_thermo",
     "skill": "conceptual",
     "difficulty": 0.58,
-    "discrimination": 1.30,
+    "discrimination": 1.3,
     "estimated_time": 60,
     "question_type": "multiple_choice",
     "content": "The correct set from the following in which both pairs are in the correct order of melting point is :\n(1) LiF > LiCl ; NaCl > MgO\n(2) LiF > LiCl ; MgO > NaCl\n(3) LiCl > LiF ; NaCl > MgO\n(4) LiCl > LiF ; MgO > NaCl",
     "options": [
-      {"id": "A", "text": "LiF > LiCl ; NaCl > MgO"},
-      {"id": "B", "text": "LiF > LiCl ; MgO > NaCl"},
-      {"id": "C", "text": "LiCl > LiF ; NaCl > MgO"},
-      {"id": "D", "text": "LiCl > LiF ; MgO > NaCl"}
+      {
+        "id": "A",
+        "text": "LiF > LiCl ; NaCl > MgO"
+      },
+      {
+        "id": "B",
+        "text": "LiF > LiCl ; MgO > NaCl"
+      },
+      {
+        "id": "C",
+        "text": "LiCl > LiF ; NaCl > MgO"
+      },
+      {
+        "id": "D",
+        "text": "LiCl > LiF ; MgO > NaCl"
+      }
     ],
     "correct_answer": "B",
     "explanation": "Melting point is directly proportional to Lattice Energy (U approx |q1*q2| / (r+ + r-)). For LiF vs LiCl: F- has smaller ionic radius than Cl-, so Lattice Energy of LiF > LiCl. For MgO vs NaCl: Mg2+ and O2- have charge product 4 vs 1 for Na+ and Cl-, so MgO >> NaCl.",
@@ -237,7 +340,8 @@
       "D": "FORMULA_SELECTION_ERROR: Reversed both lattice energy trends."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2021_MATH_002",
@@ -249,15 +353,27 @@
     "concept_id": "math_differentiability",
     "skill": "application",
     "difficulty": 0.78,
-    "discrimination": 1.70,
+    "discrimination": 1.7,
     "estimated_time": 95,
     "question_type": "multiple_choice",
     "content": "Let f be a twice differentiable function on R such that f(0) = 1, f'(0) = 2 and f'(x) != 0 for all x in R. If det[[f(x), f'(x)], [f'(x), f''(x)]] = 0 for all x in R, then the value of f(1) lies in the interval :",
     "options": [
-      {"id": "A", "text": "(9, 12)"},
-      {"id": "B", "text": "(6, 9)"},
-      {"id": "C", "text": "(3, 6)"},
-      {"id": "D", "text": "(0, 3)"}
+      {
+        "id": "A",
+        "text": "(9, 12)"
+      },
+      {
+        "id": "B",
+        "text": "(6, 9)"
+      },
+      {
+        "id": "C",
+        "text": "(3, 6)"
+      },
+      {
+        "id": "D",
+        "text": "(0, 3)"
+      }
     ],
     "correct_answer": "B",
     "explanation": "det = f(x)*f''(x) - (f'(x))^2 = 0 => (f'(x)/f(x))' = 0 => f'(x)/f(x) = k (constant). At x=0: k = f'(0)/f(0) = 2/1 = 2. Thus f'(x) = 2*f(x) => ln|f(x)| = 2x + C. With f(0)=1 => C=0, so f(x) = e^(2x). Therefore f(1) = e^2 approx 7.389, which lies in (6, 9).",
@@ -267,7 +383,8 @@
       "D": "CARELESS_ERROR: Assumed f(1) = e approx 2.71."
     },
     "is_transfer": true,
-    "is_prerequisite_check": false
+    "is_prerequisite_check": false,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2021_MATH_006",
@@ -279,15 +396,27 @@
     "concept_id": "math_aod_monotonocity",
     "skill": "application",
     "difficulty": 0.62,
-    "discrimination": 1.40,
+    "discrimination": 1.4,
     "estimated_time": 75,
     "question_type": "multiple_choice",
     "content": "If P is a point on the parabola y = x^2 + 4 which is closest to the straight line y = 4x - 1, then the coordinates of P are :",
     "options": [
-      {"id": "A", "text": "(-2, 8)"},
-      {"id": "B", "text": "(1, 5)"},
-      {"id": "C", "text": "(3, 13)"},
-      {"id": "D", "text": "(2, 8)"}
+      {
+        "id": "A",
+        "text": "(-2, 8)"
+      },
+      {
+        "id": "B",
+        "text": "(1, 5)"
+      },
+      {
+        "id": "C",
+        "text": "(3, 13)"
+      },
+      {
+        "id": "D",
+        "text": "(2, 8)"
+      }
     ],
     "correct_answer": "D",
     "explanation": "The closest point P on the curve has tangent parallel to the line y = 4x - 1. Slope of line m = 4. Derivative dy/dx = 2x = 4 => x = 2. Then y = (2)^2 + 4 = 8. Hence P is (2, 8).",
@@ -297,7 +426,8 @@
       "C": "CARELESS_ERROR: Tested arbitrary point on curve."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2021_MATH_010",
@@ -309,15 +439,27 @@
     "concept_id": "math_quadratic_roots",
     "skill": "application",
     "difficulty": 0.65,
-    "discrimination": 1.50,
+    "discrimination": 1.5,
     "estimated_time": 80,
     "question_type": "multiple_choice",
     "content": "The coefficients a, b and c of the quadratic equation ax^2 + bx + c = 0 are obtained by throwing a fair six-sided die three times. The probability that this equation has equal real roots (discriminant D = 0) is :",
     "options": [
-      {"id": "A", "text": "1 / 54"},
-      {"id": "B", "text": "1 / 72"},
-      {"id": "C", "text": "1 / 36"},
-      {"id": "D", "text": "5 / 216"}
+      {
+        "id": "A",
+        "text": "1 / 54"
+      },
+      {
+        "id": "B",
+        "text": "1 / 72"
+      },
+      {
+        "id": "C",
+        "text": "1 / 36"
+      },
+      {
+        "id": "D",
+        "text": "5 / 216"
+      }
     ],
     "correct_answer": "D",
     "explanation": "Total sample space = 6^3 = 216. Equal roots => D = b^2 - 4ac = 0 => b^2 = 4ac => ac = b^2/4. For b=2: ac=1 => (a,c) = (1,1) [1 pair]. For b=4: ac=4 => (a,c) = (1,4), (4,1), (2,2) [3 pairs]. For b=6: ac=9 => (a,c) = (3,3) [1 pair]. Total favorable cases = 1 + 3 + 1 = 5. Probability = 5/216.",
@@ -327,7 +469,8 @@
       "C": "CARELESS_ERROR: Counted 6 cases giving 6/216 = 1/36."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2021_MATH_014",
@@ -338,16 +481,28 @@
     "topic": "Integral Calculus & Differential Equations",
     "concept_id": "math_indefinite_integrals",
     "skill": "application",
-    "difficulty": 0.70,
-    "discrimination": 1.60,
+    "difficulty": 0.7,
+    "discrimination": 1.6,
     "estimated_time": 85,
     "question_type": "multiple_choice",
     "content": "If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos x) / b ) + C, where C is a constant of integration, then the ordered pair (a, b) is equal to :",
     "options": [
-      {"id": "A", "text": "(1, -3)"},
-      {"id": "B", "text": "(1, 3)"},
-      {"id": "C", "text": "(-1, 3)"},
-      {"id": "D", "text": "(3, 1)"}
+      {
+        "id": "A",
+        "text": "(1, -3)"
+      },
+      {
+        "id": "B",
+        "text": "(1, 3)"
+      },
+      {
+        "id": "C",
+        "text": "(-1, 3)"
+      },
+      {
+        "id": "D",
+        "text": "(3, 1)"
+      }
     ],
     "correct_answer": "B",
     "explanation": "Substitute t = sin x + cos x => dt = (cos x - sin x) dx. Also t^2 = 1 + sin 2x => sin 2x = t^2 - 1. Denominator becomes sqrt(8 - (t^2 - 1)) = sqrt(9 - t^2). Integral = int dt/sqrt(3^2 - t^2) = arcsin(t/3) + C = 1 * arcsin((sin x + cos x)/3) + C. Thus a = 1, b = 3.",
@@ -357,7 +512,8 @@
       "D": "CARELESS_ERROR: Swapped a and b."
     },
     "is_transfer": true,
-    "is_prerequisite_check": false
+    "is_prerequisite_check": false,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2022_CHEM_EQUIL_001",
@@ -374,10 +530,22 @@
     "question_type": "multiple_choice",
     "content": "[JEE Main 2022 Adapted - Modified Data] For the gaseous equilibrium reaction: N2(g) + 3 H2(g) <=> 2 NH3(g) maintained at 500 K, the numerical ratio of Kp to Kc (in terms of gas constant R and temperature T in Kelvin) is equal to :",
     "options": [
-      {"id": "A", "text": "(RT)^-2"},
-      {"id": "B", "text": "(RT)^2"},
-      {"id": "C", "text": "(RT)^-1"},
-      {"id": "D", "text": "(RT)^1"}
+      {
+        "id": "A",
+        "text": "(RT)^-2"
+      },
+      {
+        "id": "B",
+        "text": "(RT)^2"
+      },
+      {
+        "id": "C",
+        "text": "(RT)^-1"
+      },
+      {
+        "id": "D",
+        "text": "(RT)^1"
+      }
     ],
     "correct_answer": "A",
     "explanation": "The relationship between Kp and Kc is Kp = Kc * (RT)^(Delta n_g). Here Delta n_g = moles of gaseous products - moles of gaseous reactants = 2 - (1 + 3) = 2 - 4 = -2. Therefore Kp / Kc = (RT)^(-2) = 1 / (RT)^2.",
@@ -387,7 +555,8 @@
       "D": "CONCEPTUAL_ERROR: Miscalculated stoichiometric difference."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2023_CHEM_BUFFER_001",
@@ -399,15 +568,27 @@
     "concept_id": "chem_ionic_ph_buffer",
     "skill": "application",
     "difficulty": 0.58,
-    "discrimination": 1.40,
+    "discrimination": 1.4,
     "estimated_time": 65,
     "question_type": "multiple_choice",
     "content": "[JEE Main 2023 Adapted - Modified Data] An acidic buffer solution is prepared by mixing 0.20 M acetic acid (CH3COOH, pKa = 4.74) and 0.02 M sodium acetate (CH3COONa). The calculated pH of this resulting buffer solution is :",
     "options": [
-      {"id": "A", "text": "3.74"},
-      {"id": "B", "text": "5.74"},
-      {"id": "C", "text": "4.74"},
-      {"id": "D", "text": "2.74"}
+      {
+        "id": "A",
+        "text": "3.74"
+      },
+      {
+        "id": "B",
+        "text": "5.74"
+      },
+      {
+        "id": "C",
+        "text": "4.74"
+      },
+      {
+        "id": "D",
+        "text": "2.74"
+      }
     ],
     "correct_answer": "A",
     "explanation": "According to the Henderson-Hasselbalch equation: pH = pKa + log([Conjugate Base] / [Acid]) = 4.74 + log(0.02 / 0.20) = 4.74 + log(0.10) = 4.74 + (-1.00) = 3.74.",
@@ -417,7 +598,8 @@
       "D": "CALCULATION_ERROR: Subtracted 2 units instead of 1 unit."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "JEE_2023_MATH_LIMIT_001",
@@ -428,16 +610,28 @@
     "topic": "Limits, Continuity & Differentiability",
     "concept_id": "math_limits",
     "skill": "application",
-    "difficulty": 0.60,
+    "difficulty": 0.6,
     "discrimination": 1.45,
     "estimated_time": 60,
     "question_type": "multiple_choice",
     "content": "[JEE Main 2023 Adapted - Modified Data] The value of the limit lim_{x -> 0} [ (1 - cos 4x) / (x * sin 2x) ] is equal to :",
     "options": [
-      {"id": "A", "text": "4"},
-      {"id": "B", "text": "2"},
-      {"id": "C", "text": "8"},
-      {"id": "D", "text": "1"}
+      {
+        "id": "A",
+        "text": "4"
+      },
+      {
+        "id": "B",
+        "text": "2"
+      },
+      {
+        "id": "C",
+        "text": "8"
+      },
+      {
+        "id": "D",
+        "text": "1"
+      }
     ],
     "correct_answer": "A",
     "explanation": "Rewrite 1 - cos 4x = 2*sin^2(2x). Then expression = [2*sin^2(2x)] / [x*sin(2x)] = 2 * [sin(2x) / x] = 2 * 2 * [sin(2x)/(2x)]. As x -> 0, sin(2x)/(2x) -> 1, so the limit evaluates to 2 * 2 * 1 = 4.",
@@ -447,6 +641,523 @@
       "D": "FORMULA_SELECTION_ERROR: Misapplied standard limit formula."
     },
     "is_transfer": false,
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
+  },
+  {
+    "question_id": "JEE_ADV_PHY_101",
+    "exam": "JEE",
+    "paper": "JEE_ADV_2023_ADAPTED",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "topic": "Center of Mass, Rotation & Gravitation",
+    "concept_id": "phy_rigid_body_energy_conservation",
+    "skill": "analytical",
+    "difficulty": 0.82,
+    "discrimination": 1.8,
+    "estimated_time": 110,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[JEE Advanced Adapted] A uniform rod of length L = 1.2 m, pivoted at one end, is held horizontal and released from rest. Taking g = 10 m/s^2, find its angular velocity as it passes through the vertical position.",
+    "options": [
+      {
+        "id": "A",
+        "text": "5 rad/s"
+      },
+      {
+        "id": "B",
+        "text": "10 rad/s"
+      },
+      {
+        "id": "C",
+        "text": "2.5 rad/s"
+      },
+      {
+        "id": "D",
+        "text": "\u221a5 rad/s"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation": "By energy conservation, loss in PE of the center of mass equals gain in rotational KE: mg(L/2) = (1/2)I*omega^2, where I = (1/3)mL^2 for a rod pivoted at one end. This gives omega = sqrt(3g/L) = sqrt(3(10)/1.2) = sqrt(25) = 5 rad/s.",
+    "distractor_explanations": {
+      "B": "FORMULA_SELECTION_ERROR: used I = mL^2 (point mass) instead of (1/3)mL^2.",
+      "C": "CALCULATION_ERROR: forgot to take the square root.",
+      "D": "CONCEPTUAL_ERROR: used full length L instead of L/2 for the center-of-mass drop."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "JEE_ADV_PHY_102",
+    "exam": "JEE",
+    "paper": "JEE_ADV_2022_ADAPTED",
+    "subject": "Physics",
+    "chapter": "Electrodynamics & Semiconductors",
+    "topic": "Electrostatics & Capacitance",
+    "concept_id": "phy_capacitor_charge_redistribution",
+    "skill": "analytical",
+    "difficulty": 0.78,
+    "discrimination": 1.6,
+    "estimated_time": 90,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[JEE Advanced Adapted] A 4 \u03bcF capacitor is charged to 12 V and then disconnected from the supply. It is subsequently connected across an uncharged 2 \u03bcF capacitor. Find the common potential difference across the parallel combination.",
+    "options": [
+      {
+        "id": "A",
+        "text": "6 V"
+      },
+      {
+        "id": "B",
+        "text": "8 V"
+      },
+      {
+        "id": "C",
+        "text": "4 V"
+      },
+      {
+        "id": "D",
+        "text": "12 V"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation": "Total charge is conserved: Q = C1*V1 = 4 * 12 = 48 \u03bcC. Common potential V = Q / (C1 + C2) = 48 / 6 = 8 V.",
+    "distractor_explanations": {
+      "A": "CALCULATION_ERROR: divided by wrong sum or subtracted potentials.",
+      "C": "FORMULA_SELECTION_ERROR: treated as series combination instead of parallel charge sharing.",
+      "D": "CONCEPTUAL_ERROR: assumed potential stays unchanged, ignoring charge redistribution."
+    },
+    "is_transfer": false,
     "is_prerequisite_check": true
+  },
+  {
+    "question_id": "JEE_ADV_PHY_103",
+    "exam": "JEE",
+    "paper": "JEE_ADV_2021_ADAPTED",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "topic": "Work, Energy & Power",
+    "concept_id": "phy_carnot_efficiency",
+    "skill": "application",
+    "difficulty": 0.8,
+    "discrimination": 1.7,
+    "estimated_time": 75,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[JEE Advanced Adapted] A Carnot engine operates between a source at 227\u00b0C and a sink at 27\u00b0C, absorbing 800 J of heat per cycle from the source. Find the net work done per cycle.",
+    "options": [
+      {
+        "id": "A",
+        "text": "480 J"
+      },
+      {
+        "id": "B",
+        "text": "200 J"
+      },
+      {
+        "id": "C",
+        "text": "320 J"
+      },
+      {
+        "id": "D",
+        "text": "400 J"
+      }
+    ],
+    "correct_answer": "C",
+    "explanation": "Convert to Kelvin: T_h = 500 K, T_c = 300 K. Efficiency eta = 1 - T_c/T_h = 1 - 300/500 = 0.40. Work done W = eta * Q_h = 0.40 * 800 = 320 J.",
+    "distractor_explanations": {
+      "A": "CALCULATION_ERROR: computed heat rejected to sink Q_c = (1 - eta)*Q_h = 480 J instead of work.",
+      "B": "CONCEPTUAL_ERROR: used Celsius temperatures directly without converting to absolute Kelvin.",
+      "D": "CALCULATION_ERROR: assumed eta = 0.50 due to round-off error."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "JEE_ADV_PHY_104",
+    "exam": "JEE",
+    "paper": "JEE_ADV_2023_ADAPTED",
+    "subject": "Physics",
+    "chapter": "Electrodynamics & Semiconductors",
+    "topic": "Electrostatics & Capacitance",
+    "concept_id": "phy_lorentz_force_circular_motion",
+    "skill": "analytical",
+    "difficulty": 0.85,
+    "discrimination": 1.9,
+    "estimated_time": 100,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[JEE Advanced Adapted] A proton (m = 1.67 \u00d7 10^-27 kg, q = 1.6 \u00d7 10^-19 C) moves with speed 2 \u00d7 10^6 m/s perpendicular to a uniform magnetic field of 0.5 T. Find the radius of its circular trajectory.",
+    "options": [
+      {
+        "id": "A",
+        "text": "2.1 cm"
+      },
+      {
+        "id": "B",
+        "text": "8.4 cm"
+      },
+      {
+        "id": "C",
+        "text": "1.05 cm"
+      },
+      {
+        "id": "D",
+        "text": "4.2 cm"
+      }
+    ],
+    "correct_answer": "D",
+    "explanation": "Magnetic Lorentz force provides centripetal acceleration: qvB = mv^2/r => r = mv / (qB) = (1.67 \u00d7 10^-27 * 2 \u00d7 10^6) / (1.6 \u00d7 10^-19 * 0.5) = 3.34 \u00d7 10^-21 / 0.8 \u00d7 10^-19 = 0.04175 m \u2248 4.2 cm.",
+    "distractor_explanations": {
+      "A": "CALCULATION_ERROR: halved the value by omitting factor 2 from velocity.",
+      "B": "CALCULATION_ERROR: doubled the value by failing to multiply denominator by 0.5.",
+      "C": "FORMULA_SELECTION_ERROR: divided by qB twice in error."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "JEE_ADV_CHEM_101",
+    "exam": "JEE",
+    "paper": "JEE_ADV_2022_ADAPTED",
+    "subject": "Chemistry",
+    "chapter": "Physical Chemistry",
+    "topic": "Chemical & Ionic Equilibrium",
+    "concept_id": "chem_nernst_equation",
+    "skill": "analytical",
+    "difficulty": 0.83,
+    "discrimination": 1.75,
+    "estimated_time": 95,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[JEE Advanced Adapted] For the Daniell cell Zn | Zn^2+(0.01 M) || Cu^2+(1 M) | Cu with standard cell potential E\u00b0cell = 1.10 V, determine the cell potential Ecell at 298 K (use 2.303 RT/F = 0.0591 V).",
+    "options": [
+      {
+        "id": "A",
+        "text": "1.16 V"
+      },
+      {
+        "id": "B",
+        "text": "1.04 V"
+      },
+      {
+        "id": "C",
+        "text": "1.10 V"
+      },
+      {
+        "id": "D",
+        "text": "1.22 V"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation": "Applying the Nernst equation for n = 2: Ecell = E\u00b0cell - (0.0591 / 2) * log([Zn^2+]/[Cu^2+]) = 1.10 - 0.02955 * log(10^-2) = 1.10 - 0.02955 * (-2) = 1.10 + 0.0591 \u2248 1.16 V.",
+    "distractor_explanations": {
+      "B": "SIGN_ERROR: subtracted instead of adding the reaction quotient logarithmic correction.",
+      "C": "CONCEPTUAL_ERROR: ignored concentration dependence entirely, reporting standard E\u00b0.",
+      "D": "CALCULATION_ERROR: used n = 1 instead of n = 2 electrons transferred."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "JEE_ADV_CHEM_102",
+    "exam": "JEE",
+    "paper": "JEE_ADV_2021_ADAPTED",
+    "subject": "Chemistry",
+    "chapter": "Physical Chemistry",
+    "topic": "Chemical Thermodynamics",
+    "concept_id": "chem_crystal_field_theory",
+    "skill": "conceptual",
+    "difficulty": 0.8,
+    "discrimination": 1.7,
+    "estimated_time": 80,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[JEE Advanced Adapted] For the octahedral coordination complex [Ti(H2O)6]^3+ (where Ti^3+ has a d^1 electronic configuration), what is the Crystal Field Stabilization Energy (CFSE)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "-0.6 \u0394o"
+      },
+      {
+        "id": "B",
+        "text": "-0.4 \u0394o"
+      },
+      {
+        "id": "C",
+        "text": "-0.8 \u0394o"
+      },
+      {
+        "id": "D",
+        "text": "+0.4 \u0394o"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation": "In an octahedral crystal field, the 5 d-orbitals split into t2g (-0.4 \u0394o) and eg (+0.6 \u0394o). For d^1, the single electron enters t2g, yielding CFSE = 1 * (-0.4 \u0394o) = -0.4 \u0394o.",
+    "distractor_explanations": {
+      "A": "CONCEPTUAL_ERROR: confused eg splitting coefficient magnitude with t2g.",
+      "C": "CONCEPTUAL_ERROR: calculated for d^2 configuration (-0.8 \u0394o).",
+      "D": "SIGN_ERROR: inverted the sign of t2g stabilization energy."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "JEE_ADV_CHEM_103",
+    "exam": "JEE",
+    "paper": "JEE_ADV_2023_ADAPTED",
+    "subject": "Chemistry",
+    "chapter": "Physical Chemistry",
+    "topic": "Chemical Thermodynamics",
+    "concept_id": "chem_kinetics_half_life_order",
+    "skill": "analytical",
+    "difficulty": 0.78,
+    "discrimination": 1.6,
+    "estimated_time": 85,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[JEE Advanced Adapted] For a chemical reaction, when the initial concentration of reactant [A]0 is doubled, the half-life t_1/2 is observed to reduce to exactly half its initial value. What is the overall order of the reaction?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Order = 1"
+      },
+      {
+        "id": "B",
+        "text": "Order = 0"
+      },
+      {
+        "id": "C",
+        "text": "Order = 2"
+      },
+      {
+        "id": "D",
+        "text": "Order = 3"
+      }
+    ],
+    "correct_answer": "C",
+    "explanation": "Half-life relates to initial concentration as t_1/2 \u221d 1 / [A]0^(n-1). Doubling [A]0 cuts t_1/2 in half => (1/2) = (1/2)^(n-1) => n - 1 = 1 => n = 2 (Second Order).",
+    "distractor_explanations": {
+      "A": "CONCEPTUAL_ERROR: assumed first-order where t_1/2 is independent of [A]0.",
+      "B": "CONCEPTUAL_ERROR: for zero order, t_1/2 is directly proportional to [A]0 (doubling [A]0 doubles half-life).",
+      "D": "CALCULATION_ERROR: miscalculated the power relationship."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "JEE_ADV_CHEM_104",
+    "exam": "JEE",
+    "paper": "JEE_ADV_2022_ADAPTED",
+    "subject": "Chemistry",
+    "chapter": "Physical Chemistry",
+    "topic": "Chemical & Ionic Equilibrium",
+    "concept_id": "chem_oxidation_states_pblock",
+    "skill": "conceptual",
+    "difficulty": 0.75,
+    "discrimination": 1.5,
+    "estimated_time": 70,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[JEE Advanced Adapted] What is the formal oxidation state of phosphorus in pyrophosphoric acid (H4P2O7)?",
+    "options": [
+      {
+        "id": "A",
+        "text": "+3"
+      },
+      {
+        "id": "B",
+        "text": "+4"
+      },
+      {
+        "id": "C",
+        "text": "+7"
+      },
+      {
+        "id": "D",
+        "text": "+5"
+      }
+    ],
+    "correct_answer": "D",
+    "explanation": "Assign standard oxidation numbers: H = +1, O = -2. Neutral molecule: 4(+1) + 2x + 7(-2) = 0 => 4 + 2x - 14 = 0 => 2x = 10 => x = +5.",
+    "distractor_explanations": {
+      "A": "CALCULATION_ERROR: confused pyrophosphoric with pyrophosphorous acid (H4P2O5, P = +3).",
+      "B": "CARELESS_ERROR: arithmetic slip in balancing charges.",
+      "C": "CONCEPTUAL_ERROR: assigned oxygen -1 (peroxide assumption)."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "JEE_ADV_MATH_101",
+    "exam": "JEE",
+    "paper": "JEE_ADV_2021_ADAPTED",
+    "subject": "Mathematics",
+    "chapter": "Algebra & Vectors",
+    "topic": "Quadratic Equations",
+    "concept_id": "math_complex_modulus",
+    "skill": "application",
+    "difficulty": 0.8,
+    "discrimination": 1.7,
+    "estimated_time": 70,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[JEE Advanced Adapted] Let z be a complex number given by z = 1 + i. Find the absolute magnitude |z^10|.",
+    "options": [
+      {
+        "id": "A",
+        "text": "32"
+      },
+      {
+        "id": "B",
+        "text": "16"
+      },
+      {
+        "id": "C",
+        "text": "64"
+      },
+      {
+        "id": "D",
+        "text": "1024"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation": "|z| = sqrt(1^2 + 1^2) = sqrt(2). By modulus exponent property: |z^10| = |z|^10 = (sqrt(2))^10 = 2^5 = 32.",
+    "distractor_explanations": {
+      "B": "CALCULATION_ERROR: evaluated 2^4 = 16 instead of 2^5.",
+      "C": "CALCULATION_ERROR: evaluated 2^6 = 64.",
+      "D": "FORMULA_SELECTION_ERROR: calculated 2^10 omitting the square root in |z|."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "JEE_ADV_MATH_102",
+    "exam": "JEE",
+    "paper": "JEE_ADV_2023_ADAPTED",
+    "subject": "Mathematics",
+    "chapter": "Algebra & Vectors",
+    "topic": "Quadratic Equations",
+    "concept_id": "math_conditional_probability",
+    "skill": "analytical",
+    "difficulty": 0.85,
+    "discrimination": 1.8,
+    "estimated_time": 100,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[JEE Advanced Adapted] Two fair six-faced dice are rolled simultaneously. Find the conditional probability that the sum of the numbers is 8, given that at least one of the dice shows a 5.",
+    "options": [
+      {
+        "id": "A",
+        "text": "1/6"
+      },
+      {
+        "id": "B",
+        "text": "2/11"
+      },
+      {
+        "id": "C",
+        "text": "1/11"
+      },
+      {
+        "id": "D",
+        "text": "2/9"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation": "Event B (at least one 5): {(5,1)..(5,6), (1,5)..(6,5)}, total 11 outcomes. Event A \u2229 B (sum is 8 and at least one 5): {(3,5), (5,3)}, total 2 outcomes. Conditional probability P(A|B) = n(A \u2229 B) / n(B) = 2/11.",
+    "distractor_explanations": {
+      "A": "CONCEPTUAL_ERROR: computed unconditional P(sum=8) without conditioning on event B.",
+      "C": "CALCULATION_ERROR: miscounted {(3,5), (5,3)} as a single unordered pair.",
+      "D": "FORMULA_SELECTION_ERROR: subtracted double 5 incorrectly from sample space."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "JEE_ADV_MATH_103",
+    "exam": "JEE",
+    "paper": "JEE_ADV_2022_ADAPTED",
+    "subject": "Mathematics",
+    "chapter": "Algebra & Vectors",
+    "topic": "Vectors & 3D Geometry",
+    "concept_id": "math_scalar_triple_product",
+    "skill": "application",
+    "difficulty": 0.78,
+    "discrimination": 1.6,
+    "estimated_time": 85,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[JEE Advanced Adapted] Given three vectors a = i + j + k, b = i - j + k, and c = i + j - k, determine the scalar triple product [a b c].",
+    "options": [
+      {
+        "id": "A",
+        "text": "0"
+      },
+      {
+        "id": "B",
+        "text": "2"
+      },
+      {
+        "id": "C",
+        "text": "4"
+      },
+      {
+        "id": "D",
+        "text": "-4"
+      }
+    ],
+    "correct_answer": "C",
+    "explanation": "The scalar triple product is the determinant: |[1, 1, 1], [1, -1, 1], [1, 1, -1]| = 1[(-1)(-1) - (1)(1)] - 1[(1)(-1) - (1)(1)] + 1[(1)(1) - (-1)(1)] = 1[0] - 1[-2] + 1[2] = 0 + 2 + 2 = 4.",
+    "distractor_explanations": {
+      "A": "CALCULATION_ERROR: sign mistake while expanding second cofactor caused false cancellation to zero.",
+      "B": "CALCULATION_ERROR: omitted the third cofactor expansion term.",
+      "D": "SIGN_ERROR: inverted permutation parity of determinant."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "JEE_ADV_MATH_104",
+    "exam": "JEE",
+    "paper": "JEE_ADV_2023_ADAPTED",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Integral Calculus & Differential Equations",
+    "concept_id": "math_definite_integral_king_property",
+    "skill": "analytical",
+    "difficulty": 0.9,
+    "discrimination": 2.0,
+    "estimated_time": 130,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[JEE Advanced Adapted] Evaluate the definite integral: I = \u222b_0^\u03c0 [x sin(x)] / [1 + cos^2(x)] dx.",
+    "options": [
+      {
+        "id": "A",
+        "text": "\u03c0^2 / 2"
+      },
+      {
+        "id": "B",
+        "text": "\u03c0^2 / 8"
+      },
+      {
+        "id": "C",
+        "text": "\u03c0^2 / 6"
+      },
+      {
+        "id": "D",
+        "text": "\u03c0^2 / 4"
+      }
+    ],
+    "correct_answer": "D",
+    "explanation": "Apply King's property \u222b_0^a f(x)dx = \u222b_0^a f(a-x)dx: I = \u222b_0^\u03c0 [(\u03c0-x)sin x] / [1+cos^2 x] dx = \u03c0 \u222b_0^\u03c0 sin x / (1+cos^2 x) dx - I => 2I = \u03c0 [-arctan(cos x)]_0^\u03c0 = \u03c0 [arctan(1) - (-arctan(1))] = \u03c0 [\u03c0/4 + \u03c0/4] = \u03c0^2/2 => I = \u03c0^2 / 4.",
+    "distractor_explanations": {
+      "A": "CALCULATION_ERROR: solved for 2I = \u03c0^2/2 but forgot to divide by 2 for I.",
+      "B": "CALCULATION_ERROR: miscalculated arctan limits as \u03c0/8.",
+      "C": "FORMULA_SELECTION_ERROR: assumed denominator integral was \u03c0/3."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
   }
 ]

@@ -73,7 +73,7 @@ class QuizEngine:
             diagnostic_goal=assessment_type,
             desired_difficulty=None,
             student_theta=student_theta,
-            count=9 if assessment_type == "DIAGNOSTIC" else 4
+            count=12 if assessment_type == "DIAGNOSTIC" else 6
         )
 
         return self._create_assessment_session(
@@ -222,6 +222,32 @@ class QuizEngine:
             duration_minutes=duration_minutes,
             questions=questions,
             test_tier="FULL_SCAN"
+        )
+
+    def start_advanced_challenge(
+        self,
+        student_id: str,
+        exam: str,
+        subject: Optional[str] = None,
+        duration_minutes: int = 20
+    ) -> Dict[str, Any]:
+        """Tier 4: Advanced Mastery Challenge (Higher difficulty questions 0.75 - 0.92)."""
+        questions = self.selector.select_advanced_questions(
+            exam=exam,
+            subject=subject,
+            student_id=student_id,
+            count=6
+        )
+        sub_str = f" ({subject})" if subject else ""
+        return self._create_assessment_session(
+            student_id=student_id,
+            exam=exam,
+            title=f"{exam} Tier 4 Advanced Mastery Challenge{sub_str}",
+            assessment_type="ADVANCED_CHALLENGE",
+            stage=4,
+            duration_minutes=duration_minutes,
+            questions=questions,
+            test_tier="ADVANCED_CHALLENGE"
         )
 
     def submit_assessment(
@@ -448,6 +474,8 @@ class QuizEngine:
                     "drill_recommended": True
                 })
 
+        advanced_challenge_eligible = score_pct >= 80.0
+
         self.db.commit()
 
         return {
@@ -459,6 +487,7 @@ class QuizEngine:
             "time_taken_seconds": total_time_taken,
             "status": attempt.status,
             "weak_subjects": weak_subjects,
+            "advanced_challenge_eligible": advanced_challenge_eligible,
             "items_feedback": items_feedback,
             "updated_masteries": updated_masteries
         }

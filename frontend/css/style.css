@@ -1032,6 +1032,59 @@ select.form-input { cursor: pointer; }
   transform: translateY(-1px);
 }
 
+/* FAQ Grid — AI Study Mentor */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.faq-category {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  transition: border-color 0.2s;
+}
+.faq-category:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+}
+.faq-cat-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  margin-bottom: 0.4rem;
+  opacity: 0.85;
+}
+.faq-btn {
+  text-align: left;
+  font-size: 0.82rem;
+  font-weight: 500;
+  font-family: var(--font-body);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s, transform 0.15s;
+  line-height: 1.45;
+}
+.faq-btn:hover {
+  background: rgba(99, 102, 241, 0.14);
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+  transform: translateX(3px);
+}
+.faq-btn:active {
+  transform: translateX(1px);
+  background: rgba(99, 102, 241, 0.22);
+}
+
 /* ================================================================
    PLATFORM UPGRADE V3.0 — EXAM THEMES (JEE vs NEET)
    ================================================================ */

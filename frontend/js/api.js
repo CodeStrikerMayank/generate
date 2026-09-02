@@ -105,6 +105,13 @@ const API = {
     return res.json();
   },
 
+  async startAdvanced(studentId, exam, subject = null) {
+    const url = `${API_BASE}/assessments/start-advanced?student_id=${studentId}&exam=${exam}${subject ? '&subject=' + encodeURIComponent(subject) : ''}`;
+    const res = await fetch(url, { method: 'POST' });
+    if (!res.ok) throw new Error('Failed to start advanced challenge');
+    return res.json();
+  },
+
   async submitAssessment(attemptId, responses) {
     const res = await fetch(`${API_BASE}/assessments/submit`, {
       method: 'POST',

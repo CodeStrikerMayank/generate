@@ -113,6 +113,29 @@ const QuizController = {
     }
   },
 
+  async startAdvancedChallenge(subject = null) {
+    if (!AppState.student) return;
+    try {
+      const modal = document.getElementById('resultModal');
+      if (modal) modal.classList.remove('active');
+
+      const data = await API.startAdvanced(AppState.student.student_id, AppState.currentExam, subject);
+      this.currentAttempt = data;
+      this.currentIndex = 0;
+      this.userResponses.clear();
+      this._shuffledOptions.clear();
+      this.remainingSeconds = (data.duration_minutes || 20) * 60;
+
+      AppState.switchTab('assessment');
+      this.bindKeyboardShortcuts();
+      this.renderQuizArena();
+      this.startTimer();
+      AppState._toast(`🏆 Started Tier 4 Advanced Mastery Challenge!`, 'success');
+    } catch (err) {
+      alert('Error starting advanced challenge: ' + err.message);
+    }
+  },
+
   bindKeyboardShortcuts() {
     if (this.keyHandlerBound) return;
     window.addEventListener('keydown', (e) => {
@@ -500,6 +523,21 @@ const QuizController = {
               </button>
             `).join('')}
           </div>
+        </div>
+      ` : ''}
+
+      <!-- Tier 4 Advanced Challenge Trigger (if score >= 80%) -->
+      ${(result.score_percentage >= 80 || result.advanced_challenge_eligible) ? `
+        <div style="background:linear-gradient(135deg, rgba(168,85,247,0.12) 0%, rgba(99,102,241,0.1) 100%);border:1px solid rgba(168,85,247,0.35);border-radius:var(--radius-sm);padding:0.9rem 1rem;margin:1rem 0;">
+          <div style="display:flex;align-items:center;gap:6px;font-weight:800;font-size:0.88rem;color:var(--accent-purple);margin-bottom:0.35rem;">
+            <span>🏆</span> High Mastery Achieved (${result.score_percentage}%) — Tier 4 Challenge Unlocked!
+          </div>
+          <p style="font-size:0.78rem;color:var(--text-secondary);margin-bottom:0.65rem;line-height:1.45;">
+            You have conquered standard-tier questions. Test your problem-solving against high-difficulty problems (0.75 – 0.92) designed to boost your Latent Ability (θ).
+          </p>
+          <button class="btn-primary glow-pulse" style="background:linear-gradient(135deg, #a855f7 0%, #6366f1 100%);padding:0.55rem 1rem;font-size:0.82rem;border-radius:var(--radius-sm);" onclick="QuizController.startAdvancedChallenge()">
+            ⚡ Launch Tier 4 Advanced Mastery Challenge (6 Qs) →
+          </button>
         </div>
       ` : ''}
 

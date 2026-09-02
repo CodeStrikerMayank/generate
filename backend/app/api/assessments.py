@@ -62,6 +62,22 @@ def start_full_scan_assessment(
     )
     return session_data
 
+@router.post("/start-advanced", response_model=AssessmentSessionResponse)
+def start_advanced_assessment(
+    student_id: str,
+    exam: str = "JEE",
+    subject: Optional[str] = None,
+    db: Session = Depends(get_db)
+):
+    engine = QuizEngine(db)
+    session_data = engine.start_advanced_challenge(
+        student_id=student_id,
+        exam=exam,
+        subject=subject,
+        duration_minutes=20
+    )
+    return session_data
+
 @router.post("/submit", response_model=AssessmentResultResponse)
 def submit_assessment(
     req: AssessmentSubmitRequest,

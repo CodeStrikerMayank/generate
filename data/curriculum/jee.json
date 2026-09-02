@@ -1,7 +1,9 @@
 {
   "exam_id": "JEE",
   "name": "JEE Main (Joint Entrance Examination)",
-  "tracks": ["JEE_MAIN"],
+  "tracks": [
+    "JEE_MAIN"
+  ],
   "subjects": [
     {
       "subject_id": "JEE_PHY",
@@ -19,7 +21,7 @@
                   "concept_id": "phy_vectors_basic",
                   "name": "Vectors & Resolution of Forces",
                   "estimated_minutes": 30,
-                  "exam_relevance": 0.90,
+                  "exam_relevance": 0.9,
                   "difficulty_weight": 0.35,
                   "description": "Vector addition, orthogonal resolution, dot and cross products."
                 },
@@ -28,7 +30,7 @@
                   "name": "Free Body Diagrams & Equilibrium",
                   "estimated_minutes": 40,
                   "exam_relevance": 0.95,
-                  "difficulty_weight": 0.50,
+                  "difficulty_weight": 0.5,
                   "description": "Lami's theorem, normal force, tension, multi-body equilibrium."
                 },
                 {
@@ -68,6 +70,14 @@
                   "exam_relevance": 0.98,
                   "difficulty_weight": 0.78,
                   "description": "Potential energy curves, vertical circular motion, spring-mass oscillations."
+                },
+                {
+                  "concept_id": "phy_carnot_efficiency",
+                  "name": "Carnot Engine & Thermodynamic Cycles",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.94,
+                  "difficulty_weight": 0.8,
+                  "description": "Second law of thermodynamics, Carnot efficiency, and work done."
                 }
               ]
             },
@@ -88,8 +98,16 @@
                   "name": "Simple Harmonic Motion (SHM)",
                   "estimated_minutes": 50,
                   "exam_relevance": 0.96,
-                  "difficulty_weight": 0.70,
+                  "difficulty_weight": 0.7,
                   "description": "Phase diagrams, velocity-displacement elliptical phase space, time period."
+                },
+                {
+                  "concept_id": "phy_rigid_body_energy_conservation",
+                  "name": "Rigid Body Dynamics & Energy Conservation",
+                  "estimated_minutes": 55,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.82,
+                  "description": "Conservation of energy in rotating and rolling rigid bodies."
                 }
               ]
             }
@@ -126,6 +144,22 @@
                   "exam_relevance": 0.94,
                   "difficulty_weight": 0.75,
                   "description": "Parallel plate capacitance, series/parallel combinations, energy density with dielectrics."
+                },
+                {
+                  "concept_id": "phy_capacitor_charge_redistribution",
+                  "name": "Capacitor Charge Redistribution & Common Potential",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.92,
+                  "difficulty_weight": 0.78,
+                  "description": "Charge sharing and energy loss in connected capacitors."
+                },
+                {
+                  "concept_id": "phy_lorentz_force_circular_motion",
+                  "name": "Lorentz Force & Helical/Circular Particle Trajectories",
+                  "estimated_minutes": 55,
+                  "exam_relevance": 0.96,
+                  "difficulty_weight": 0.85,
+                  "description": "Motion of charged particles in uniform and crossed magnetic fields."
                 }
               ]
             },
@@ -146,7 +180,7 @@
                   "name": "Zener Breakdown & Logic Gates",
                   "estimated_minutes": 45,
                   "exam_relevance": 0.97,
-                  "difficulty_weight": 0.60,
+                  "difficulty_weight": 0.6,
                   "description": "Heavily doped p-n junction zener diode breakdown voltage, De Morgan logic gates."
                 }
               ]
@@ -214,7 +248,7 @@
                   "name": "Limits & Indeterminate Forms",
                   "estimated_minutes": 55,
                   "exam_relevance": 0.96,
-                  "difficulty_weight": 0.70,
+                  "difficulty_weight": 0.7,
                   "description": "0/0, inf/inf, 1^inf limits, L'Hopital rule, Taylor series approximations."
                 },
                 {
@@ -251,7 +285,7 @@
                   "concept_id": "math_indefinite_integrals",
                   "name": "Indefinite Integration Techniques",
                   "estimated_minutes": 60,
-                  "exam_relevance": 0.90,
+                  "exam_relevance": 0.9,
                   "difficulty_weight": 0.75,
                   "description": "Integration by substitution, by parts, partial fractions, trigonometric integrals."
                 },
@@ -260,7 +294,7 @@
                   "name": "Definite Integrals & King's Rule",
                   "estimated_minutes": 70,
                   "exam_relevance": 0.99,
-                  "difficulty_weight": 0.90,
+                  "difficulty_weight": 0.9,
                   "description": "Definite integral properties, King's rule f(a+b-x), Leibniz differentiation under integral."
                 },
                 {
@@ -270,6 +304,14 @@
                   "exam_relevance": 0.96,
                   "difficulty_weight": 0.82,
                   "description": "Enclosed area between parabolas, lines, and trigonometric bounds."
+                },
+                {
+                  "concept_id": "math_definite_integral_king_property",
+                  "name": "Definite Integrals & King's Rule Applications",
+                  "estimated_minutes": 60,
+                  "exam_relevance": 0.98,
+                  "difficulty_weight": 0.9,
+                  "description": "Evaluation of symmetric trigonometric definite integrals via King's property."
                 }
               ]
             }
@@ -290,6 +332,22 @@
                   "exam_relevance": 0.92,
                   "difficulty_weight": 0.65,
                   "description": "Sum and product of roots, common root conditions, range of parameters for real roots."
+                },
+                {
+                  "concept_id": "math_complex_modulus",
+                  "name": "Complex Numbers, Modulus & De Moivre's Theorem",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.94,
+                  "difficulty_weight": 0.8,
+                  "description": "Modulus properties, polar form, and powers of complex numbers."
+                },
+                {
+                  "concept_id": "math_conditional_probability",
+                  "name": "Conditional Probability & Bayes' Theorem",
+                  "estimated_minutes": 55,
+                  "exam_relevance": 0.96,
+                  "difficulty_weight": 0.85,
+                  "description": "Reduced sample space, conditional independence, and Bayes formula."
                 }
               ]
             },
@@ -302,8 +360,16 @@
                   "name": "Planes & Direction Ratios in 3D",
                   "estimated_minutes": 60,
                   "exam_relevance": 0.98,
-                  "difficulty_weight": 0.80,
+                  "difficulty_weight": 0.8,
                   "description": "Equation of plane through line intersection, perpendicular foot, skew line distance."
+                },
+                {
+                  "concept_id": "math_scalar_triple_product",
+                  "name": "Scalar Triple Product & Vector Coplanarity",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.93,
+                  "difficulty_weight": 0.78,
+                  "description": "Determinant evaluation of box product [a b c] and geometrical applications."
                 }
               ]
             }
@@ -338,6 +404,22 @@
                   "exam_relevance": 0.98,
                   "difficulty_weight": 0.82,
                   "description": "Second Law, delta G = delta H - T*delta S, relationship with equilibrium constant K."
+                },
+                {
+                  "concept_id": "chem_crystal_field_theory",
+                  "name": "Crystal Field Theory & CFSE in Octahedral Complexes",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.92,
+                  "difficulty_weight": 0.8,
+                  "description": "d-orbital splitting, CFSE calculation, and magnetic properties."
+                },
+                {
+                  "concept_id": "chem_kinetics_half_life_order",
+                  "name": "Chemical Kinetics & Reaction Order from Half-Life",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.93,
+                  "difficulty_weight": 0.78,
+                  "description": "Integrated rate laws, half-life dependencies, and order determinations."
                 }
               ]
             },
@@ -349,8 +431,8 @@
                   "concept_id": "chem_chemical_equil_kp_kc",
                   "name": "Law of Mass Action, Kp & Kc",
                   "estimated_minutes": 45,
-                  "exam_relevance": 0.90,
-                  "difficulty_weight": 0.60,
+                  "exam_relevance": 0.9,
+                  "difficulty_weight": 0.6,
                   "description": "Kp = Kc(RT)^delta_n, Le Chatelier's principle, reaction quotient Q."
                 },
                 {
@@ -360,6 +442,22 @@
                   "exam_relevance": 0.96,
                   "difficulty_weight": 0.85,
                   "description": "Ostwald dilution, Henderson-Hasselbalch equation for buffers, solubility product Ksp."
+                },
+                {
+                  "concept_id": "chem_nernst_equation",
+                  "name": "Nernst Equation & Electrochemical Cell EMF",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.83,
+                  "description": "Concentration dependence of cell potential and equilibrium constants."
+                },
+                {
+                  "concept_id": "chem_oxidation_states_pblock",
+                  "name": "p-Block Oxyacids & Oxidation State Determination",
+                  "estimated_minutes": 40,
+                  "exam_relevance": 0.9,
+                  "difficulty_weight": 0.75,
+                  "description": "Structures, oxidation states, and basicity of phosphorus oxyacids."
                 }
               ]
             }
@@ -378,7 +476,7 @@
                   "name": "Inductive, Resonance & Hyperconjugation",
                   "estimated_minutes": 50,
                   "exam_relevance": 0.98,
-                  "difficulty_weight": 0.70,
+                  "difficulty_weight": 0.7,
                   "description": "Mesomeric stabilization, intermediate stability (carbocations, free radicals), aromaticity."
                 },
                 {
@@ -407,7 +505,7 @@
     {
       "from_concept": "phy_fbd_equilibrium",
       "to_concept": "phy_newton_second_law",
-      "strength": 0.90,
+      "strength": 0.9,
       "relationship": "prerequisite",
       "description": "Equilibrium FBD is the required prerequisite for accelerated dynamic frame analysis."
     },
@@ -435,14 +533,14 @@
     {
       "from_concept": "phy_conservation_energy",
       "to_concept": "phy_shm_oscillations",
-      "strength": 0.90,
+      "strength": 0.9,
       "relationship": "prerequisite",
       "description": "Energy conservation in harmonic oscillators links potential and kinetic energy phase space."
     },
     {
       "from_concept": "math_functions_domain_range",
       "to_concept": "math_limits",
-      "strength": 0.90,
+      "strength": 0.9,
       "relationship": "prerequisite",
       "description": "Understanding function domain and asymptotic behavior is necessary for evaluating limits."
     },

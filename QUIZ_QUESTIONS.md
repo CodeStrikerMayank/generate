@@ -1,89 +1,117 @@
 # Adaptive Intelligence Engine — Comprehensive Quiz Question Bank
 
 > **Platform**: CoreShadow Adaptive Student Intelligence & Dynamic Roadmap Engine  
-> **Target Examinations**: JEE Main (PCM) & NEET-UG (PCB)  
-> **Total Question Bank**: 30 Authentically Adapted PYQ Questions (15 JEE Main + 15 NEET-UG)  
-> **Question Origin**: Adapted from official NTA Past Year Papers (2021–2023) with modified numerical parameters and distractor error traps to eliminate rote memorization and assess true conceptual mastery.
+> **Target Examinations**: JEE Main / JEE Advanced (PCM) & NEET-UG (PCB)  
+> **Total Question Bank**: 54 Authentically Adapted PYQ & Advanced Challenge Questions (27 JEE + 27 NEET)  
+> **Difficulty Range**: `0.38 – 0.92` spanning Standard Diagnostic Tiers (Tiers 1–3) and the high-difficulty Advanced Mastery Challenge (Tier 4)  
+> **Question Origin**: Adapted from official NTA & JEE Advanced Past Year Papers with modified numerical parameters and distractor error traps to eliminate rote memorization and assess true conceptual mastery.
 
 ---
 
 ## Table of Contents
 
-1. [Architecture & Pedagogical Design](#architecture--pedagogical-design)
-2. [Question Bank Summary Matrix](#question-bank-summary-matrix)
-3. [Part I: JEE Main Question Bank (15 Questions)](#part-i-jee-main-question-bank)
-   - [Physics (5 Questions)](#jee-physics)
-   - [Chemistry (5 Questions)](#jee-chemistry)
-   - [Mathematics (5 Questions)](#jee-mathematics)
-4. [Part II: NEET-UG Question Bank (15 Questions)](#part-ii-neet-ug-question-bank)
-   - [Biology (5 Questions)](#neet-biology)
-   - [Physics (5 Questions)](#neet-physics)
-   - [Chemistry (5 Questions)](#neet-chemistry)
+1. [Architecture & 4-Tier Assessment Pipeline](#architecture--4-tier-assessment-pipeline)
+2. [Complete Question Bank Summary Matrix](#complete-question-bank-summary-matrix)
+3. [Part I: JEE Main & Advanced Question Bank (27 Questions)](#part-i-jee-question-bank)
+   - [Physics (9 Questions)](#jee-physics)
+   - [Chemistry (9 Questions)](#jee-chemistry)
+   - [Mathematics (9 Questions)](#jee-mathematics)
+4. [Part II: NEET-UG & Advanced Question Bank (27 Questions)](#part-ii-neet-question-bank)
+   - [Biology (9 Questions)](#neet-biology)
+   - [Physics (9 Questions)](#neet-physics)
+   - [Chemistry (9 Questions)](#neet-chemistry)
 5. [Cognitive Distractor Taxonomy](#cognitive-distractor-taxonomy)
 
 ---
 
-## Architecture & Pedagogical Design
+## Architecture & 4-Tier Assessment Pipeline
 
-The question bank is engineered to power a 3-tier adaptive assessment pipeline:
+The question bank powers a 4-tier adaptive diagnostic & mastery pipeline:
 - **Tier 1 — Compulsory Diagnostic Screener (9 Qs)**: 3 questions per subject. Evaluates global baseline ability ($\theta$), Bayesian Knowledge Tracing $P(L)$, and flags weak subjects ($< 60\%$ accuracy).
 - **Tier 2 — Targeted Chapter Drills (5 Qs)**: Triggered for flagged weak areas or specific chapters to identify fine-grained prerequisite gaps.
 - **Tier 3 — Full-Syllabus Deep Scan (15 Qs)**: Comprehensive 15-question diagnostic across all major curriculum chapters.
+- **Tier 4 — Advanced Mastery Challenge (6 Qs)**: Triggered for high-performing students who score $\ge 80\%$ on Tier 1 or Tier 3 assessments. Features questions with higher difficulty ($b \in [0.75, 0.92]$) and elevated discrimination ($a \in [1.5, 2.0]$) to prevent ability plateauing and calibrate high Latent Ability ($\theta$).
 
 Each question is parameterized with:
+- **Assessment Tier**: `STANDARD` (Tiers 1-3) or `ADVANCED` (Tier 4).
 - **IRT Difficulty ($b \in [0, 1]$)**: Calibrated against item response theory.
 - **IRT Discrimination ($a \in [1.0, 2.5]$)**: Steepness of the item response function curve.
 - **Estimated Solve Time**: Realistic time budget in seconds.
-- **Cognitive Error Classification**: Every distractor option maps to a specific diagnosis (`CONCEPTUAL_ERROR`, `CALCULATION_ERROR`, `FORMULA_SELECTION_ERROR`, `SIGN_ERROR`, etc.).
+- **Cognitive Error Classification**: Every distractor option maps to a specific diagnosis (`CONCEPTUAL_ERROR`, `CALCULATION_ERROR`, `FORMULA_SELECTION_ERROR`, `SIGN_ERROR`, `CARELESS_ERROR`).
 
 ---
 
-## Question Bank Summary Matrix
+## Complete Question Bank Summary Matrix
 
-| # | Question ID | Exam | Subject | Chapter | Topic | Difficulty | Skill | Correct |
-|---|-------------|------|---------|---------|-------|------------|-------|---------|
-| 1 | `JEE_2021_PHY_001` | **JEE** | Physics | Electrodynamics & Semiconductors | AC Resonance & Semiconductor Diodes | 40% | conceptual | **B** |
-| 2 | `JEE_2021_PHY_002` | **JEE** | Physics | Modern Physics & Waves | Bohr Model & de Broglie Wavelength | 45% | conceptual | **A** |
-| 3 | `JEE_2021_PHY_005` | **JEE** | Physics | Mechanics | Center of Mass, Rotation & Gravitation | 72% | application | **D** |
-| 4 | `JEE_2021_PHY_007` | **JEE** | Physics | Mechanics | Center of Mass, Rotation & Gravitation | 50% | conceptual | **A** |
-| 5 | `JEE_2021_PHY_016` | **JEE** | Physics | Modern Physics & Waves | Bohr Model & de Broglie Wavelength | 55% | application | **B** |
-| 6 | `JEE_2021_CHEM_001` | **JEE** | Chemistry | Organic Chemistry | General Organic Chemistry (GOC) | 68% | reasoning | **C** |
-| 7 | `JEE_2021_CHEM_006` | **JEE** | Chemistry | Organic Chemistry | General Organic Chemistry (GOC) | 60% | application | **A** |
-| 8 | `JEE_2021_CHEM_011` | **JEE** | Chemistry | Physical Chemistry | Chemical Thermodynamics | 57% | conceptual | **B** |
-| 9 | `JEE_2021_MATH_002` | **JEE** | Mathematics | Calculus | Limits, Continuity & Differentiability | 78% | application | **B** |
-| 10 | `JEE_2021_MATH_006` | **JEE** | Mathematics | Calculus | Limits, Continuity & Differentiability | 62% | application | **D** |
-| 11 | `JEE_2021_MATH_010` | **JEE** | Mathematics | Algebra & Vectors | Quadratic Equations | 65% | application | **D** |
-| 12 | `JEE_2021_MATH_014` | **JEE** | Mathematics | Calculus | Integral Calculus & Differential Equations | 70% | application | **B** |
-| 13 | `JEE_2022_CHEM_EQUIL_001` | **JEE** | Chemistry | Physical Chemistry | Chemical Thermodynamics | 52% | application | **A** |
-| 14 | `JEE_2023_CHEM_BUFFER_001` | **JEE** | Chemistry | Physical Chemistry | Ionic Equilibrium | 57% | application | **A** |
-| 15 | `JEE_2023_MATH_LIMIT_001` | **JEE** | Mathematics | Calculus | Limits, Continuity & Differentiability | 60% | application | **A** |
-| 16 | `NEET_BIO_CELL_001` | **NEET** | Biology | Cell Biology & Genetics | Cell: The Unit of Life | 38% | factual_recall | **A** |
-| 17 | `NEET_BIO_MIT_002` | **NEET** | Biology | Cell Biology & Genetics | Cell: The Unit of Life | 62% | application | **A** |
-| 18 | `NEET_BIO_GEN_003` | **NEET** | Biology | Cell Biology & Genetics | Principles of Inheritance and Variation | 55% | application | **A** |
-| 19 | `NEET_BIO_LINK_004` | **NEET** | Biology | Cell Biology & Genetics | Principles of Inheritance and Variation | 78% | reasoning | **A** |
-| 20 | `NEET_BIO_CIRC_005` | **NEET** | Biology | Human Physiology | Body Fluids and Circulation | 45% | factual_recall | **A** |
-| 21 | `NEET_BIO_PHYS_006` | **NEET** | Biology | Human Physiology | Body Fluids and Circulation | 52% | application | **A** |
-| 22 | `NEET_PHY_OPT_001` | **NEET** | Physics | Optics | Ray Optics & Optical Instruments | 57% | application | **A** |
-| 23 | `NEET_PHY_MECH_002` | **NEET** | Physics | Mechanics & Laws of Motion | Kinematics & Work-Energy | 60% | application | **A** |
-| 24 | `NEET_PHY_KIN_003` | **NEET** | Physics | Mechanics & Laws of Motion | Kinematics & Work-Energy | 48% | application | **A** |
-| 25 | `NEET_CHEM_BIOMOL_001` | **NEET** | Chemistry | Biomolecules & Organic Chemistry | Biomolecules | 42% | conceptual | **A** |
-| 26 | `NEET_CHEM_EQUIL_002` | **NEET** | Chemistry | Physical Chemistry & Equilibrium | Ionic Equilibrium & Acids/Bases | 65% | application | **A** |
-| 27 | `NEET_CHEM_CARB_003` | **NEET** | Chemistry | Biomolecules & Organic Chemistry | Biomolecules | 50% | conceptual | **A** |
-| 28 | `NEET_PHY_OPT_004` | **NEET** | Physics | Optics | Ray Optics & Optical Instruments | 62% | application | **A** |
-| 29 | `NEET_PHY_KIN_005` | **NEET** | Physics | Mechanics & Laws of Motion | Kinematics & Work-Energy | 65% | application | **A** |
-| 30 | `NEET_CHEM_EQUIL_004` | **NEET** | Chemistry | Physical Chemistry & Equilibrium | Ionic Equilibrium & Acids/Bases | 68% | application | **A** |
+| # | Question ID | Exam | Tier | Subject | Chapter | Topic | Difficulty | Skill | Correct |
+|---|-------------|------|------|---------|---------|-------|------------|-------|---------|
+| 1 | `JEE_2021_PHY_001` | **JEE** | Standard | Physics | Electrodynamics & Semiconductors | AC Resonance & Semiconductor Diodes | 40% | conceptual | **B** |
+| 2 | `JEE_2021_PHY_002` | **JEE** | Standard | Physics | Modern Physics & Waves | Bohr Model & de Broglie Wavelength | 45% | conceptual | **A** |
+| 3 | `JEE_2021_PHY_005` | **JEE** | Standard | Physics | Mechanics | Center of Mass, Rotation & Gravitation | 72% | application | **D** |
+| 4 | `JEE_2021_PHY_007` | **JEE** | Standard | Physics | Mechanics | Center of Mass, Rotation & Gravitation | 50% | conceptual | **A** |
+| 5 | `JEE_2021_PHY_016` | **JEE** | Standard | Physics | Modern Physics & Waves | Bohr Model & de Broglie Wavelength | 55% | application | **B** |
+| 6 | `JEE_2021_CHEM_001` | **JEE** | Standard | Chemistry | Organic Chemistry | General Organic Chemistry (GOC) | 68% | reasoning | **C** |
+| 7 | `JEE_2021_CHEM_006` | **JEE** | Standard | Chemistry | Organic Chemistry | General Organic Chemistry (GOC) | 60% | application | **A** |
+| 8 | `JEE_2021_CHEM_011` | **JEE** | Standard | Chemistry | Physical Chemistry | Chemical Thermodynamics | 57% | conceptual | **B** |
+| 9 | `JEE_2021_MATH_002` | **JEE** | Standard | Mathematics | Calculus | Limits, Continuity & Differentiability | 78% | application | **B** |
+| 10 | `JEE_2021_MATH_006` | **JEE** | Standard | Mathematics | Calculus | Limits, Continuity & Differentiability | 62% | application | **D** |
+| 11 | `JEE_2021_MATH_010` | **JEE** | Standard | Mathematics | Algebra & Vectors | Quadratic Equations | 65% | application | **D** |
+| 12 | `JEE_2021_MATH_014` | **JEE** | Standard | Mathematics | Calculus | Integral Calculus & Differential Equations | 70% | application | **B** |
+| 13 | `JEE_2022_CHEM_EQUIL_001` | **JEE** | Standard | Chemistry | Physical Chemistry | Chemical Thermodynamics | 52% | application | **A** |
+| 14 | `JEE_2023_CHEM_BUFFER_001` | **JEE** | Standard | Chemistry | Physical Chemistry | Ionic Equilibrium | 57% | application | **A** |
+| 15 | `JEE_2023_MATH_LIMIT_001` | **JEE** | Standard | Mathematics | Calculus | Limits, Continuity & Differentiability | 60% | application | **A** |
+| 16 | `JEE_ADV_PHY_101` | **JEE** | **ADVANCED** | Physics | Mechanics | Center of Mass, Rotation & Gravitation | 82% | analytical | **A** |
+| 17 | `JEE_ADV_PHY_102` | **JEE** | **ADVANCED** | Physics | Electrodynamics & Semiconductors | Electrostatics & Capacitance | 78% | analytical | **B** |
+| 18 | `JEE_ADV_PHY_103` | **JEE** | **ADVANCED** | Physics | Mechanics | Work, Energy & Power | 80% | application | **C** |
+| 19 | `JEE_ADV_PHY_104` | **JEE** | **ADVANCED** | Physics | Electrodynamics & Semiconductors | Electrostatics & Capacitance | 85% | analytical | **D** |
+| 20 | `JEE_ADV_CHEM_101` | **JEE** | **ADVANCED** | Chemistry | Physical Chemistry | Chemical & Ionic Equilibrium | 83% | analytical | **A** |
+| 21 | `JEE_ADV_CHEM_102` | **JEE** | **ADVANCED** | Chemistry | Physical Chemistry | Chemical Thermodynamics | 80% | conceptual | **B** |
+| 22 | `JEE_ADV_CHEM_103` | **JEE** | **ADVANCED** | Chemistry | Physical Chemistry | Chemical Thermodynamics | 78% | analytical | **C** |
+| 23 | `JEE_ADV_CHEM_104` | **JEE** | **ADVANCED** | Chemistry | Physical Chemistry | Chemical & Ionic Equilibrium | 75% | conceptual | **D** |
+| 24 | `JEE_ADV_MATH_101` | **JEE** | **ADVANCED** | Mathematics | Algebra & Vectors | Quadratic Equations | 80% | application | **A** |
+| 25 | `JEE_ADV_MATH_102` | **JEE** | **ADVANCED** | Mathematics | Algebra & Vectors | Quadratic Equations | 85% | analytical | **B** |
+| 26 | `JEE_ADV_MATH_103` | **JEE** | **ADVANCED** | Mathematics | Algebra & Vectors | Vectors & 3D Geometry | 78% | application | **C** |
+| 27 | `JEE_ADV_MATH_104` | **JEE** | **ADVANCED** | Mathematics | Calculus | Integral Calculus & Differential Equations | 90% | analytical | **D** |
+| 28 | `NEET_BIO_CELL_001` | **NEET** | Standard | Biology | Cell Biology & Genetics | Cell: The Unit of Life | 38% | factual_recall | **A** |
+| 29 | `NEET_BIO_MIT_002` | **NEET** | Standard | Biology | Cell Biology & Genetics | Cell: The Unit of Life | 62% | application | **A** |
+| 30 | `NEET_BIO_GEN_003` | **NEET** | Standard | Biology | Cell Biology & Genetics | Principles of Inheritance and Variation | 55% | application | **A** |
+| 31 | `NEET_BIO_LINK_004` | **NEET** | Standard | Biology | Cell Biology & Genetics | Principles of Inheritance and Variation | 78% | reasoning | **A** |
+| 32 | `NEET_BIO_CIRC_005` | **NEET** | Standard | Biology | Human Physiology | Body Fluids and Circulation | 45% | factual_recall | **A** |
+| 33 | `NEET_BIO_PHYS_006` | **NEET** | Standard | Biology | Human Physiology | Body Fluids and Circulation | 52% | application | **A** |
+| 34 | `NEET_PHY_OPT_001` | **NEET** | Standard | Physics | Optics | Ray Optics & Optical Instruments | 57% | application | **A** |
+| 35 | `NEET_PHY_MECH_002` | **NEET** | Standard | Physics | Mechanics & Laws of Motion | Kinematics & Work-Energy | 60% | application | **A** |
+| 36 | `NEET_PHY_KIN_003` | **NEET** | Standard | Physics | Mechanics & Laws of Motion | Kinematics & Work-Energy | 48% | application | **A** |
+| 37 | `NEET_CHEM_BIOMOL_001` | **NEET** | Standard | Chemistry | Biomolecules & Organic Chemistry | Biomolecules | 42% | conceptual | **A** |
+| 38 | `NEET_CHEM_EQUIL_002` | **NEET** | Standard | Chemistry | Physical Chemistry & Equilibrium | Ionic Equilibrium & Acids/Bases | 65% | application | **A** |
+| 39 | `NEET_CHEM_CARB_003` | **NEET** | Standard | Chemistry | Biomolecules & Organic Chemistry | Biomolecules | 50% | conceptual | **A** |
+| 40 | `NEET_PHY_OPT_004` | **NEET** | Standard | Physics | Optics | Ray Optics & Optical Instruments | 62% | application | **A** |
+| 41 | `NEET_PHY_KIN_005` | **NEET** | Standard | Physics | Mechanics & Laws of Motion | Kinematics & Work-Energy | 65% | application | **A** |
+| 42 | `NEET_CHEM_EQUIL_004` | **NEET** | Standard | Chemistry | Physical Chemistry & Equilibrium | Ionic Equilibrium & Acids/Bases | 68% | application | **A** |
+| 43 | `NEET_ADV_BIO_101` | **NEET** | **ADVANCED** | Biology | Cell Biology & Genetics | Cell: The Unit of Life | 80% | conceptual | **A** |
+| 44 | `NEET_ADV_BIO_102` | **NEET** | **ADVANCED** | Biology | Human Physiology | Body Fluids and Circulation | 82% | reasoning | **B** |
+| 45 | `NEET_ADV_BIO_103` | **NEET** | **ADVANCED** | Biology | Cell Biology & Genetics | Principles of Inheritance and Variation | 85% | analytical | **C** |
+| 46 | `NEET_ADV_BIO_104` | **NEET** | **ADVANCED** | Biology | Cell Biology & Genetics | Principles of Inheritance and Variation | 78% | application | **D** |
+| 47 | `NEET_ADV_PHY_101` | **NEET** | **ADVANCED** | Physics | Mechanics & Laws of Motion | Kinematics & Work-Energy | 75% | application | **A** |
+| 48 | `NEET_ADV_PHY_102` | **NEET** | **ADVANCED** | Physics | Optics | Ray Optics & Optical Instruments | 78% | analytical | **B** |
+| 49 | `NEET_ADV_PHY_103` | **NEET** | **ADVANCED** | Physics | Optics | Ray Optics & Optical Instruments | 80% | analytical | **C** |
+| 50 | `NEET_ADV_PHY_104` | **NEET** | **ADVANCED** | Physics | Mechanics & Laws of Motion | Kinematics & Work-Energy | 77% | reasoning | **D** |
+| 51 | `NEET_ADV_CHEM_101` | **NEET** | **ADVANCED** | Chemistry | Physical Chemistry & Equilibrium | Ionic Equilibrium & Acids/Bases | 72% | conceptual | **A** |
+| 52 | `NEET_ADV_CHEM_102` | **NEET** | **ADVANCED** | Chemistry | Physical Chemistry & Equilibrium | Ionic Equilibrium & Acids/Bases | 78% | application | **B** |
+| 53 | `NEET_ADV_CHEM_103` | **NEET** | **ADVANCED** | Chemistry | Biomolecules & Organic Chemistry | Biomolecules | 75% | conceptual | **C** |
+| 54 | `NEET_ADV_CHEM_104` | **NEET** | **ADVANCED** | Chemistry | Biomolecules & Organic Chemistry | Biomolecules | 88% | analytical | **D** |
 
 ---
 
-## Part I: JEE Main Question Bank
+## Part I: JEE Question Bank
 
-### Physics (JEE Main Track)
+### Physics (JEE Main & Advanced)
 
 #### Q1. `JEE_2021_PHY_001` — AC Resonance & Semiconductor Diodes
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Physics** |
 | **Chapter** | Electrodynamics & Semiconductors |
 | **Concept ID** | `phy_zener_logic_gates` |
@@ -128,7 +156,8 @@ Zener breakdown occurs in a p-n junction diode having p and n regions both :
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Physics** |
 | **Chapter** | Modern Physics & Waves |
 | **Concept ID** | `phy_bohr_transitions` |
@@ -173,7 +202,8 @@ According to the Bohr atom model, in which of the following transitions will the
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Physics** |
 | **Chapter** | Mechanics |
 | **Concept ID** | `phy_center_of_mass_cutoff` |
@@ -214,7 +244,8 @@ A circular hole of radius (a/2) is cut out of a circular disc of radius 'a' such
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Physics** |
 | **Chapter** | Mechanics |
 | **Concept ID** | `phy_shm_oscillations` |
@@ -255,7 +286,8 @@ When a particle executes Simple Harmonic Motion (SHM), the nature of graphical r
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Physics** |
 | **Chapter** | Modern Physics & Waves |
 | **Concept ID** | `phy_de_broglie_waves` |
@@ -292,13 +324,182 @@ The de Broglie wavelength of a proton and an alpha-particle are equal. The ratio
 
 ---
 
-### Chemistry (JEE Main Track)
-
-#### Q6. `JEE_2021_CHEM_001` — General Organic Chemistry (GOC)
+#### Q6. `JEE_ADV_PHY_101` — Center of Mass, Rotation & Gravitation
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Physics** |
+| **Chapter** | Mechanics |
+| **Concept ID** | `phy_rigid_body_energy_conservation` |
+| **Target Skill** | `ANALYTICAL` |
+| **IRT Difficulty** | **0.82** (🔴 Expert) |
+| **IRT Discrimination ($a$)** | `1.8` |
+| **Estimated Time** | `110 seconds` (~1.8 min) |
+| **Source PYQ Paper** | `JEE_ADV_2023_ADAPTED` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `Yes` |
+
+**Problem Statement:**
+```text
+[JEE Advanced Adapted] A uniform rod of length L = 1.2 m, pivoted at one end, is held horizontal and released from rest. Taking g = 10 m/s^2, find its angular velocity as it passes through the vertical position.
+```
+
+**Options:**
+- **(A)** 5 rad/s
+- **(B)** 10 rad/s
+- **(C)** 2.5 rad/s
+- **(D)** √5 rad/s
+
+**Correct Answer:** `A`
+
+**Detailed Derivation & Explanation:**
+> By energy conservation, loss in PE of the center of mass equals gain in rotational KE: mg(L/2) = (1/2)I*omega^2, where I = (1/3)mL^2 for a rod pivoted at one end. This gives omega = sqrt(3g/L) = sqrt(3(10)/1.2) = sqrt(25) = 5 rad/s.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **B** | `FORMULA_SELECTION_ERROR` | used I = mL^2 (point mass) instead of (1/3)mL^2. |
+| **C** | `CALCULATION_ERROR` | forgot to take the square root. |
+| **D** | `CONCEPTUAL_ERROR` | used full length L instead of L/2 for the center-of-mass drop. |
+
+---
+
+#### Q7. `JEE_ADV_PHY_102` — Electrostatics & Capacitance
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Physics** |
+| **Chapter** | Electrodynamics & Semiconductors |
+| **Concept ID** | `phy_capacitor_charge_redistribution` |
+| **Target Skill** | `ANALYTICAL` |
+| **IRT Difficulty** | **0.78** (🟡 Hard) |
+| **IRT Discrimination ($a$)** | `1.6` |
+| **Estimated Time** | `90 seconds` (~1.5 min) |
+| **Source PYQ Paper** | `JEE_ADV_2022_ADAPTED` |
+| **Prerequisite Check** | `Yes` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[JEE Advanced Adapted] A 4 μF capacitor is charged to 12 V and then disconnected from the supply. It is subsequently connected across an uncharged 2 μF capacitor. Find the common potential difference across the parallel combination.
+```
+
+**Options:**
+- **(A)** 6 V
+- **(B)** 8 V
+- **(C)** 4 V
+- **(D)** 12 V
+
+**Correct Answer:** `B`
+
+**Detailed Derivation & Explanation:**
+> Total charge is conserved: Q = C1*V1 = 4 * 12 = 48 μC. Common potential V = Q / (C1 + C2) = 48 / 6 = 8 V.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CALCULATION_ERROR` | divided by wrong sum or subtracted potentials. |
+| **C** | `FORMULA_SELECTION_ERROR` | treated as series combination instead of parallel charge sharing. |
+| **D** | `CONCEPTUAL_ERROR` | assumed potential stays unchanged, ignoring charge redistribution. |
+
+---
+
+#### Q8. `JEE_ADV_PHY_103` — Work, Energy & Power
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Physics** |
+| **Chapter** | Mechanics |
+| **Concept ID** | `phy_carnot_efficiency` |
+| **Target Skill** | `APPLICATION` |
+| **IRT Difficulty** | **0.80** (🔴 Expert) |
+| **IRT Discrimination ($a$)** | `1.7` |
+| **Estimated Time** | `75 seconds` (~1.2 min) |
+| **Source PYQ Paper** | `JEE_ADV_2021_ADAPTED` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[JEE Advanced Adapted] A Carnot engine operates between a source at 227°C and a sink at 27°C, absorbing 800 J of heat per cycle from the source. Find the net work done per cycle.
+```
+
+**Options:**
+- **(A)** 480 J
+- **(B)** 200 J
+- **(C)** 320 J
+- **(D)** 400 J
+
+**Correct Answer:** `C`
+
+**Detailed Derivation & Explanation:**
+> Convert to Kelvin: T_h = 500 K, T_c = 300 K. Efficiency eta = 1 - T_c/T_h = 1 - 300/500 = 0.40. Work done W = eta * Q_h = 0.40 * 800 = 320 J.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CALCULATION_ERROR` | computed heat rejected to sink Q_c = (1 - eta)*Q_h = 480 J instead of work. |
+| **B** | `CONCEPTUAL_ERROR` | used Celsius temperatures directly without converting to absolute Kelvin. |
+| **D** | `CALCULATION_ERROR` | assumed eta = 0.50 due to round-off error. |
+
+---
+
+#### Q9. `JEE_ADV_PHY_104` — Electrostatics & Capacitance
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Physics** |
+| **Chapter** | Electrodynamics & Semiconductors |
+| **Concept ID** | `phy_lorentz_force_circular_motion` |
+| **Target Skill** | `ANALYTICAL` |
+| **IRT Difficulty** | **0.85** (🔴 Expert) |
+| **IRT Discrimination ($a$)** | `1.9` |
+| **Estimated Time** | `100 seconds` (~1.7 min) |
+| **Source PYQ Paper** | `JEE_ADV_2023_ADAPTED` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `Yes` |
+
+**Problem Statement:**
+```text
+[JEE Advanced Adapted] A proton (m = 1.67 × 10^-27 kg, q = 1.6 × 10^-19 C) moves with speed 2 × 10^6 m/s perpendicular to a uniform magnetic field of 0.5 T. Find the radius of its circular trajectory.
+```
+
+**Options:**
+- **(A)** 2.1 cm
+- **(B)** 8.4 cm
+- **(C)** 1.05 cm
+- **(D)** 4.2 cm
+
+**Correct Answer:** `D`
+
+**Detailed Derivation & Explanation:**
+> Magnetic Lorentz force provides centripetal acceleration: qvB = mv^2/r => r = mv / (qB) = (1.67 × 10^-27 * 2 × 10^6) / (1.6 × 10^-19 * 0.5) = 3.34 × 10^-21 / 0.8 × 10^-19 = 0.04175 m ≈ 4.2 cm.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CALCULATION_ERROR` | halved the value by omitting factor 2 from velocity. |
+| **B** | `CALCULATION_ERROR` | doubled the value by failing to multiply denominator by 0.5. |
+| **C** | `FORMULA_SELECTION_ERROR` | divided by qB twice in error. |
+
+---
+
+### Chemistry (JEE Main & Advanced)
+
+#### Q10. `JEE_2021_CHEM_001` — General Organic Chemistry (GOC)
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Chemistry** |
 | **Chapter** | Organic Chemistry |
 | **Concept ID** | `chem_nucleophilic_substitution` |
@@ -339,11 +540,12 @@ The correct order of the following compounds showing increasing tendency towards
 
 ---
 
-#### Q7. `JEE_2021_CHEM_006` — General Organic Chemistry (GOC)
+#### Q11. `JEE_2021_CHEM_006` — General Organic Chemistry (GOC)
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Chemistry** |
 | **Chapter** | Organic Chemistry |
 | **Concept ID** | `chem_electronic_effects` |
@@ -380,11 +582,12 @@ Which one of the following carbonyl compounds CANNOT be prepared by addition of 
 
 ---
 
-#### Q8. `JEE_2021_CHEM_011` — Chemical Thermodynamics
+#### Q12. `JEE_2021_CHEM_011` — Chemical Thermodynamics
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Chemistry** |
 | **Chapter** | Physical Chemistry |
 | **Concept ID** | `chem_first_law_thermo` |
@@ -425,11 +628,12 @@ The correct set from the following in which both pairs are in the correct order 
 
 ---
 
-#### Q9. `JEE_2022_CHEM_EQUIL_001` — Chemical Thermodynamics
+#### Q13. `JEE_2022_CHEM_EQUIL_001` — Chemical Thermodynamics
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Chemistry** |
 | **Chapter** | Physical Chemistry |
 | **Concept ID** | `chem_chemical_equil_kp_kc` |
@@ -466,11 +670,12 @@ The correct set from the following in which both pairs are in the correct order 
 
 ---
 
-#### Q10. `JEE_2023_CHEM_BUFFER_001` — Ionic Equilibrium
+#### Q14. `JEE_2023_CHEM_BUFFER_001` — Ionic Equilibrium
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Chemistry** |
 | **Chapter** | Physical Chemistry |
 | **Concept ID** | `chem_ionic_ph_buffer` |
@@ -507,13 +712,182 @@ The correct set from the following in which both pairs are in the correct order 
 
 ---
 
-### Mathematics (JEE Main Track)
-
-#### Q11. `JEE_2021_MATH_002` — Limits, Continuity & Differentiability
+#### Q15. `JEE_ADV_CHEM_101` — Chemical & Ionic Equilibrium
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Chemistry** |
+| **Chapter** | Physical Chemistry |
+| **Concept ID** | `chem_nernst_equation` |
+| **Target Skill** | `ANALYTICAL` |
+| **IRT Difficulty** | **0.83** (🔴 Expert) |
+| **IRT Discrimination ($a$)** | `1.75` |
+| **Estimated Time** | `95 seconds` (~1.6 min) |
+| **Source PYQ Paper** | `JEE_ADV_2022_ADAPTED` |
+| **Prerequisite Check** | `Yes` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[JEE Advanced Adapted] For the Daniell cell Zn | Zn^2+(0.01 M) || Cu^2+(1 M) | Cu with standard cell potential E°cell = 1.10 V, determine the cell potential Ecell at 298 K (use 2.303 RT/F = 0.0591 V).
+```
+
+**Options:**
+- **(A)** 1.16 V
+- **(B)** 1.04 V
+- **(C)** 1.10 V
+- **(D)** 1.22 V
+
+**Correct Answer:** `A`
+
+**Detailed Derivation & Explanation:**
+> Applying the Nernst equation for n = 2: Ecell = E°cell - (0.0591 / 2) * log([Zn^2+]/[Cu^2+]) = 1.10 - 0.02955 * log(10^-2) = 1.10 - 0.02955 * (-2) = 1.10 + 0.0591 ≈ 1.16 V.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **B** | `SIGN_ERROR` | subtracted instead of adding the reaction quotient logarithmic correction. |
+| **C** | `CONCEPTUAL_ERROR` | ignored concentration dependence entirely, reporting standard E°. |
+| **D** | `CALCULATION_ERROR` | used n = 1 instead of n = 2 electrons transferred. |
+
+---
+
+#### Q16. `JEE_ADV_CHEM_102` — Chemical Thermodynamics
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Chemistry** |
+| **Chapter** | Physical Chemistry |
+| **Concept ID** | `chem_crystal_field_theory` |
+| **Target Skill** | `CONCEPTUAL` |
+| **IRT Difficulty** | **0.80** (🔴 Expert) |
+| **IRT Discrimination ($a$)** | `1.7` |
+| **Estimated Time** | `80 seconds` (~1.3 min) |
+| **Source PYQ Paper** | `JEE_ADV_2021_ADAPTED` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[JEE Advanced Adapted] For the octahedral coordination complex [Ti(H2O)6]^3+ (where Ti^3+ has a d^1 electronic configuration), what is the Crystal Field Stabilization Energy (CFSE)?
+```
+
+**Options:**
+- **(A)** -0.6 Δo
+- **(B)** -0.4 Δo
+- **(C)** -0.8 Δo
+- **(D)** +0.4 Δo
+
+**Correct Answer:** `B`
+
+**Detailed Derivation & Explanation:**
+> In an octahedral crystal field, the 5 d-orbitals split into t2g (-0.4 Δo) and eg (+0.6 Δo). For d^1, the single electron enters t2g, yielding CFSE = 1 * (-0.4 Δo) = -0.4 Δo.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CONCEPTUAL_ERROR` | confused eg splitting coefficient magnitude with t2g. |
+| **C** | `CONCEPTUAL_ERROR` | calculated for d^2 configuration (-0.8 Δo). |
+| **D** | `SIGN_ERROR` | inverted the sign of t2g stabilization energy. |
+
+---
+
+#### Q17. `JEE_ADV_CHEM_103` — Chemical Thermodynamics
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Chemistry** |
+| **Chapter** | Physical Chemistry |
+| **Concept ID** | `chem_kinetics_half_life_order` |
+| **Target Skill** | `ANALYTICAL` |
+| **IRT Difficulty** | **0.78** (🟡 Hard) |
+| **IRT Discrimination ($a$)** | `1.6` |
+| **Estimated Time** | `85 seconds` (~1.4 min) |
+| **Source PYQ Paper** | `JEE_ADV_2023_ADAPTED` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `Yes` |
+
+**Problem Statement:**
+```text
+[JEE Advanced Adapted] For a chemical reaction, when the initial concentration of reactant [A]0 is doubled, the half-life t_1/2 is observed to reduce to exactly half its initial value. What is the overall order of the reaction?
+```
+
+**Options:**
+- **(A)** Order = 1
+- **(B)** Order = 0
+- **(C)** Order = 2
+- **(D)** Order = 3
+
+**Correct Answer:** `C`
+
+**Detailed Derivation & Explanation:**
+> Half-life relates to initial concentration as t_1/2 ∝ 1 / [A]0^(n-1). Doubling [A]0 cuts t_1/2 in half => (1/2) = (1/2)^(n-1) => n - 1 = 1 => n = 2 (Second Order).
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CONCEPTUAL_ERROR` | assumed first-order where t_1/2 is independent of [A]0. |
+| **B** | `CONCEPTUAL_ERROR` | for zero order, t_1/2 is directly proportional to [A]0 (doubling [A]0 doubles half-life). |
+| **D** | `CALCULATION_ERROR` | miscalculated the power relationship. |
+
+---
+
+#### Q18. `JEE_ADV_CHEM_104` — Chemical & Ionic Equilibrium
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Chemistry** |
+| **Chapter** | Physical Chemistry |
+| **Concept ID** | `chem_oxidation_states_pblock` |
+| **Target Skill** | `CONCEPTUAL` |
+| **IRT Difficulty** | **0.75** (🟡 Hard) |
+| **IRT Discrimination ($a$)** | `1.5` |
+| **Estimated Time** | `70 seconds` (~1.2 min) |
+| **Source PYQ Paper** | `JEE_ADV_2022_ADAPTED` |
+| **Prerequisite Check** | `Yes` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[JEE Advanced Adapted] What is the formal oxidation state of phosphorus in pyrophosphoric acid (H4P2O7)?
+```
+
+**Options:**
+- **(A)** +3
+- **(B)** +4
+- **(C)** +7
+- **(D)** +5
+
+**Correct Answer:** `D`
+
+**Detailed Derivation & Explanation:**
+> Assign standard oxidation numbers: H = +1, O = -2. Neutral molecule: 4(+1) + 2x + 7(-2) = 0 => 4 + 2x - 14 = 0 => 2x = 10 => x = +5.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CALCULATION_ERROR` | confused pyrophosphoric with pyrophosphorous acid (H4P2O5, P = +3). |
+| **B** | `CARELESS_ERROR` | arithmetic slip in balancing charges. |
+| **C** | `CONCEPTUAL_ERROR` | assigned oxygen -1 (peroxide assumption). |
+
+---
+
+### Mathematics (JEE Main & Advanced)
+
+#### Q19. `JEE_2021_MATH_002` — Limits, Continuity & Differentiability
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Mathematics** |
 | **Chapter** | Calculus |
 | **Concept ID** | `math_differentiability` |
@@ -550,11 +924,12 @@ Let f be a twice differentiable function on R such that f(0) = 1, f'(0) = 2 and 
 
 ---
 
-#### Q12. `JEE_2021_MATH_006` — Limits, Continuity & Differentiability
+#### Q20. `JEE_2021_MATH_006` — Limits, Continuity & Differentiability
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Mathematics** |
 | **Chapter** | Calculus |
 | **Concept ID** | `math_aod_monotonocity` |
@@ -591,11 +966,12 @@ If P is a point on the parabola y = x^2 + 4 which is closest to the straight lin
 
 ---
 
-#### Q13. `JEE_2021_MATH_010` — Quadratic Equations
+#### Q21. `JEE_2021_MATH_010` — Quadratic Equations
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Mathematics** |
 | **Chapter** | Algebra & Vectors |
 | **Concept ID** | `math_quadratic_roots` |
@@ -632,11 +1008,12 @@ The coefficients a, b and c of the quadratic equation ax^2 + bx + c = 0 are obta
 
 ---
 
-#### Q14. `JEE_2021_MATH_014` — Integral Calculus & Differential Equations
+#### Q22. `JEE_2021_MATH_014` — Integral Calculus & Differential Equations
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Mathematics** |
 | **Chapter** | Calculus |
 | **Concept ID** | `math_indefinite_integrals` |
@@ -673,11 +1050,12 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 ---
 
-#### Q15. `JEE_2023_MATH_LIMIT_001` — Limits, Continuity & Differentiability
+#### Q23. `JEE_2023_MATH_LIMIT_001` — Limits, Continuity & Differentiability
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `JEE` (JEE Main Track) |
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Mathematics** |
 | **Chapter** | Calculus |
 | **Concept ID** | `math_limits` |
@@ -714,15 +1092,184 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 ---
 
-## Part II: NEET-UG Question Bank
+#### Q24. `JEE_ADV_MATH_101` — Quadratic Equations
 
-### Biology (NEET-UG Track)
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Mathematics** |
+| **Chapter** | Algebra & Vectors |
+| **Concept ID** | `math_complex_modulus` |
+| **Target Skill** | `APPLICATION` |
+| **IRT Difficulty** | **0.80** (🔴 Expert) |
+| **IRT Discrimination ($a$)** | `1.7` |
+| **Estimated Time** | `70 seconds` (~1.2 min) |
+| **Source PYQ Paper** | `JEE_ADV_2021_ADAPTED` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[JEE Advanced Adapted] Let z be a complex number given by z = 1 + i. Find the absolute magnitude |z^10|.
+```
+
+**Options:**
+- **(A)** 32
+- **(B)** 16
+- **(C)** 64
+- **(D)** 1024
+
+**Correct Answer:** `A`
+
+**Detailed Derivation & Explanation:**
+> |z| = sqrt(1^2 + 1^2) = sqrt(2). By modulus exponent property: |z^10| = |z|^10 = (sqrt(2))^10 = 2^5 = 32.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **B** | `CALCULATION_ERROR` | evaluated 2^4 = 16 instead of 2^5. |
+| **C** | `CALCULATION_ERROR` | evaluated 2^6 = 64. |
+| **D** | `FORMULA_SELECTION_ERROR` | calculated 2^10 omitting the square root in |z|. |
+
+---
+
+#### Q25. `JEE_ADV_MATH_102` — Quadratic Equations
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Mathematics** |
+| **Chapter** | Algebra & Vectors |
+| **Concept ID** | `math_conditional_probability` |
+| **Target Skill** | `ANALYTICAL` |
+| **IRT Difficulty** | **0.85** (🔴 Expert) |
+| **IRT Discrimination ($a$)** | `1.8` |
+| **Estimated Time** | `100 seconds` (~1.7 min) |
+| **Source PYQ Paper** | `JEE_ADV_2023_ADAPTED` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `Yes` |
+
+**Problem Statement:**
+```text
+[JEE Advanced Adapted] Two fair six-faced dice are rolled simultaneously. Find the conditional probability that the sum of the numbers is 8, given that at least one of the dice shows a 5.
+```
+
+**Options:**
+- **(A)** 1/6
+- **(B)** 2/11
+- **(C)** 1/11
+- **(D)** 2/9
+
+**Correct Answer:** `B`
+
+**Detailed Derivation & Explanation:**
+> Event B (at least one 5): {(5,1)..(5,6), (1,5)..(6,5)}, total 11 outcomes. Event A ∩ B (sum is 8 and at least one 5): {(3,5), (5,3)}, total 2 outcomes. Conditional probability P(A|B) = n(A ∩ B) / n(B) = 2/11.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CONCEPTUAL_ERROR` | computed unconditional P(sum=8) without conditioning on event B. |
+| **C** | `CALCULATION_ERROR` | miscounted {(3,5), (5,3)} as a single unordered pair. |
+| **D** | `FORMULA_SELECTION_ERROR` | subtracted double 5 incorrectly from sample space. |
+
+---
+
+#### Q26. `JEE_ADV_MATH_103` — Vectors & 3D Geometry
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Mathematics** |
+| **Chapter** | Algebra & Vectors |
+| **Concept ID** | `math_scalar_triple_product` |
+| **Target Skill** | `APPLICATION` |
+| **IRT Difficulty** | **0.78** (🟡 Hard) |
+| **IRT Discrimination ($a$)** | `1.6` |
+| **Estimated Time** | `85 seconds` (~1.4 min) |
+| **Source PYQ Paper** | `JEE_ADV_2022_ADAPTED` |
+| **Prerequisite Check** | `Yes` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[JEE Advanced Adapted] Given three vectors a = i + j + k, b = i - j + k, and c = i + j - k, determine the scalar triple product [a b c].
+```
+
+**Options:**
+- **(A)** 0
+- **(B)** 2
+- **(C)** 4
+- **(D)** -4
+
+**Correct Answer:** `C`
+
+**Detailed Derivation & Explanation:**
+> The scalar triple product is the determinant: |[1, 1, 1], [1, -1, 1], [1, 1, -1]| = 1[(-1)(-1) - (1)(1)] - 1[(1)(-1) - (1)(1)] + 1[(1)(1) - (-1)(1)] = 1[0] - 1[-2] + 1[2] = 0 + 2 + 2 = 4.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CALCULATION_ERROR` | sign mistake while expanding second cofactor caused false cancellation to zero. |
+| **B** | `CALCULATION_ERROR` | omitted the third cofactor expansion term. |
+| **D** | `SIGN_ERROR` | inverted permutation parity of determinant. |
+
+---
+
+#### Q27. `JEE_ADV_MATH_104` — Integral Calculus & Differential Equations
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `JEE` (JEE Main & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Mathematics** |
+| **Chapter** | Calculus |
+| **Concept ID** | `math_definite_integral_king_property` |
+| **Target Skill** | `ANALYTICAL` |
+| **IRT Difficulty** | **0.90** (🔴 Expert) |
+| **IRT Discrimination ($a$)** | `2.0` |
+| **Estimated Time** | `130 seconds` (~2.2 min) |
+| **Source PYQ Paper** | `JEE_ADV_2023_ADAPTED` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `Yes` |
+
+**Problem Statement:**
+```text
+[JEE Advanced Adapted] Evaluate the definite integral: I = ∫_0^π [x sin(x)] / [1 + cos^2(x)] dx.
+```
+
+**Options:**
+- **(A)** π^2 / 2
+- **(B)** π^2 / 8
+- **(C)** π^2 / 6
+- **(D)** π^2 / 4
+
+**Correct Answer:** `D`
+
+**Detailed Derivation & Explanation:**
+> Apply King's property ∫_0^a f(x)dx = ∫_0^a f(a-x)dx: I = ∫_0^π [(π-x)sin x] / [1+cos^2 x] dx = π ∫_0^π sin x / (1+cos^2 x) dx - I => 2I = π [-arctan(cos x)]_0^π = π [arctan(1) - (-arctan(1))] = π [π/4 + π/4] = π^2/2 => I = π^2 / 4.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CALCULATION_ERROR` | solved for 2I = π^2/2 but forgot to divide by 2 for I. |
+| **B** | `CALCULATION_ERROR` | miscalculated arctan limits as π/8. |
+| **C** | `FORMULA_SELECTION_ERROR` | assumed denominator integral was π/3. |
+
+---
+
+## Part II: NEET Question Bank
+
+### Biology (NEET-UG & Advanced)
 
 #### Q1. `NEET_BIO_CELL_001` — Cell: The Unit of Life
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Biology** |
 | **Chapter** | Cell Biology & Genetics |
 | **Concept ID** | `bio_prokaryote_vs_eukaryote` |
@@ -763,7 +1310,8 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Biology** |
 | **Chapter** | Cell Biology & Genetics |
 | **Concept ID** | `bio_cell_cycle_mitosis_meiosis` |
@@ -804,7 +1352,8 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Biology** |
 | **Chapter** | Cell Biology & Genetics |
 | **Concept ID** | `bio_mendelian_laws` |
@@ -845,7 +1394,8 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Biology** |
 | **Chapter** | Cell Biology & Genetics |
 | **Concept ID** | `bio_dihybrid_linkage` |
@@ -886,7 +1436,8 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Biology** |
 | **Chapter** | Human Physiology |
 | **Concept ID** | `bio_blood_cardiac_cycle` |
@@ -927,7 +1478,8 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Biology** |
 | **Chapter** | Human Physiology |
 | **Concept ID** | `bio_blood_cardiac_cycle` |
@@ -964,13 +1516,182 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 ---
 
-### Physics (NEET-UG Track)
-
-#### Q7. `NEET_PHY_OPT_001` — Ray Optics & Optical Instruments
+#### Q7. `NEET_ADV_BIO_101` — Cell: The Unit of Life
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Biology** |
+| **Chapter** | Cell Biology & Genetics |
+| **Concept ID** | `bio_c4_pathway_hatch_slack` |
+| **Target Skill** | `CONCEPTUAL` |
+| **IRT Difficulty** | **0.80** (🔴 Expert) |
+| **IRT Discrimination ($a$)** | `1.7` |
+| **Estimated Time** | `60 seconds` (~1.0 min) |
+| **Source PYQ Paper** | `NEET_UG_2023_HIGH_DIFF` |
+| **Prerequisite Check** | `Yes` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[NEET Advanced Tier] In C4 plants, which enzyme is responsible for initial atmospheric CO2 fixation in mesophyll cells, and what is the primary 4-carbon product formed?
+```
+
+**Options:**
+- **(A)** PEP carboxylase; Oxaloacetate (OAA)
+- **(B)** RuBisCO; 3-Phosphoglycerate (3-PGA)
+- **(C)** PEP carboxylase; 3-Phosphoglycerate (3-PGA)
+- **(D)** RuBisCO; Oxaloacetate (OAA)
+
+**Correct Answer:** `A`
+
+**Detailed Derivation & Explanation:**
+> In mesophyll cells of C4 plants, PEP carboxylase fixes CO2 to phosphoenolpyruvate (PEP) forming oxaloacetate (OAA, 4-carbon acid), avoiding photorespiration.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **B** | `CONCEPTUAL_ERROR` | describes C3 Calvin cycle fixation occurring in bundle sheath cells. |
+| **C** | `CONCEPTUAL_ERROR` | paired correct PEP carboxylase enzyme with C3 product 3-PGA. |
+| **D** | `CONCEPTUAL_ERROR` | RuBisCO is absent from mesophyll cells in C4 Kranz anatomy. |
+
+---
+
+#### Q8. `NEET_ADV_BIO_102` — Body Fluids and Circulation
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Biology** |
+| **Chapter** | Human Physiology |
+| **Concept ID** | `bio_nephron_countercurrent_mechanism` |
+| **Target Skill** | `REASONING` |
+| **IRT Difficulty** | **0.82** (🔴 Expert) |
+| **IRT Discrimination ($a$)** | `1.75` |
+| **Estimated Time** | `65 seconds` (~1.1 min) |
+| **Source PYQ Paper** | `NEET_UG_2022_HIGH_DIFF` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `Yes` |
+
+**Problem Statement:**
+```text
+[NEET Advanced Tier] Which specific segment of the mammalian nephron is impermeable to water while actively transporting Na+ and Cl- ions into the medullary interstitium to maintain the countercurrent hyperosmotic gradient?
+```
+
+**Options:**
+- **(A)** Descending limb of Loop of Henle
+- **(B)** Ascending limb of Loop of Henle
+- **(C)** Proximal Convoluted Tubule (PCT)
+- **(D)** Cortical Collecting Duct
+
+**Correct Answer:** `B`
+
+**Detailed Derivation & Explanation:**
+> The thick ascending limb of Henle's loop is impermeable to water but actively pumps NaCl into the interstitium, creating the medullary osmotic gradient.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CONCEPTUAL_ERROR` | descending limb is permeable to water but impermeable to electrolytes. |
+| **C** | `CONCEPTUAL_ERROR` | PCT reabsorbs water and solutes isotonically (~70-80%). |
+| **D** | `CONCEPTUAL_ERROR` | collecting duct water permeability is ADH-regulated and does not establish the gradient. |
+
+---
+
+#### Q9. `NEET_ADV_BIO_103` — Principles of Inheritance and Variation
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Biology** |
+| **Chapter** | Cell Biology & Genetics |
+| **Concept ID** | `bio_gene_interaction_epistasis` |
+| **Target Skill** | `ANALYTICAL` |
+| **IRT Difficulty** | **0.85** (🔴 Expert) |
+| **IRT Discrimination ($a$)** | `1.85` |
+| **Estimated Time** | `75 seconds` (~1.2 min) |
+| **Source PYQ Paper** | `NEET_UG_2023_HIGH_DIFF` |
+| **Prerequisite Check** | `Yes` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[NEET Advanced Tier] In a dihybrid cross between heterozygous parents, the F2 generation exhibits a modified phenotypic ratio of 9:3:4 instead of the classic Mendelian 9:3:3:1 ratio. This interaction is caused by:
+```
+
+**Options:**
+- **(A)** Dominant epistasis
+- **(B)** Complementary gene action
+- **(C)** Recessive epistasis
+- **(D)** Incomplete dominance
+
+**Correct Answer:** `C`
+
+**Detailed Derivation & Explanation:**
+> Recessive epistasis occurs when homozygous recessive alleles at one locus mask the phenotypic expression of alleles at another locus, merging 3 + 1 to form a 9:3:4 ratio (e.g. Labrador retriever coat color).
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CONCEPTUAL_ERROR` | dominant epistasis modifies ratio to 12:3:1. |
+| **B** | `CONCEPTUAL_ERROR` | complementary gene action modifies ratio to 9:7. |
+| **D** | `CONCEPTUAL_ERROR` | incomplete dominance in monohybrid yields 1:2:1, not a 9:3:4 dihybrid ratio. |
+
+---
+
+#### Q10. `NEET_ADV_BIO_104` — Principles of Inheritance and Variation
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Biology** |
+| **Chapter** | Cell Biology & Genetics |
+| **Concept ID** | `bio_population_ecology_logistic_growth` |
+| **Target Skill** | `APPLICATION` |
+| **IRT Difficulty** | **0.78** (🟡 Hard) |
+| **IRT Discrimination ($a$)** | `1.6` |
+| **Estimated Time** | `60 seconds` (~1.0 min) |
+| **Source PYQ Paper** | `NEET_UG_2021_HIGH_DIFF` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `Yes` |
+
+**Problem Statement:**
+```text
+[NEET Advanced Tier] According to the Verhulst-Pearl logistic population growth model dN/dt = rN(1 - N/K), at what population density N does the population growth rate attain its maximum value?
+```
+
+**Options:**
+- **(A)** N = K
+- **(B)** N = K / 4
+- **(C)** N → 0
+- **(D)** N = K / 2
+
+**Correct Answer:** `D`
+
+**Detailed Derivation & Explanation:**
+> The logistic growth curve is sigmoid. Differentiating dN/dt with respect to N: d/dN [rN - rN^2/K] = r - 2rN/K = 0 => N = K/2 (inflection point of maximum growth velocity).
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CONCEPTUAL_ERROR` | at N = K, environmental resistance halts growth, dN/dt = 0. |
+| **B** | `CALCULATION_ERROR` | misidentified the parabola maximum vertex. |
+| **C** | `CONCEPTUAL_ERROR` | near N = 0, low reproductive biomass yields near-zero absolute rate. |
+
+---
+
+### Physics (NEET-UG & Advanced)
+
+#### Q11. `NEET_PHY_OPT_001` — Ray Optics & Optical Instruments
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Physics** |
 | **Chapter** | Optics |
 | **Concept ID** | `phy_refraction_tir` |
@@ -1007,11 +1728,12 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 ---
 
-#### Q8. `NEET_PHY_MECH_002` — Kinematics & Work-Energy
+#### Q12. `NEET_PHY_MECH_002` — Kinematics & Work-Energy
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Physics** |
 | **Chapter** | Mechanics & Laws of Motion |
 | **Concept ID** | `phy_work_energy_power_neet` |
@@ -1048,11 +1770,12 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 ---
 
-#### Q9. `NEET_PHY_KIN_003` — Kinematics & Work-Energy
+#### Q13. `NEET_PHY_KIN_003` — Kinematics & Work-Energy
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Physics** |
 | **Chapter** | Mechanics & Laws of Motion |
 | **Concept ID** | `phy_kinematics_1d_2d` |
@@ -1089,11 +1812,12 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 ---
 
-#### Q10. `NEET_PHY_OPT_004` — Ray Optics & Optical Instruments
+#### Q14. `NEET_PHY_OPT_004` — Ray Optics & Optical Instruments
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Physics** |
 | **Chapter** | Optics |
 | **Concept ID** | `phy_refraction_tir` |
@@ -1130,11 +1854,12 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 ---
 
-#### Q11. `NEET_PHY_KIN_005` — Kinematics & Work-Energy
+#### Q15. `NEET_PHY_KIN_005` — Kinematics & Work-Energy
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Physics** |
 | **Chapter** | Mechanics & Laws of Motion |
 | **Concept ID** | `phy_work_energy_power_neet` |
@@ -1171,13 +1896,182 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 ---
 
-### Chemistry (NEET-UG Track)
-
-#### Q12. `NEET_CHEM_BIOMOL_001` — Biomolecules
+#### Q16. `NEET_ADV_PHY_101` — Kinematics & Work-Energy
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Physics** |
+| **Chapter** | Mechanics & Laws of Motion |
+| **Concept ID** | `phy_wheatstone_bridge_balance` |
+| **Target Skill** | `APPLICATION` |
+| **IRT Difficulty** | **0.75** (🟡 Hard) |
+| **IRT Discrimination ($a$)** | `1.55` |
+| **Estimated Time** | `65 seconds` (~1.1 min) |
+| **Source PYQ Paper** | `NEET_UG_2022_HIGH_DIFF` |
+| **Prerequisite Check** | `Yes` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[NEET Advanced Tier] In a balanced Wheatstone bridge circuit, the resistances in sequential cyclic order are P = 10 Ω, Q = 15 Ω, and R = 20 Ω. Calculate the value of unknown resistance S required to maintain zero galvanometer deflection.
+```
+
+**Options:**
+- **(A)** 30 Ω
+- **(B)** 20 Ω
+- **(C)** 13.3 Ω
+- **(D)** 7.5 Ω
+
+**Correct Answer:** `A`
+
+**Detailed Derivation & Explanation:**
+> Wheatstone balance condition: P/Q = R/S => S = (Q * R) / P = (15 * 20) / 10 = 300 / 10 = 30 Ω.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **B** | `CARELESS_ERROR` | assumed symmetrical bridge S = R. |
+| **C** | `FORMULA_SELECTION_ERROR` | computed inverted ratio (P * R) / Q = 200 / 15 ≈ 13.3 Ω. |
+| **D** | `CALCULATION_ERROR` | arithmetic reciprocal mistake. |
+
+---
+
+#### Q17. `NEET_ADV_PHY_102` — Ray Optics & Optical Instruments
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Physics** |
+| **Chapter** | Optics |
+| **Concept ID** | `phy_faraday_law_induced_emf` |
+| **Target Skill** | `ANALYTICAL` |
+| **IRT Difficulty** | **0.78** (🟡 Hard) |
+| **IRT Discrimination ($a$)** | `1.6` |
+| **Estimated Time** | `70 seconds` (~1.2 min) |
+| **Source PYQ Paper** | `NEET_UG_2023_HIGH_DIFF` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[NEET Advanced Tier] A planar coil of 100 turns and cross-sectional area 0.02 m^2 is oriented perpendicular to a magnetic field. The field decreases uniformly from 0.5 T to 0.1 T in a time interval of 0.2 s. Find the magnitude of induced EMF.
+```
+
+**Options:**
+- **(A)** 2 V
+- **(B)** 4 V
+- **(C)** 8 V
+- **(D)** 0.4 V
+
+**Correct Answer:** `B`
+
+**Detailed Derivation & Explanation:**
+> Faraday's Law: |EMF| = N * |dPhi/dt| = N * A * (delta B / delta t) = 100 * 0.02 * ((0.5 - 0.1) / 0.2) = 2 * (0.4 / 0.2) = 2 * 2 = 4 V.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CALCULATION_ERROR` | used delta B = 0.2 T instead of 0.4 T. |
+| **C** | `CALCULATION_ERROR` | doubled turns or arithmetic factor. |
+| **D** | `FORMULA_SELECTION_ERROR` | neglected turns N (evaluated A * delta B / delta t = 0.04 V). |
+
+---
+
+#### Q18. `NEET_ADV_PHY_103` — Ray Optics & Optical Instruments
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Physics** |
+| **Chapter** | Optics |
+| **Concept ID** | `phy_photoelectric_effect_kmax` |
+| **Target Skill** | `ANALYTICAL` |
+| **IRT Difficulty** | **0.80** (🔴 Expert) |
+| **IRT Discrimination ($a$)** | `1.7` |
+| **Estimated Time** | `80 seconds` (~1.3 min) |
+| **Source PYQ Paper** | `NEET_UG_2021_HIGH_DIFF` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `Yes` |
+
+**Problem Statement:**
+```text
+[NEET Advanced Tier] The photoelectric work function of a photosensitive metallic surface is 2.0 eV. Monochromatic light of wavelength λ = 300 nm is incident upon it. Taking Planck constant product hc ≈ 1240 eV·nm, calculate maximum kinetic energy of emitted photoelectrons.
+```
+
+**Options:**
+- **(A)** 4.13 eV
+- **(B)** 1.87 eV
+- **(C)** 2.13 eV
+- **(D)** 0.13 eV
+
+**Correct Answer:** `C`
+
+**Detailed Derivation & Explanation:**
+> Incident photon energy E = hc / λ = 1240 / 300 ≈ 4.133 eV. By Einstein's photoelectric equation: KE_max = E - Φ = 4.133 - 2.0 = 2.13 eV.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CONCEPTUAL_ERROR` | reported photon energy E without subtracting work function threshold. |
+| **B** | `SIGN_ERROR` | subtracted photon energy from work function (2.0 - 4.13). |
+| **D** | `CALCULATION_ERROR` | decimal placement error during hc division. |
+
+---
+
+#### Q19. `NEET_ADV_PHY_104` — Kinematics & Work-Energy
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Physics** |
+| **Chapter** | Mechanics & Laws of Motion |
+| **Concept ID** | `phy_escape_velocity_scaling` |
+| **Target Skill** | `REASONING` |
+| **IRT Difficulty** | **0.77** (🟡 Hard) |
+| **IRT Discrimination ($a$)** | `1.6` |
+| **Estimated Time** | `70 seconds` (~1.2 min) |
+| **Source PYQ Paper** | `NEET_UG_2022_HIGH_DIFF` |
+| **Prerequisite Check** | `Yes` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[NEET Advanced Tier] A hypothetical terrestrial exoplanet has twice the mass of Earth (M' = 2M_E) but the exact same mean radius (R' = R_E). Given Earth's surface escape velocity is 11.2 km/s, determine the escape velocity from this planet.
+```
+
+**Options:**
+- **(A)** 11.2 km/s
+- **(B)** 22.4 km/s
+- **(C)** 7.9 km/s
+- **(D)** 15.8 km/s
+
+**Correct Answer:** `D`
+
+**Detailed Derivation & Explanation:**
+> Escape velocity is v_e = sqrt(2GM / R) ∝ sqrt(M/R). For M' = 2M and R' = R: v_e' = v_e * sqrt(2) = 11.2 * 1.414 ≈ 15.84 km/s.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CONCEPTUAL_ERROR` | assumed escape velocity is independent of mass. |
+| **B** | `FORMULA_SELECTION_ERROR` | scaled linearly with mass without square root (11.2 * 2 = 22.4). |
+| **C** | `SIGN_ERROR` | inverted mass ratio inside root (11.2 / sqrt(2) ≈ 7.9 km/s). |
+
+---
+
+### Chemistry (NEET-UG & Advanced)
+
+#### Q20. `NEET_CHEM_BIOMOL_001` — Biomolecules
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Chemistry** |
 | **Chapter** | Biomolecules & Organic Chemistry |
 | **Concept ID** | `chem_carbohydrates_proteins` |
@@ -1214,11 +2108,12 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 ---
 
-#### Q13. `NEET_CHEM_EQUIL_002` — Ionic Equilibrium & Acids/Bases
+#### Q21. `NEET_CHEM_EQUIL_002` — Ionic Equilibrium & Acids/Bases
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Chemistry** |
 | **Chapter** | Physical Chemistry & Equilibrium |
 | **Concept ID** | `chem_ionic_ph_buffer_neet` |
@@ -1255,11 +2150,12 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 ---
 
-#### Q14. `NEET_CHEM_CARB_003` — Biomolecules
+#### Q22. `NEET_CHEM_CARB_003` — Biomolecules
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Chemistry** |
 | **Chapter** | Biomolecules & Organic Chemistry |
 | **Concept ID** | `chem_carbohydrates_proteins` |
@@ -1296,11 +2192,12 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 ---
 
-#### Q15. `NEET_CHEM_EQUIL_004` — Ionic Equilibrium & Acids/Bases
+#### Q23. `NEET_CHEM_EQUIL_004` — Ionic Equilibrium & Acids/Bases
 
 | Property | Specification |
 |:---|:---|
-| **Exam Track** | `NEET` (NEET-UG Track) |
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **Standard Tier** |
 | **Subject** | **Chemistry** |
 | **Chapter** | Physical Chemistry & Equilibrium |
 | **Concept ID** | `chem_ionic_ph_buffer_neet` |
@@ -1337,18 +2234,186 @@ If integral [ (cos x - sin x) / sqrt(8 - sin 2x) ] dx = a * arcsin( (sin x + cos
 
 ---
 
+#### Q24. `NEET_ADV_CHEM_101` — Ionic Equilibrium & Acids/Bases
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Chemistry** |
+| **Chapter** | Physical Chemistry & Equilibrium |
+| **Concept ID** | `chem_hybridization_expanded_octet` |
+| **Target Skill** | `CONCEPTUAL` |
+| **IRT Difficulty** | **0.72** (🟡 Hard) |
+| **IRT Discrimination ($a$)** | `1.5` |
+| **Estimated Time** | `55 seconds` (~0.9 min) |
+| **Source PYQ Paper** | `NEET_UG_2023_HIGH_DIFF` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[NEET Advanced Tier] What is the hybridization state of the central sulfur atom in sulfur hexafluoride (SF6) based on VSEPR theory?
+```
+
+**Options:**
+- **(A)** sp^3d^2
+- **(B)** sp^3d
+- **(C)** sp^3
+- **(D)** dsp^2
+
+**Correct Answer:** `A`
+
+**Detailed Derivation & Explanation:**
+> Sulfur has 6 valence electrons, forming 6 single S-F covalent bonds with zero lone pairs. Steric number = 6, yielding regular octahedral geometry and sp^3d^2 hybridization.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **B** | `CONCEPTUAL_ERROR` | sp^3d corresponds to steric number 5 (trigonal bipyramidal, e.g. PCl5). |
+| **C** | `CONCEPTUAL_ERROR` | sp^3 corresponds to steric number 4 (tetrahedral). |
+| **D** | `CONCEPTUAL_ERROR` | dsp^2 is square planar geometry in transition metal complexes. |
+
+---
+
+#### Q25. `NEET_ADV_CHEM_102` — Ionic Equilibrium & Acids/Bases
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Chemistry** |
+| **Chapter** | Physical Chemistry & Equilibrium |
+| **Concept ID** | `chem_standard_cell_potential` |
+| **Target Skill** | `APPLICATION` |
+| **IRT Difficulty** | **0.78** (🟡 Hard) |
+| **IRT Discrimination ($a$)** | `1.6` |
+| **Estimated Time** | `65 seconds` (~1.1 min) |
+| **Source PYQ Paper** | `NEET_UG_2022_HIGH_DIFF` |
+| **Prerequisite Check** | `Yes` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[NEET Advanced Tier] Given standard reduction potentials E°(Ag+/Ag) = +0.80 V and E°(Ni^2+/Ni) = -0.25 V, find the standard EMF (E°cell) of the electrochemical cell Ni | Ni^2+ || Ag+ | Ag.
+```
+
+**Options:**
+- **(A)** 0.55 V
+- **(B)** 1.05 V
+- **(C)** 1.30 V
+- **(D)** -1.05 V
+
+**Correct Answer:** `B`
+
+**Detailed Derivation & Explanation:**
+> Silver has the higher reduction potential and acts as cathode; nickel is oxidized at anode: E°cell = E°cathode - E°anode = (+0.80 V) - (-0.25 V) = 0.80 + 0.25 = +1.05 V.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `SIGN_ERROR` | subtracted potentials algebraically as 0.80 - 0.25 = 0.55 V. |
+| **C** | `CALCULATION_ERROR` | combined values with incorrect stoichiometric multiplier. |
+| **D** | `SIGN_ERROR` | inverted cathode and anode roles yielding non-spontaneous -1.05 V. |
+
+---
+
+#### Q26. `NEET_ADV_CHEM_103` — Biomolecules
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Chemistry** |
+| **Chapter** | Biomolecules & Organic Chemistry |
+| **Concept ID** | `chem_pblock_nitrogen_oxides` |
+| **Target Skill** | `CONCEPTUAL` |
+| **IRT Difficulty** | **0.75** (🟡 Hard) |
+| **IRT Discrimination ($a$)** | `1.55` |
+| **Estimated Time** | `55 seconds` (~0.9 min) |
+| **Source PYQ Paper** | `NEET_UG_2021_HIGH_DIFF` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `No` |
+
+**Problem Statement:**
+```text
+[NEET Advanced Tier] Which neutral oxide of nitrogen is commonly known as 'laughing gas', and what is the hybridization and geometric arrangement at its central nitrogen atom?
+```
+
+**Options:**
+- **(A)** NO2; sp^2 hybridized (bent)
+- **(B)** N2O3; sp^3 hybridized (pyramidal)
+- **(C)** N2O; sp hybridized (linear)
+- **(D)** NO; sp^2 hybridized (linear)
+
+**Correct Answer:** `C`
+
+**Detailed Derivation & Explanation:**
+> Nitrous oxide (N2O, laughing gas) possesses resonance forms :N≡N-O: <-> :N=N=O:. The central nitrogen is sp-hybridized with zero lone pairs, giving a linear geometry.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CONCEPTUAL_ERROR` | nitrogen dioxide (NO2) is an acidic brown paramagnetic gas, not laughing gas. |
+| **B** | `CONCEPTUAL_ERROR` | dinitrogen trioxide (N2O3) is blue acidic liquid/solid. |
+| **D** | `CONCEPTUAL_ERROR` | nitric oxide (NO) is a neutral diatomic free radical. |
+
+---
+
+#### Q27. `NEET_ADV_CHEM_104` — Biomolecules
+
+| Property | Specification |
+|:---|:---|
+| **Exam Track** | `NEET` (NEET-UG & Advanced) |
+| **Tier** | **🏆 Tier 4 (ADVANCED)** |
+| **Subject** | **Chemistry** |
+| **Chapter** | Biomolecules & Organic Chemistry |
+| **Concept ID** | `chem_alcohol_to_haloalkane_mechanism` |
+| **Target Skill** | `ANALYTICAL` |
+| **IRT Difficulty** | **0.88** (🔴 Expert) |
+| **IRT Discrimination ($a$)** | `1.9` |
+| **Estimated Time** | `90 seconds` (~1.5 min) |
+| **Source PYQ Paper** | `NEET_UG_2023_HIGH_DIFF` |
+| **Prerequisite Check** | `No` |
+| **Transfer Question** | `Yes` |
+
+**Problem Statement:**
+```text
+[NEET Advanced Tier] Which specific reagent combination converts an optically active secondary alcohol into the corresponding alkyl chloride with clean INVERSION of configuration via a bimolecular SN2 mechanism?
+```
+
+**Options:**
+- **(A)** SOCl2 alone in inert non-polar solvent (SNi retention)
+- **(B)** Lucas Reagent (conc. HCl + anhydrous ZnCl2)
+- **(C)** PCl5 without base
+- **(D)** SOCl2 in the presence of Pyridine base
+
+**Correct Answer:** `D`
+
+**Detailed Derivation & Explanation:**
+> In Darzens halogenation, adding pyridine neutralizes generated HCl forming pyridinium chloride. The resulting free Cl- nucleophile attacks the chlorosulfite ester from the backside via bimolecular SN2, producing complete inversion.
+
+**Distractor & Cognitive Error Analysis:**
+| Option | Diagnostic Error Trap | Detailed Diagnostic Assessment |
+|:---:|:---|:---|
+| **A** | `CONCEPTUAL_ERROR` | SOCl2 alone proceeds through intramolecular internal substitution (SNi) resulting in retention of configuration. |
+| **B** | `CONCEPTUAL_ERROR` | Lucas reagent undergoes SN1 via carbocation intermediate causing racemization. |
+| **C** | `CONCEPTUAL_ERROR` | PCl5 yields mixed pathways and inferior stereochemical stereospecificity. |
+
+---
+
 ## Cognitive Distractor Taxonomy
 
 The Adaptive Engine categorizes every student error into explicit diagnostic buckets:
 
 | Error Type | Description | Remediation Protocol |
 |:---|:---|:---|
-| `CONCEPTUAL_ERROR` | Flawed physical, chemical, or biological premise (e.g. confusing Zener vs Avalanche breakdown). | Reroutes student to foundation video & prerequisite theory nodes. |
+| `CONCEPTUAL_ERROR` | Flawed physical, chemical, or biological premise (e.g. confusing Zener vs Avalanche breakdown, or C3 vs C4 initial product). | Reroutes student to foundation video & prerequisite theory nodes. |
 | `CALCULATION_ERROR` | Correct formula selected, but arithmetic or algebraic execution failed. | Prescribes speed & precision calculation drills. |
-| `FORMULA_SELECTION_ERROR` | Selected an invalid equation (e.g. using ideal gas law outside valid regime). | Reinforces boundary conditions and derivation flashcards. |
+| `FORMULA_SELECTION_ERROR` | Selected an invalid equation (e.g. point mass moment of inertia instead of rod). | Reinforces boundary conditions and derivation flashcards. |
 | `SIGN_ERROR` | Omitted negative sign, thermodynamic convention, or Cartesian sign convention. | Flagged in report card; triggers sign convention refresher. |
 | `CARELESS_ERROR` | Misread question prompt (e.g. 'is NOT true', radius vs diameter, unit conversion). | Emphasizes reading discipline during timed screener. |
 | `GRAPHICAL_INTERPRETATION_ERROR` | Misidentified axis intercepts, slopes, or peak coordinates on graphical PYQs. | Launches visual coordinate & curve drill. |
 
 ---
-*Document auto-generated from `data/questions/jee_questions.json` and `data/questions/neet_questions.json` for the Adaptive Intelligence Engine.*
+*Document auto-generated containing all 54 questions for the Adaptive Intelligence Engine.*

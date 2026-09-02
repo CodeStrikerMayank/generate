@@ -14,10 +14,22 @@
     "question_type": "multiple_choice",
     "content": "[NEET-UG Adapted] Which of the following structures is present in prokaryotes but lacks membrane-bound compartmentalization?",
     "options": [
-      {"id": "A", "text": "Mesosome and 70S Ribosomes"},
-      {"id": "B", "text": "Golgi complex"},
-      {"id": "C", "text": "80S Ribosomes in cytoplasm"},
-      {"id": "D", "text": "Mitochondria with cristae"}
+      {
+        "id": "A",
+        "text": "Mesosome and 70S Ribosomes"
+      },
+      {
+        "id": "B",
+        "text": "Golgi complex"
+      },
+      {
+        "id": "C",
+        "text": "80S Ribosomes in cytoplasm"
+      },
+      {
+        "id": "D",
+        "text": "Mitochondria with cristae"
+      }
     ],
     "correct_answer": "A",
     "explanation": "Prokaryotic cells possess 70S ribosomes and infoldings of plasma membrane called mesosomes, but lack membrane-bound organelles such as Golgi, ER, and mitochondria.",
@@ -27,7 +39,8 @@
       "D": "CONCEPTUAL_ERROR: Mitochondria are membrane-bound eukaryotic organelles."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_BIO_MIT_002",
@@ -44,10 +57,22 @@
     "question_type": "multiple_choice",
     "content": "[NEET-UG Adapted] During which sub-stage of Prophase I of Meiosis does crossing over between non-sister chromatids of homologous chromosomes take place?",
     "options": [
-      {"id": "A", "text": "Pachytene (mediated by recombinase enzyme)"},
-      {"id": "B", "text": "Zygotene"},
-      {"id": "C", "text": "Diplotene"},
-      {"id": "D", "text": "Leptotene"}
+      {
+        "id": "A",
+        "text": "Pachytene (mediated by recombinase enzyme)"
+      },
+      {
+        "id": "B",
+        "text": "Zygotene"
+      },
+      {
+        "id": "C",
+        "text": "Diplotene"
+      },
+      {
+        "id": "D",
+        "text": "Leptotene"
+      }
     ],
     "correct_answer": "A",
     "explanation": "Crossing over occurs during Pachytene stage, mediated by the enzyme recombinase.",
@@ -57,7 +82,8 @@
       "D": "CARELESS_ERROR: Leptotene is initial condensation."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_BIO_GEN_003",
@@ -74,10 +100,22 @@
     "question_type": "multiple_choice",
     "content": "[NEET-UG Adapted] A heterozygous tall pea plant with violet flowers (TtVv) is test crossed with a dwarf white plant (ttvv). What proportion of progeny will be dwarf with violet flowers assuming independent assortment?",
     "options": [
-      {"id": "A", "text": "25% (1/4)"},
-      {"id": "B", "text": "50% (1/2)"},
-      {"id": "C", "text": "12.5% (1/8)"},
-      {"id": "D", "text": "6.25% (1/16)"}
+      {
+        "id": "A",
+        "text": "25% (1/4)"
+      },
+      {
+        "id": "B",
+        "text": "50% (1/2)"
+      },
+      {
+        "id": "C",
+        "text": "12.5% (1/8)"
+      },
+      {
+        "id": "D",
+        "text": "6.25% (1/16)"
+      }
     ],
     "correct_answer": "A",
     "explanation": "Test cross of dihybrid TtVv x ttvv yields equal phenotypic ratio of 1:1:1:1. Hence Dwarf with Violet flowers is 1/4 or 25%.",
@@ -87,7 +125,8 @@
       "D": "FORMULA_SELECTION_ERROR: Used 1/16 from F2 selfing ratio."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_BIO_LINK_004",
@@ -104,10 +143,22 @@
     "question_type": "multiple_choice",
     "content": "[NEET-UG Adapted] In Morgan's experiments with Drosophila, cross A (yellow body, white eyes) showed 1.3% recombination, while cross B (white eye, miniature wing) showed 37.2% recombination. What conclusion follows regarding the genes?",
     "options": [
-      {"id": "A", "text": "Body color and eye color genes are tightly linked (physically closer on the X-chromosome)"},
-      {"id": "B", "text": "Eye color and wing size genes are located on different autosomes"},
-      {"id": "C", "text": "Recombination frequency is inversely proportional to physical distance between genes"},
-      {"id": "D", "text": "Cross A exhibits complete absence of linkage"}
+      {
+        "id": "A",
+        "text": "Body color and eye color genes are tightly linked (physically closer on the X-chromosome)"
+      },
+      {
+        "id": "B",
+        "text": "Eye color and wing size genes are located on different autosomes"
+      },
+      {
+        "id": "C",
+        "text": "Recombination frequency is inversely proportional to physical distance between genes"
+      },
+      {
+        "id": "D",
+        "text": "Cross A exhibits complete absence of linkage"
+      }
     ],
     "correct_answer": "A",
     "explanation": "A lower recombination frequency (1.3%) indicates very tight linkage (closer physical proximity) on the X chromosome.",
@@ -117,7 +168,8 @@
       "D": "CARELESS_ERROR: 1.3% recombinant means 98.7% parental, proving strong linkage."
     },
     "is_transfer": true,
-    "is_prerequisite_check": false
+    "is_prerequisite_check": false,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_BIO_CIRC_005",
@@ -134,10 +186,22 @@
     "question_type": "multiple_choice",
     "content": "[NEET-UG Adapted] In a standard Electrocardiogram (ECG), which wave represents the depolarization of ventricles leading to ventricular contraction?",
     "options": [
-      {"id": "A", "text": "QRS complex"},
-      {"id": "B", "text": "P-wave"},
-      {"id": "C", "text": "T-wave"},
-      {"id": "D", "text": "End of T-wave"}
+      {
+        "id": "A",
+        "text": "QRS complex"
+      },
+      {
+        "id": "B",
+        "text": "P-wave"
+      },
+      {
+        "id": "C",
+        "text": "T-wave"
+      },
+      {
+        "id": "D",
+        "text": "End of T-wave"
+      }
     ],
     "correct_answer": "A",
     "explanation": "P-wave represents atrial depolarization; QRS complex represents depolarization of the ventricles initiating ventricular contraction; T-wave represents ventricular repolarization.",
@@ -147,7 +211,8 @@
       "D": "CARELESS_ERROR: End of T-wave marks end of ventricular systole."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_BIO_PHYS_006",
@@ -164,10 +229,22 @@
     "question_type": "multiple_choice",
     "content": "[NEET-UG 2021 Adapted - Modified Data] A healthy human adult has a resting heart rate of 72 beats per minute. If the End-Diastolic Volume is 125 mL and End-Systolic Volume is 50 mL, the calculated cardiac output of this individual is :",
     "options": [
-      {"id": "A", "text": "5.40 L/min"},
-      {"id": "B", "text": "7.20 L/min"},
-      {"id": "C", "text": "3.60 L/min"},
-      {"id": "D", "text": "9.00 L/min"}
+      {
+        "id": "A",
+        "text": "5.40 L/min"
+      },
+      {
+        "id": "B",
+        "text": "7.20 L/min"
+      },
+      {
+        "id": "C",
+        "text": "3.60 L/min"
+      },
+      {
+        "id": "D",
+        "text": "9.00 L/min"
+      }
     ],
     "correct_answer": "A",
     "explanation": "Stroke volume SV = End-Diastolic Volume - End-Systolic Volume = 125 mL - 50 mL = 75 mL. Cardiac Output = Heart Rate x Stroke Volume = 72 bpm x 75 mL = 5400 mL/min = 5.40 L/min.",
@@ -177,7 +254,8 @@
       "D": "CALCULATION_ERROR: Added End-Diastolic and End-Systolic volumes."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_PHY_OPT_001",
@@ -189,15 +267,27 @@
     "concept_id": "phy_refraction_tir",
     "skill": "application",
     "difficulty": 0.58,
-    "discrimination": 1.40,
+    "discrimination": 1.4,
     "estimated_time": 60,
     "question_type": "multiple_choice",
     "content": "[NEET-UG 2022 Adapted - Modified Data] A monochromatic light beam travels from glass of refractive index 1.50 (3/2) into water of refractive index 1.33 (4/3). The critical angle of incidence for total internal reflection at this interface is :",
     "options": [
-      {"id": "A", "text": "arcsin(8/9)"},
-      {"id": "B", "text": "arcsin(3/4)"},
-      {"id": "C", "text": "arcsin(2/3)"},
-      {"id": "D", "text": "arcsin(9/8)"}
+      {
+        "id": "A",
+        "text": "arcsin(8/9)"
+      },
+      {
+        "id": "B",
+        "text": "arcsin(3/4)"
+      },
+      {
+        "id": "C",
+        "text": "arcsin(2/3)"
+      },
+      {
+        "id": "D",
+        "text": "arcsin(9/8)"
+      }
     ],
     "correct_answer": "A",
     "explanation": "For total internal reflection from denser medium 1 to rarer medium 2: sin(C) = mu_rarer / mu_denser = (4/3) / (3/2) = (4/3) * (2/3) = 8/9. Hence critical angle C = arcsin(8/9).",
@@ -207,7 +297,8 @@
       "D": "CONCEPTUAL_ERROR: Sin of an angle cannot exceed 1; inverted the ratio."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_PHY_MECH_002",
@@ -218,16 +309,28 @@
     "topic": "Kinematics & Work-Energy",
     "concept_id": "phy_work_energy_power_neet",
     "skill": "application",
-    "difficulty": 0.60,
+    "difficulty": 0.6,
     "discrimination": 1.45,
     "estimated_time": 65,
     "question_type": "multiple_choice",
     "content": "[NEET-UG 2023 Adapted - Modified Data] A small stone of mass 0.4 kg is launched vertically upwards with an initial kinetic energy of 80 J. Neglecting air resistance and taking g = 10 m/s^2, the kinetic energy of the stone when it reaches half of its maximum height will be :",
     "options": [
-      {"id": "A", "text": "40 J"},
-      {"id": "B", "text": "20 J"},
-      {"id": "C", "text": "60 J"},
-      {"id": "D", "text": "80 J"}
+      {
+        "id": "A",
+        "text": "40 J"
+      },
+      {
+        "id": "B",
+        "text": "20 J"
+      },
+      {
+        "id": "C",
+        "text": "60 J"
+      },
+      {
+        "id": "D",
+        "text": "80 J"
+      }
     ],
     "correct_answer": "A",
     "explanation": "By conservation of mechanical energy: Total Energy E = KE_initial = 80 J. At maximum height H, KE = 0 and PE = mgH = 80 J. At half maximum height (H/2), PE = mg(H/2) = 40 J. Therefore KE = Total Energy - PE = 80 - 40 = 40 J.",
@@ -237,7 +340,8 @@
       "D": "CONCEPTUAL_ERROR: Failed to account for gravitational potential energy gain."
     },
     "is_transfer": true,
-    "is_prerequisite_check": false
+    "is_prerequisite_check": false,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_PHY_KIN_003",
@@ -249,15 +353,27 @@
     "concept_id": "phy_kinematics_1d_2d",
     "skill": "application",
     "difficulty": 0.48,
-    "discrimination": 1.30,
+    "discrimination": 1.3,
     "estimated_time": 55,
     "question_type": "multiple_choice",
     "content": "[NEET-UG 2021 Adapted - Modified Data] A sports car moving with an initial speed of 30 m/s is brought to a stop with uniform deceleration over a straight braking distance of 45 m. The magnitude of its deceleration is :",
     "options": [
-      {"id": "A", "text": "10 m/s^2"},
-      {"id": "B", "text": "5 m/s^2"},
-      {"id": "C", "text": "15 m/s^2"},
-      {"id": "D", "text": "20 m/s^2"}
+      {
+        "id": "A",
+        "text": "10 m/s^2"
+      },
+      {
+        "id": "B",
+        "text": "5 m/s^2"
+      },
+      {
+        "id": "C",
+        "text": "15 m/s^2"
+      },
+      {
+        "id": "D",
+        "text": "20 m/s^2"
+      }
     ],
     "correct_answer": "A",
     "explanation": "Using third equation of motion: v^2 = u^2 - 2*a*s. With final velocity v = 0, initial velocity u = 30 m/s, and distance s = 45 m: 0 = 30^2 - 2*a*45 => 90*a = 900 => a = 10 m/s^2.",
@@ -267,7 +383,8 @@
       "D": "SIGN_ERROR: Doubled the deceleration magnitude."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_CHEM_BIOMOL_001",
@@ -284,10 +401,22 @@
     "question_type": "multiple_choice",
     "content": "[NEET-UG 2022 Adapted - Modified Data] A straight-chain oligopeptide molecule is synthesized by the sequential condensation of 10 amino acid residues. How many peptide linkages (-CO-NH-) are present in this unbranched peptide chain?",
     "options": [
-      {"id": "A", "text": "9"},
-      {"id": "B", "text": "10"},
-      {"id": "C", "text": "8"},
-      {"id": "D", "text": "11"}
+      {
+        "id": "A",
+        "text": "9"
+      },
+      {
+        "id": "B",
+        "text": "10"
+      },
+      {
+        "id": "C",
+        "text": "8"
+      },
+      {
+        "id": "D",
+        "text": "11"
+      }
     ],
     "correct_answer": "A",
     "explanation": "In an unbranched peptide formed from n amino acid residues, condensation eliminates (n - 1) water molecules, forming (n - 1) peptide bonds. For 10 amino acids: 10 - 1 = 9 peptide linkages.",
@@ -297,7 +426,8 @@
       "D": "SIGN_ERROR: Added 1 instead of subtracting."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_CHEM_EQUIL_002",
@@ -309,15 +439,27 @@
     "concept_id": "chem_ionic_ph_buffer_neet",
     "skill": "application",
     "difficulty": 0.65,
-    "discrimination": 1.50,
+    "discrimination": 1.5,
     "estimated_time": 70,
     "question_type": "multiple_choice",
     "content": "[NEET-UG 2023 Adapted - Modified Data] What is the pH of a 0.01 M (10^-2 M) aqueous solution of a monobasic weak acid HA having an acid dissociation constant Ka = 1.0 x 10^-6 at 298 K?",
     "options": [
-      {"id": "A", "text": "4.0"},
-      {"id": "B", "text": "3.0"},
-      {"id": "C", "text": "5.0"},
-      {"id": "D", "text": "2.0"}
+      {
+        "id": "A",
+        "text": "4.0"
+      },
+      {
+        "id": "B",
+        "text": "3.0"
+      },
+      {
+        "id": "C",
+        "text": "5.0"
+      },
+      {
+        "id": "D",
+        "text": "2.0"
+      }
     ],
     "correct_answer": "A",
     "explanation": "For a weak monobasic acid where degree of dissociation alpha << 1: [H+] = sqrt(Ka * C) = sqrt(10^-6 * 10^-2) = sqrt(10^-8) = 10^-4 M. Therefore pH = -log[H+] = -log(10^-4) = 4.0.",
@@ -327,7 +469,8 @@
       "D": "CONCEPTUAL_ERROR: Assumed strong acid complete dissociation pH = -log(0.01) = 2."
     },
     "is_transfer": true,
-    "is_prerequisite_check": false
+    "is_prerequisite_check": false,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_CHEM_CARB_003",
@@ -338,16 +481,28 @@
     "topic": "Biomolecules",
     "concept_id": "chem_carbohydrates_proteins",
     "skill": "conceptual",
-    "difficulty": 0.50,
-    "discrimination": 1.30,
+    "difficulty": 0.5,
+    "discrimination": 1.3,
     "estimated_time": 50,
     "question_type": "multiple_choice",
     "content": "[NEET-UG 2021 Adapted] Which of the following disaccharides is classified as a non-reducing sugar due to the involvement of the reducing groups of both monosaccharide units in the glycosidic bond?",
     "options": [
-      {"id": "A", "text": "Sucrose (alpha-D-glucopyranosyl beta-D-fructofuranoside)"},
-      {"id": "B", "text": "Maltose (alpha-1,4-glucosidic bond)"},
-      {"id": "C", "text": "Lactose (beta-1,4-galactosidic bond)"},
-      {"id": "D", "text": "Cellobiose (beta-1,4-glucosidic bond)"}
+      {
+        "id": "A",
+        "text": "Sucrose (alpha-D-glucopyranosyl beta-D-fructofuranoside)"
+      },
+      {
+        "id": "B",
+        "text": "Maltose (alpha-1,4-glucosidic bond)"
+      },
+      {
+        "id": "C",
+        "text": "Lactose (beta-1,4-galactosidic bond)"
+      },
+      {
+        "id": "D",
+        "text": "Cellobiose (beta-1,4-glucosidic bond)"
+      }
     ],
     "correct_answer": "A",
     "explanation": "In sucrose, the glycosidic linkage is formed between C1 of alpha-glucose and C2 of beta-fructose. Since both reducing groups (hemiacetal and hemiketal) are tied in the linkage, sucrose does not reduce Fehling's or Tollens' reagents and is a non-reducing sugar.",
@@ -357,7 +512,8 @@
       "D": "CARELESS_ERROR: Cellobiose is a reducing disaccharide."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_PHY_OPT_004",
@@ -369,15 +525,27 @@
     "concept_id": "phy_refraction_tir",
     "skill": "application",
     "difficulty": 0.62,
-    "discrimination": 1.40,
+    "discrimination": 1.4,
     "estimated_time": 60,
     "question_type": "multiple_choice",
     "content": "[NEET-UG 2022 Adapted - Modified Data] An equilateral glass prism has an angle of prism A = 60 deg. If the refractive index of the glass material is mu = sqrt(3), then the angle of minimum deviation (Dm) produced by this prism is :",
     "options": [
-      {"id": "A", "text": "60 deg"},
-      {"id": "B", "text": "30 deg"},
-      {"id": "C", "text": "45 deg"},
-      {"id": "D", "text": "90 deg"}
+      {
+        "id": "A",
+        "text": "60 deg"
+      },
+      {
+        "id": "B",
+        "text": "30 deg"
+      },
+      {
+        "id": "C",
+        "text": "45 deg"
+      },
+      {
+        "id": "D",
+        "text": "90 deg"
+      }
     ],
     "correct_answer": "A",
     "explanation": "From the prism formula: mu = sin((A + Dm)/2) / sin(A/2). With A = 60 deg, sin(A/2) = sin(30 deg) = 1/2. Thus sqrt(3) = sin((60 + Dm)/2) / (1/2) => sin((60 + Dm)/2) = sqrt(3)/2. Therefore (60 + Dm)/2 = 60 deg => 60 + Dm = 120 deg => Dm = 60 deg.",
@@ -387,7 +555,8 @@
       "D": "SIGN_ERROR: Added angle of prism twice."
     },
     "is_transfer": false,
-    "is_prerequisite_check": true
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_PHY_KIN_005",
@@ -404,10 +573,22 @@
     "question_type": "multiple_choice",
     "content": "[NEET-UG 2023 Adapted - Modified Data] A variable force F = (3*x^2 + 2*x) N acts on a particle moving along the x-axis. The total work done by this force in displacing the particle from position x = 0 to x = 2 m is :",
     "options": [
-      {"id": "A", "text": "12 J"},
-      {"id": "B", "text": "16 J"},
-      {"id": "C", "text": "8 J"},
-      {"id": "D", "text": "24 J"}
+      {
+        "id": "A",
+        "text": "12 J"
+      },
+      {
+        "id": "B",
+        "text": "16 J"
+      },
+      {
+        "id": "C",
+        "text": "8 J"
+      },
+      {
+        "id": "D",
+        "text": "24 J"
+      }
     ],
     "correct_answer": "A",
     "explanation": "Work done W = integral_{0}^{2} F dx = integral_{0}^{2} (3*x^2 + 2*x) dx = [x^3 + x^2]_{0}^{2} = (2^3 + 2^2) - 0 = 8 + 4 = 12 J.",
@@ -417,7 +598,8 @@
       "D": "SIGN_ERROR: Doubled the integral value."
     },
     "is_transfer": true,
-    "is_prerequisite_check": false
+    "is_prerequisite_check": false,
+    "tier": "STANDARD"
   },
   {
     "question_id": "NEET_CHEM_EQUIL_004",
@@ -434,10 +616,22 @@
     "question_type": "multiple_choice",
     "content": "[NEET-UG 2021 Adapted - Modified Data] The solubility product (Ksp) of silver chloride (AgCl) in water is 1.6 x 10^-10 at 298 K. The molar solubility of AgCl in a 0.10 M aqueous sodium chloride (NaCl) solution is :",
     "options": [
-      {"id": "A", "text": "1.6 x 10^-9 M"},
-      {"id": "B", "text": "1.26 x 10^-5 M"},
-      {"id": "C", "text": "1.6 x 10^-11 M"},
-      {"id": "D", "text": "1.6 x 10^-8 M"}
+      {
+        "id": "A",
+        "text": "1.6 x 10^-9 M"
+      },
+      {
+        "id": "B",
+        "text": "1.26 x 10^-5 M"
+      },
+      {
+        "id": "C",
+        "text": "1.6 x 10^-11 M"
+      },
+      {
+        "id": "D",
+        "text": "1.6 x 10^-8 M"
+      }
     ],
     "correct_answer": "A",
     "explanation": "Due to common ion effect from 0.10 M NaCl: [Cl-] approx 0.10 M. Since Ksp = [Ag+] * [Cl-] => [Ag+] = Ksp / [Cl-] = (1.6 x 10^-10) / 0.10 = 1.6 x 10^-9 M.",
@@ -447,6 +641,523 @@
       "D": "CALCULATION_ERROR: Exponent arithmetic error."
     },
     "is_transfer": false,
+    "is_prerequisite_check": true,
+    "tier": "STANDARD"
+  },
+  {
+    "question_id": "NEET_ADV_BIO_101",
+    "exam": "NEET",
+    "paper": "NEET_UG_2023_HIGH_DIFF",
+    "subject": "Biology",
+    "chapter": "Cell Biology & Genetics",
+    "topic": "Cell: The Unit of Life",
+    "concept_id": "bio_c4_pathway_hatch_slack",
+    "skill": "conceptual",
+    "difficulty": 0.8,
+    "discrimination": 1.7,
+    "estimated_time": 60,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[NEET Advanced Tier] In C4 plants, which enzyme is responsible for initial atmospheric CO2 fixation in mesophyll cells, and what is the primary 4-carbon product formed?",
+    "options": [
+      {
+        "id": "A",
+        "text": "PEP carboxylase; Oxaloacetate (OAA)"
+      },
+      {
+        "id": "B",
+        "text": "RuBisCO; 3-Phosphoglycerate (3-PGA)"
+      },
+      {
+        "id": "C",
+        "text": "PEP carboxylase; 3-Phosphoglycerate (3-PGA)"
+      },
+      {
+        "id": "D",
+        "text": "RuBisCO; Oxaloacetate (OAA)"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation": "In mesophyll cells of C4 plants, PEP carboxylase fixes CO2 to phosphoenolpyruvate (PEP) forming oxaloacetate (OAA, 4-carbon acid), avoiding photorespiration.",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: describes C3 Calvin cycle fixation occurring in bundle sheath cells.",
+      "C": "CONCEPTUAL_ERROR: paired correct PEP carboxylase enzyme with C3 product 3-PGA.",
+      "D": "CONCEPTUAL_ERROR: RuBisCO is absent from mesophyll cells in C4 Kranz anatomy."
+    },
+    "is_transfer": false,
     "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_ADV_BIO_102",
+    "exam": "NEET",
+    "paper": "NEET_UG_2022_HIGH_DIFF",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Body Fluids and Circulation",
+    "concept_id": "bio_nephron_countercurrent_mechanism",
+    "skill": "reasoning",
+    "difficulty": 0.82,
+    "discrimination": 1.75,
+    "estimated_time": 65,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[NEET Advanced Tier] Which specific segment of the mammalian nephron is impermeable to water while actively transporting Na+ and Cl- ions into the medullary interstitium to maintain the countercurrent hyperosmotic gradient?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Descending limb of Loop of Henle"
+      },
+      {
+        "id": "B",
+        "text": "Ascending limb of Loop of Henle"
+      },
+      {
+        "id": "C",
+        "text": "Proximal Convoluted Tubule (PCT)"
+      },
+      {
+        "id": "D",
+        "text": "Cortical Collecting Duct"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation": "The thick ascending limb of Henle's loop is impermeable to water but actively pumps NaCl into the interstitium, creating the medullary osmotic gradient.",
+    "distractor_explanations": {
+      "A": "CONCEPTUAL_ERROR: descending limb is permeable to water but impermeable to electrolytes.",
+      "C": "CONCEPTUAL_ERROR: PCT reabsorbs water and solutes isotonically (~70-80%).",
+      "D": "CONCEPTUAL_ERROR: collecting duct water permeability is ADH-regulated and does not establish the gradient."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "NEET_ADV_BIO_103",
+    "exam": "NEET",
+    "paper": "NEET_UG_2023_HIGH_DIFF",
+    "subject": "Biology",
+    "chapter": "Cell Biology & Genetics",
+    "topic": "Principles of Inheritance and Variation",
+    "concept_id": "bio_gene_interaction_epistasis",
+    "skill": "analytical",
+    "difficulty": 0.85,
+    "discrimination": 1.85,
+    "estimated_time": 75,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[NEET Advanced Tier] In a dihybrid cross between heterozygous parents, the F2 generation exhibits a modified phenotypic ratio of 9:3:4 instead of the classic Mendelian 9:3:3:1 ratio. This interaction is caused by:",
+    "options": [
+      {
+        "id": "A",
+        "text": "Dominant epistasis"
+      },
+      {
+        "id": "B",
+        "text": "Complementary gene action"
+      },
+      {
+        "id": "C",
+        "text": "Recessive epistasis"
+      },
+      {
+        "id": "D",
+        "text": "Incomplete dominance"
+      }
+    ],
+    "correct_answer": "C",
+    "explanation": "Recessive epistasis occurs when homozygous recessive alleles at one locus mask the phenotypic expression of alleles at another locus, merging 3 + 1 to form a 9:3:4 ratio (e.g. Labrador retriever coat color).",
+    "distractor_explanations": {
+      "A": "CONCEPTUAL_ERROR: dominant epistasis modifies ratio to 12:3:1.",
+      "B": "CONCEPTUAL_ERROR: complementary gene action modifies ratio to 9:7.",
+      "D": "CONCEPTUAL_ERROR: incomplete dominance in monohybrid yields 1:2:1, not a 9:3:4 dihybrid ratio."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_ADV_BIO_104",
+    "exam": "NEET",
+    "paper": "NEET_UG_2021_HIGH_DIFF",
+    "subject": "Biology",
+    "chapter": "Cell Biology & Genetics",
+    "topic": "Principles of Inheritance and Variation",
+    "concept_id": "bio_population_ecology_logistic_growth",
+    "skill": "application",
+    "difficulty": 0.78,
+    "discrimination": 1.6,
+    "estimated_time": 60,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[NEET Advanced Tier] According to the Verhulst-Pearl logistic population growth model dN/dt = rN(1 - N/K), at what population density N does the population growth rate attain its maximum value?",
+    "options": [
+      {
+        "id": "A",
+        "text": "N = K"
+      },
+      {
+        "id": "B",
+        "text": "N = K / 4"
+      },
+      {
+        "id": "C",
+        "text": "N \u2192 0"
+      },
+      {
+        "id": "D",
+        "text": "N = K / 2"
+      }
+    ],
+    "correct_answer": "D",
+    "explanation": "The logistic growth curve is sigmoid. Differentiating dN/dt with respect to N: d/dN [rN - rN^2/K] = r - 2rN/K = 0 => N = K/2 (inflection point of maximum growth velocity).",
+    "distractor_explanations": {
+      "A": "CONCEPTUAL_ERROR: at N = K, environmental resistance halts growth, dN/dt = 0.",
+      "B": "CALCULATION_ERROR: misidentified the parabola maximum vertex.",
+      "C": "CONCEPTUAL_ERROR: near N = 0, low reproductive biomass yields near-zero absolute rate."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "NEET_ADV_PHY_101",
+    "exam": "NEET",
+    "paper": "NEET_UG_2022_HIGH_DIFF",
+    "subject": "Physics",
+    "chapter": "Mechanics & Laws of Motion",
+    "topic": "Kinematics & Work-Energy",
+    "concept_id": "phy_wheatstone_bridge_balance",
+    "skill": "application",
+    "difficulty": 0.75,
+    "discrimination": 1.55,
+    "estimated_time": 65,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[NEET Advanced Tier] In a balanced Wheatstone bridge circuit, the resistances in sequential cyclic order are P = 10 \u03a9, Q = 15 \u03a9, and R = 20 \u03a9. Calculate the value of unknown resistance S required to maintain zero galvanometer deflection.",
+    "options": [
+      {
+        "id": "A",
+        "text": "30 \u03a9"
+      },
+      {
+        "id": "B",
+        "text": "20 \u03a9"
+      },
+      {
+        "id": "C",
+        "text": "13.3 \u03a9"
+      },
+      {
+        "id": "D",
+        "text": "7.5 \u03a9"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation": "Wheatstone balance condition: P/Q = R/S => S = (Q * R) / P = (15 * 20) / 10 = 300 / 10 = 30 \u03a9.",
+    "distractor_explanations": {
+      "B": "CARELESS_ERROR: assumed symmetrical bridge S = R.",
+      "C": "FORMULA_SELECTION_ERROR: computed inverted ratio (P * R) / Q = 200 / 15 \u2248 13.3 \u03a9.",
+      "D": "CALCULATION_ERROR: arithmetic reciprocal mistake."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_ADV_PHY_102",
+    "exam": "NEET",
+    "paper": "NEET_UG_2023_HIGH_DIFF",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "topic": "Ray Optics & Optical Instruments",
+    "concept_id": "phy_faraday_law_induced_emf",
+    "skill": "analytical",
+    "difficulty": 0.78,
+    "discrimination": 1.6,
+    "estimated_time": 70,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[NEET Advanced Tier] A planar coil of 100 turns and cross-sectional area 0.02 m^2 is oriented perpendicular to a magnetic field. The field decreases uniformly from 0.5 T to 0.1 T in a time interval of 0.2 s. Find the magnitude of induced EMF.",
+    "options": [
+      {
+        "id": "A",
+        "text": "2 V"
+      },
+      {
+        "id": "B",
+        "text": "4 V"
+      },
+      {
+        "id": "C",
+        "text": "8 V"
+      },
+      {
+        "id": "D",
+        "text": "0.4 V"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation": "Faraday's Law: |EMF| = N * |dPhi/dt| = N * A * (delta B / delta t) = 100 * 0.02 * ((0.5 - 0.1) / 0.2) = 2 * (0.4 / 0.2) = 2 * 2 = 4 V.",
+    "distractor_explanations": {
+      "A": "CALCULATION_ERROR: used delta B = 0.2 T instead of 0.4 T.",
+      "C": "CALCULATION_ERROR: doubled turns or arithmetic factor.",
+      "D": "FORMULA_SELECTION_ERROR: neglected turns N (evaluated A * delta B / delta t = 0.04 V)."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "NEET_ADV_PHY_103",
+    "exam": "NEET",
+    "paper": "NEET_UG_2021_HIGH_DIFF",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "topic": "Ray Optics & Optical Instruments",
+    "concept_id": "phy_photoelectric_effect_kmax",
+    "skill": "analytical",
+    "difficulty": 0.8,
+    "discrimination": 1.7,
+    "estimated_time": 80,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[NEET Advanced Tier] The photoelectric work function of a photosensitive metallic surface is 2.0 eV. Monochromatic light of wavelength \u03bb = 300 nm is incident upon it. Taking Planck constant product hc \u2248 1240 eV\u00b7nm, calculate maximum kinetic energy of emitted photoelectrons.",
+    "options": [
+      {
+        "id": "A",
+        "text": "4.13 eV"
+      },
+      {
+        "id": "B",
+        "text": "1.87 eV"
+      },
+      {
+        "id": "C",
+        "text": "2.13 eV"
+      },
+      {
+        "id": "D",
+        "text": "0.13 eV"
+      }
+    ],
+    "correct_answer": "C",
+    "explanation": "Incident photon energy E = hc / \u03bb = 1240 / 300 \u2248 4.133 eV. By Einstein's photoelectric equation: KE_max = E - \u03a6 = 4.133 - 2.0 = 2.13 eV.",
+    "distractor_explanations": {
+      "A": "CONCEPTUAL_ERROR: reported photon energy E without subtracting work function threshold.",
+      "B": "SIGN_ERROR: subtracted photon energy from work function (2.0 - 4.13).",
+      "D": "CALCULATION_ERROR: decimal placement error during hc division."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "NEET_ADV_PHY_104",
+    "exam": "NEET",
+    "paper": "NEET_UG_2022_HIGH_DIFF",
+    "subject": "Physics",
+    "chapter": "Mechanics & Laws of Motion",
+    "topic": "Kinematics & Work-Energy",
+    "concept_id": "phy_escape_velocity_scaling",
+    "skill": "reasoning",
+    "difficulty": 0.77,
+    "discrimination": 1.6,
+    "estimated_time": 70,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[NEET Advanced Tier] A hypothetical terrestrial exoplanet has twice the mass of Earth (M' = 2M_E) but the exact same mean radius (R' = R_E). Given Earth's surface escape velocity is 11.2 km/s, determine the escape velocity from this planet.",
+    "options": [
+      {
+        "id": "A",
+        "text": "11.2 km/s"
+      },
+      {
+        "id": "B",
+        "text": "22.4 km/s"
+      },
+      {
+        "id": "C",
+        "text": "7.9 km/s"
+      },
+      {
+        "id": "D",
+        "text": "15.8 km/s"
+      }
+    ],
+    "correct_answer": "D",
+    "explanation": "Escape velocity is v_e = sqrt(2GM / R) \u221d sqrt(M/R). For M' = 2M and R' = R: v_e' = v_e * sqrt(2) = 11.2 * 1.414 \u2248 15.84 km/s.",
+    "distractor_explanations": {
+      "A": "CONCEPTUAL_ERROR: assumed escape velocity is independent of mass.",
+      "B": "FORMULA_SELECTION_ERROR: scaled linearly with mass without square root (11.2 * 2 = 22.4).",
+      "C": "SIGN_ERROR: inverted mass ratio inside root (11.2 / sqrt(2) \u2248 7.9 km/s)."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_ADV_CHEM_101",
+    "exam": "NEET",
+    "paper": "NEET_UG_2023_HIGH_DIFF",
+    "subject": "Chemistry",
+    "chapter": "Physical Chemistry & Equilibrium",
+    "topic": "Ionic Equilibrium & Acids/Bases",
+    "concept_id": "chem_hybridization_expanded_octet",
+    "skill": "conceptual",
+    "difficulty": 0.72,
+    "discrimination": 1.5,
+    "estimated_time": 55,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[NEET Advanced Tier] What is the hybridization state of the central sulfur atom in sulfur hexafluoride (SF6) based on VSEPR theory?",
+    "options": [
+      {
+        "id": "A",
+        "text": "sp^3d^2"
+      },
+      {
+        "id": "B",
+        "text": "sp^3d"
+      },
+      {
+        "id": "C",
+        "text": "sp^3"
+      },
+      {
+        "id": "D",
+        "text": "dsp^2"
+      }
+    ],
+    "correct_answer": "A",
+    "explanation": "Sulfur has 6 valence electrons, forming 6 single S-F covalent bonds with zero lone pairs. Steric number = 6, yielding regular octahedral geometry and sp^3d^2 hybridization.",
+    "distractor_explanations": {
+      "B": "CONCEPTUAL_ERROR: sp^3d corresponds to steric number 5 (trigonal bipyramidal, e.g. PCl5).",
+      "C": "CONCEPTUAL_ERROR: sp^3 corresponds to steric number 4 (tetrahedral).",
+      "D": "CONCEPTUAL_ERROR: dsp^2 is square planar geometry in transition metal complexes."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "NEET_ADV_CHEM_102",
+    "exam": "NEET",
+    "paper": "NEET_UG_2022_HIGH_DIFF",
+    "subject": "Chemistry",
+    "chapter": "Physical Chemistry & Equilibrium",
+    "topic": "Ionic Equilibrium & Acids/Bases",
+    "concept_id": "chem_standard_cell_potential",
+    "skill": "application",
+    "difficulty": 0.78,
+    "discrimination": 1.6,
+    "estimated_time": 65,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[NEET Advanced Tier] Given standard reduction potentials E\u00b0(Ag+/Ag) = +0.80 V and E\u00b0(Ni^2+/Ni) = -0.25 V, find the standard EMF (E\u00b0cell) of the electrochemical cell Ni | Ni^2+ || Ag+ | Ag.",
+    "options": [
+      {
+        "id": "A",
+        "text": "0.55 V"
+      },
+      {
+        "id": "B",
+        "text": "1.05 V"
+      },
+      {
+        "id": "C",
+        "text": "1.30 V"
+      },
+      {
+        "id": "D",
+        "text": "-1.05 V"
+      }
+    ],
+    "correct_answer": "B",
+    "explanation": "Silver has the higher reduction potential and acts as cathode; nickel is oxidized at anode: E\u00b0cell = E\u00b0cathode - E\u00b0anode = (+0.80 V) - (-0.25 V) = 0.80 + 0.25 = +1.05 V.",
+    "distractor_explanations": {
+      "A": "SIGN_ERROR: subtracted potentials algebraically as 0.80 - 0.25 = 0.55 V.",
+      "C": "CALCULATION_ERROR: combined values with incorrect stoichiometric multiplier.",
+      "D": "SIGN_ERROR: inverted cathode and anode roles yielding non-spontaneous -1.05 V."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": true
+  },
+  {
+    "question_id": "NEET_ADV_CHEM_103",
+    "exam": "NEET",
+    "paper": "NEET_UG_2021_HIGH_DIFF",
+    "subject": "Chemistry",
+    "chapter": "Biomolecules & Organic Chemistry",
+    "topic": "Biomolecules",
+    "concept_id": "chem_pblock_nitrogen_oxides",
+    "skill": "conceptual",
+    "difficulty": 0.75,
+    "discrimination": 1.55,
+    "estimated_time": 55,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[NEET Advanced Tier] Which neutral oxide of nitrogen is commonly known as 'laughing gas', and what is the hybridization and geometric arrangement at its central nitrogen atom?",
+    "options": [
+      {
+        "id": "A",
+        "text": "NO2; sp^2 hybridized (bent)"
+      },
+      {
+        "id": "B",
+        "text": "N2O3; sp^3 hybridized (pyramidal)"
+      },
+      {
+        "id": "C",
+        "text": "N2O; sp hybridized (linear)"
+      },
+      {
+        "id": "D",
+        "text": "NO; sp^2 hybridized (linear)"
+      }
+    ],
+    "correct_answer": "C",
+    "explanation": "Nitrous oxide (N2O, laughing gas) possesses resonance forms :N\u2261N-O: <-> :N=N=O:. The central nitrogen is sp-hybridized with zero lone pairs, giving a linear geometry.",
+    "distractor_explanations": {
+      "A": "CONCEPTUAL_ERROR: nitrogen dioxide (NO2) is an acidic brown paramagnetic gas, not laughing gas.",
+      "B": "CONCEPTUAL_ERROR: dinitrogen trioxide (N2O3) is blue acidic liquid/solid.",
+      "D": "CONCEPTUAL_ERROR: nitric oxide (NO) is a neutral diatomic free radical."
+    },
+    "is_transfer": false,
+    "is_prerequisite_check": false
+  },
+  {
+    "question_id": "NEET_ADV_CHEM_104",
+    "exam": "NEET",
+    "paper": "NEET_UG_2023_HIGH_DIFF",
+    "subject": "Chemistry",
+    "chapter": "Biomolecules & Organic Chemistry",
+    "topic": "Biomolecules",
+    "concept_id": "chem_alcohol_to_haloalkane_mechanism",
+    "skill": "analytical",
+    "difficulty": 0.88,
+    "discrimination": 1.9,
+    "estimated_time": 90,
+    "question_type": "multiple_choice",
+    "tier": "ADVANCED",
+    "content": "[NEET Advanced Tier] Which specific reagent combination converts an optically active secondary alcohol into the corresponding alkyl chloride with clean INVERSION of configuration via a bimolecular SN2 mechanism?",
+    "options": [
+      {
+        "id": "A",
+        "text": "SOCl2 alone in inert non-polar solvent (SNi retention)"
+      },
+      {
+        "id": "B",
+        "text": "Lucas Reagent (conc. HCl + anhydrous ZnCl2)"
+      },
+      {
+        "id": "C",
+        "text": "PCl5 without base"
+      },
+      {
+        "id": "D",
+        "text": "SOCl2 in the presence of Pyridine base"
+      }
+    ],
+    "correct_answer": "D",
+    "explanation": "In Darzens halogenation, adding pyridine neutralizes generated HCl forming pyridinium chloride. The resulting free Cl- nucleophile attacks the chlorosulfite ester from the backside via bimolecular SN2, producing complete inversion.",
+    "distractor_explanations": {
+      "A": "CONCEPTUAL_ERROR: SOCl2 alone proceeds through intramolecular internal substitution (SNi) resulting in retention of configuration.",
+      "B": "CONCEPTUAL_ERROR: Lucas reagent undergoes SN1 via carbocation intermediate causing racemization.",
+      "C": "CONCEPTUAL_ERROR: PCl5 yields mixed pathways and inferior stereochemical stereospecificity."
+    },
+    "is_transfer": true,
+    "is_prerequisite_check": false
   }
 ]

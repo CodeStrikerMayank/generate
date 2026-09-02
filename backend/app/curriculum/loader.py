@@ -149,7 +149,8 @@ def seed_curriculum_and_questions(db: Session):
                         distractor_explanations=q_data.get("distractor_explanations"),
                         rubrics=q_data.get("rubrics"),
                         is_transfer=q_data.get("is_transfer", False),
-                        is_prerequisite_check=q_data.get("is_prerequisite_check", False)
+                        is_prerequisite_check=q_data.get("is_prerequisite_check", False),
+                        tier=q_data.get("tier", "STANDARD")
                     )
                     db.add(question)
                 else:
@@ -166,5 +167,6 @@ def seed_curriculum_and_questions(db: Session):
                     existing_q.chapter_id = ch_id
                     existing_q.topic_id = t_id
                     existing_q.concept_id = q_data.get("concept_id", existing_q.concept_id)
+                    existing_q.tier = q_data.get("tier", getattr(existing_q, "tier", "STANDARD"))
 
     db.commit()

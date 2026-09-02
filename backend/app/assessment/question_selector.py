@@ -167,3 +167,35 @@ class QuestionSelector:
             selected.extend(remaining[:(count - len(selected))])
 
         return selected[:count]
+
+    def select_advanced_questions(
+        self,
+        exam: str,
+        subject: Optional[str] = None,
+        student_id: Optional[str] = None,
+        count: int = 6
+    ) -> List[Question]:
+        """Selects high-difficulty Tier 4 Advanced Mastery Challenge questions (difficulty 0.75 - 0.92)."""
+        query = self.db.query(Question).filter(
+            Question.exam == exam,
+            Question.tier == "ADVANCED"
+        )
+        if subject:
+            query = query.filter(Question.subject == subject)
+
+        candidates = query.all()
+        if not candidates:
+            # Fallback to highest difficulty questions for this exam
+            fallback_query = self.db.query(Question).filter(Question.exam == exam)
+            if subject:
+                fallback_query = fallback_query.filter(Question.subject == subject)
+            candidates = fallback_query.order_by(Question.difficulty.desc()).limit(count * 2).all()
+
+        exposed_ids = self.get_exposed_question_ids(student_id) if student_id else set()
+        unexposed = [q for q in candidates if q.question_id not in exposed_ids]
+        pool = unexposed if len(unexposed) >= count else candidates
+
+        shuffled_pool = list(pool)
+        random.shuffle(shuffled_pool)
+        return shuffled_pool[:count]
+

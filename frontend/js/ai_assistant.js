@@ -1,13 +1,12 @@
 /**
- * AI Study Mentor Chat Controller.
- * Grounded in recent quiz performance and dynamic roadmap intelligence.
- * (AI Practice Generator removed — focus is on roadmap + student model.)
+ * AI Study Mentor Chat Controller — FAQ Mode.
+ * All queries are pre-defined FAQ buttons; no free-text input is presented to users.
  */
 const AIAssistantController = {
   chatHistory: [
     {
       sender: 'ai',
-      text: "👋 Hi! I'm your **CoreShadow AI Study Mentor** for **JEE Main & NEET-UG**.\n\nTake your compulsory diagnostic quiz and I will extract your **Latent Ability (θ)**, analyze your exact calculation/concept errors, and explain your personalized roadmap sequence.\n\nUse the quick prompts below to inspect your performance and get personalized study strategies!"
+      text: "👋 Hi! I'm your **CoreShadow AI Study Mentor** for **JEE Main & NEET-UG**.\n\nTake your compulsory diagnostic quiz and I will extract your **Latent Ability (θ)**, analyze your exact calculation/concept errors, and explain your personalized roadmap sequence.\n\n👇 **Pick any question below** to get personalized AI guidance based on your quiz data!"
     }
   ],
 
@@ -36,40 +35,47 @@ const AIAssistantController = {
     container.scrollTop = container.scrollHeight;
   },
 
-  sendQuickPrompt(text) {
-    const input = document.getElementById('chatInput');
-    if (input) {
-      input.value = text;
-      this.sendMessage();
-    }
-  },
+  /** Called by FAQ buttons — sends the full question text directly */
+  async sendQuickPrompt(text) {
+    if (!text || !text.trim()) return;
 
-  async sendMessage() {
-    const input = document.getElementById('chatInput');
-    if (!input || !input.value.trim()) return;
-
-    const text = input.value.trim();
-    input.value = '';
-    this.chatHistory.push({ sender: 'user', text });
+    this.chatHistory.push({ sender: 'user', text: text.trim() });
     this.renderChat();
 
     // Thinking bubble
     this.chatHistory.push({ sender: 'ai', text: '⏳ Analyzing your quiz telemetry & knowledge graph…' });
     this.renderChat();
 
-    const studentId = AppState.student?.student_id || 'demo_student';
+    const studentId = (window.AppState && AppState.student && AppState.student.student_id)
+      ? AppState.student.student_id
+      : 'demo_student';
 
     try {
-      const res = await API.chatAI(studentId, text);
+      const res = await API.chatAI(studentId, text.trim());
       this.chatHistory.pop(); // Remove thinking bubble
-      this.chatHistory.push({ sender: 'ai', text: res.response || 'Done!' });
+      this.chatHistory.push({ sender: 'ai', text: res.response || 'Analysis complete!' });
     } catch (err) {
       this.chatHistory.pop();
       this.chatHistory.push({
         sender: 'ai',
-        text: '🔌 Offline AI temporarily disconnected. Your roadmap is still safely synchronized via local SQLite database.'
+        text: '🔌 Offline AI temporarily disconnected. Your roadmap is still safely synchronized via local SQLite database.\n\n**Tip:** Make sure the backend server is running on port 8000.'
       });
     }
     this.renderChat();
+
+    // Scroll chat into view
+    const container = document.getElementById('chatMessagesContainer');
+    if (container) {
+      container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  },
+
+  /** Legacy stub — kept so no JS errors if anything still calls sendMessage() */
+  sendMessage() {
+    const input = document.getElementById('chatInput');
+    if (input && input.value.trim()) {
+      this.sendQuickPrompt(input.value.trim());
+      input.value = '';
+    }
   }
 };
