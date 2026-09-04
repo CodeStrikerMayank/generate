@@ -1396,4 +1396,166 @@ body.theme-upsc {
   background: rgba(56, 189, 248, 0.08) !important;
 }
 
+/* ================================================================
+   BUFFERING / CALIBRATION LOADING SCREEN & STREAM LOCK STYLES
+   ================================================================ */
+.buffering-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.96) 0%, rgba(3, 7, 18, 0.99) 100%);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  display: none;
+  opacity: 0;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.buffering-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.buffering-card {
+  max-width: 540px;
+  width: 90%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2.5rem 2rem;
+  background: rgba(13, 18, 38, 0.7);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(99, 102, 241, 0.2);
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.buffering-spinner-wrap {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.buffering-spinner-outer {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--accent-neon);
+  border-right-color: var(--accent-cyan);
+  animation: cyberSpin 1.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.4);
+}
+
+.buffering-spinner-inner {
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-bottom-color: var(--accent-amber);
+  border-left-color: var(--accent-rose);
+  animation: cyberSpinReverse 1.8s linear infinite;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+}
+
+.buffering-center-logo {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 20px var(--accent-neon);
+  animation: pulseLogo 2s ease-in-out infinite;
+}
+
+@keyframes cyberSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes cyberSpinReverse {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes pulseLogo {
+  0%, 100% { transform: scale(0.95); opacity: 0.85; }
+  50% { transform: scale(1.1); opacity: 1; text-shadow: 0 0 30px var(--accent-cyan); }
+}
+
+.buffering-progress-wrap {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 0.5rem;
+}
+
+.buffering-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-neon) 0%, var(--accent-cyan) 50%, var(--accent-emerald) 100%);
+  box-shadow: 0 0 16px rgba(34, 211, 238, 0.6);
+  border-radius: var(--radius-full);
+  transition: width 0.35s ease;
+}
+
+.buffering-log-ticker {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--accent-cyan);
+  min-height: 22px;
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.3);
+  letter-spacing: 0.02em;
+}
+
+/* ── Locked Stream Header Badge ── */
+.exam-locked-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(13, 18, 38, 0.88);
+  border: 1px solid rgba(99, 102, 241, 0.38);
+  padding: 4px 10px 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.15);
+}
+
+.lock-badge-icon {
+  font-size: 0.85rem;
+}
+
+.lock-badge-title {
+  color: var(--text-primary);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.lock-badge-logout {
+  background: rgba(244, 63, 94, 0.14);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  color: var(--accent-rose);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lock-badge-logout:hover {
+  background: rgba(244, 63, 94, 0.28);
+  transform: translateY(-1px);
+}
+
+
 

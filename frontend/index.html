@@ -52,48 +52,132 @@
   </div>
 
   <!-- ╔══════════════════════════════════════════════════════════╗ -->
-  <!-- ║   LAUNCHER SCREEN (post-admin-login chooser)            ║ -->
+  <!-- ║   BUFFERING / CALIBRATION LOADING SCREEN                 ║ -->
+  <!-- ╚══════════════════════════════════════════════════════════╝ -->
+  <div id="systemBufferingOverlay" class="buffering-overlay">
+    <div class="buffering-card">
+      <div class="buffering-spinner-wrap">
+        <div class="buffering-spinner-outer"></div>
+        <div class="buffering-spinner-inner"></div>
+        <div class="buffering-center-logo">Δ</div>
+      </div>
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);padding:3px 12px;border-radius:var(--radius-full);font-size:0.75rem;font-weight:800;color:var(--accent-neon);margin-bottom:0.5rem;letter-spacing:0.04em;">
+          ⚙️ STREAM CALIBRATION IN PROGRESS
+        </div>
+        <h3 id="bufferingTitle" style="font-size:1.45rem;font-weight:900;letter-spacing:-0.02em;margin:0 0 0.35rem 0;">
+          Configuring Engine Stream…
+        </h3>
+        <p style="font-size:0.84rem;color:var(--text-secondary);margin:0;">
+          Locking entire neural architecture to <strong id="bufferingTargetExamText" style="color:var(--accent-cyan);">Selected Stream</strong>
+        </p>
+      </div>
+
+      <div class="buffering-progress-wrap">
+        <div id="bufferingProgressBar" class="buffering-progress-fill"></div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:0.75rem;color:var(--text-muted);font-family:var(--font-mono);">
+        <span id="bufferingStatusText">Initializing stream parameters…</span>
+        <span id="bufferingPctText" style="color:var(--accent-neon);font-weight:700;">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ╔══════════════════════════════════════════════════════════╗ -->
+  <!-- ║   EXAM SELECTION & SYSTEM STREAM LOCK PANEL             ║ -->
   <!-- ╚══════════════════════════════════════════════════════════╝ -->
   <div id="launcherModal" class="modal-backdrop launcher-backdrop">
-    <div class="modal-box launcher-box">
-      <div style="text-align:center;margin-bottom:2rem;">
-        <div class="onboard-logo" style="width:56px;height:56px;font-size:1.7rem;margin-bottom:0.75rem;">Δ</div>
-        <div class="admin-login-badge" style="display:inline-flex;margin-bottom:0.5rem;">✅ ACCESS GRANTED</div>
-        <h2 style="font-size:1.65rem;font-weight:900;letter-spacing:-0.02em;margin-bottom:0.4rem;">Welcome, <span id="launcherUsername" style="color:var(--accent-neon);">Operator</span></h2>
-        <p style="color:var(--text-secondary);font-size:0.88rem;">Choose how to proceed with this session.</p>
+    <div class="modal-box launcher-box" style="max-width:920px!important;padding:2.25rem 2.5rem!important;">
+      <div style="text-align:center;margin-bottom:1.5rem;">
+        <div class="onboard-logo" style="width:52px;height:52px;font-size:1.6rem;margin-bottom:0.75rem;">Δ</div>
+        <div class="admin-login-badge" style="display:inline-flex;margin-bottom:0.4rem;">✅ SESSION AUTHENTICATED</div>
+        <h2 style="font-size:1.75rem;font-weight:900;letter-spacing:-0.02em;margin-bottom:0.35rem;">
+          Select Examination Battlefield
+        </h2>
+        <p style="color:var(--text-secondary);font-size:0.88rem;max-width:620px;margin:0 auto;line-height:1.5;">
+          Choose your competitive track. The platform will <strong>permanently calibrate &amp; lock</strong> to your selected stream for this session. Switching exams requires logging out.
+        </p>
       </div>
 
-      <div class="launcher-card-grid">
-        <!-- New Student Account -->
-        <div class="launcher-card" onclick="AppState.newStudentAccount()">
-          <div class="launcher-card-icon">🎓</div>
-          <div class="launcher-card-title">New Student Account</div>
-          <div class="launcher-card-desc">Create a fresh student profile, select JEE or NEET, and run the full compulsory diagnostic flow.</div>
-          <div class="launcher-card-cta">Start New Session →</div>
+      <!-- Candidate Name Bar -->
+      <div style="max-width:480px;margin:0 auto 1.5rem auto;background:rgba(255,255,255,0.02);padding:0.75rem 1.25rem;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);">
+        <label class="form-label" style="font-size:0.78rem;font-weight:700;margin-bottom:4px;display:flex;justify-content:space-between;">
+          <span>Candidate / Aspirant Name</span>
+          <span style="color:var(--text-faint);font-size:0.72rem;">(Optional — default: Aspirant)</span>
+        </label>
+        <input type="text" id="launcherCandidateName" class="form-input" placeholder="e.g. Arjun Sharma (or leave empty for guest)" style="font-size:0.9rem;text-align:center;">
+      </div>
+
+      <!-- 3 Exam Stream Cards Grid -->
+      <div class="launcher-card-grid" style="grid-template-columns:repeat(3, 1fr);gap:1.1rem;">
+        
+        <!-- 1. JEE Main Card -->
+        <div class="launcher-card" onclick="AppState.selectAndLockExam('JEE')" style="border-top:3px solid var(--accent-cyan);">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span class="launcher-card-icon" style="margin:0;">🔭</span>
+            <span class="nba-tag" style="background:rgba(6,182,212,0.15);color:var(--accent-cyan);border:1px solid rgba(6,182,212,0.3);font-size:0.65rem;">PCM TRACK</span>
+          </div>
+          <div class="launcher-card-title" style="font-size:1.15rem;margin-top:0.4rem;">JEE Main &amp; Adv</div>
+          <div style="font-size:0.78rem;color:var(--accent-cyan);font-weight:700;margin-bottom:0.25rem;">Physics · Chemistry · Math</div>
+          <div class="launcher-card-desc" style="font-size:0.78rem;line-height:1.5;">
+            405k ExamBench Question Vault • IRT Latent Ability (θ) • BKT Mastery Models • 4-Tier Adaptive Drills
+          </div>
+          <button class="btn-primary" style="margin-top:0.75rem;padding:0.65rem;font-size:0.8rem;justify-content:center;background:linear-gradient(135deg,rgba(6,182,212,0.3),rgba(99,102,241,0.4));border-color:rgba(6,182,212,0.4);">
+            🚀 Lock &amp; Enter JEE Main →
+          </button>
         </div>
 
-        <!-- Guest Account -->
-        <div class="launcher-card" onclick="AppState.createGuestAccount()">
-          <div class="launcher-card-icon">👤</div>
-          <div class="launcher-card-title">Guest Account</div>
-          <div class="launcher-card-desc">Instantly creates a random-name guest student and launches the diagnostic quiz immediately.</div>
-          <div class="launcher-card-cta">Quick Guest Entry →</div>
+        <!-- 2. NEET-UG Card -->
+        <div class="launcher-card" onclick="AppState.selectAndLockExam('NEET')" style="border-top:3px solid var(--accent-emerald);">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span class="launcher-card-icon" style="margin:0;">🧬</span>
+            <span class="nba-tag" style="background:rgba(16,185,129,0.15);color:var(--accent-emerald);border:1px solid rgba(16,185,129,0.3);font-size:0.65rem;">PCB TRACK</span>
+          </div>
+          <div class="launcher-card-title" style="font-size:1.15rem;margin-top:0.4rem;">NEET-UG Medical</div>
+          <div style="font-size:0.78rem;color:var(--accent-emerald);font-weight:700;margin-bottom:0.25rem;">Biology · Physics · Chemistry</div>
+          <div class="launcher-card-desc" style="font-size:0.78rem;line-height:1.5;">
+            Official 2024–2025 Paper Image Crops • High-Yield Retention Schedules • Bio Botany &amp; Zoology Calibrations
+          </div>
+          <button class="btn-primary" style="margin-top:0.75rem;padding:0.65rem;font-size:0.8rem;justify-content:center;background:linear-gradient(135deg,rgba(16,185,129,0.3),rgba(99,102,241,0.4));border-color:rgba(16,185,129,0.4);">
+            🧬 Lock &amp; Enter NEET-UG →
+          </button>
         </div>
 
-        <!-- Admin Panel -->
-        <div class="launcher-card danger-card" onclick="AdminAuth.showPanel()">
-          <div class="launcher-card-icon">⚙️</div>
-          <div class="launcher-card-title">Admin Panel</div>
-          <div class="launcher-card-desc">View platform stats, student roster, and perform a hard DB reset to test a fresh prototype run.</div>
-          <div class="launcher-card-cta" style="color:var(--accent-rose);">Open Admin Tools →</div>
+        <!-- 3. UPSC CSE Card -->
+        <div class="launcher-card" onclick="AppState.selectAndLockExam('UPSC')" style="border-top:3px solid var(--accent-amber);">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span class="launcher-card-icon" style="margin:0;">🏛️</span>
+            <span class="nba-tag" style="background:rgba(245,158,11,0.15);color:var(--accent-amber);border:1px solid rgba(245,158,11,0.3);font-size:0.65rem;">CIVIL SERVICES</span>
+          </div>
+          <div class="launcher-card-title" style="font-size:1.15rem;margin-top:0.4rem;">UPSC Civil Services</div>
+          <div style="font-size:0.78rem;color:var(--accent-amber);font-weight:700;margin-bottom:0.25rem;">GS I–IV · CSAT · Prelims &amp; Mains</div>
+          <div class="launcher-card-desc" style="font-size:0.78rem;line-height:1.5;">
+            Prelims MCQ Vault • Mains Analytical Answer Writing with Live Word Counter • 5-Axis AI Rubric Evaluator (/15)
+          </div>
+          <button class="btn-primary" style="margin-top:0.75rem;padding:0.65rem;font-size:0.8rem;justify-content:center;background:linear-gradient(135deg,rgba(245,158,11,0.3),rgba(239,68,68,0.3));border-color:rgba(245,158,11,0.4);color:#fff;">
+            🏛️ Lock &amp; Enter UPSC CSE →
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Lock Notice & Secondary Links -->
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:1.75rem;padding-top:1rem;border-top:1px solid var(--border-subtle);font-size:0.78rem;color:var(--text-muted);">
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span>🔒</span>
+          <span>System locks to the chosen exam. Switching requires logging out.</span>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn-secondary" style="font-size:0.75rem;padding:0.35rem 0.85rem;" onclick="AdminAuth.showPanel()">
+            ⚙️ Admin Panel
+          </button>
+          <button class="btn-secondary" style="font-size:0.75rem;padding:0.35rem 0.85rem;" onclick="AdminAuth.hardLogout()">
+            🔓 Full Logout
+          </button>
         </div>
       </div>
 
-      <div style="text-align:center;margin-top:1.5rem;">
-        <button class="btn-secondary" style="font-size:0.78rem;padding:0.4rem 1rem;" onclick="AdminAuth.hardLogout()">
-          🔓 Full Logout (Clear Admin Session)
-        </button>
-      </div>
     </div>
   </div>
 
@@ -145,10 +229,12 @@
       <button class="btn-secondary student-session-only" style="padding:0.4rem 0.8rem;font-size:0.78rem;font-weight:700;display:none;align-items:center;gap:5px;border-color:var(--border-highlight);" onclick="AppState.showDiagnosticGateway()" title="Take or retake the compulsory diagnostic quiz">
         🎯 Diagnostic Quiz
       </button>
-      <div class="exam-pill-selector student-session-only" style="display:none;">
-        <button class="exam-pill-btn active" data-exam="JEE" onclick="AppState.switchExam('JEE')">JEE</button>
-        <button class="exam-pill-btn" data-exam="NEET" onclick="AppState.switchExam('NEET')">NEET</button>
-        <button class="exam-pill-btn" data-exam="UPSC" onclick="AppState.switchExam('UPSC')">UPSC</button>
+      <div class="exam-locked-indicator student-session-only" id="examLockedIndicator" style="display:none;" title="Session is strictly locked to this exam stream. Logout to switch exams.">
+        <span class="lock-badge-icon">🔒</span>
+        <span class="lock-badge-title" id="lockedExamTitle">LOCKED: JEE Main</span>
+        <button class="lock-badge-logout" onclick="AppState.logout()" title="Logout to change examination stream">
+          Switch (Logout)
+        </button>
       </div>
       <div class="user-badge student-session-only" onclick="AppState.showDiagnosticGateway()" id="userBadge" title="Your profile" style="display:none;">
         <div class="avatar-circle" id="userAvatarDisplay">A</div>

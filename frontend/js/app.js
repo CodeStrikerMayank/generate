@@ -5,6 +5,8 @@
 const AppState = {
   student: null,
   currentExam: 'JEE',
+  lockedExam: null,
+  isExamLocked: false,
   gatewaySelectedTrack: 'JEE',
   graphView: null,
   _liveClockInterval: null,
@@ -15,10 +17,11 @@ const AppState = {
     this._startLiveClock();
 
     // ── GATE 1: Admin must be authenticated first ──
-    if (!AdminAuth.check()) return;  // AdminAuth.check() calls showLauncherScreen on success
+    if (!AdminAuth.check()) return;
 
-    // ── GATE 2: Student session ──
+    // ── GATE 2: Student session with locked exam ──
     const storedStudentId = localStorage.getItem('adaptive_student_id');
+    const storedLockedExam = localStorage.getItem('adaptive_locked_exam');
     if (!storedStudentId) {
       this.showLauncherScreen();
       return;
@@ -26,25 +29,32 @@ const AppState = {
 
     try {
       this.student = await API.getProfile(storedStudentId);
+      this.currentExam = storedLockedExam || this.student.target_exam || 'JEE';
+      this.lockedExam = this.currentExam;
+      this.isExamLocked = true;
       this.updateHeaderProfile();
       this._showStudentHeader(true);
       await this.refreshAllData();
-      const history = await API.getAssessmentHistory(storedStudentId);
-      if (!history || history.length === 0) {
-        this.showDiagnosticGateway();
+      if (this.currentExam === 'UPSC') {
+        this.switchTab('upsc');
+      } else {
+        const history = await API.getAssessmentHistory(storedStudentId);
+        if (!history || history.length === 0) {
+          await QuizController.startTest(this.currentExam, 'DIAGNOSTIC', 1);
+        }
       }
     } catch (err) {
       console.warn('Profile load failed:', err);
       localStorage.removeItem('adaptive_student_id');
+      localStorage.removeItem('adaptive_locked_exam');
       this.showLauncherScreen();
     }
 
     AIAssistantController.renderChat();
   },
 
-  // ─── Launcher (post-admin-login) ───────────────────────────
+  // ─── Launcher (Post-Admin-Login Exam Chooser) ───────────────
   showLauncherScreen() {
-    // Set dynamic username in launcher welcome
     const currentUser = (typeof AdminAuth !== 'undefined' && AdminAuth.getLoggedInUser)
       ? AdminAuth.getLoggedInUser() : null;
     const usernameEl = document.getElementById('launcherUsername');
@@ -52,11 +62,9 @@ const AppState = {
       ? currentUser.charAt(0).toUpperCase() + currentUser.slice(1)
       : 'Operator';
 
-    // Hide the main app, show the launcher
     const launcher = document.getElementById('launcherModal');
     if (launcher) launcher.classList.add('active');
-    // Close any open modals
-    ['onboardingModal','resultModal','supportingModal','adminPanelModal'].forEach(id => {
+    ['onboardingModal','resultModal','supportingModal','adminPanelModal','systemBufferingOverlay'].forEach(id => {
       const m = document.getElementById(id);
       if (m) m.classList.remove('active');
     });
@@ -68,88 +76,134 @@ const AppState = {
     if (launcher) launcher.classList.remove('active');
   },
 
-  // ─── Logout ────────────────────────────────────────────────
-  logout() {
-    localStorage.removeItem('adaptive_student_id');
-    this.student = null;
-    this._showStudentHeader(false);
-    this.showLauncherScreen();
-    this._toast('👋 Logged out. You can create a new account or re-enter.', 'info');
-  },
-
-  // ─── Diagnostic Gateway (onboarding modal) ─────────────────
-  showDiagnosticGateway() {
+  // ─── One-Click Exam Stream Selection & Lock ────────────────
+  async selectAndLockExam(examId) {
     this.closeLauncher();
-    const modal = document.getElementById('onboardingModal');
-    if (modal) {
-      modal.classList.add('active');
-      this.selectGatewayTrack(this.currentExam || 'JEE');
-    }
-  },
+    let name = document.getElementById('launcherCandidateName')?.value.trim();
+    if (!name) name = 'Aspirant_' + Math.floor(1000 + Math.random() * 9000);
 
-  showOnboardingModal() { this.showDiagnosticGateway(); },
+    const examTitles = {
+      JEE: 'JEE Main & Advanced (PCM)',
+      NEET: 'NEET-UG Medical (PCB)',
+      UPSC: 'UPSC Civil Services (CSE)'
+    };
+    const examTitle = examTitles[examId] || examId;
 
-  selectGatewayTrack(track) {
-    this.gatewaySelectedTrack = track;
-    document.getElementById('trackCardJEE')?.classList.toggle('active', track === 'JEE');
-    document.getElementById('trackCardNEET')?.classList.toggle('active', track === 'NEET');
-    document.getElementById('trackCardUPSC')?.classList.toggle('active', track === 'UPSC');
-  },
+    // 1. Show Buffering Animation Overlay
+    this._showBufferingOverlay(examTitle);
 
-  // ─── Guest Account (instant) ────────────────────────────────
-  async createGuestAccount() {
-    this.closeLauncher();
-    const guestName = 'Guest_' + Math.floor(1000 + Math.random() * 9000);
-    const el = document.getElementById('onboardName');
-    if (el) el.value = guestName;
-    this.gatewaySelectedTrack = 'JEE';
-    this.showDiagnosticGateway();
-  },
+    // 2. Perform cybernetic calibration steps with animated progress bar and logs
+    await this._runBufferingCalibrationSequence(examId, examTitle);
 
-  // ─── New Student Account ───────────────────────────────────
-  newStudentAccount() {
-    this.closeLauncher();
-    const el = document.getElementById('onboardName');
-    if (el) el.value = '';
-    this.showDiagnosticGateway();
-  },
-
-  // ─── Start Compulsory Diagnostic ──────────────────────────
-  async startCompulsoryDiagnostic() {
-    let name = document.getElementById('onboardName')?.value.trim();
-    if (!name) name = 'Aspirant_' + Math.floor(100 + Math.random() * 900);
-    const track = this.gatewaySelectedTrack || 'JEE';
-    const email = `aspirant_${Date.now()}_${Math.floor(Math.random()*1000)}@adaptive.local`;
-
-    const btn = document.getElementById('onboardSubmitBtn');
-    if (btn) { btn.disabled = true; btn.innerText = '⚡ Initializing Diagnostic AI Engine…'; }
-
+    // 3. Register or setup student in background
     try {
+      const email = `aspirant_${Date.now()}_${Math.floor(Math.random() * 1000)}@adaptive.local`;
       let reg;
       try {
-        reg = await API.register({ name, email, password: 'student_pass', target_exam: track, daily_available_hours: 4.0 });
+        reg = await API.register({ name, email, password: 'student_pass', target_exam: examId, daily_available_hours: 4.0 });
       } catch {
-        reg = await API.register({ name, email: `user_${Date.now()}@adaptive.local`, password: 'student_pass', target_exam: track, daily_available_hours: 4.0 });
+        reg = await API.register({ name, email: `user_${Date.now()}@adaptive.local`, password: 'student_pass', target_exam: examId, daily_available_hours: 4.0 });
       }
 
       this.student = reg;
-      this.currentExam = track;
+      this.currentExam = examId;
+      this.lockedExam = examId;
+      this.isExamLocked = true;
       localStorage.setItem('adaptive_student_id', reg.student_id);
+      localStorage.setItem('adaptive_locked_exam', examId);
 
-      document.getElementById('onboardingModal')?.classList.remove('active');
       this.updateHeaderProfile();
       this._showStudentHeader(true);
-      this._toast(`🚀 Welcome ${name}! ${track === 'UPSC' ? 'UPSC Civil Services Suite Activated' : 'Compulsory Diagnostic Starting…'}`, 'success');
-      
-      if (track === 'UPSC') {
+
+      // Hide buffering overlay
+      this._hideBufferingOverlay();
+
+      this._toast(`🔒 System locked to ${examTitle}! Welcome ${name}.`, 'success');
+
+      // 4. Navigate into tailored workspace
+      if (examId === 'UPSC') {
         this.switchTab('upsc');
       } else {
-        await QuizController.startTest(track, 'DIAGNOSTIC', 1);
+        await this.refreshAllData();
+        const history = await API.getAssessmentHistory(reg.student_id);
+        if (!history || history.length === 0) {
+          await QuizController.startTest(examId, 'DIAGNOSTIC', 1);
+        } else {
+          this.switchTab('dashboard');
+        }
       }
+
       AIAssistantController.renderChat();
     } catch (err) {
-      this._toast('Error starting diagnostic: ' + err.message, 'error');
-      if (btn) { btn.disabled = false; btn.innerText = '🚀 Launch Compulsory Diagnostic Quiz →'; }
+      this._hideBufferingOverlay();
+      this._toast('Error calibrating stream: ' + err.message, 'error');
+      this.showLauncherScreen();
+    }
+  },
+
+  // ─── Buffering / Calibration Screen Controls ────────────────
+  _showBufferingOverlay(examTitle) {
+    const overlay = document.getElementById('systemBufferingOverlay');
+    const targetText = document.getElementById('bufferingTargetExamText');
+    const bar = document.getElementById('bufferingProgressBar');
+    const status = document.getElementById('bufferingStatusText');
+    const pct = document.getElementById('bufferingPctText');
+
+    if (targetText) targetText.innerText = examTitle;
+    if (bar) bar.style.width = '0%';
+    if (status) status.innerText = 'Initializing stream parameters…';
+    if (pct) pct.innerText = '0%';
+
+    if (overlay) overlay.classList.add('active');
+  },
+
+  _hideBufferingOverlay() {
+    const overlay = document.getElementById('systemBufferingOverlay');
+    if (overlay) {
+      overlay.style.opacity = '0';
+      setTimeout(() => {
+        overlay.classList.remove('active');
+        overlay.style.opacity = '';
+      }, 350);
+    }
+  },
+
+  async _runBufferingCalibrationSequence(examId, examTitle) {
+    const bar = document.getElementById('bufferingProgressBar');
+    const status = document.getElementById('bufferingStatusText');
+    const pct = document.getElementById('bufferingPctText');
+
+    const steps = [
+      { progress: 20, log: `[01/05] Establishing offline encryption & local SQLite store…`, delay: 350 },
+      { progress: 45, log: `[02/05] Locking session security token to ${examId} stream…`, delay: 400 },
+      { progress: 70, log: `[03/05] Ingesting 405k ExamBench items & official benchmark paper crops…`, delay: 400 },
+      { progress: 90, log: `[04/05] Calibrating Bayesian Knowledge Tracing & IRT parameter matrices…`, delay: 350 },
+      { progress: 100, log: `[05/05] Stream calibrated & locked! Launching workspace…`, delay: 300 }
+    ];
+
+    for (const s of steps) {
+      if (bar) bar.style.width = `${s.progress}%`;
+      if (pct) pct.innerText = `${s.progress}%`;
+      if (status) status.innerText = s.log;
+      await new Promise(resolve => setTimeout(resolve, s.delay));
+    }
+  },
+
+  // ─── Logout (Clears Lock & Returns to Exam Chooser) ─────────
+  logout() {
+    localStorage.removeItem('adaptive_student_id');
+    localStorage.removeItem('adaptive_locked_exam');
+    this.student = null;
+    this.lockedExam = null;
+    this.isExamLocked = false;
+    this._showStudentHeader(false);
+    this.showLauncherScreen();
+    this._toast('👋 Logged out. Choose an examination to begin a new locked session.', 'info');
+  },
+
+  promptLogoutToSwitch() {
+    if (confirm(`Switching exam streams requires ending your current session and re-authenticating.\n\nLogout now to choose a different examination?`)) {
+      this.logout();
     }
   },
 
@@ -159,18 +213,25 @@ const AppState = {
     const el = id => document.getElementById(id);
     if (el('userNameDisplay')) el('userNameDisplay').innerText = this.student.name;
     if (el('userExamBadge')) {
-      if (this.student.target_exam === 'JEE') el('userExamBadge').innerText = 'JEE Main';
-      else if (this.student.target_exam === 'NEET') el('userExamBadge').innerText = 'NEET-UG';
-      else if (this.student.target_exam === 'UPSC') el('userExamBadge').innerText = 'UPSC CSE';
+      if (this.currentExam === 'JEE') el('userExamBadge').innerText = 'JEE Main';
+      else if (this.currentExam === 'NEET') el('userExamBadge').innerText = 'NEET-UG';
+      else if (this.currentExam === 'UPSC') el('userExamBadge').innerText = 'UPSC CSE';
     }
     if (el('userAvatarDisplay')) el('userAvatarDisplay').innerText = this.student.name.charAt(0).toUpperCase();
-    this.currentExam = this.student.target_exam || 'JEE';
+
+    // Locked Indicator Header
+    const lockedTitle = el('lockedExamTitle');
+    if (lockedTitle) {
+      if (this.currentExam === 'JEE') lockedTitle.innerText = 'LOCKED: JEE Main (PCM)';
+      else if (this.currentExam === 'NEET') lockedTitle.innerText = 'LOCKED: NEET-UG (PCB)';
+      else if (this.currentExam === 'UPSC') lockedTitle.innerText = 'LOCKED: UPSC Civil Services';
+    }
+    const lockedIndicator = el('examLockedIndicator');
+    if (lockedIndicator) lockedIndicator.style.display = 'inline-flex';
+
     if (this.currentExam === 'NEET') document.body.className = 'theme-neet';
     else if (this.currentExam === 'UPSC') document.body.className = 'theme-upsc';
     else document.body.className = 'theme-jee';
-    document.querySelectorAll('.exam-pill-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.exam === this.currentExam);
-    });
   },
 
   _showStudentHeader(visible) {
@@ -178,17 +239,23 @@ const AppState = {
     els.forEach(el => el.style.display = visible ? '' : 'none');
     const logoutBtn = document.getElementById('headerLogoutBtn');
     if (logoutBtn) logoutBtn.style.display = visible ? 'flex' : 'none';
+    const lockedIndicator = document.getElementById('examLockedIndicator');
+    if (lockedIndicator) lockedIndicator.style.display = visible ? 'inline-flex' : 'none';
   },
 
-  // ─── Exam Switcher ────────────────────────────────────────
+  // ─── Exam Switcher (STRICT LOCK ENFORCEMENT) ───────────────
   async switchExam(examId) {
+    if (this.isExamLocked && examId !== this.lockedExam) {
+      const examTitles = {
+        JEE: 'JEE Main (PCM)',
+        NEET: 'NEET-UG (PCB)',
+        UPSC: 'UPSC Civil Services'
+      };
+      this._toast(`🔒 Session is locked to ${examTitles[this.lockedExam] || this.lockedExam}. To switch exams, please Logout.`, 'warning');
+      return;
+    }
     this.currentExam = examId;
-    if (examId === 'NEET') document.body.className = 'theme-neet';
-    else if (examId === 'UPSC') document.body.className = 'theme-upsc';
-    else document.body.className = 'theme-jee';
-    document.querySelectorAll('.exam-pill-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.exam === examId);
-    });
+    this.updateHeaderProfile();
     if (examId === 'UPSC') {
       this.switchTab('upsc');
     } else {

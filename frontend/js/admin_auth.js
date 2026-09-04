@@ -109,7 +109,10 @@ const AdminAuth = {
 
   logout() {
     localStorage.removeItem('adaptive_student_id');
+    localStorage.removeItem('adaptive_locked_exam');
     AppState.student = null;
+    AppState.lockedExam = null;
+    AppState.isExamLocked = false;
     AppState.showLauncherScreen();
   },
 
@@ -117,6 +120,7 @@ const AdminAuth = {
     sessionStorage.removeItem(this.SESSION_KEY);
     sessionStorage.removeItem(this.SESSION_USER_KEY);
     localStorage.removeItem('adaptive_student_id');
+    localStorage.removeItem('adaptive_locked_exam');
     location.reload();
   },
 
