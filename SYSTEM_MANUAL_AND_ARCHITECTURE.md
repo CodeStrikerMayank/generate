@@ -1,8 +1,9 @@
 # Adaptive Student Intelligence & Dynamic Roadmap Engine: System Manual & Technical Specification
 
-> **Platform Version**: 3.0 (Production Ready)  
-> **Supported Exam Tracks**: JEE Main (PCM), NEET-UG (PCB), UPSC (Civil Services)  
-> **Offline-First Architecture**: 100% Local Inference & Embedded SQLite — Zero External Cloud Dependency Required
+> **Platform Version**: 4.4 (Production Ready)  
+> **Supported Exam Tracks**: JEE Main & Advanced (PCM), NEET-UG (PCB), UPSC Civil Services (Prelims & Mains)  
+> **Offline-First & Hybrid Cloud Architecture**: 100% Local Inference, Embedded SQLite, and On-Demand HuggingFace Datasets Ingestion  
+> **Primary Repository**: [CodeStrikerMayank/APEX](https://github.com/CodeStrikerMayank/APEX.git)
 
 ---
 
@@ -10,31 +11,40 @@
 
 1. [Executive Summary & Core Philosophy](#1-executive-summary--core-philosophy)
 2. [High-Level System Architecture & Flow](#2-high-level-system-architecture--flow)
-3. [Compulsory Diagnostic Gateway & Onboarding Flow](#3-compulsory-diagnostic-gateway--onboarding-flow)
-4. [Authentic PYQ Question Banks with Modified Data](#4-authentic-pyq-question-banks-with-modified-data)
-5. [Assessment Arena & Diagnostic Quiz Engine](#5-assessment-arena--diagnostic-quiz-engine)
-6. [Cognitive Student Modeling & Mathematical Framework](#6-cognitive-student-modeling--mathematical-framework)
-7. [Exam-Customized Dynamic Roadmap Engine (JEE vs NEET)](#7-exam-customized-dynamic-roadmap-engine-jee-vs-neet)
-8. [Quiz-Grounded AI Study Mentor](#8-quiz-grounded-ai-study-mentor)
-9. [Append-Only Telemetry & Audit Stream](#9-append-only-telemetry--audit-stream)
-10. [Complete REST API Reference](#10-complete-rest-api-reference)
-11. [Database Schema & Entity-Relationship Architecture](#11-database-schema--entity-relationship-architecture)
-12. [Local Setup, Execution, and Verification](#12-local-setup-execution-and-verification)
+3. [Compulsory Diagnostic Gateway & 3-Role Onboarding](#3-compulsory-diagnostic-gateway--3-role-onboarding)
+4. [Tri-Stream Domain Calibration (JEE, NEET, UPSC)](#4-tri-stream-domain-calibration-jee-neet-upsc)
+5. [Authentic PYQ Question Banks with Modified Data](#5-authentic-pyq-question-banks-with-modified-data)
+6. [External API Pipelines: ExamBench (405k) & Benchmark Crops](#6-external-api-pipelines-exambench-405k--benchmark-crops)
+7. [Daily 3-Subject Interleaved Assignment Engine](#7-daily-3-subject-interleaved-assignment-engine)
+8. [UPSC Civil Services Dual-Tier Subsystem (Prelims & Mains)](#8-upsc-civil-services-dual-tier-subsystem-prelims--mains)
+9. [Assessment Arena & Diagnostic Testing Pipeline](#9-assessment-arena--diagnostic-testing-pipeline)
+10. [Cognitive Student Modeling & Mathematical Framework](#10-cognitive-student-modeling--mathematical-framework)
+11. [Exam-Customized Dynamic Roadmap Engine](#11-exam-customized-dynamic-roadmap-engine)
+12. [Interactive HTML5 Canvas Knowledge Graph DAG](#12-interactive-html5-canvas-knowledge-graph-dag)
+13. [Quiz-Grounded AI Study Mentor & Hardened Chatbot](#13-quiz-grounded-ai-study-mentor--hardened-chatbot)
+14. [Supporting Intelligence Features](#14-supporting-intelligence-features)
+15. [Append-Only Telemetry & Audit Stream](#15-append-only-telemetry--audit-stream)
+16. [Complete REST API Reference](#16-complete-rest-api-reference)
+17. [Database Schema & Entity-Relationship Architecture](#17-database-schema--entity-relationship-architecture)
+18. [Cloud Deployment & Production Hosting Guide](#18-cloud-deployment--production-hosting-guide)
+19. [Local Setup, Execution, and Verification](#19-local-setup-execution-and-verification)
 
 ---
 
 ## 1. Executive Summary & Core Philosophy
 
-The **Adaptive Student Intelligence & Dynamic Roadmap Engine** is an offline-capable pedagogical system engineered to solve the fundamental flaw of traditional exam preparation: **rote memorization and static study plans**.
+The **Adaptive Student Intelligence & Dynamic Roadmap Engine** is a psychometrically grounded, offline-capable pedagogical system engineered to overcome the fundamental flaw of traditional exam preparation: **rote memorization and static study plans**.
 
-Instead of treating exams as uniform question sets, this platform measures **true latent cognitive mastery**:
+Traditional EdTech platforms treat competitive examinations as uniform question banks, assigning static problem blocks (e.g. 50 consecutive questions on the same chapter). This induces an "illusion of competence" that rapidly decays within 72 hours. 
 
-1. **Compulsory Diagnostic Gateway**: Upon first opening the platform, students must choose their exam battleground (**JEE Main** or **NEET-UG**).
-2. **Authentic PYQs with Modified Data**: Questions are adapted directly from official Past Year Questions (2021–2023), but **numerical values, constants, and contextual variables are altered**. Rote memory fails; only true conceptual derivation succeeds.
-3. **Pre-Computed Solutions & Distractor Diagnostics**: Every question contains complete, mathematically verified step-by-step derivations ("*the answer is inside the engine's brain*"). Incorrect options map to explicit cognitive error patterns (`CONCEPTUAL_ERROR`, `CALCULATION_ERROR`, `FORMULA_SELECTION_ERROR`, `SIGN_ERROR`, `CARELESS_ERROR`).
-4. **AI Cognitive Skill Extraction**: The engine extracts Latent Ability ($\theta$) via Item Response Theory (IRT), probabilistic knowledge state $P(L)$ via Bayesian Knowledge Tracing (BKT), and subject-by-subject accuracy meters.
-5. **Prerequisite-First Dynamic Roadmap Generation**: The engine identifies root-cause foundational gaps using a Directed Acyclic Graph (DAG) and dynamically sequences study milestones, customized specifically for **JEE** (multi-concept mechanics/calculus) or **NEET** (high-speed NCERT recall & 50% Biology paper weighting).
-6. **Quiz-Grounded AI Study Mentor**: An offline-first pedagogical mentor that directly analyzes the student's recent quiz performance, explains their exact mistakes, provides complete derivations, and explains roadmap decisions.
+In contrast, this platform models the candidate's mind as a dynamic probability distribution across a **prerequisite Directed Acyclic Graph (DAG)** of atomic concepts:
+
+1. **Tri-Stream Architecture**: Purpose-built curricula for **JEE Main/Advanced** (calculus, mechanics, chemical equilibrium), **NEET-UG** (NCERT cell biology, genetics, human physiology), and **UPSC Civil Services** (General Studies Papers 1–4, CSAT, and Mains descriptive writing).
+2. **Massive Question Corpus (405,000+ Items)**: Integrates live streaming batches from HuggingFace `169Pi/exambench` alongside authentic official 2024–2025 question crops from `Reja1/jee-neet-benchmark`.
+3. **Daily 3-Subject Interleaved Practice**: Automatically generates 60–75 question problem sets daily (20–25 per subject), combining spacing effects and desirable difficulties (Bjork & Bjork).
+4. **Modified Data Principle**: For authentic PYQs, numerical values and parameters are altered so memorized answers fail, requiring first-principles derivation.
+5. **AI Multi-Dimensional Descriptive Evaluation**: Evaluates UPSC Mains essay responses across 5 distinct dimensions (Understanding, Structure, Content, Policy linkage, Critical Balance).
+6. **3-Tier Identity & Sci-Fi HUD Buffer**: Segregated access for Students, Guests, and Admins (dual-key protected) wrapped in an ultra-low latency responsive interface.
 
 ---
 
@@ -42,396 +52,418 @@ Instead of treating exams as uniform question sets, this platform measures **tru
 
 ```mermaid
 flowchart TD
-    A[Student Opens Platform] --> B{First Time Session?}
-    B -->|Yes| C[Compulsory Diagnostic Gateway Modal]
-    B -->|No| D[Dashboard / Resume Active Roadmap]
+    A[Student Accesses Platform] --> B{Role Selection}
+    B -->|Guest| C[Exploratory Mode: View DAG & Open Screener]
+    B -->|Admin| D[Admin Dashboard: Database Reset & Telemetry]
+    B -->|Student| E[Credentials Authentication]
     
-    C --> E[Choose Exam Track: JEE Main or NEET-UG]
-    E --> F[Enter Candidate Name]
-    F --> G[🚀 Launch Compulsory Diagnostic Quiz]
+    E --> F[Domain & Stream Selection: JEE / NEET / UPSC]
+    F --> G[Sci-Fi HUD Recalibration Buffer]
+    G --> H{First Diagnostic Completed?}
     
-    G --> H[Quiz Engine Selects 9 Balanced PYQ Questions]
-    H --> I[Assessment Arena: Timer, Progress Bar, Subject Badges]
-    I --> J[Student Submits Responses]
+    H -->|No| I[Launch Compulsory Diagnostic Screener]
+    H -->|Yes| J[Main Dashboard & Active Milestones]
     
-    J --> K[Grading & Multi-Factor Scoring Engine]
-    K --> L[AI Cognitive Skill Extraction: θ, P_L, Subject Breakdown]
-    K --> M[Error Diagnostics & Distractor Mapping]
+    I --> K[Assessment Arena: 9-Q Balanced Diagnostic]
+    K --> L[Grading Engine: Multi-Factor Mastery, BKT, IRT θ]
+    L --> M[Cognitive Error Classification: Calculation, Conceptual, Formula]
+    M --> N[NetworkX DAG Prerequisite Gating Engine]
+    N --> O[Unlock Dynamic Personalized Roadmap]
     
-    M --> N[Knowledge Graph DAG Prerequisite Analyzer]
-    N --> O[Multi-Factor Priority Engine]
-    O --> P[Exam-Customized Dynamic Roadmap Generated]
-    
-    L --> Q[Unlock Personalized Roadmap Engine]
-    Q --> R[Dynamic Learning Roadmap View]
-    
-    R --> S[🤖 AI Study Mentor Chat]
-    S --> T[Post-Mortem: Analyze My Quiz Mistakes]
-    S --> U[Explain My Roadmap Sequence]
-    S --> V[Exam Strategy & Speed Blueprints]
+    J --> P[Daily 3-Subject Interleaved Assignment Engine]
+    J --> Q[Interactive HTML5 Canvas Knowledge Graph]
+    J --> R[UPSC Civil Services Prelims & Mains Arena]
+    J --> S[Spaced Repetition Review Queue & Report Card]
+    J --> T[Quiz-Grounded AI Study Mentor]
 ```
 
 ---
 
-## 3. Compulsory Diagnostic Gateway & Onboarding Flow
+## 3. Compulsory Diagnostic Gateway & 3-Role Onboarding
 
-When a student arrives at `http://127.0.0.1:8000/`, the gateway modal (`#onboardingModal`) is automatically presented if no previous assessment attempt exists:
+### 3.1. Identity Portal & Role Segregation
+On initial session launch, candidate access is governed by a 2-step onboarding portal:
+1. **Student Track**: Full longitudinal tracking, persistence of IRT ability $\theta$, dynamic roadmaps, daily assignment streaks, and automated submission logging.
+2. **Guest Track**: Read-only exploratory access allowing prospective aspirants to inspect the prerequisite curriculum DAG and attempt un-persisted screener quizzes.
+3. **Admin Track**: System administration portal guarded by dual authentication keys (`1234admin` and `aie_internal_2024`) enabling live database resets, Hugging Face question bank seeding, and raw telemetry inspection.
 
-* **Track Selection Cards**:
-  * 🔭 **JEE Main (PCM)**: Physics, Chemistry, Mathematics (Mechanics, Physical Equilibrium, Calculus, GOC). Emphasizes multi-step reasoning and coordinate axis framing.
-  * 🧬 **NEET-UG (PCB)**: Biology, Physics, Chemistry (NCERT Cell Biology, Genetics, Human Physiology, Ray Optics, Ionic Equilibrium). Emphasizes high-speed recall and 50% Biology paper weight.
-* **Interactive Feedback**:
-  * Real-time glow borders (`--border-highlight` and `--shadow-neon-md`).
-  * Checkmark indicator on active card.
-* **Profile Creation**: Candidate Name input with automatic UUID fallback (`std_...`).
-* **Educational Briefing**: Transparently informs the student of the 3-step diagnostic pipeline.
+### 3.2. Sci-Fi HUD Recalibration Engine
+When transitioning between exam domains, the frontend triggers a high-performance SVG circular HUD buffering overlay. It dynamically:
+- Adjusts primary color palettes (`--theme-primary`, `--theme-accent`).
+- Rearranges sidebar and mobile bottom navigation visibility via `AppState.buildExamNav(examId)`.
+- Reinitializes topic difficulty filters and prerequisite DAG layouts.
 
 ---
 
-## 4. Authentic PYQ Question Banks with Modified Data
+## 4. Tri-Stream Domain Calibration (JEE, NEET, UPSC)
 
-### 4.1. The "Modified Data" Principle
-To prevent students from relying on memorized answers from past year question papers, all questions maintain the **authentic pedagogical structure of official NTA papers**, but have their parameters altered:
+| Metric / Parameter | JEE Main & Advanced (PCM) | NEET-UG (PCB) | UPSC Civil Services (CSE) |
+| :--- | :--- | :--- | :--- |
+| **Canonical Subjects** | Physics, Chemistry, Mathematics | Biology (Botany/Zoology), Physics, Chemistry | General Studies, CSAT, Mains Written |
+| **Cognitive Focus** | Multi-concept mechanics & calculus | High-speed NCERT factual recall | Policy depth, governance, ethics |
+| **Subject Weights** | Balanced 33.3% / 33.3% / 33.3% | **50% Biology** ($360/720$), 25% Phys, 25% Chem | GS 1–4 Papers + CSAT Qualifying |
+| **Pacing Requirement**| $\sim 2.0 - 2.5$ min per item | $\sim 45 - 50$ seconds per item | 150–250 words per 7–10 minutes |
+| **Evaluation Formats**| Single/Multiple choice & Numerical | Single choice MCQs with negative marking | Prelims MCQs + Descriptive written prompts |
 
-* **Example (JEE Mechanics - Projectile/SHM)**: Standard paper parameters changed from $m = 2\text{ kg}, k = 200\text{ N/m}$ to $m = 1.5\text{ kg}, k = 150\text{ N/m}$.
-* **Example (JEE Chemistry - Chemical Equilibrium)**: Reaction $N_2 + 3H_2 \rightleftharpoons 2NH_3$ analyzed with modified stoichiometric volumes and temperature to evaluate $\Delta n_g = -2$ and $K_p/K_c = 1/(RT)^2$.
-* **Example (NEET Biology - Cardiac Output)**: Heart rate changed to $72\text{ bpm}$, $EDV = 125\text{ mL}$, $ESV = 50\text{ mL}$ ($SV = 75\text{ mL}$, $\text{Cardiac Output} = 5.40\text{ L/min}$).
-* **Example (NEET Physics - Optics Prism)**: Angle of prism $A = 60^\circ$, refractive index $\mu = \sqrt{3}$, calculating angle of minimum deviation $D_m = 60^\circ$.
-* **Example (NEET Chemistry - Ionic Buffer)**: $0.20\text{ M } CH_3COOH$ and $0.02\text{ M } CH_3COONa$ ($pK_a = 4.74$) calculating $pH = 3.74$.
+---
 
-### 4.2. Pre-Computed Verified Derivations
-Every question in `data/questions/jee_questions.json` and `data/questions/neet_questions.json` includes:
-* `explanation`: Complete mathematical and conceptual step-by-step proof.
-* `distractor_explanations`: Exact diagnosis for each wrong option (e.g., Option B explains why a student made a sign error or inverted a ratio).
+## 5. Authentic PYQ Question Banks with Modified Data
 
-### 4.3. Cognitive Error Classification Taxonomy
+To prevent rote memorization of published keys, questions preserve the authentic pedagogical structure of official NTA and UPSC papers, with **numerical values and boundary parameters systematically altered**:
+
+* **JEE Mechanics (Oscillations)**: Spring constant and mass adjusted ($m = 1.5\text{ kg}, k = 150\text{ N/m}$), evaluating angular frequency $\omega = \sqrt{k/m} = 10\text{ rad/s}$.
+* **JEE Chemistry (Equilibrium)**: Adjusted partial pressures for ammonia synthesis $N_2 + 3H_2 \rightleftharpoons 2NH_3$, demanding recalculation of $K_p / K_c = (RT)^{-2}$.
+* **NEET Biology (Physiology)**: Cardiac parameters altered ($EDV = 125\text{ mL}, ESV = 50\text{ mL}, HR = 72\text{ bpm}$), requiring calculation of Stroke Volume ($75\text{ mL}$) and Cardiac Output ($5.40\text{ L/min}$).
+* **NEET Optics (Prism Refraction)**: Prism angle $A = 60^\circ, \mu = \sqrt{3}$, calculating minimum deviation angle $D_m = 60^\circ$.
+
+---
+
+## 6. External API Pipelines: ExamBench (405k) & Benchmark Crops
+
 ```
-+---------------------------+--------------------------------------------------------------+
-| Error Type                | Definition & Clinical Diagnostic Indicator                  |
-+---------------------------+--------------------------------------------------------------+
-| CONCEPTUAL_ERROR          | Misunderstood physical law or biological classification.    |
-| CALCULATION_ERROR         | Arithmetic slip or exponent mistake despite correct formula. |
-| FORMULA_SELECTION_ERROR   | Inappropriate formula applied under active boundary conditions.|
-| SIGN_ERROR                | Inverted ratio, vector sign slip, or Delta n_g inverted.     |
-| CARELESS_ERROR            | Overlooked unit conversions or negative keywords (e.g. NOT).|
-+---------------------------+--------------------------------------------------------------+
+                         [Hugging Face Datasets Server API]
+                                         │
+                 ┌───────────────────────┴───────────────────────┐
+                 ▼                                               ▼
+     [169Pi/exambench Pipeline]                    [Reja1 Benchmark Pipeline]
+     - 405,906 Question Records                    - Official 2024-25 Scanned Crops
+     - Multi-Label Keyword Classifier              - High-Res Diagram / Crop Extractor
+     - Cognitive Distractor Synthesizer            - Answer Key Standardizer
+                 │                                               │
+                 └───────────────────────┬───────────────────────┘
+                                         ▼
+                          [3-Tier Caching & Failover]
+                          Tier 1: Hot In-Memory LRU Cache
+                          Tier 2: Local JSON Disk Store
+                          Tier 3: Relational SQLite DB
 ```
 
----
+### 6.1. HuggingFace `169Pi/exambench` Streaming Engine
+- **Endpoint**: `https://datasets-server.huggingface.co/rows?dataset=169Pi%2Fexambench&config=default&split=train`
+- **Scale**: 405,906 competitive academic items (2.70 GB corpus).
+- **Extraction**:
+  - `prompt`: Question statement.
+  - `complex_cot`: Complete formal Chain-of-Thought mathematical/physical derivations.
+  - `response`: Authoritative answer and step proof.
 
-## 5. Assessment Arena & Diagnostic Quiz Engine
-
-### 5.1. Multi-Subject Balanced Selection Algorithm
-For a diagnostic test of count $N = 9$:
-* **JEE Main**: Exactly 3 Physics + 3 Chemistry + 3 Mathematics = 9 items.
-* **NEET-UG**: Exactly 3 Biology + 3 Physics + 3 Chemistry = 9 items.
-
-Implemented in `backend/app/assessment/question_selector.py`:
-```python
-if diagnostic_goal in ["DIAGNOSTIC", "BASELINE"]:
-    subjects = ["Physics", "Chemistry", "Mathematics"] if exam == "JEE" else ["Biology", "Physics", "Chemistry"]
-    per_subject_count = count // len(subjects)  # 9 // 3 = 3 per subject
-```
-
-### 5.2. Assessment Arena UI Features
-* **Live Countdown Timer**: Formatted in monospace font (`⏱ MM:SS`); transitions to rose alert styling when under 3 minutes.
-* **Animated Progress Track**: Real-time percentage completion indicator (`.quiz-progress-track`).
-* **Subject & Context Pills**:
-  * Physics (Bioluminescent Cyan)
-  * Chemistry (Emerald Green)
-  * Mathematics (Purple)
-  * Biology (Warm Amber)
-  * `📌 PYQ (Data-Adapted)` tag
-* **Keyboard Shortcut Navigation**:
-  * Keys `1`, `2`, `3`, `4` or `A`, `B`, `C`, `D` select options instantly.
-  * `ArrowRight` advances to next question; `ArrowLeft` navigates back.
-* **Jump Pills**: Quick navigation buttons indicating answered questions with checkmarks.
+### 6.2. HuggingFace `Reja1/jee-neet-benchmark` Official Crop Ingestion
+- **Endpoint**: `https://datasets-server.huggingface.co/rows?dataset=Reja1%2Fjee-neet-benchmark&config=default&split=test`
+- **Crop Preservation**: Extracts cropped official question diagrams and binds them directly into `Question.image_url`.
+- **Key Normalizer**: Maps irregular raw keys (`"Option 2"`, `["B"]`, `"2"`) into canonical single-letter identifiers (`A, B, C, D`).
 
 ---
 
-## 6. Cognitive Student Modeling & Mathematical Framework
+## 7. Daily 3-Subject Interleaved Assignment Engine
 
-### 6.1. Multi-Factor Baseline Mastery
-The platform computes a composite mastery index $M \in [0.0, 1.0]$:
-$$M = w_1 \cdot \text{Acc} + w_2 \cdot \text{Diff} + w_3 \cdot \text{RecentAcc} + w_4 \cdot R(t) + w_5 \cdot \text{Consist} + w_6 \cdot \text{Speed}$$
+### 7.1. Interleaved Practice Rationale
+Blocked homework sets produce shallow fluency. The Assignment Engine implements **interleaved practice** across the three canonical stream subjects every 24 hours:
+- **JEE Main**: Physics (20–25 Qs) + Chemistry (20–25 Qs) + Mathematics (20–25 Qs) = **60–75 Qs/day**.
+- **NEET-UG**: Biology (20–25 Qs) + Physics (20–25 Qs) + Chemistry (20–25 Qs) = **60–75 Qs/day**.
+- **UPSC CSE**: General Studies (20–25 Qs) + Science & Tech (20–25 Qs) + CSAT (20–25 Qs) = **60–75 Qs/day**.
 
-Where:
-* $\text{Acc}$: Historical raw accuracy.
-* $\text{Diff}$: Difficulty-weighted success rate.
-* $\text{RecentAcc}$: Exponential moving average over last 5 attempts ($\alpha = 0.35$).
-* $R(t)$: Ebbinghaus retention decay factor.
-* $\text{Consist}$: Variance penalty ($1 - \text{Var}$).
-* $\text{Speed}$: Latency factor compared against estimated time.
+### 7.2. Progressive Hint Reveal Model
+- **Level 1 (Concept Identification)**: Outlines governing theorem. Penalty: $-5\%$.
+- **Level 2 (Formula Clue)**: Identifies required equation structure. Penalty: $-15\%$.
+- **Level 3 (Initial Substitution)**: Shows boundary variable substitution. Penalty: $-30\%$.
 
-### 6.2. Confidence & Uncertainty Calibration
-$$\text{Confidence} = 0.85 \cdot \left(1 - e^{-N / 5.0}\right) + 0.15 \cdot (1 - \sigma^2)$$
-* $N = 0 \implies \text{Confidence} \approx 0.0$ (High uncertainty).
-* $N \ge 10$ and low variance $\implies \text{Confidence} \approx 0.95$.
-
-### 6.3. Bayesian Knowledge Tracing (BKT)
-Tracks hidden knowledge state transitions $P(L_t)$:
-$$P(L_t \mid \text{Correct}) = \frac{P(L_{t-1}) \cdot (1 - P(S))}{P(L_{t-1}) \cdot (1 - P(S)) + (1 - P(L_{t-1})) \cdot P(G)}$$
-$$P(L_t \mid \text{Incorrect}) = \frac{P(L_{t-1}) \cdot P(S)}{P(L_{t-1}) \cdot P(S) + (1 - P(L_{t-1})) \cdot (1 - P(G))}$$
-$$P(L_{t+1}) = P(L_t) + (1 - P(L_t)) \cdot P(T)$$
-Standard Parameters: $P(L_0) = 0.20, P(T) = 0.15, P(G) = 0.20, P(S) = 0.10$.
-
-### 6.4. Item Response Theory (IRT 2PL / 3PL)
-Estimates student latent ability $\theta \in [-3.0, +3.0]$:
-$$P(X_i = 1 \mid \theta) = c_i + \frac{1 - c_i}{1 + \exp\left(-a_i (\theta - b_i)\right)}$$
-* $a_i$: Discrimination parameter ($1.0 - 2.0$).
-* $b_i$: Difficulty parameter (normalized to $\theta$ scale).
-* $c_i$: Pseudo-guessing parameter ($0.25$ for 4-option MCQs).
-* Student $\theta$ updated using Newton-Raphson maximum likelihood / Bayes modal estimation.
-
-### 6.5. Ebbinghaus Forgetting & Retention Decay
-$$R(t) = \exp\left(-\frac{\ln 2}{S} \cdot t\right), \quad S = S_0 \cdot (1 + 0.5 \cdot \text{Reviews})$$
-Concepts that have not been practiced decay over elapsed days $t$, triggering automatic **Retention Drills**.
+### 7.3. Auto-Save & Consistency Tracker
+- Automatic debounced synchronization to `/api/assignments/save-progress`.
+- Computes unbroken daily streaks on consecutive completed assignments.
 
 ---
 
-## 7. Exam-Customized Dynamic Roadmap Engine (JEE vs NEET)
+## 8. UPSC Civil Services Dual-Tier Subsystem (Prelims & Mains)
 
-### 7.1. The Multi-Factor Priority Equation
-$$\text{Priority} = \text{Gap} \times w_{\text{gap}} + \text{ExamWeight} \times w_{\text{exam}} + \text{PrereqImpact} \times w_{\text{prereq}} + \text{ForgettingRisk} \times w_{\text{decay}} + (1 - \text{Confidence}) \times w_{\text{unc}}$$
+### 8.1. Prelims MCQ Testing Arena
+- Real-time simulation of General Studies Paper I and CSAT Paper II.
+- Standard negative marking applied: $+2.0$ marks for correct, $-0.66$ marks deducted for incorrect selections.
+- Explanations emphasize answer elimination heuristics and extreme qualifier traps.
 
-### 7.2. Specific Differences: JEE vs NEET
-
-| Parameter | JEE Main Track | NEET-UG Track |
-| :--- | :--- | :--- |
-| **Primary Focus** | Multi-concept problem synthesis, calculus-mechanics integration | Factual recall precision, high-speed NCERT drills |
-| **Biology Weight** | N/A | **50% of entire exam** ($360/720$ marks); exam importance boosted by $1.25\times$ |
-| **Prerequisite Weight** | Heavy weight ($0.25$) on deep prerequisite cascades | Balanced weight ($0.15$) with rapid concept remediation |
-| **Pacing Requirement** | $\sim 2.0 - 2.5$ minutes per problem | $\sim 45 - 50$ seconds per problem |
-| **Action Types** | `JEE_FOUNDATION_REBUILD`<br>`JEE_MAIN_SPRINT`<br>`JEE_MULTI_CONCEPT_DRILL`<br>`JEE_ADVANCED_PRACTICE`<br>`JEE_TRANSFER_TEST` | `NEET_NCERT_CORE_RECALL`<br>`NEET_HIGH_SPEED_DRILL`<br>`NEET_APPLICATION_PRACTICE`<br>`NEET_720_TARGET_SPRINT`<br>`NEET_TRANSFER_TEST` |
-| **Strategic Reasoning** | Emphasizes $+4/-1$ negative marking protection and coordinate framing | Emphasizes zero unforced errors, keyword recall, and speed |
-
-### 7.3. Prerequisite Gap Interception (DAG Tracing)
-Before scheduling an advanced concept, the engine calls `PrerequisiteResolver.analyze_prerequisite_chain`:
-1. If ancestors in the NetworkX graph have mastery $< 0.70$, they are declared **Broken Prerequisites**.
-2. The engine inserts the broken prerequisite at **Step 1** with priority score `0.95` and reasons explaining why it unblocks downstream topics.
+### 8.2. Mains Analytical Answer Workspace & 5-Dimensional AI Rubric
+Descriptive written responses are scored across 5 dimensions:
+1. **Understanding & Relevance (Max 3.0 pts)**: Direct alignment with directive verbs (*Critically Examine*, *Discuss*).
+2. **Structure & Organization (Max 2.0 pts)**: Crisp introduction, subheadings, and forward-looking conclusion.
+3. **Content Depth & Facts (Max 2.5 pts)**: Constitutional articles, landmark Supreme Court cases, committee reports.
+4. **Policy & Constitutional Alignment (Max 1.5 pts)**: Constitutional morality, directive principles.
+5. **Critical Balance & Multi-perspectivity (Max 1.0 pt)**: Balanced synthesis of trade-offs and structural hurdles.
 
 ---
 
-## 8. Quiz-Grounded AI Study Mentor
+## 9. Assessment Arena & Diagnostic Testing Pipeline
 
-### 8.1. Context Extraction Pipeline
-When the student sends a message to `/api/ai/chat/{student_id}`:
-1. The backend retrieves the student's latest `AssessmentAttempt`.
-2. Gathers every `StudentAttemptItem` with:
-   * Student answer vs correct answer
-   * Question text snippet
-   * Concept ID & Subject
-   * Identified error pattern
-   * Distractor diagnostic note & complete step-by-step derivation
-3. Extracts current active roadmap milestones (Steps 1–6) and reasons.
-4. Synthesizes a structured profile and passes it to `LocalLLMClient`.
+* **Tier 1 — Compulsory Screener (9 Questions)**: Balanced 3-subject baseline test. Identifies weak subjects ($< 60\%$ accuracy).
+* **Tier 2 — Targeted Topic Drills (5 Questions)**: Focused drills targeting isolated chapters and prerequisite gaps.
+* **Tier 3 — Full Syllabus Deep Scan (15 Questions)**: Comprehensive diagnostic spanning all curriculum chapters to calibrate global Latent Ability ($\theta$).
 
-### 8.2. Dual-Engine Architecture
-* **Mode 1 (Local Ollama LLM)**: If a local Ollama server is running (`http://localhost:11434`, e.g. Llama-3), the AI uses the serialized context prompt to produce natural language responses.
-* **Mode 2 (Deterministic Student Intelligence Fallback)**: If offline or Ollama is not installed, the engine uses **deterministic pedagogical rules** to answer with exact mathematical precision:
-  * **"Analyze my quiz mistakes"**: Provides a post-mortem of every question missed, why the selected option was wrong, and the step-by-step solution.
-  * **"Explain my roadmap sequence"**: Explains why Step 1 was chosen, what prerequisite gap it fixes, and the target mastery required.
-  * **"Give me exam strategy tips"**: Delivers a tailored section-by-section time management blueprint (JEE 3-pass protocol or NEET 45-minute Biology anchor).
+### Arena Ergonomics & Keyboard Shortcuts
+- `1, 2, 3, 4` or `A, B, C, D`: Select corresponding option.
+- `ArrowRight` or `N`: Save answer and advance.
+- `ArrowLeft` or `P`: Navigate back.
+- `R`: Toggle review marker.
 
 ---
 
-## 9. Append-Only Telemetry & Audit Stream
+## 10. Cognitive Student Modeling & Mathematical Framework
 
-Every learning action is immutably recorded in the `telemetry_events` table for analytics and compliance:
+### 10.1. Multi-Factor Concept Mastery
+$$M(c, t) = 0.35 \cdot A_{\text{rec}}(c) + 0.30 \cdot P(L_{c,t}) + 0.15 \cdot C_{\text{cov}}(c) + 0.20 \cdot R(c, t)$$
+
+### 10.2. Ebbinghaus Memory Decay & Retention Stability
+$$R(t) = \exp\left(-\frac{t}{S}\right), \quad S_{\text{new}} = S_{\text{prior}} \cdot \left(1 + 1.618 \cdot M(c) \cdot (1 - 0.40)^{\text{failed}}\right)$$
+Concepts with $R(t) < 0.60$ trigger automatic inclusion in the Spaced Repetition Queue.
+
+### 10.3. Bayesian Knowledge Tracing (BKT)
+$$P(L_t \mid Y_t = 1) = \frac{P(L_{t-1}) \cdot (1 - P(S))}{P(L_{t-1}) \cdot (1 - P(S)) + (1 - P(L_{t-1})) \cdot P(G)}$$
+$$P(L_{t+1}) = P(L_t \mid Y_t) + (1 - P(L_t \mid Y_t)) \cdot P(T)$$
+Standard Parameters: $P(L_0) = 0.20, P(T) = 0.18, P(G) = 0.20, P(S) = 0.08$.
+
+### 10.4. 2-Parameter Logistic IRT (2PL)
+$$P(Y_i = 1 \mid \theta, a_i, b_i) = \frac{1}{1 + \exp\left(-1.702 \cdot a_i (\theta - b_i)\right)}$$
+Student ability $\hat{\theta}$ updated via iterative Newton-Raphson Maximum Likelihood Estimation.
+
+### 10.5. Cognitive Error Taxonomy
+- `CONCEPTUAL_ERROR`: Misunderstood physical law or classification.
+- `CALCULATION_ERROR`: Arithmetic slip or magnitude inversion.
+- `FORMULA_SELECTION_ERROR`: Inappropriate formula applied under active boundary conditions.
+- `SIGN_ERROR`: Inverted vector sign, ratio, or thermodynamic convention.
+- `SPEED_ERROR`: Impulsive submission ($< 35\%$ of estimated time).
+
+---
+
+## 11. Exam-Customized Dynamic Roadmap Engine
+
+### Priority Score Formulation
+$$\text{Priority}(v) = 0.40 \cdot (1.0 - M(v)) + 0.35 \cdot \text{ExamRelevance}(v) + 0.25 \cdot \text{OutDegree}(v)$$
+
+### Prerequisite Interception
+Before scheduling an advanced concept, the engine traverses ancestor nodes in the NetworkX graph. Any ancestor with $M(u) < 0.70$ is flagged as a **Broken Prerequisite** and inserted at Step 1 to repair foundational gaps.
+
+---
+
+## 12. Interactive HTML5 Canvas Knowledge Graph DAG
+
+- **Dynamic Force-Directed Layout**: Renders concepts as interactive particle nodes connected by prerequisite dependency vectors.
+- **Mastery Color Coding**:
+  - 🟢 **Mastered** ($M \ge 70\%$) — Green bioluminescence
+  - 🟡 **Developing** ($40\% \le M < 70\%$) — Amber warning
+  - 🔴 **Weak / Critical Gap** ($M < 40\%$) — Crimson glow
+- **Performance**: Pauses rendering automatically when the graph tab is hidden, maintaining $< 1\%$ background CPU utilization.
+
+---
+
+## 13. Quiz-Grounded AI Study Mentor & Hardened Chatbot
+
+- **Two-Stage Deterministic Classification**: Regex/Keyword matching combined with Levenshtein fuzzy token distance fallback.
+- **Zero Hallucinations**: Responses are built directly from the candidate's actual quiz attempt items, distractor notes, and active roadmap actions.
+- **Fixed Intent Set**:
+  - `ANALYZE_MISTAKES`: Detailed question-by-question post-mortem.
+  - `EXPLAIN_ROADMAP`: Explains why specific concepts were scheduled.
+  - `STRATEGY_TIPS`: Provides section-by-section time management protocols.
+  - `EXPLAIN_CONCEPT`: Core conceptual derivations and formulas.
+
+---
+
+## 14. Supporting Intelligence Features
+
+- **Spaced Repetition Review Queue (`/api/supporting/review-queue/{id}`)**: Surfaces decaying concepts ($R(t) < 0.60$).
+- **Cognitive Error Trends (`/api/supporting/error-trends/{id}`)**: Visual analytics of error patterns over time.
+- **Printable Academic Report Card (`/api/supporting/report-card/{id}`)**: Official audit scorecard with print-optimized CSS.
+
+---
+
+## 15. Append-Only Telemetry & Audit Stream
+
+Every candidate interaction is immutably recorded into `telemetry_events` table:
 
 ```json
 {
-  "event_id": 42,
-  "student_id": "std_421255f110eb",
-  "session_id": "sess_8912",
-  "event_type": "ASSESSMENT_COMPLETED",
-  "payload": {
-    "attempt_id": "att_6f1837a2",
-    "score_percentage": 77.78,
-    "correct_count": 7,
-    "total_questions": 9,
-    "time_taken_seconds": 500
+  "event_id": 104,
+  "student_id": "std_a9b1c2",
+  "session_id": "sess_asgn_20260904",
+  "event_type": "ASSIGNMENT_SUBMITTED",
+  "metadata": {
+    "score_percentage": 83.3,
+    "correct_count": 50,
+    "total_questions": 60,
+    "subject_scores": {
+      "Biology": {"correct": 18, "total": 20, "score_percentage": 90.0},
+      "Physics": {"correct": 16, "total": 20, "score_percentage": 80.0},
+      "Chemistry": {"correct": 16, "total": 20, "score_percentage": 80.0}
+    }
   },
-  "timestamp": "2026-09-02T13:48:29.124Z"
+  "timestamp": "2026-09-04T18:30:00Z"
 }
 ```
 
 ---
 
-## 10. Complete REST API Reference
+## 16. Complete REST API Reference
 
-### Authentication & Student Profile
-* `POST /api/auth/register` — Register a candidate (`name`, `email`, `password`, `target_exam`).
-* `POST /api/auth/login` — Login candidate.
-* `GET /api/auth/profile/{student_id}` — Get profile, overall mastery, and confidence.
+### 16.1. Authentication & Role Management
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/auth/register` | Register candidate profile & target exam |
+| `POST` | `/api/auth/login` | Authenticate existing candidate |
+| `GET` | `/api/auth/profile/{id}` | Fetch student profile and mastery metrics |
 
-### Curriculum & Knowledge Graph
-* `GET /api/curriculum/exams` — List supported exams (`JEE`, `NEET`, `UPSC`).
-* `GET /api/curriculum/hierarchy/{exam_id}` — Get full hierarchy (Exam $\rightarrow$ Subject $\rightarrow$ Chapter $\rightarrow$ Topic $\rightarrow$ Concept).
-* `GET /api/curriculum/graph/{exam_id}` — Get NetworkX DAG nodes and edges with student mastery status.
-* `GET /api/curriculum/concept/{concept_id}` — Detailed concept metadata and prerequisites.
+### 16.2. Daily Assignments Engine
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/assignments/today/{id}` | Fetch or auto-generate today's 3-subject assignment (60-75 Qs) |
+| `POST` | `/api/assignments/save-progress` | Autosave intermediate answers and review markers |
+| `POST` | `/api/assignments/submit` | Grade assignment, update BKT/Mastery, and calculate streak |
+| `GET` | `/api/assignments/history/{id}` | Retrieve past assignments and consistency streak |
 
-### Assessments & Diagnostic Testing
-* `POST /api/assessments/start?student_id={id}` — Start Tier 1 adaptive screener assessment (9 Qs balanced across subjects).
-* `POST /api/assessments/start-drill?student_id={id}&subject={s}&chapter_id={c}` — Start Tier 2 targeted topic drill (5 Qs).
-* `POST /api/assessments/start-full-scan?student_id={id}&exam={e}` — Start Tier 3 full syllabus deep scan (15 Qs).
-* `POST /api/assessments/submit` — Submit answers (`attempt_id`, `responses`), triggers grading, mastery update, weak subject detection, and roadmap regeneration.
-* `GET /api/assessments/history/{student_id}` — List past assessment attempts.
-* `GET /api/assessments/attempt/{attempt_id}` — Get question-by-question feedback and distractor notes.
+### 16.3. Curriculum & Knowledge Graph
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/curriculum/exams` | List supported exams (`JEE`, `NEET`, `UPSC`) |
+| `GET` | `/api/curriculum/hierarchy/{exam}` | Fetch full 5-level curriculum hierarchy |
+| `GET` | `/api/curriculum/graph/{exam}` | Fetch NetworkX DAG nodes and edges with mastery status |
+| `GET` | `/api/curriculum/exambench/live-sample` | Fetch and synthesize live MCQs from Hugging Face |
+| `POST`| `/api/curriculum/exambench/seed-database` | Seed Hugging Face questions into local database |
+| `GET` | `/api/curriculum/benchmark/live-sample` | Fetch authentic scanned question crops |
 
-### Dynamic Roadmap
-* `GET /api/roadmap/active/{student_id}` — Get active calibrated roadmap actions.
-* `POST /api/roadmap/regenerate/{student_id}` — Force roadmap recalculation.
-* `GET /api/roadmap/next-action/{student_id}` — Get current Next-Best-Action (NBA).
-* `POST /api/roadmap/action/{action_id}/complete` — Mark action completed.
-* `GET /api/roadmap/weaknesses/{student_id}` — Get ranked list of active knowledge gaps.
+### 16.4. Diagnostic Assessments & Testing Arena
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/assessments/start` | Launch Tier 1 screener (9 Qs balanced) |
+| `POST` | `/api/assessments/start-drill` | Launch Tier 2 topic drill (5 Qs) |
+| `POST` | `/api/assessments/start-full-scan` | Launch Tier 3 full syllabus deep scan (15 Qs) |
+| `POST` | `/api/assessments/submit` | Grade assessment, calibrate IRT $\theta$, and update roadmap |
+| `GET` | `/api/assessments/history/{id}` | Fetch historical quiz attempts |
 
-### AI Study Mentor
-* `POST /api/ai/chat/{student_id}` — Context-grounded chat using deterministic `IntentClassifier` (`prompt`, `include_student_state`).
-* `POST /api/ai/generate-question` — Generate practice question with distractor analysis.
+### 16.5. UPSC Civil Services Subsystem
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/upsc/mains-prompts` | Fetch curated authentic UPSC Mains descriptive prompts |
+| `GET` | `/api/upsc/prelims-quiz` | Fetch UPSC Prelims multiple-choice questions |
+| `POST` | `/api/upsc/evaluate-written` | Grade descriptive written answer via 5-dimensional rubric |
+| `GET` | `/api/upsc/history/{id}` | Fetch written submission evaluations and scores |
 
-### Supporting Features
-* `GET /api/supporting/review-queue/{student_id}` — Query concepts due for spaced review via Ebbinghaus retention decay ($R(t) < 0.65$).
-* `GET /api/supporting/error-trends/{student_id}` — Aggregated cognitive error patterns and subject tendencies.
-* `GET /api/supporting/report-card/{student_id}` — Complete printable scorecard data for PDF export.
+### 16.6. Dynamic Roadmap & AI Mentor
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/roadmap/active/{id}` | Fetch active calibrated roadmap actions |
+| `POST` | `/api/roadmap/regenerate/{id}` | Force recalculation of roadmap sequence |
+| `GET` | `/api/roadmap/next-action/{id}` | Fetch current Next Best Action (NBA) |
+| `POST` | `/api/ai/chat/{id}` | Query AI study mentor with student context |
 
-### Telemetry Stream
-* `GET /api/telemetry/stream/{student_id}` — Fetch append-only audit trail.
-
----
-
-## 11. Database Schema & Entity-Relationship Architecture
-
-```
-+------------------+       +---------------------+       +-----------------------+
-|     students     | 1---* | assessment_attempts | 1---* | student_attempt_items |
-+------------------+       +---------------------+       +-----------------------+
-        | 1                           | 1                            | *
-        |                             |                              |
-        | *                           v 1                            v 1
-+-----------------------+  +---------------------+       +-----------------------+
-|student_concept_mastery|  |     assessments     |       |       questions       |
-+-----------------------+  +---------------------+       +-----------------------+
-        | *                           |                              |
-        |                             |                              |
-        v 1                           v                              v 1
-+------------------+       +---------------------+       +-----------------------+
-|     concepts     | <---* |     prerequisites   |       |   topics / chapters   |
-+------------------+       +---------------------+       +-----------------------+
-        ^ 1
-        |
-        | *
-+------------------+       +---------------------+
-| roadmap_actions  | *---1 |      roadmaps       |
-+------------------+       +---------------------+
-```
+### 16.7. Supporting Intelligence & Admin Controls
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/supporting/review-queue/{id}` | Query concepts due for spaced review |
+| `GET` | `/api/supporting/error-trends/{id}` | Aggregated cognitive error patterns |
+| `GET` | `/api/supporting/report-card/{id}` | Exportable academic scorecard data |
+| `GET` | `/api/telemetry/stream/{id}` | Append-only event stream |
+| `POST` | `/api/admin/reset-db` | Reset database state (requires admin key) |
 
 ---
 
-## 12. Local Setup, Execution, and Verification
+## 17. Database Schema & Entity-Relationship Architecture
 
-### 12.1. Prerequisites
-* Python 3.10+ (Tested on Python 3.14 on Windows)
-* Dependencies:
-  ```bash
-  pip install fastapi uvicorn sqlalchemy networkx numpy scipy pydantic pytest httpx
+```
++-----------------------------------------------------------------------------------------------+
+|                                    RELATIONAL SCHEMA (SQLite)                                 |
++-----------------------------------------------------------------------------------------------+
+|                                                                                               |
+|   ┌──────────────┐          ┌──────────────┐          ┌──────────────┐                        |
+|   │     Exam     │ 1      * │   Subject    │ 1      * │   Chapter    │                        |
+|   │──────────────│─────────►│──────────────│─────────►│──────────────│                        |
+|   │ exam_id (PK) │          │ sub_id (PK)  │          │ chap_id (PK) │                        |
+|   │ name         │          │ exam_id (FK) │          │ sub_id (FK)  │                        |
+|   └──────────────┘          └──────────────┘          └──────┬───────┘                        |
+|                                                              │ 1                              |
+|                                                              ▼ *                              |
+|   ┌──────────────┐          ┌──────────────┐          ┌──────────────┐                        |
+|   │   Concept    │ *      1 │    Topic     │          │   Concept    │                        |
+|   │ Prerequisite │◄─────────│──────────────│◄─────────│──────────────│                        |
+|   │──────────────│          │ topic_id(PK) │          │ conc_id (PK) │                        |
+|   │ edge_id (PK) │          │ chap_id (FK) │          │ topic_id(FK) │                        |
+|   │ from_c (FK)  │          └──────────────┘          └──────┬───────┘                        |
+|   │ to_c (FK)    │                                           │ 1                              |
+|   └──────────────┘                                           ▼ *                              |
+|                                                       ┌──────────────┐                        |
+|                                                       │   Question   │                        |
+|                                                       │──────────────│                        |
+|                                                       │ q_id (PK)    │                        |
+|                                                       │ conc_id (FK) │                        |
+|                                                       │ content      │                        |
+|                                                       │ options      │                        |
+|                                                       │ correct_ans  │                        |
+|                                                       │ image_url    │                        |
+|                                                       └──────┬───────┘                        |
+|                                                              │ 1                              |
+|                                                              ▼ *                              |
+|   ┌────────────────────┐ 1        * ┌──────────────────────────────┐                          |
+|   │  DailyAssignment   │───────────►│    DailyAssignmentItem       │                          |
+|   │────────────────────│            │──────────────────────────────│                          |
+|   │ assignment_id (PK) │            │ item_id (PK)                 │                          |
+|   │ student_id (FK)    │            │ assignment_id (FK)           │                          |
+|   │ assignment_date    │            │ question_id (FK)             │                          |
+|   │ status             │            │ student_answer               │                          |
+|   │ score_percentage   │            │ is_correct                   │                          |
+|   └────────────────────┘            └──────────────────────────────┘                          |
+|                                                                                               |
+|   ┌────────────────────┐            ┌──────────────────────────────┐                          |
+|   │      Student       │ 1        * │    StudentConceptMastery     │                          |
+|   │────────────────────│───────────►│──────────────────────────────│                          |
+|   │ student_id (PK)    │            │ student_id (FK)              │                          |
+|   │ name, email        │            │ concept_id (FK)              │                          |
+|   │ target_exam        │            │ mastery (float)              │                          |
+|   │ current_level      │            │ bkt_p_learned (float)        │                          |
+|   └────────────────────┘            └──────────────────────────────┘                          |
++-----------------------------------------------------------------------------------------------+
+```
+
+---
+
+## 18. Cloud Deployment & Production Hosting Guide
+
+The project is structured for 1-click zero-cost deployment on modern cloud platforms:
+
+### 18.1. Configuration Files
+- **[`requirements.txt`](requirements.txt)**: Contains all production dependencies (`fastapi`, `uvicorn`, `sqlalchemy`, `networkx`, `numpy`, `scipy`, `pydantic`, `httpx`, `pytest`).
+- **[`Procfile`](Procfile)**: Declares the web server process:
+  ```
+  web: uvicorn backend.app.main:app --host 0.0.0.0 --port ${PORT:-8000}
   ```
 
-### 12.2. Running Automated Unit Tests
+### 18.2. Deployment on Render.com (Recommended)
+1. Link your GitHub repository (`CodeStrikerMayank/APEX`).
+2. Select **Web Service** with **Python 3** environment.
+3. Set **Build Command**: `pip install -r requirements.txt`.
+4. Set **Start Command**: `uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT`.
+5. Select the **Free** instance tier.
+
+---
+
+## 19. Local Setup, Execution, and Verification
+
+### 19.1. Prerequisites
+- Python 3.10+ (Fully validated on Python 3.14 on Windows)
+- Install dependencies:
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+### 19.2. Automated Test Execution
+Run the full test suite to verify IRT, BKT, DAG prerequisites, assignments, and UPSC evaluation:
 ```bash
 python -m pytest -v
 ```
-*Executes all 15 automated test suites across IRT, BKT, DAG Prerequisites, Priority Engine, Roadmap Regeneration, Chatbot Intent Classifier, and Supporting Features.*
+*(Confirms all 24 unit test suites pass).*
 
-### 12.3. Starting the Server
+### 19.3. Launching Local Server
 ```bash
 python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
 ```
 
-### 12.4. Accessing the Platform
-* **Web UI**: Open `http://127.0.0.1:8000/` in Google Chrome, Edge, or Firefox.
-* **Interactive OpenAPI Docs**: `http://127.0.0.1:8000/docs`
-* **Alternative ReDoc**: `http://127.0.0.1:8000/redoc`
+### 19.4. Accessing Application Endpoints
+- **Web User Interface**: `http://127.0.0.1:8000/`
+- **Interactive OpenAPI Documentation**: `http://127.0.0.1:8000/docs`
+- **Alternative ReDoc Specification**: `http://127.0.0.1:8000/redoc`
 
 ---
 
-## 13. Platform Upgrade v3.0 Architecture Additions
-
-### 13.1. Tiered Diagnostic Testing Pipeline
-* **Tier 1 — Screener**: 9-Question compulsory balanced diagnostic. Calculates overall latent ability and flags weak subjects ($< 60\%$ accuracy).
-* **Tier 2 — Topic Drill (`POST /api/assessments/start-drill`)**: 5-Question focused PYQ drills targeting isolated chapters/concepts for weak subjects.
-* **Tier 3 — Full Syllabus Deep Scan (`POST /api/assessments/start-full-scan`)**: 15-Question balanced deep scan covering all major syllabus chapters.
-
-### 13.2. Hardened Offline Chatbot (`IntentClassifier` + `templates.py`)
-* Two-stage deterministic classification (Regex/Keyword + Levenshtein fuzzy distance matching).
-* Fixed intent set: `ANALYZE_MISTAKES`, `EXPLAIN_ROADMAP`, `STRATEGY_TIPS`, `EXPLAIN_CONCEPT`, `UNKNOWN`.
-* Zero hallucinations: slot-filling templates populate directly from the student's quiz answers, distractor traps, and roadmap DAG.
-
-### 13.3. Interactive Visual Roadmap
-* **Visual DAG Graph**: Native SVG rendering with directional prerequisite arrows, zoom/pan controls, and color-coded status badges (🟢 Mastered $\ge 70\%$, 🟡 Developing $40-69\%$, 🔴 Weak $< 40\%$).
-* **Chapter Heatmap**: Aggregated chapter-level mastery cards with weak-gap indicators and direct drill triggers.
-* **Dashboard Widgets**: Circular SVG Progress Ring and Next 3 Priority Milestones.
-
-### 13.4. Supporting Features
-* **Spaced Repetition Review Queue (`GET /api/supporting/review-queue/{id}`)**: Schedules practice based on Ebbinghaus memory decay ($R(t) = e^{-t/S} < 0.65$).
-* **Cognitive Error Trends (`GET /api/supporting/error-trends/{id}`)**: Aggregates distractor tendencies across subjects and categories (time pressure, calculation slips, conceptual confusion).
-* **Printable / Exportable Report Card (`GET /api/supporting/report-card/{id}`)**: Official audit scorecard with clean `@media print` CSS for PDF generation.
-
----
-
-## 14. Platform Upgrade v3.1: HuggingFace ExamBench Integration & Daily Assignment Engine
-
-### 14.1. The 405k-Question ExamBench Repository
-To eliminate reliance on static question files and broaden coverage across all competitive and Central Government examinations, the platform connects to the Hugging Face `169Pi/exambench` dataset:
-* **API Endpoint**: `https://datasets-server.huggingface.co/rows?dataset=169Pi%2Fexambench&config=default&split=train&offset={offset}&length={length}`
-* **Dataset Scale**: 405,906 multi-disciplinary competitive examination items (2.70 GB corpus).
-* **Data Fields**: `prompt` (question statement), `complex_cot` (chain-of-thought derivations), and `response` (comprehensive solutions and final results).
-
-### 14.2. Resilient Offline-First Caching Architecture
-Network latency is insulated from the user interface via an intelligent two-tier caching strategy:
-1. **Local Persistent Cache (`data/exambench_cache.json`)**: Pre-populated with verified questions for instant startup and 100% offline capability.
-2. **On-Demand Live Sync**: Automatically fetches new batches from Hugging Face when network is available and merges them into the local cache.
-
-### 14.3. Stream-Aware Classification & Strict Scoping
-Questions are dynamically classified by subject and curriculum domain based on text and chain-of-thought analysis:
-* **JEE Main Track (PCM)**: Strictly constrained to **Physics**, **Chemistry**, and **Mathematics**.
-* **NEET-UG Track (PCB)**: Strictly constrained to **Biology**, **Physics**, and **Chemistry**.
-* **Central Government / UPSC**: General Studies, Governance, and Quantitative Reasoning.
-
-### 14.4. Cognitive Distractor Synthesis Pipeline
-For each ExamBench item, the engine extracts the verified answer from `response` and generates three distinct distractors with clinical cognitive error mappings:
-* `CALCULATION_ERROR`: Magnitude inversions or multiplier errors.
-* `CONCEPTUAL_ERROR`: Disregards boundary conditions or field conservation.
-* `FORMULA_SELECTION_ERROR`: Inappropriate static approximation without non-linear gradient corrections.
-
-### 14.5. Daily 3-Subject Assignment Engine
-A dedicated daily assignment module delivers structured daily practice:
-* **Volume**: **20 to 25 questions per subject** across the three stream subjects (total **60 to 75 questions daily**).
-* **Subject Tabs**: Interactive tabs for seamless switching between Physics, Chemistry, and Mathematics/Biology.
-* **Palette Navigation**: Full 20-item visual grid with Answered (green), Marked for Review (yellow), and Unvisited states.
-* **Debounced Autosaving**: Student selections are automatically synchronized to `POST /api/assignments/save-progress`.
-* **Grading & Mastery Updates**: Upon submission, scores are computed per subject and overall, feeding directly into Bayesian Knowledge Tracing and IRT calibration.
-* **Daily Streak Tracker**: Automatically calculates consecutive days of completed daily assignments.
-
-### 14.6. Daily Assignment REST API Reference
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/assignments/today/{student_id}` | Fetch or auto-generate today's 60-75 question assignment |
-| `POST` | `/api/assignments/save-progress` | Autosave answers and marked-for-review items |
-| `POST` | `/api/assignments/submit` | Finalize and grade assignment, update BKT and IRT ability |
-| `GET` | `/api/assignments/history/{student_id}` | Retrieve past assignments and daily consistency streak |
-
-### 14.7. Updated Database Entity Relationships
-```
-+------------------+       +-------------------+       +-----------------------+
-|     students     | 1---* | daily_assignments | 1---* | daily_assignment_items|
-+------------------+       +-------------------+       +-----------------------+
-        |                            |                             |
-        | 1                          |                             v *
-        |                            |                     +-------------------+
-        | *                          v 1                   |     questions     |
-+-----------------------+  +-------------------+           | (ExamBench Bank)  |
-|student_concept_mastery|  |    assessments    |           +-------------------+
-+-----------------------+  +-------------------+
-```
-
+*This manual constitutes the authoritative v4.4 technical specification for the Adaptive Intelligence Engine.*
