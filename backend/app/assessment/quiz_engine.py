@@ -157,7 +157,8 @@ class QuizEngine:
                 "question_type": q.question_type,
                 "content": q.content,
                 "options": shuffled_options,
-                "rubrics": q.rubrics
+                "rubrics": q.rubrics,
+                "image_url": getattr(q, "image_url", None)
             })
 
         return {

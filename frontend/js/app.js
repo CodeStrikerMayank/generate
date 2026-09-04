@@ -93,6 +93,7 @@ const AppState = {
     this.gatewaySelectedTrack = track;
     document.getElementById('trackCardJEE')?.classList.toggle('active', track === 'JEE');
     document.getElementById('trackCardNEET')?.classList.toggle('active', track === 'NEET');
+    document.getElementById('trackCardUPSC')?.classList.toggle('active', track === 'UPSC');
   },
 
   // ─── Guest Account (instant) ────────────────────────────────
@@ -138,8 +139,13 @@ const AppState = {
       document.getElementById('onboardingModal')?.classList.remove('active');
       this.updateHeaderProfile();
       this._showStudentHeader(true);
-      this._toast(`🚀 Welcome ${name}! Compulsory Diagnostic Starting…`, 'success');
-      await QuizController.startTest(track, 'DIAGNOSTIC', 1);
+      this._toast(`🚀 Welcome ${name}! ${track === 'UPSC' ? 'UPSC Civil Services Suite Activated' : 'Compulsory Diagnostic Starting…'}`, 'success');
+      
+      if (track === 'UPSC') {
+        this.switchTab('upsc');
+      } else {
+        await QuizController.startTest(track, 'DIAGNOSTIC', 1);
+      }
       AIAssistantController.renderChat();
     } catch (err) {
       this._toast('Error starting diagnostic: ' + err.message, 'error');
@@ -152,10 +158,16 @@ const AppState = {
     if (!this.student) return;
     const el = id => document.getElementById(id);
     if (el('userNameDisplay')) el('userNameDisplay').innerText = this.student.name;
-    if (el('userExamBadge')) el('userExamBadge').innerText = this.student.target_exam === 'JEE' ? 'JEE Main' : 'NEET-UG';
+    if (el('userExamBadge')) {
+      if (this.student.target_exam === 'JEE') el('userExamBadge').innerText = 'JEE Main';
+      else if (this.student.target_exam === 'NEET') el('userExamBadge').innerText = 'NEET-UG';
+      else if (this.student.target_exam === 'UPSC') el('userExamBadge').innerText = 'UPSC CSE';
+    }
     if (el('userAvatarDisplay')) el('userAvatarDisplay').innerText = this.student.name.charAt(0).toUpperCase();
     this.currentExam = this.student.target_exam || 'JEE';
-    document.body.className = (this.currentExam === 'NEET' ? 'theme-neet' : 'theme-jee');
+    if (this.currentExam === 'NEET') document.body.className = 'theme-neet';
+    else if (this.currentExam === 'UPSC') document.body.className = 'theme-upsc';
+    else document.body.className = 'theme-jee';
     document.querySelectorAll('.exam-pill-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.exam === this.currentExam);
     });
@@ -171,11 +183,17 @@ const AppState = {
   // ─── Exam Switcher ────────────────────────────────────────
   async switchExam(examId) {
     this.currentExam = examId;
-    document.body.className = (examId === 'NEET' ? 'theme-neet' : 'theme-jee');
+    if (examId === 'NEET') document.body.className = 'theme-neet';
+    else if (examId === 'UPSC') document.body.className = 'theme-upsc';
+    else document.body.className = 'theme-jee';
     document.querySelectorAll('.exam-pill-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.exam === examId);
     });
-    await this.refreshAllData();
+    if (examId === 'UPSC') {
+      this.switchTab('upsc');
+    } else {
+      await this.refreshAllData();
+    }
   },
 
   // ─── Tab Switcher ────────────────────────────────────────
@@ -189,6 +207,9 @@ const AppState = {
     if (tabId === 'graph' && this.graphView) setTimeout(() => this.graphView.resize(), 50);
     if (tabId === 'assignment' && typeof AssignmentController !== 'undefined') {
       AssignmentController.init();
+    }
+    if (tabId === 'upsc' && typeof UPSCController !== 'undefined') {
+      UPSCController.init();
     }
   },
 

@@ -453,6 +453,13 @@ const AssignmentController = {
           ${q.content}
         </div>
 
+        ${q.image_url ? `
+          <div style="margin-bottom:1.5rem;text-align:center;background:rgba(255,255,255,0.03);padding:12px;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,0.08);">
+            <img src="${q.image_url}" alt="Question Figure / Diagram" style="max-width:100%;max-height:400px;object-fit:contain;border-radius:6px;" loading="lazy" />
+            <div style="font-size:0.75rem;color:var(--text-faint);margin-top:6px;">📷 Official Paper Problem Crop (Reja1/jee-neet-benchmark)</div>
+          </div>
+        ` : ''}
+
         <!-- Options Grid -->
         <div class="options-grid" style="margin-bottom:1.5rem;">
           ${optionsHtml}

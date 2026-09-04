@@ -177,4 +177,13 @@ def seed_curriculum_and_questions(db: Session):
     except Exception as e:
         print(f"[CurriculumLoader] ExamBench seeding notice: {e}")
 
+    # Seed and enrich database with HuggingFace Reja1/jee-neet-benchmark questions with official images
+    try:
+        from backend.app.curriculum.benchmark_service import JeeNeetBenchmarkService
+        bm_service = JeeNeetBenchmarkService()
+        bm_service.seed_to_database(db, max_items=100)
+    except Exception as e:
+        print(f"[CurriculumLoader] JeeNeetBenchmark seeding notice: {e}")
+
     db.commit()
+

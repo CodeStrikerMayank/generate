@@ -1,0 +1,3672 @@
+{
+  "features": [
+    {
+      "feature_idx": 0,
+      "name": "image",
+      "type": {
+        "_type": "Image"
+      }
+    },
+    {
+      "feature_idx": 1,
+      "name": "question_id",
+      "type": {
+        "dtype": "string",
+        "_type": "Value"
+      }
+    },
+    {
+      "feature_idx": 2,
+      "name": "exam_name",
+      "type": {
+        "dtype": "string",
+        "_type": "Value"
+      }
+    },
+    {
+      "feature_idx": 3,
+      "name": "exam_year",
+      "type": {
+        "dtype": "int64",
+        "_type": "Value"
+      }
+    },
+    {
+      "feature_idx": 4,
+      "name": "subject",
+      "type": {
+        "dtype": "string",
+        "_type": "Value"
+      }
+    },
+    {
+      "feature_idx": 5,
+      "name": "question_type",
+      "type": {
+        "dtype": "string",
+        "_type": "Value"
+      }
+    },
+    {
+      "feature_idx": 6,
+      "name": "correct_answer",
+      "type": {
+        "dtype": "string",
+        "_type": "Value"
+      }
+    },
+    {
+      "feature_idx": 7,
+      "name": "paper_id",
+      "type": {
+        "dtype": "int64",
+        "_type": "Value"
+      }
+    }
+  ],
+  "rows": [
+    {
+      "row_idx": 0,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_001.png",
+          "height": 291,
+          "width": 617
+        },
+        "question_id": "N24T3001",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 1,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_002.png",
+          "height": 468,
+          "width": 613
+        },
+        "question_id": "N24T3002",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 2,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_003.png",
+          "height": 486,
+          "width": 619
+        },
+        "question_id": "N24T3003",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 3,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_004.png",
+          "height": 345,
+          "width": 617
+        },
+        "question_id": "N24T3004",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 4,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_005.png",
+          "height": 241,
+          "width": 620
+        },
+        "question_id": "N24T3005",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 5,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_006.png",
+          "height": 392,
+          "width": 621
+        },
+        "question_id": "N24T3006",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 6,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_007.png",
+          "height": 381,
+          "width": 626
+        },
+        "question_id": "N24T3007",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 7,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_008.png",
+          "height": 240,
+          "width": 617
+        },
+        "question_id": "N24T3008",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 8,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_009.png",
+          "height": 387,
+          "width": 618
+        },
+        "question_id": "N24T3009",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 9,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_010.png",
+          "height": 287,
+          "width": 617
+        },
+        "question_id": "N24T3010",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 10,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_011.png",
+          "height": 468,
+          "width": 620
+        },
+        "question_id": "N24T3011",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 11,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_012.png",
+          "height": 465,
+          "width": 614
+        },
+        "question_id": "N24T3012",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 12,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_013.png",
+          "height": 487,
+          "width": 622
+        },
+        "question_id": "N24T3013",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 13,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_014.png",
+          "height": 518,
+          "width": 611
+        },
+        "question_id": "N24T3014",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 14,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_015.png",
+          "height": 505,
+          "width": 614
+        },
+        "question_id": "N24T3015",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 15,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_016.png",
+          "height": 674,
+          "width": 611
+        },
+        "question_id": "N24T3016",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 16,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_017.png",
+          "height": 256,
+          "width": 622
+        },
+        "question_id": "N24T3017",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 17,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_018.png",
+          "height": 464,
+          "width": 617
+        },
+        "question_id": "N24T3018",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 18,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_019.png",
+          "height": 612,
+          "width": 601
+        },
+        "question_id": "N24T3019",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 19,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_020.png",
+          "height": 622,
+          "width": 619
+        },
+        "question_id": "N24T3020",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 20,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_021.png",
+          "height": 330,
+          "width": 613
+        },
+        "question_id": "N24T3021",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 21,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_022.png",
+          "height": 328,
+          "width": 619
+        },
+        "question_id": "N24T3022",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 22,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_023.png",
+          "height": 393,
+          "width": 617
+        },
+        "question_id": "N24T3023",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 23,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_024.png",
+          "height": 354,
+          "width": 611
+        },
+        "question_id": "N24T3024",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 24,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_025.png",
+          "height": 478,
+          "width": 620
+        },
+        "question_id": "N24T3025",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\", \"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 25,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_026.png",
+          "height": 547,
+          "width": 618
+        },
+        "question_id": "N24T3026",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 26,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_027.png",
+          "height": 217,
+          "width": 615
+        },
+        "question_id": "N24T3027",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 27,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_028.png",
+          "height": 215,
+          "width": 616
+        },
+        "question_id": "N24T3028",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 28,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_029.png",
+          "height": 628,
+          "width": 618
+        },
+        "question_id": "N24T3029",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 29,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_030.png",
+          "height": 269,
+          "width": 611
+        },
+        "question_id": "N24T3030",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 30,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_031.png",
+          "height": 268,
+          "width": 614
+        },
+        "question_id": "N24T3031",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 31,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_032.png",
+          "height": 243,
+          "width": 609
+        },
+        "question_id": "N24T3032",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 32,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_033.png",
+          "height": 603,
+          "width": 626
+        },
+        "question_id": "N24T3033",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 33,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_034.png",
+          "height": 340,
+          "width": 606
+        },
+        "question_id": "N24T3034",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 34,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_035.png",
+          "height": 337,
+          "width": 616
+        },
+        "question_id": "N24T3035",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 35,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_036.png",
+          "height": 578,
+          "width": 615
+        },
+        "question_id": "N24T3036",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 36,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_037.png",
+          "height": 382,
+          "width": 613
+        },
+        "question_id": "N24T3037",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 37,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_038.png",
+          "height": 322,
+          "width": 610
+        },
+        "question_id": "N24T3038",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 38,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_039.png",
+          "height": 640,
+          "width": 393
+        },
+        "question_id": "N24T3039",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 39,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_040.png",
+          "height": 269,
+          "width": 384
+        },
+        "question_id": "N24T3040",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 40,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_041.png",
+          "height": 236,
+          "width": 587
+        },
+        "question_id": "N24T3041",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 41,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_042.png",
+          "height": 227,
+          "width": 581
+        },
+        "question_id": "N24T3042",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 42,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_043.png",
+          "height": 198,
+          "width": 587
+        },
+        "question_id": "N24T3043",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 43,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_044.png",
+          "height": 264,
+          "width": 583
+        },
+        "question_id": "N24T3044",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 44,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_045.png",
+          "height": 452,
+          "width": 577
+        },
+        "question_id": "N24T3045",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 45,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_046.png",
+          "height": 212,
+          "width": 595
+        },
+        "question_id": "N24T3046",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 46,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_047.png",
+          "height": 653,
+          "width": 440
+        },
+        "question_id": "N24T3047",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 47,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_048.png",
+          "height": 305,
+          "width": 438
+        },
+        "question_id": "N24T3048",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 48,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_049.png",
+          "height": 236,
+          "width": 436
+        },
+        "question_id": "N24T3049",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 49,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_050.png",
+          "height": 399,
+          "width": 441
+        },
+        "question_id": "N24T3050",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 50,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_051.png",
+          "height": 506,
+          "width": 442
+        },
+        "question_id": "N24T3051",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 51,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_052.png",
+          "height": 134,
+          "width": 416
+        },
+        "question_id": "N24T3052",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 52,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_053.png",
+          "height": 247,
+          "width": 442
+        },
+        "question_id": "N24T3053",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 53,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_054.png",
+          "height": 252,
+          "width": 662
+        },
+        "question_id": "N24T3054",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 54,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_055.png",
+          "height": 267,
+          "width": 654
+        },
+        "question_id": "N24T3055",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 55,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_056.png",
+          "height": 577,
+          "width": 656
+        },
+        "question_id": "N24T3056",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 56,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_057.png",
+          "height": 271,
+          "width": 656
+        },
+        "question_id": "N24T3057",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 57,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_058.png",
+          "height": 621,
+          "width": 665
+        },
+        "question_id": "N24T3058",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 58,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_059.png",
+          "height": 271,
+          "width": 658
+        },
+        "question_id": "N24T3059",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 59,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_060.png",
+          "height": 243,
+          "width": 657
+        },
+        "question_id": "N24T3060",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 60,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_061.png",
+          "height": 338,
+          "width": 660
+        },
+        "question_id": "N24T3061",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 61,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_062.png",
+          "height": 365,
+          "width": 674
+        },
+        "question_id": "N24T3062",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 62,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_063.png",
+          "height": 543,
+          "width": 656
+        },
+        "question_id": "N24T3063",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 63,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_064.png",
+          "height": 572,
+          "width": 657
+        },
+        "question_id": "N24T3064",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 64,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_065.png",
+          "height": 641,
+          "width": 645
+        },
+        "question_id": "N24T3065",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 65,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_066.png",
+          "height": 546,
+          "width": 664
+        },
+        "question_id": "N24T3066",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 66,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_067.png",
+          "height": 666,
+          "width": 503
+        },
+        "question_id": "N24T3067",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 67,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_068.png",
+          "height": 520,
+          "width": 500
+        },
+        "question_id": "N24T3068",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 68,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_069.png",
+          "height": 344,
+          "width": 496
+        },
+        "question_id": "N24T3069",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 69,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_070.png",
+          "height": 624,
+          "width": 498
+        },
+        "question_id": "N24T3070",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 70,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_071.png",
+          "height": 199,
+          "width": 503
+        },
+        "question_id": "N24T3071",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 71,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_072.png",
+          "height": 335,
+          "width": 500
+        },
+        "question_id": "N24T3072",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 72,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_073.png",
+          "height": 315,
+          "width": 505
+        },
+        "question_id": "N24T3073",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 73,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_074.png",
+          "height": 196,
+          "width": 498
+        },
+        "question_id": "N24T3074",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 74,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_075.png",
+          "height": 511,
+          "width": 501
+        },
+        "question_id": "N24T3075",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 75,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_076.png",
+          "height": 406,
+          "width": 497
+        },
+        "question_id": "N24T3076",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 76,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_077.png",
+          "height": 276,
+          "width": 500
+        },
+        "question_id": "N24T3077",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 77,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_078.png",
+          "height": 407,
+          "width": 505
+        },
+        "question_id": "N24T3078",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"1\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 78,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_079.png",
+          "height": 273,
+          "width": 499
+        },
+        "question_id": "N24T3079",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 79,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_080.png",
+          "height": 521,
+          "width": 505
+        },
+        "question_id": "N24T3080",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 80,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_081.png",
+          "height": 335,
+          "width": 510
+        },
+        "question_id": "N24T3081",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 81,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_082.png",
+          "height": 279,
+          "width": 507
+        },
+        "question_id": "N24T3082",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 82,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_083.png",
+          "height": 157,
+          "width": 438
+        },
+        "question_id": "N24T3083",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 83,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_084.png",
+          "height": 404,
+          "width": 494
+        },
+        "question_id": "N24T3084",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 84,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_085.png",
+          "height": 238,
+          "width": 494
+        },
+        "question_id": "N24T3085",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 85,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_086.png",
+          "height": 173,
+          "width": 495
+        },
+        "question_id": "N24T3086",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 86,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_087.png",
+          "height": 248,
+          "width": 503
+        },
+        "question_id": "N24T3087",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 87,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_088.png",
+          "height": 234,
+          "width": 501
+        },
+        "question_id": "N24T3088",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 88,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_089.png",
+          "height": 432,
+          "width": 480
+        },
+        "question_id": "N24T3089",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 89,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_090.png",
+          "height": 425,
+          "width": 504
+        },
+        "question_id": "N24T3090",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 90,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_091.png",
+          "height": 235,
+          "width": 503
+        },
+        "question_id": "N24T3091",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 91,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_092.png",
+          "height": 263,
+          "width": 498
+        },
+        "question_id": "N24T3092",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 92,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_093.png",
+          "height": 362,
+          "width": 506
+        },
+        "question_id": "N24T3093",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 93,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_094.png",
+          "height": 279,
+          "width": 499
+        },
+        "question_id": "N24T3094",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 94,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_095.png",
+          "height": 284,
+          "width": 495
+        },
+        "question_id": "N24T3095",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 95,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_096.png",
+          "height": 380,
+          "width": 503
+        },
+        "question_id": "N24T3096",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"2\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 96,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_097.png",
+          "height": 293,
+          "width": 500
+        },
+        "question_id": "N24T3097",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 97,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_098.png",
+          "height": 295,
+          "width": 500
+        },
+        "question_id": "N24T3098",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"4\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 98,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_099.png",
+          "height": 732,
+          "width": 500
+        },
+        "question_id": "N24T3099",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 99,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/NEET_2024_T3/NEET_2024_T3_100.png",
+          "height": 226,
+          "width": 498
+        },
+        "question_id": "N24T3100",
+        "exam_name": "NEET",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"3\"]",
+        "paper_id": null
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 400,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_04.png",
+          "height": 395,
+          "width": 871
+        },
+        "question_id": "JA24P1C04",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"C\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 401,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_05.png",
+          "height": 180,
+          "width": 858
+        },
+        "question_id": "JA24P1C05",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"A\", \"B\", \"C\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 402,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_06.png",
+          "height": 265,
+          "width": 847
+        },
+        "question_id": "JA24P1C06",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"A\", \"B\", \"D\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 403,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_07.png",
+          "height": 105,
+          "width": 698
+        },
+        "question_id": "JA24P1C07",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"A\", \"D\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 404,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_08.png",
+          "height": 459,
+          "width": 874
+        },
+        "question_id": "JA24P1C08",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"8120\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 405,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_09.png",
+          "height": 304,
+          "width": 605
+        },
+        "question_id": "JA24P1C09",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"3\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 406,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_10.png",
+          "height": 157,
+          "width": 869
+        },
+        "question_id": "JA24P1C10",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"18\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 407,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_11.png",
+          "height": 91,
+          "width": 864
+        },
+        "question_id": "JA24P1C11",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"1\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 408,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_12.png",
+          "height": 245,
+          "width": 863
+        },
+        "question_id": "JA24P1C12",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"909\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 409,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_13.png",
+          "height": 101,
+          "width": 659
+        },
+        "question_id": "JA24P1C13",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"1\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 410,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_14.png",
+          "height": 833,
+          "width": 887
+        },
+        "question_id": "JA24P1C14",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_MATCHING",
+        "correct_answer": "[\"C\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 411,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_15.png",
+          "height": 497,
+          "width": 1020
+        },
+        "question_id": "JA24P1C15",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_MATCHING",
+        "correct_answer": "[\"B\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 412,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_16.png",
+          "height": 1169,
+          "width": 1021
+        },
+        "question_id": "JA24P1C16",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_MATCHING",
+        "correct_answer": "[\"A\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 413,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_CHEMISTRY_17.png",
+          "height": 680,
+          "width": 760
+        },
+        "question_id": "JA24P1C17",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"C\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 414,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_01.png",
+          "height": 324,
+          "width": 993
+        },
+        "question_id": "JA24P1M01",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"B\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 415,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_02.png",
+          "height": 378,
+          "width": 1058
+        },
+        "question_id": "JA24P1M02",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"C\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 416,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_03.png",
+          "height": 342,
+          "width": 1026
+        },
+        "question_id": "JA24P1M03",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"B\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 417,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_04.png",
+          "height": 499,
+          "width": 1031
+        },
+        "question_id": "JA24P1M04",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"A\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 418,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_05.png",
+          "height": 330,
+          "width": 1037
+        },
+        "question_id": "JA24P1M05",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"A\", \"C\", \"D\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 419,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_06.png",
+          "height": 414,
+          "width": 1009
+        },
+        "question_id": "JA24P1M06",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"B\", \"C\", \"D\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 420,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_07.png",
+          "height": 364,
+          "width": 1039
+        },
+        "question_id": "JA24P1M07",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"A\", \"B\", \"C\", \"D\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 421,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_08.png",
+          "height": 190,
+          "width": 553
+        },
+        "question_id": "JA24P1M08",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"8\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 422,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_09.png",
+          "height": 117,
+          "width": 1052
+        },
+        "question_id": "JA24P1M09",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"20\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 423,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_10.png",
+          "height": 142,
+          "width": 1040
+        },
+        "question_id": "JA24P1M10",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"16\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 424,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_11.png",
+          "height": 98,
+          "width": 1034
+        },
+        "question_id": "JA24P1M11",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"665\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 425,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_12.png",
+          "height": 185,
+          "width": 1218
+        },
+        "question_id": "JA24P1M12",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"5\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 426,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_13.png",
+          "height": 139,
+          "width": 1206
+        },
+        "question_id": "JA24P1M13",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"42\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 427,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_14.png",
+          "height": 567,
+          "width": 874
+        },
+        "question_id": "JA24P1M14",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_MATCHING",
+        "correct_answer": "[\"C\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 428,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_15.png",
+          "height": 387,
+          "width": 1022
+        },
+        "question_id": "JA24P1M15",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_MATCHING",
+        "correct_answer": "[\"C\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 429,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_16.png",
+          "height": 556,
+          "width": 1024
+        },
+        "question_id": "JA24P1M16",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_MATCHING",
+        "correct_answer": "[\"C\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 430,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P1_MATH_17.png",
+          "height": 623,
+          "width": 1027
+        },
+        "question_id": "JA24P1M17",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"C\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 431,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_01.png",
+          "height": 626,
+          "width": 891
+        },
+        "question_id": "JA24P2P01",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"A\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 432,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_02.png",
+          "height": 371,
+          "width": 890
+        },
+        "question_id": "JA24P2P02",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"A\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 433,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_03.png",
+          "height": 174,
+          "width": 885
+        },
+        "question_id": "JA24P2P03",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"A\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 434,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_04.png",
+          "height": 472,
+          "width": 878
+        },
+        "question_id": "JA24P2P04",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"A\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 435,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_05.png",
+          "height": 754,
+          "width": 883
+        },
+        "question_id": "JA24P2P05",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"B\", \"D\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 436,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_06.png",
+          "height": 384,
+          "width": 909
+        },
+        "question_id": "JA24P2P06",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"A\", \"B\", \"D\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 437,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_07.png",
+          "height": 736,
+          "width": 892
+        },
+        "question_id": "JA24P2P07",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"A\", \"B\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 438,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_08.png",
+          "height": 79,
+          "width": 882
+        },
+        "question_id": "JA24P2P08",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"3\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 439,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_09.png",
+          "height": 131,
+          "width": 898
+        },
+        "question_id": "JA24P2P09",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"2\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 440,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_10.png",
+          "height": 120,
+          "width": 881
+        },
+        "question_id": "JA24P2P10",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"3\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 441,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_11.png",
+          "height": 239,
+          "width": 890
+        },
+        "question_id": "JA24P2P11",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"12\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 442,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_12.png",
+          "height": 401,
+          "width": 880
+        },
+        "question_id": "JA24P2P12",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"171\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 443,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_13.png",
+          "height": 160,
+          "width": 888
+        },
+        "question_id": "JA24P2P13",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"96\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 444,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_14.png",
+          "height": 527,
+          "width": 807
+        },
+        "question_id": "JA24P2P14",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"601.50\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 445,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_15.png",
+          "height": 492,
+          "width": 807
+        },
+        "question_id": "JA24P2P15",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "INTEGER_2",
+        "correct_answer": "[\"24.00\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 446,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_16.png",
+          "height": 332,
+          "width": 730
+        },
+        "question_id": "JA24P2P16",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "INTEGER_2",
+        "correct_answer": "[\"0.75\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 447,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_PHYSICS_17.png",
+          "height": 322,
+          "width": 737
+        },
+        "question_id": "JA24P2P17",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Physics",
+        "question_type": "INTEGER_2",
+        "correct_answer": "[\"4.25\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 448,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_01.png",
+          "height": 167,
+          "width": 868
+        },
+        "question_id": "JA24P2C01",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"B\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 449,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_02.png",
+          "height": 161,
+          "width": 896
+        },
+        "question_id": "JA24P2C02",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"D\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 450,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_03.png",
+          "height": 385,
+          "width": 621
+        },
+        "question_id": "JA24P2C03",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"D\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 451,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_04.png",
+          "height": 138,
+          "width": 676
+        },
+        "question_id": "JA24P2C04",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"B\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 452,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_05.png",
+          "height": 254,
+          "width": 797
+        },
+        "question_id": "JA24P2C05",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"A\", \"C\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 453,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_06.png",
+          "height": 325,
+          "width": 636
+        },
+        "question_id": "JA24P2C06",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"C\", \"D\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 454,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_07.png",
+          "height": 100,
+          "width": 522
+        },
+        "question_id": "JA24P2C07",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"B\", \"D\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 455,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_08.png",
+          "height": 167,
+          "width": 779
+        },
+        "question_id": "JA24P2C08",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"2500\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 456,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_09.png",
+          "height": 128,
+          "width": 781
+        },
+        "question_id": "JA24P2C09",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"150\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 457,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_10.png",
+          "height": 232,
+          "width": 771
+        },
+        "question_id": "JA24P2C10",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"41\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 458,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_11.png",
+          "height": 206,
+          "width": 798
+        },
+        "question_id": "JA24P2C11",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"143\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 459,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_12.png",
+          "height": 47,
+          "width": 776
+        },
+        "question_id": "JA24P2C12",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"3\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 460,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_13.png",
+          "height": 191,
+          "width": 783
+        },
+        "question_id": "JA24P2C13",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"12\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 461,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_14.png",
+          "height": 239,
+          "width": 796
+        },
+        "question_id": "JA24P2C14",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"2\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 462,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_15.png",
+          "height": 254,
+          "width": 812
+        },
+        "question_id": "JA24P2C15",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER_2",
+        "correct_answer": "[\"103018\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 463,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_16.png",
+          "height": 191,
+          "width": 822
+        },
+        "question_id": "JA24P2C16",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER_2",
+        "correct_answer": "[\"2\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 464,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_CHEMISTRY_17.png",
+          "height": 181,
+          "width": 795
+        },
+        "question_id": "JA24P2C17",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Chemistry",
+        "question_type": "INTEGER_2",
+        "correct_answer": "[\"3\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 465,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_01.png",
+          "height": 267,
+          "width": 912
+        },
+        "question_id": "JA24P2M01",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"B\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 466,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_02.png",
+          "height": 245,
+          "width": 1071
+        },
+        "question_id": "JA24P2M02",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"B\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 467,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_03.png",
+          "height": 158,
+          "width": 703
+        },
+        "question_id": "JA24P2M03",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"B\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 468,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_04.png",
+          "height": 459,
+          "width": 671
+        },
+        "question_id": "JA24P2M04",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"D\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 469,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_05.png",
+          "height": 265,
+          "width": 711
+        },
+        "question_id": "JA24P2M05",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"B\", \"C\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 470,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_06.png",
+          "height": 259,
+          "width": 1042
+        },
+        "question_id": "JA24P2M06",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"A\", \"C\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 471,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_07.png",
+          "height": 185,
+          "width": 1082
+        },
+        "question_id": "JA24P2M07",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"A\", \"C\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 472,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_08.png",
+          "height": 164,
+          "width": 1055
+        },
+        "question_id": "JA24P2M08",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"51\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 473,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_09.png",
+          "height": 197,
+          "width": 1062
+        },
+        "question_id": "JA24P2M09",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"11\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 474,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_10.png",
+          "height": 169,
+          "width": 667
+        },
+        "question_id": "JA24P2M10",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"1\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 475,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_11.png",
+          "height": 92,
+          "width": 1061
+        },
+        "question_id": "JA24P2M11",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"2\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 476,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_12.png",
+          "height": 171,
+          "width": 1057
+        },
+        "question_id": "JA24P2M12",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"12\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 477,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_13.png",
+          "height": 292,
+          "width": 1064
+        },
+        "question_id": "JA24P2M13",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"5\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 478,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_14.png",
+          "height": 320,
+          "width": 1026
+        },
+        "question_id": "JA24P2M14",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"20\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 479,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_15.png",
+          "height": 352,
+          "width": 1024
+        },
+        "question_id": "JA24P2M15",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER_2",
+        "correct_answer": "[\"36\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 480,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_16.png",
+          "height": 279,
+          "width": 1115
+        },
+        "question_id": "JA24P2M16",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER_2",
+        "correct_answer": "[\"0\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 481,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2024/JEE_ADVANCED_2024_P2_MATH_17.png",
+          "height": 306,
+          "width": 1087
+        },
+        "question_id": "JA24P2M17",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2024,
+        "subject": "Math",
+        "question_type": "INTEGER_2",
+        "correct_answer": "[\"0.25\"]",
+        "paper_id": 2
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 482,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_01.png",
+          "height": 637,
+          "width": 902
+        },
+        "question_id": "JA25P1P01",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"A\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 483,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_02.png",
+          "height": 388,
+          "width": 894
+        },
+        "question_id": "JA25P1P02",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"D\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 484,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_03.png",
+          "height": 597,
+          "width": 743
+        },
+        "question_id": "JA25P1P03",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"A\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 485,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_04.png",
+          "height": 366,
+          "width": 745
+        },
+        "question_id": "JA25P1P04",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"C\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 486,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_05.png",
+          "height": 497,
+          "width": 728
+        },
+        "question_id": "JA25P1P05",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"B\", \"D\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 487,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_06.png",
+          "height": 118,
+          "width": 741
+        },
+        "question_id": "JA25P1P06",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"D\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 488,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_07.png",
+          "height": 441,
+          "width": 728
+        },
+        "question_id": "JA25P1P07",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "MCQ_MULTIPLE_CORRECT",
+        "correct_answer": "[\"A\", \"D\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 489,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_08.png",
+          "height": 122,
+          "width": 732
+        },
+        "question_id": "JA25P1P08",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"2\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 490,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_09.png",
+          "height": 133,
+          "width": 726
+        },
+        "question_id": "JA25P1P09",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "INTEGER",
+        "correct_answer": "[[\"21\", \"25\"]]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 491,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_10.png",
+          "height": 323,
+          "width": 738
+        },
+        "question_id": "JA25P1P10",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"3\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 492,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_11.png",
+          "height": 395,
+          "width": 744
+        },
+        "question_id": "JA25P1P11",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"0.5\", \"0.75\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 493,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_12.png",
+          "height": 167,
+          "width": 730
+        },
+        "question_id": "JA25P1P12",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "INTEGER",
+        "correct_answer": "[[\"75\", \"79\"]]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 494,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_13.png",
+          "height": 203,
+          "width": 911
+        },
+        "question_id": "JA25P1P13",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "INTEGER",
+        "correct_answer": "[\"72\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 495,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_14.png",
+          "height": 682,
+          "width": 656
+        },
+        "question_id": "JA25P1P14",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "MCQ_MATCHING",
+        "correct_answer": "[\"C\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 496,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_15.png",
+          "height": 810,
+          "width": 581
+        },
+        "question_id": "JA25P1P15",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "MCQ_MATCHING",
+        "correct_answer": "[\"A\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 497,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_PHYSICS_16.png",
+          "height": 680,
+          "width": 817
+        },
+        "question_id": "JA25P1P16",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Physics",
+        "question_type": "MCQ_MATCHING",
+        "correct_answer": "[\"C\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 498,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_CHEMISTRY_01.png",
+          "height": 202,
+          "width": 808
+        },
+        "question_id": "JA25P1C01",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"A\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    },
+    {
+      "row_idx": 499,
+      "row": {
+        "image": {
+          "src": "https://huggingface.co/datasets/Reja1/jee-neet-benchmark/resolve/9b588aa92147f17cc558996c13df267eb6fcca62/images/JEE_ADVANCED_2025/JEE_ADVANCED_2025_P1_CHEMISTRY_02.png",
+          "height": 201,
+          "width": 815
+        },
+        "question_id": "JA25P1C02",
+        "exam_name": "JEE_ADVANCED",
+        "exam_year": 2025,
+        "subject": "Chemistry",
+        "question_type": "MCQ_SINGLE_CORRECT",
+        "correct_answer": "[\"A\"]",
+        "paper_id": 1
+      },
+      "truncated_cells": []
+    }
+  ],
+  "num_rows_total": 860,
+  "num_rows_per_page": 100,
+  "partial": false
+}

@@ -148,6 +148,7 @@
       <div class="exam-pill-selector student-session-only" style="display:none;">
         <button class="exam-pill-btn active" data-exam="JEE" onclick="AppState.switchExam('JEE')">JEE</button>
         <button class="exam-pill-btn" data-exam="NEET" onclick="AppState.switchExam('NEET')">NEET</button>
+        <button class="exam-pill-btn" data-exam="UPSC" onclick="AppState.switchExam('UPSC')">UPSC</button>
       </div>
       <div class="user-badge student-session-only" onclick="AppState.showDiagnosticGateway()" id="userBadge" title="Your profile" style="display:none;">
         <div class="avatar-circle" id="userAvatarDisplay">A</div>
@@ -181,6 +182,9 @@
       </div>
       <div class="nav-item" id="nav_assignment" onclick="AppState.switchTab('assignment')">
         <span class="nav-icon">📝</span> Daily Assignment
+      </div>
+      <div class="nav-item" id="nav_upsc" onclick="AppState.switchTab('upsc')">
+        <span class="nav-icon">🏛️</span> UPSC Civil Services
       </div>
       <div class="nav-item" id="nav_graph" onclick="AppState.switchTab('graph')">
         <span class="nav-icon">🕸️</span> Concept Map
@@ -465,7 +469,13 @@
         </div>
         <div class="glass-card" id="telemetryStreamContainer">
           <div style="color:var(--text-secondary);padding:1rem;">Loading telemetry stream…</div>
-        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- 8. UPSC CIVIL SERVICES SUBSYSTEM                -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <section class="tab-pane" id="pane_upsc">
+        <!-- Rendered dynamically by UPSCController -->
       </section>
 
     </main>
@@ -541,6 +551,17 @@
               <span class="track-tag" style="color:var(--accent-cyan);">Optics</span>
             </div>
           </div>
+          <div class="gateway-track-card" id="trackCardUPSC" onclick="AppState.selectGatewayTrack('UPSC')">
+            <div class="track-check">✓</div>
+            <div class="track-icon">🏛️</div>
+            <div class="track-title">UPSC CSE</div>
+            <div class="track-desc">Polity · Governance · Economy · Ethics</div>
+            <div class="track-tags">
+              <span class="track-tag" style="color:var(--accent-amber);">Prelims MCQ</span>
+              <span class="track-tag" style="color:var(--accent-neon);">Mains Written</span>
+              <span class="track-tag" style="color:var(--accent-emerald);">GS I-IV</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -609,6 +630,7 @@
   <script src="/static/js/graph_view.js?v=6.0"></script>
   <script src="/static/js/quiz.js?v=6.0"></script>
   <script src="/static/js/assignment.js?v=6.0"></script>
+  <script src="/static/js/upsc.js?v=6.0"></script>
   <script src="/static/js/roadmap.js?v=6.0"></script>
   <script src="/static/js/roadmap_visual.js?v=6.0"></script>
   <script src="/static/js/supporting.js?v=6.0"></script>

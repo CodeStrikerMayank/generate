@@ -6,7 +6,7 @@ from fastapi.responses import FileResponse
 
 from backend.app.database.connection import engine, Base, SessionLocal
 from backend.app.curriculum.loader import seed_curriculum_and_questions
-from backend.app.api import auth, curriculum, assessments, roadmap, ai, telemetry, supporting, assignments
+from backend.app.api import auth, curriculum, assessments, roadmap, ai, telemetry, supporting, assignments, upsc
 from backend.app.api.supporting import admin_router
 
 # Initialize DB tables
@@ -17,9 +17,9 @@ with SessionLocal() as db:
     seed_curriculum_and_questions(db)
 
 app = FastAPI(
-    title="Adaptive Student Intelligence & Roadmap Engine (JEE Main, NEET & Central Govt)",
-    description="Offline-first, mathematically-grounded adaptive assessment, ML prediction, and dynamic roadmap engine powered by 405k HuggingFace ExamBench questions.",
-    version="1.2.0"
+    title="Adaptive Student Intelligence & Roadmap Engine (JEE Main, NEET & UPSC Civil Services)",
+    description="Offline-first, mathematically-grounded adaptive assessment, ML prediction, dynamic roadmap engine, official image-based benchmark testing, and UPSC Prelims/Mains evaluation.",
+    version="1.3.0"
 )
 
 # CORS configuration
@@ -39,6 +39,7 @@ app.include_router(assignments.router, prefix="/api")
 app.include_router(roadmap.router, prefix="/api")
 app.include_router(ai.router, prefix="/api")
 app.include_router(telemetry.router, prefix="/api")
+app.include_router(upsc.router, prefix="/api")
 app.include_router(supporting.router, prefix="/api")
 app.include_router(admin_router, prefix="/api")
 

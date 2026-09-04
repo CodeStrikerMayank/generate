@@ -1,0 +1,122 @@
+[
+  {
+    "question_id": "UPSC_PRELIMS_2024_POLITY_01",
+    "exam": "UPSC",
+    "paper": "Prelims GS Paper I",
+    "subject": "Indian Polity & Governance",
+    "chapter": "Constitutional Framework & Fundamental Rights",
+    "topic": "Fundamental Rights & Judicial Review",
+    "concept_id": "c_basic_structure_doctrine",
+    "skill": "conceptual",
+    "difficulty": 0.72,
+    "discrimination": 1.4,
+    "estimated_time": 75,
+    "question_type": "multiple_choice",
+    "content": "With reference to the Indian Constitution, consider the following statements regarding the 'Basic Structure' doctrine:\n1. The term 'Basic Structure' is explicitly defined under Article 368 of the Constitution.\n2. The Supreme Court first propounded the doctrine in the landmark Kesavananda Bharati case (1973).\n3. Judicial review forms an indispensable part of the basic structure of the Constitution.\nWhich of the statements given above are correct?",
+    "options": {
+      "A": "1 and 2 only",
+      "B": "2 and 3 only",
+      "C": "1 and 3 only",
+      "D": "1, 2 and 3"
+    },
+    "correct_answer": "B",
+    "explanation": "Statement 1 is incorrect: The Constitution does not define 'Basic Structure'; it is an indigenous judicial innovation. Statement 2 and 3 are correct: Introduced in Kesavananda Bharati (1973) and judicial review was upheld as basic structure in Minerva Mills (1980) and Indira Gandhi v. Raj Narain.",
+    "tier": "CHALLENGE"
+  },
+  {
+    "question_id": "UPSC_PRELIMS_2024_POLITY_02",
+    "exam": "UPSC",
+    "paper": "Prelims GS Paper I",
+    "subject": "Indian Polity & Governance",
+    "chapter": "Constitutional Framework & Fundamental Rights",
+    "topic": "Fundamental Rights & Judicial Review",
+    "concept_id": "c_article_21_due_process",
+    "skill": "analytical",
+    "difficulty": 0.65,
+    "discrimination": 1.2,
+    "estimated_time": 60,
+    "question_type": "multiple_choice",
+    "content": "A legislation which confers on the executive or administrative authority an unguided and uncontrolled discretionary power in the matter of application of law violates which one of the following Articles of the Constitution of India?",
+    "options": {
+      "A": "Article 14",
+      "B": "Article 28",
+      "C": "Article 32",
+      "D": "Article 44"
+    },
+    "correct_answer": "A",
+    "explanation": "Arbitrary executive discretion without statutory guidance violates the doctrine of equality and rule of law embodied in Article 14 (prevention of arbitrariness).",
+    "tier": "STANDARD"
+  },
+  {
+    "question_id": "UPSC_PRELIMS_2024_ECON_01",
+    "exam": "UPSC",
+    "paper": "Prelims GS Paper I",
+    "subject": "Economy, Environment & Technology",
+    "chapter": "Macroeconomics & Inclusive Growth",
+    "topic": "Fiscal & Monetary Policy Coordination",
+    "concept_id": "c_monetary_policy_framework",
+    "skill": "conceptual",
+    "difficulty": 0.68,
+    "discrimination": 1.3,
+    "estimated_time": 70,
+    "question_type": "multiple_choice",
+    "content": "In India, which one of the following is responsible for maintaining price stability by controlling inflation?",
+    "options": {
+      "A": "Department of Consumer Affairs",
+      "B": "Expenditure Management Commission",
+      "C": "Financial Stability and Development Council",
+      "D": "Reserve Bank of India (Monetary Policy Committee)"
+    },
+    "correct_answer": "D",
+    "explanation": "Under the amended RBI Act 1934, the Monetary Policy Committee (MPC) is statutorily mandated to maintain price stability with a target of 4% (+/- 2%) Consumer Price Index (CPI) inflation.",
+    "tier": "STANDARD"
+  },
+  {
+    "question_id": "UPSC_PRELIMS_2024_ENV_01",
+    "exam": "UPSC",
+    "paper": "Prelims GS Paper I",
+    "subject": "Economy, Environment & Technology",
+    "chapter": "Climate Change & Ecological Conservation",
+    "topic": "Paris Accord & Sustainable Development Goals",
+    "concept_id": "c_net_zero_transition",
+    "skill": "analytical",
+    "difficulty": 0.70,
+    "discrimination": 1.25,
+    "estimated_time": 65,
+    "question_type": "multiple_choice",
+    "content": "Consider the following statements regarding India's updated Nationally Determined Contributions (NDCs) submitted to the UNFCCC:\n1. India has committed to reduce emissions intensity of its GDP by 45% by 2030 from 2005 levels.\n2. India aims to achieve 50% cumulative electric power installed capacity from non-fossil fuel-based energy resources by 2030.\n3. India has set a legally binding target to phase out all coal-fired power plants by 2040.\nWhich of the statements given above are correct?",
+    "options": {
+      "A": "1 and 2 only",
+      "B": "2 and 3 only",
+      "C": "1 and 3 only",
+      "D": "1, 2 and 3"
+    },
+    "correct_answer": "A",
+    "explanation": "Statements 1 and 2 are India's formal updated NDCs under the Paris Agreement. Statement 3 is incorrect: India advocates 'phase-down' of unabated fossil fuels with equitable transition, not an abrupt 2040 ban.",
+    "tier": "CHALLENGE"
+  },
+  {
+    "question_id": "UPSC_PRELIMS_2024_ETHICS_01",
+    "exam": "UPSC",
+    "paper": "Prelims GS Paper I",
+    "subject": "Ethics, Integrity & Aptitude",
+    "chapter": "Public Service Values & Ethical Dilemmas",
+    "topic": "Ethical Frameworks & Case Studies",
+    "concept_id": "c_conflict_of_interest",
+    "skill": "conceptual",
+    "difficulty": 0.58,
+    "discrimination": 1.1,
+    "estimated_time": 60,
+    "question_type": "multiple_choice",
+    "content": "Which among the following Seven Principles of Public Life (Nolan Committee) explicitly mandates that holders of public office should not place themselves under any financial or other obligation to outside individuals or organizations that might influence them in the performance of their official duties?",
+    "options": {
+      "A": "Selflessness",
+      "B": "Integrity",
+      "C": "Objectivity",
+      "D": "Openness"
+    },
+    "correct_answer": "B",
+    "explanation": "According to the Nolan Committee: 'Integrity: Holders of public office must avoid placing themselves under any obligation to people or organisations that might try inappropriately to influence them in their work.'",
+    "tier": "STANDARD"
+  }
+]

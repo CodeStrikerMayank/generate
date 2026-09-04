@@ -1,0 +1,142 @@
+{
+  "exam_id": "UPSC",
+  "name": "UPSC Civil Services Examination (CSE)",
+  "tracks": ["UPSC_PRELIMS", "UPSC_MAINS"],
+  "subjects": [
+    {
+      "subject_id": "sub_upsc_gs2_polity",
+      "name": "Indian Polity & Governance",
+      "chapters": [
+        {
+          "chapter_id": "chap_polity_constitution",
+          "name": "Constitutional Framework & Fundamental Rights",
+          "topics": [
+            {
+              "topic_id": "top_fundamental_rights",
+              "name": "Fundamental Rights & Judicial Review",
+              "concepts": [
+                {
+                  "concept_id": "c_basic_structure_doctrine",
+                  "name": "Basic Structure Doctrine & Judicial Review",
+                  "estimated_minutes": 60,
+                  "exam_relevance": 0.98,
+                  "difficulty_weight": 0.70,
+                  "description": "Kesavananda Bharati framework, Article 13/368 limitations and judicial independence."
+                },
+                {
+                  "concept_id": "c_article_21_due_process",
+                  "name": "Right to Life & Due Process (Article 21)",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.65,
+                  "description": "Maneka Gandhi expansion, right to privacy (Puttaswamy) and substantive due process."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "chapter_id": "chap_polity_federalism",
+          "name": "Federal System & Separation of Powers",
+          "topics": [
+            {
+              "topic_id": "top_center_state_relations",
+              "name": "Centre-State Legislative & Financial Relations",
+              "concepts": [
+                {
+                  "concept_id": "c_cooperative_federalism",
+                  "name": "Cooperative & Fiscal Federalism (GST & Finance Commission)",
+                  "estimated_minutes": 55,
+                  "exam_relevance": 0.92,
+                  "difficulty_weight": 0.68,
+                  "description": "Article 280, Finance Commission awards, GST Council dynamic and inter-state councils."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subject_id": "sub_upsc_gs3_economy",
+      "name": "Economy, Environment & Technology",
+      "chapters": [
+        {
+          "chapter_id": "chap_economy_inclusive_growth",
+          "name": "Macroeconomics & Inclusive Growth",
+          "topics": [
+            {
+              "topic_id": "top_fiscal_monetary_policy",
+              "name": "Fiscal & Monetary Policy Coordination",
+              "concepts": [
+                {
+                  "concept_id": "c_monetary_policy_framework",
+                  "name": "Flexible Inflation Targeting & MPC Dynamics",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.90,
+                  "difficulty_weight": 0.65,
+                  "description": "RBI Monetary Policy Committee, headline vs core CPI inflation, and liquidity adjustment facility."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "chapter_id": "chap_environment_climate",
+          "name": "Climate Change & Ecological Conservation",
+          "topics": [
+            {
+              "topic_id": "top_climate_accords",
+              "name": "Paris Accord & Sustainable Development Goals",
+              "concepts": [
+                {
+                  "concept_id": "c_net_zero_transition",
+                  "name": "India's Panchamrit Goals & Net-Zero 2070",
+                  "estimated_minutes": 45,
+                  "exam_relevance": 0.92,
+                  "difficulty_weight": 0.60,
+                  "description": "Renewable capacity targets, Nationally Determined Contributions (NDCs), and carbon markets."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "subject_id": "sub_upsc_gs4_ethics",
+      "name": "Ethics, Integrity & Aptitude",
+      "chapters": [
+        {
+          "chapter_id": "chap_ethics_governance",
+          "name": "Public Service Values & Ethical Dilemmas",
+          "topics": [
+            {
+              "topic_id": "top_ethical_decision_making",
+              "name": "Ethical Frameworks & Case Studies",
+              "concepts": [
+                {
+                  "concept_id": "c_conflict_of_interest",
+                  "name": "Conflict of Interest & Administrative Integrity",
+                  "estimated_minutes": 50,
+                  "exam_relevance": 0.95,
+                  "difficulty_weight": 0.62,
+                  "description": "Deontological vs utilitarian balancing in administrative discretion and public trust."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "prerequisites": [
+    {
+      "from_concept": "c_basic_structure_doctrine",
+      "to_concept": "c_article_21_due_process",
+      "strength": 0.90,
+      "relationship": "prerequisite",
+      "description": "Understanding basic structure is essential for analyzing judicial interpretation of fundamental rights."
+    }
+  ]
+}

@@ -39,6 +39,11 @@ if DATABASE_URL.startswith("sqlite"):
             conn.commit()
         except Exception:
             pass
+        try:
+            conn.execute(text("ALTER TABLE questions ADD COLUMN image_url VARCHAR(512)"))
+            conn.commit()
+        except Exception:
+            pass
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()

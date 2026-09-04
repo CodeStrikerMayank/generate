@@ -1371,3 +1371,29 @@ body.theme-neet, :root[data-theme="neet"] {
   color: var(--accent-rose);
 }
 
+/* ================================================================
+   UPSC CIVIL SERVICES THEME & WORKSPACE STYLES
+   ================================================================ */
+body.theme-upsc {
+  --theme-accent: var(--accent-amber);
+  --theme-glow: rgba(245, 158, 11, 0.15);
+}
+
+.theme-upsc .nav-item.active {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--accent-amber);
+  border-left-color: var(--accent-amber);
+}
+
+.upsc-answer-textarea:focus {
+  outline: none;
+  border-color: var(--accent-amber);
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+}
+
+.prelims-opt-item:hover {
+  border-color: var(--accent-cyan) !important;
+  background: rgba(56, 189, 248, 0.08) !important;
+}
+
+

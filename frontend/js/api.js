@@ -222,5 +222,38 @@ const API = {
     const res = await fetch(`${API_BASE}/assignments/history/${studentId}`);
     if (!res.ok) throw new Error('Failed to load assignment history');
     return res.json();
+  },
+
+  async getUPSCMainsPrompts() {
+    const res = await fetch(`${API_BASE}/upsc/mains-prompts`);
+    if (!res.ok) throw new Error('Failed to load UPSC Mains prompts');
+    return res.json();
+  },
+
+  async getUPSCQuestions() {
+    const res = await fetch(`${API_BASE}/upsc/prelims-quiz`);
+    if (!res.ok) throw new Error('Failed to load UPSC Prelims questions');
+    return res.json();
+  },
+
+  async evaluateUPSCWritten(studentId, questionId, answerText, timeTakenSeconds = 300) {
+    const res = await fetch(`${API_BASE}/upsc/evaluate-written`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        student_id: studentId,
+        question_id: questionId,
+        answer_text: answerText,
+        time_taken_seconds: timeTakenSeconds
+      })
+    });
+    if (!res.ok) throw new Error('Failed to evaluate written response');
+    return res.json();
+  },
+
+  async getUPSCHistory(studentId) {
+    const res = await fetch(`${API_BASE}/upsc/history/${studentId}`);
+    if (!res.ok) throw new Error('Failed to load UPSC submission history');
+    return res.json();
   }
 };

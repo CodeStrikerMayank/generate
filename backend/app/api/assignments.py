@@ -166,6 +166,7 @@ def get_today_assignment(
             "content": q.content,
             "options": q.options,
             "estimated_time": q.estimated_time,
+            "image_url": getattr(q, "image_url", None),
             "student_answer": item.student_answer,
             "is_marked_review": item.is_marked_review,
             "is_correct": item.is_correct if assignment.status == "COMPLETED" else None,

@@ -131,6 +131,7 @@ class Question(Base):
     is_transfer = Column(Boolean, default=False)
     is_prerequisite_check = Column(Boolean, default=False)
     tier = Column(String(32), default="STANDARD", index=True)  # STANDARD, ADVANCED
+    image_url = Column(String(512), nullable=True)  # For visual benchmark questions
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
     concept = relationship("Concept", back_populates="questions")
@@ -290,7 +291,7 @@ class UPSCWrittenSubmission(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     submission_id = Column(String(64), unique=True, index=True, nullable=False)
     student_id = Column(String(64), ForeignKey("students.student_id"), nullable=False, index=True)
-    question_id = Column(String(64), ForeignKey("questions.question_id"), nullable=False)
+    question_id = Column(String(64), nullable=False, index=True)
     student_answer_text = Column(Text, nullable=False)
     word_count = Column(Integer, default=0)
     time_taken_seconds = Column(Integer, default=0)

@@ -258,6 +258,15 @@ const QuizController = {
             ${q.content}
           </div>
 
+          ${q.image_url ? `
+            <div class="q-image-container" style="margin-bottom:1.25rem;text-align:center;background:rgba(255,255,255,0.03);padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);">
+              <img src="${q.image_url}" alt="Official Exam Question Problem Crop" style="max-width:100%;max-height:420px;object-fit:contain;border-radius:6px;" loading="lazy" />
+              <div style="font-size:0.75rem;color:var(--text-faint);margin-top:6px;display:flex;align-items:center;justify-content:center;gap:5px;">
+                <span>📷</span><span>Official Problem Diagram / Original Crop (Reja1/jee-neet-benchmark)</span>
+              </div>
+            </div>
+          ` : ''}
+
           <div class="option-list">
             ${optionsHtml}
           </div>
