@@ -1,35 +1,46 @@
 /**
- * Admin Authentication Gate — CoreShadow Adaptive Engine
- * Multi-user secure access control. Credentials are SHA-256 hashed at runtime.
- * No plaintext passwords stored in source code.
+ * Admin Authentication Gate — Adaptive Engine v4.3
+ * 2-Step Flow: Credential Login → Role Selector (Guest/Student/Admin)
+ * No passwords shown for Student mode — only Name + Age.
+ * SHA-256 credential verification for Admin access.
  */
 
 const AdminAuth = {
-  SESSION_KEY: 'aie_admin_authed',
+  SESSION_KEY:      'aie_admin_authed',
   SESSION_USER_KEY: 'aie_admin_user',
   SESSION_ROLE_KEY: 'aie_user_role',
   SESSION_NAME_KEY: 'aie_user_name',
-  SESSION_AGE_KEY: 'aie_user_age',
+  SESSION_AGE_KEY:  'aie_user_age',
 
   /**
    * Credential table: username → SHA-256 hash of password.
-   * Passwords: admin→9999, uncle→unclechan, lovehell→9999, striker→7777, core→unclechan
+   * Guest/Student access uses shared credentials (student123 / guest)
+   * Admin credentials: admin→9999, uncle→unclechan, striker→7777
    */
   _CREDENTIAL_TABLE: {
+    // Admin accounts
     admin:    '888df25ae35772424a560c7152a1de794440e0ea5cfee62828333a456a506e05', // 9999
     uncle:    '55d9c2eb3e3202f308fd9a11cacd2da9a2e1ef53bcb1ffaf651edadc22f56337', // unclechan
     lovehell: '888df25ae35772424a560c7152a1de794440e0ea5cfee62828333a456a506e05', // 9999
     striker:  '41c991eb6a66242c0454191244278183ce58cf4a6bcd372f799e4b9cc01886af', // 7777
     core:     '55d9c2eb3e3202f308fd9a11cacd2da9a2e1ef53bcb1ffaf651edadc22f56337', // unclechan
+    // General access (guest and student shared pass)
+    student:  'e23fd6c8da8fa24551eeaa5e1af31da8afed5d42769f0eb5b875e3b9e63be4c9', // student123
+    guest:    '84983c60f7daadc1cb8698621f802c0d9f9a3c3c295c810748fb048115c186ec', // guest
+    // Any username with 'student123' works too
+    '*student': 'e23fd6c8da8fa24551eeaa5e1af31da8afed5d42769f0eb5b875e3b9e63be4c9',
   },
 
-  /** Compute SHA-256 hash of a string, returns lowercase hex */
+  // Which usernames are admin-level (can skip role selector and go straight to admin mode)
+  _ADMIN_USERS: new Set(['admin','uncle','lovehell','striker','core']),
+
+  /** SHA-256 hash helper */
   async _sha256(str) {
     const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
     return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
   },
 
-  /** Returns current active identity details */
+  /** Returns current active identity details from sessionStorage */
   getUserProfile() {
     return {
       role: sessionStorage.getItem(this.SESSION_ROLE_KEY) || 'STUDENT',
@@ -42,62 +53,143 @@ const AdminAuth = {
     return sessionStorage.getItem(this.SESSION_USER_KEY) || null;
   },
 
-  /** Check session — if not authenticated show login portal */
+  /** Check session — if not authenticated show credential login */
   check() {
     if (sessionStorage.getItem(this.SESSION_KEY) === '1') {
-      this._hideOverlay();
+      this._hideAllPortalScreens();
       return true;
     }
-    this._showOverlay();
+    this.showCredentialLogin();
     return false;
   },
 
-  _showOverlay() {
-    const overlay = document.getElementById('portalAuthOverlay') || document.getElementById('adminLoginOverlay');
-    if (overlay) overlay.classList.add('active');
-    setTimeout(() => this._startParticles(), 100);
+  // ──────────────────────────────────────────────────────────
+  //  SCREEN 1: Credential Login
+  // ──────────────────────────────────────────────────────────
+
+  showCredentialLogin() {
+    this._showScreen('credentialLoginOverlay');
+    setTimeout(() => this._startParticles('loginParticleCanvas'), 100);
+    const u = document.getElementById('credUsername');
+    if (u) u.focus();
   },
 
-  _hideOverlay() {
-    const overlay = document.getElementById('portalAuthOverlay') || document.getElementById('adminLoginOverlay');
-    if (overlay) overlay.classList.remove('active');
-  },
+  async handleCredentialLogin() {
+    const u = (document.getElementById('credUsername')?.value || '').trim().toLowerCase();
+    const p = document.getElementById('credPassword')?.value || '';
+    const errEl = document.getElementById('credLoginError');
+    const btn = document.getElementById('credLoginBtn');
+    const btnText = document.getElementById('credLoginBtnText');
 
-  /** Role Tab Switcher: 'student' | 'guest' | 'admin' */
-  switchRoleTab(role) {
-    ['student', 'guest', 'admin'].forEach(r => {
-      const btn = document.getElementById(`tabBtn${r.charAt(0).toUpperCase() + r.slice(1)}`);
-      const panel = document.getElementById(`rolePanel${r.charAt(0).toUpperCase() + r.slice(1)}`);
-      if (btn) btn.classList.toggle('active', r === role);
-      if (panel) panel.classList.toggle('active', r === role);
-    });
-    const errEl = document.getElementById('portalAuthError');
-    if (errEl) errEl.style.display = 'none';
-  },
-
-  /** 1. Student Login */
-  loginStudent() {
-    const nameInput = document.getElementById('studentNameInput');
-    const ageInput = document.getElementById('studentAgeInput');
-    const errEl = document.getElementById('portalAuthError');
-
-    const name = (nameInput?.value || '').trim();
-    const age = parseInt(ageInput?.value || '17', 10);
-
-    if (!name) {
-      if (errEl) {
-        errEl.innerText = '⚠️ Please enter your candidate name.';
-        errEl.style.display = 'block';
-      }
-      if (nameInput) nameInput.focus();
+    if (!u || !p) {
+      this._showError(errEl, '⚠️ Please enter your username and password.');
       return;
     }
 
-    if (isNaN(age) || age < 10 || age > 99) {
-      if (errEl) {
-        errEl.innerText = '⚠️ Please enter a valid candidate age (10-99).';
-        errEl.style.display = 'block';
+    if (btn) { btn.disabled = true; }
+    if (btnText) { btnText.textContent = '⟳ Verifying…'; }
+
+    try {
+      const hash = await this._sha256(p);
+      // Check exact match, then wildcard student match, then guest
+      const expectedHash = this._CREDENTIAL_TABLE[u]
+        || (p === 'student123' ? this._CREDENTIAL_TABLE['*student'] : null)
+        || (p === 'guest'      ? this._CREDENTIAL_TABLE['guest']    : null);
+
+      if (expectedHash && hash === expectedHash) {
+        // Store which username logged in
+        sessionStorage.setItem(this.SESSION_USER_KEY, u);
+
+        // Brief success flash
+        if (btnText) { btnText.textContent = '✅ Access Granted!'; }
+
+        setTimeout(() => {
+          // Admin users skip role selector → go straight to domain panel as ADMIN
+          if (this._ADMIN_USERS.has(u)) {
+            this._setupAdminSession(u);
+          } else {
+            // Show role selector for guest/student credentials
+            this._showRoleSelector(u);
+          }
+        }, 500);
+
+      } else {
+        // Try any username with password 'student123' or 'guest'
+        const isStudentPass = hash === this._CREDENTIAL_TABLE['*student'];
+        const isGuestPass   = hash === this._CREDENTIAL_TABLE['guest'];
+
+        if (isStudentPass || isGuestPass) {
+          sessionStorage.setItem(this.SESSION_USER_KEY, u || 'user');
+          if (btnText) { btnText.textContent = '✅ Access Granted!'; }
+          setTimeout(() => this._showRoleSelector(u || 'user'), 500);
+        } else {
+          this._showError(errEl, '❌ Invalid credentials. Try: student / student123');
+          const card = document.getElementById('loginCard');
+          if (card) { card.classList.add('shake'); setTimeout(() => card.classList.remove('shake'), 600); }
+          if (btn) { btn.disabled = false; }
+          if (btnText) { btnText.textContent = 'Enter System →'; }
+        }
       }
+    } catch (err) {
+      this._showError(errEl, '⚠️ Verification error. Please refresh.');
+      if (btn) { btn.disabled = false; }
+      if (btnText) { btnText.textContent = 'Enter System →'; }
+    }
+  },
+
+  // ──────────────────────────────────────────────────────────
+  //  SCREEN 2: Role Selector
+  // ──────────────────────────────────────────────────────────
+
+  _showRoleSelector(username) {
+    this._showScreen('roleSelectorOverlay');
+    const nameEl = document.getElementById('roleWelcomeName');
+    if (nameEl) nameEl.textContent = `Welcome, ${username || 'User'}`;
+    // Reset state
+    document.querySelectorAll('.role-option').forEach(el => el.classList.remove('selected'));
+    const subForm = document.getElementById('studentSubForm');
+    if (subForm) subForm.style.display = 'none';
+    setTimeout(() => this._startParticles('roleParticleCanvas'), 100);
+  },
+
+  selectRole(role) {
+    // Highlight selected role card
+    document.querySelectorAll('.role-option').forEach(el => el.classList.remove('selected'));
+    const roleMap = { guest: 'roleOptGuest', student: 'roleOptStudent', admin: 'roleOptAdmin' };
+    const card = document.getElementById(roleMap[role]);
+    if (card) card.classList.add('selected');
+
+    const subForm = document.getElementById('studentSubForm');
+
+    if (role === 'guest') {
+      if (subForm) subForm.style.display = 'none';
+      this.loginGuest();
+    } else if (role === 'student') {
+      if (subForm) { subForm.style.display = 'flex'; }
+      const nameInput = document.getElementById('studentNameInput');
+      if (nameInput) nameInput.focus();
+    } else if (role === 'admin') {
+      if (subForm) subForm.style.display = 'none';
+      const u = this.getLoggedInUser() || 'admin';
+      this._setupAdminSession(u);
+    }
+  },
+
+  confirmStudentRole() {
+    const nameInput = document.getElementById('studentNameInput');
+    const ageInput  = document.getElementById('studentAgeInput');
+    const errEl     = document.getElementById('studentSubFormError');
+
+    const name = (nameInput?.value || '').trim();
+    const age  = parseInt(ageInput?.value || '17', 10);
+
+    if (!name) {
+      this._showError(errEl, '⚠️ Please enter your name.');
+      if (nameInput) nameInput.focus();
+      return;
+    }
+    if (isNaN(age) || age < 10 || age > 99) {
+      this._showError(errEl, '⚠️ Please enter a valid age (10–99).');
       return;
     }
 
@@ -105,109 +197,85 @@ const AdminAuth = {
     sessionStorage.setItem(this.SESSION_ROLE_KEY, 'STUDENT');
     sessionStorage.setItem(this.SESSION_NAME_KEY, name);
     sessionStorage.setItem(this.SESSION_AGE_KEY, String(age));
-    sessionStorage.setItem(this.SESSION_USER_KEY, name);
 
-    this._hideOverlay();
+    this._hideAllPortalScreens();
     AppState.showDomainSelectScreen({ role: 'STUDENT', name, age });
   },
 
-  /** 2. Guest Login */
   loginGuest() {
-    const name = (document.getElementById('guestNameInput')?.value || '').trim() || 'Guest Aspirant';
-    const age = parseInt(document.getElementById('guestAgeInput')?.value || '18', 10) || 18;
+    const u    = this.getLoggedInUser() || 'Guest';
+    const name = u + ' (Guest)';
+    const age  = 18;
 
     sessionStorage.setItem(this.SESSION_KEY, '1');
     sessionStorage.setItem(this.SESSION_ROLE_KEY, 'GUEST');
     sessionStorage.setItem(this.SESSION_NAME_KEY, name);
     sessionStorage.setItem(this.SESSION_AGE_KEY, String(age));
-    sessionStorage.setItem(this.SESSION_USER_KEY, name);
 
-    this._hideOverlay();
+    this._hideAllPortalScreens();
     AppState.showDomainSelectScreen({ role: 'GUEST', name, age });
   },
 
-  /** 3. Admin Login */
-  async loginAdmin() {
-    const u = (document.getElementById('adminUsername')?.value || '').trim().toLowerCase();
-    const p = document.getElementById('adminPassword')?.value || '';
-    const errEl = document.getElementById('portalAuthError');
-    const btn = document.getElementById('adminLoginBtn');
+  _setupAdminSession(username) {
+    const name = `Admin ${username.toUpperCase()}`;
+    sessionStorage.setItem(this.SESSION_KEY, '1');
+    sessionStorage.setItem(this.SESSION_ROLE_KEY, 'ADMIN');
+    sessionStorage.setItem(this.SESSION_NAME_KEY, name);
+    sessionStorage.setItem(this.SESSION_AGE_KEY, 'Operator');
+    sessionStorage.setItem(this.SESSION_USER_KEY, username);
 
-    if (!u || !p) {
-      if (errEl) { errEl.innerText = '⚠️ Please enter both admin username and password.'; errEl.style.display = 'block'; }
-      return;
-    }
-
-    if (btn) { btn.disabled = true; btn.innerText = '🔒 Verifying…'; }
-
-    try {
-      const hash = await this._sha256(p);
-      const expectedHash = this._CREDENTIAL_TABLE[u];
-
-      if (expectedHash && hash === expectedHash) {
-        sessionStorage.setItem(this.SESSION_KEY, '1');
-        sessionStorage.setItem(this.SESSION_ROLE_KEY, 'ADMIN');
-        sessionStorage.setItem(this.SESSION_USER_KEY, u);
-        sessionStorage.setItem(this.SESSION_NAME_KEY, `Admin ${u.toUpperCase()}`);
-        sessionStorage.setItem(this.SESSION_AGE_KEY, 'Operator');
-
-        if (btn) { btn.innerText = '✅ Authenticated!'; btn.style.background = 'var(--grad-emerald)'; }
-        setTimeout(() => {
-          this._hideOverlay();
-          AppState.showDomainSelectScreen({ role: 'ADMIN', name: `Admin ${u.toUpperCase()}`, age: 'Operator' });
-        }, 500);
-      } else {
-        if (errEl) {
-          errEl.innerText = '❌ Invalid operator credentials. Please try again.';
-          errEl.style.display = 'block';
-        }
-        const box = document.getElementById('portalAuthBox') || document.getElementById('adminLoginBox');
-        if (box) {
-          box.classList.add('shake');
-          setTimeout(() => box.classList.remove('shake'), 600);
-        }
-        if (btn) {
-          btn.disabled = false;
-          btn.innerText = '🔐 Authenticate Operator →';
-        }
-      }
-    } catch (err) {
-      if (errEl) { errEl.innerText = '⚠️ Verification error. Please refresh.'; errEl.style.display = 'block'; }
-      if (btn) { btn.disabled = false; btn.innerText = '🔐 Authenticate Operator →'; }
-    }
+    this._hideAllPortalScreens();
+    AppState.showDomainSelectScreen({ role: 'ADMIN', name, age: 'Operator' });
   },
 
-  // Alias for backward compatibility
-  login() {
-    return this.loginAdmin();
+  backToLogin() {
+    this.showCredentialLogin();
+  },
+
+  returnToRoleSelector() {
+    AppState.closeLauncher();
+    const u = this.getLoggedInUser() || 'user';
+    // Only show role selector if they're not an admin user
+    if (this._ADMIN_USERS.has(u)) {
+      this.showCredentialLogin();
+    } else {
+      this._showRoleSelector(u);
+    }
   },
 
   returnToAuthPortal() {
     AppState.closeLauncher();
-    this._showOverlay();
+    this.showCredentialLogin();
   },
+
+  // ──────────────────────────────────────────────────────────
+  //  Logout
+  // ──────────────────────────────────────────────────────────
 
   logout() {
     localStorage.removeItem('adaptive_student_id');
     localStorage.removeItem('adaptive_locked_exam');
     localStorage.removeItem('adaptive_locked_subjects');
+    localStorage.removeItem('adaptive_has_first_quiz');
     AppState.student = null;
     AppState.lockedExam = null;
     AppState.isExamLocked = false;
-    this.returnToAuthPortal();
+    AppState.hasCompletedFirstQuiz = false;
+    this.showCredentialLogin();
   },
 
   hardLogout() {
-    sessionStorage.removeItem(this.SESSION_KEY);
-    sessionStorage.removeItem(this.SESSION_USER_KEY);
-    sessionStorage.removeItem(this.SESSION_ROLE_KEY);
-    sessionStorage.removeItem(this.SESSION_NAME_KEY);
-    sessionStorage.removeItem(this.SESSION_AGE_KEY);
+    sessionStorage.clear();
     localStorage.removeItem('adaptive_student_id');
     localStorage.removeItem('adaptive_locked_exam');
     localStorage.removeItem('adaptive_locked_subjects');
+    localStorage.removeItem('adaptive_has_first_quiz');
     location.reload();
   },
+
+  // ──────────────────────────────────────────────────────────
+  //  Admin Panel Modal
+  // ──────────────────────────────────────────────────────────
 
   showPanel() {
     const modal = document.getElementById('adminPanelModal');
@@ -236,53 +304,49 @@ const AdminAuth = {
       }).then(r => r.ok ? r.json() : null).catch(() => null);
 
       container.innerHTML = `
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;padding:0.75rem 1rem;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);border-radius:var(--radius-sm);">
-          <div style="width:36px;height:36px;border-radius:50%;background:var(--grad-hero);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;">${currentUser.charAt(0).toUpperCase()}</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;padding:0.75rem 1rem;background:rgba(100,255,218,0.06);border:1px solid rgba(100,255,218,0.15);border-radius:var(--radius-sm);">
+          <div style="width:34px;height:34px;border-radius:50%;background:rgba(100,255,218,0.12);border:1px solid rgba(100,255,218,0.3);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;color:var(--accent-teal);">${currentUser.charAt(0).toUpperCase()}</div>
           <div>
-            <div style="font-weight:800;font-size:0.9rem;">Logged in as <span style="color:var(--accent-neon);">${currentUser}</span></div>
-            <div style="font-size:0.72rem;color:var(--text-muted);">Authorized operator · Session active</div>
+            <div style="font-weight:800;font-size:0.88rem;">Logged in as <span style="color:var(--accent-teal);">${currentUser}</span></div>
+            <div style="font-size:0.7rem;color:var(--text-muted);">Authorized operator · Session active</div>
           </div>
         </div>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0.75rem;margin-bottom:1.5rem;">
-          <div class="glass-card stat-card" style="padding:1rem;border-color:var(--accent-emerald);">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0.75rem;margin-bottom:1.5rem;">
+          <div class="glass-card stat-card" style="padding:1rem;border-color:rgba(74,222,128,0.2);">
             <div class="stat-label">Engine Status</div>
-            <div class="stat-val" style="font-size:1.1rem;color:var(--accent-emerald);">🟢 ${health.status}</div>
-            <div class="stat-sub">v${health.version || '4.0'}</div>
+            <div class="stat-val" style="font-size:1rem;color:var(--accent-emerald);">🟢 ${health.status}</div>
+            <div class="stat-sub">v${health.version || '4.3'}</div>
           </div>
-          <div class="glass-card stat-card" style="padding:1rem;border-color:var(--accent-cyan);">
-            <div class="stat-label">Students Registered</div>
-            <div class="stat-val" style="font-size:1.5rem;color:var(--accent-cyan);">${adminStats?.total_students ?? '—'}</div>
+          <div class="glass-card stat-card" style="padding:1rem;border-color:rgba(100,255,218,0.2);">
+            <div class="stat-label">Students</div>
+            <div class="stat-val" style="font-size:1.4rem;color:var(--accent-teal);">${adminStats?.total_students ?? '—'}</div>
+            <div class="stat-sub">Registered</div>
+          </div>
+          <div class="glass-card stat-card" style="padding:1rem;border-color:rgba(192,132,252,0.2);">
+            <div class="stat-label">Assessments</div>
+            <div class="stat-val" style="font-size:1.4rem;color:var(--accent-purple);">${adminStats?.total_attempts ?? '—'}</div>
             <div class="stat-sub">All time</div>
           </div>
-          <div class="glass-card stat-card" style="padding:1rem;border-color:var(--accent-purple);">
-            <div class="stat-label">Assessments Taken</div>
-            <div class="stat-val" style="font-size:1.5rem;color:var(--accent-purple);">${adminStats?.total_attempts ?? '—'}</div>
-            <div class="stat-sub">Diagnostic + Drills</div>
-          </div>
-          <div class="glass-card stat-card" style="padding:1rem;border-color:var(--accent-amber);">
-            <div class="stat-label">Questions in Bank</div>
-            <div class="stat-val" style="font-size:1.5rem;color:var(--accent-amber);">${adminStats?.total_questions ?? '—'}</div>
+          <div class="glass-card stat-card" style="padding:1rem;border-color:rgba(250,204,21,0.2);">
+            <div class="stat-label">Question Bank</div>
+            <div class="stat-val" style="font-size:1.4rem;color:var(--accent-amber);">${adminStats?.total_questions ?? '—'}</div>
             <div class="stat-sub">PYQ-Adapted</div>
           </div>
         </div>
-
-        <div class="glass-card" style="padding:1.25rem;margin-bottom:1rem;border:1px solid rgba(244,63,94,0.3);">
-          <div style="font-size:1rem;font-weight:800;color:var(--accent-rose);margin-bottom:0.5rem;">⚠️ Danger Zone — Admin Reset</div>
+        <div class="glass-card" style="padding:1.25rem;margin-bottom:1rem;border-color:rgba(248,113,113,0.2);">
+          <div style="font-size:1rem;font-weight:800;color:var(--accent-rose);margin-bottom:0.5rem;">⚠️ Danger Zone</div>
           <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.5;">
             Hard reset wipes ALL student records, assessment attempts, mastery data, and roadmaps.
-            The question bank and curriculum are preserved and reseeded.
           </p>
           <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
-            <button class="btn-primary" style="background:var(--grad-rose);padding:0.65rem 1.5rem;font-weight:800;" onclick="AdminAuth.confirmReset()">
+            <button class="lf-btn" style="width:auto;background:rgba(248,113,113,0.1);border-color:rgba(248,113,113,0.3);color:var(--accent-rose);padding:0.65rem 1.5rem;font-weight:800;" onclick="AdminAuth.confirmReset()">
               💣 Hard Reset — Wipe All Student Data
             </button>
-            <button class="btn-secondary" style="padding:0.65rem 1.25rem;" onclick="AdminAuth.closePanel();AppState.showLauncherScreen()">
+            <button class="btn-ghost" style="padding:0.65rem 1.25rem;" onclick="AdminAuth.closePanel();AppState.showLauncherScreen()">
               ↩ Back to Launcher
             </button>
           </div>
         </div>
-
         ${adminStats?.students ? `
         <div class="glass-card" style="padding:1.25rem;">
           <div style="font-size:0.88rem;font-weight:800;margin-bottom:0.75rem;">👥 Recent Students</div>
@@ -290,10 +354,10 @@ const AdminAuth = {
             ${adminStats.students.slice(0,10).map((s) => `
               <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--border-subtle);">
                 <div>
-                  <div style="font-weight:700;font-size:0.85rem;">${s.name}</div>
-                  <div style="font-size:0.72rem;color:var(--text-muted);">${s.target_exam} · ${s.student_id}</div>
+                  <div style="font-weight:700;font-size:0.83rem;">${s.name}</div>
+                  <div style="font-size:0.7rem;color:var(--text-muted);">${s.target_exam} · ${s.student_id}</div>
                 </div>
-                <div style="font-size:0.78rem;color:var(--accent-cyan);">${s.attempts ?? 0} attempts</div>
+                <div style="font-size:0.76rem;color:var(--accent-teal);">${s.attempts ?? 0} attempts</div>
               </div>
             `).join('')}
           </div>
@@ -311,8 +375,7 @@ const AdminAuth = {
     if (!confirmed) return;
 
     const btn = event.target;
-    btn.disabled = true;
-    btn.innerText = '⏳ Resetting…';
+    btn.disabled = true; btn.innerText = '⏳ Resetting…';
 
     try {
       const res = await fetch('/api/admin/reset-db', {
@@ -321,8 +384,8 @@ const AdminAuth = {
       });
       if (!res.ok) throw new Error(await res.text());
       btn.innerText = '✅ Reset Complete!';
-      btn.style.background = 'var(--grad-emerald)';
       localStorage.removeItem('adaptive_student_id');
+      localStorage.removeItem('adaptive_has_first_quiz');
       AppState.student = null;
       setTimeout(() => {
         AdminAuth.closePanel();
@@ -336,30 +399,63 @@ const AdminAuth = {
     }
   },
 
-  _startParticles() {
-    const canvas = document.getElementById('adminParticleCanvas');
+  // ──────────────────────────────────────────────────────────
+  //  Helpers
+  // ──────────────────────────────────────────────────────────
+
+  _showScreen(id) {
+    this._hideAllPortalScreens();
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.add('active');
+      // Also make sure launcherModal and buffering are hidden
+      ['launcherModal','systemBufferingOverlay','adminPanelModal'].forEach(mid => {
+        const m = document.getElementById(mid);
+        if (m) m.classList.remove('active');
+      });
+    }
+  },
+
+  _hideAllPortalScreens() {
+    ['credentialLoginOverlay','roleSelectorOverlay'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('active');
+    });
+  },
+
+  _showError(el, msg) {
+    if (!el) return;
+    el.textContent = msg;
+    el.style.display = 'block';
+    setTimeout(() => { if (el) el.style.display = 'none'; }, 4000);
+  },
+
+  _startParticles(canvasId) {
+    const canvas = document.getElementById(canvasId);
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
 
-    const particles = Array.from({ length: 55 }, () => ({
+    const particles = Array.from({ length: 45 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      r: Math.random() * 2 + 0.5,
-      dx: (Math.random() - 0.5) * 0.4,
-      dy: (Math.random() - 0.5) * 0.4,
-      alpha: Math.random() * 0.5 + 0.1,
-      color: ['#6366f1','#06b6d4','#a855f7','#10b981'][Math.floor(Math.random()*4)]
+      r: Math.random() * 1.5 + 0.3,
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: (Math.random() - 0.5) * 0.3,
+      alpha: Math.random() * 0.4 + 0.05,
+      color: ['#64ffda','#00bcd4','#ffffff','#4ade80'][Math.floor(Math.random()*4)]
     }));
 
     let animId;
     const draw = () => {
-      const ov = document.getElementById('portalAuthOverlay') || document.getElementById('adminLoginOverlay');
-      if (!ov || !ov.classList.contains('active')) {
-        cancelAnimationFrame(animId);
-        return;
-      }
+      // Check if any portal screen is active
+      const anyActive = ['credentialLoginOverlay','roleSelectorOverlay'].some(id => {
+        const el = document.getElementById(id);
+        return el && el.classList.contains('active');
+      });
+      if (!anyActive) { cancelAnimationFrame(animId); return; }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => {
         ctx.beginPath();
@@ -373,15 +469,16 @@ const AdminAuth = {
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
       });
-      ctx.globalAlpha = 0.08;
-      ctx.strokeStyle = '#6366f1';
+      // Subtle connection lines
+      ctx.globalAlpha = 0.04;
+      ctx.strokeStyle = '#64ffda';
       ctx.lineWidth = 0.5;
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 120) {
+          if (dist < 100) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -396,24 +493,17 @@ const AdminAuth = {
   }
 };
 
-// Allow Enter key on login fields
+// ── Keyboard support for credential login ──
 document.addEventListener('DOMContentLoaded', () => {
-  ['adminUsername', 'adminPassword'].forEach(id => {
+  ['credUsername', 'credPassword'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') AdminAuth.loginAdmin(); });
+    if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') AdminAuth.handleCredentialLogin(); });
   });
-
-  ['studentNameInput', 'studentAgeInput', 'studentPinInput'].forEach(id => {
+  ['studentNameInput', 'studentAgeInput'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') AdminAuth.loginStudent(); });
-  });
-
-  ['guestNameInput', 'guestAgeInput'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') AdminAuth.loginGuest(); });
+    if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') AdminAuth.confirmStudentRole(); });
   });
 });
 
-// Explicitly bind to window for inline HTML onclick handlers
+// Expose globally for inline onclick handlers
 window.AdminAuth = AdminAuth;
-

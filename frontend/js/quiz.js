@@ -58,7 +58,8 @@ const QuizController = {
       this._shuffledOptions.clear(); // Reset shuffles for new attempt
       this.remainingSeconds = (data.duration_minutes || 20) * 60;
 
-      AppState.switchTab('assessment');
+      AppState.switchTab('quiz');
+      AppState.enterQuizFullscreen();   // ← lock screen + fullscreen during quiz
       this.bindKeyboardShortcuts();
       this.renderQuizArena();
       this.startTimer();
@@ -80,7 +81,8 @@ const QuizController = {
       this._shuffledOptions.clear();
       this.remainingSeconds = (data.duration_minutes || 15) * 60;
 
-      AppState.switchTab('assessment');
+      AppState.switchTab('quiz');
+      AppState.enterQuizFullscreen();
       this.bindKeyboardShortcuts();
       this.renderQuizArena();
       this.startTimer();
@@ -103,7 +105,8 @@ const QuizController = {
       this._shuffledOptions.clear();
       this.remainingSeconds = (data.duration_minutes || 40) * 60;
 
-      AppState.switchTab('assessment');
+      AppState.switchTab('quiz');
+      AppState.enterQuizFullscreen();
       this.bindKeyboardShortcuts();
       this.renderQuizArena();
       this.startTimer();
@@ -126,7 +129,8 @@ const QuizController = {
       this._shuffledOptions.clear();
       this.remainingSeconds = (data.duration_minutes || 20) * 60;
 
-      AppState.switchTab('assessment');
+      AppState.switchTab('quiz');
+      AppState.enterQuizFullscreen();
       this.bindKeyboardShortcuts();
       this.renderQuizArena();
       this.startTimer();
@@ -347,7 +351,9 @@ const QuizController = {
 
     try {
       const result = await API.submitAssessment(this.currentAttempt.attempt_id, responsesPayload);
+      AppState.exitQuizFullscreen();          // ← unlock screen when done
       this.renderResultModal(result);
+      AppState.markFirstQuizComplete();       // ← unlock all tabs after first quiz
       // Refresh dashboard, roadmap, graph
       await AppState.refreshAllData();
     } catch (err) {

@@ -1,6 +1,6 @@
 /**
- * Master Application Controller — Adaptive Student Intelligence Engine v4.2
- * JEE Main, NEET-UG & UPSC CSE | 3-Role Portal (Student/Guest/Admin) | Sci-Fi HUD Engine
+ * Master Application Controller — Adaptive Student Intelligence Engine v4.3
+ * JEE Main, NEET-UG & UPSC CSE | 2-Step Auth Portal | Feature Gate Lock | Quiz Fullscreen
  */
 const AppState = {
   student: null,
@@ -8,23 +8,27 @@ const AppState = {
   lockedExam: null,
   lockedSubjects: [],
   isExamLocked: false,
+  hasCompletedFirstQuiz: false,
   targetDomain: 'JEE',
   activeUserProfile: { role: 'STUDENT', name: 'Aspirant', age: '17' },
   graphView: null,
   _liveClockInterval: null,
   _kpiAnimInterval: null,
+  _quizFullscreen: false,
 
   async init() {
     this.graphView = new KnowledgeGraphView('graphCanvas');
     this._startLiveClock();
 
-    // ── GATE 1: User Identity Portal (Student, Guest, Admin) ──
+    // ── GATE 1: User Identity Portal (2-Step: Credentials → Role) ──
     if (!AdminAuth.check()) return;
 
     // ── GATE 2: Student session with locked exam & subjects ──
     const storedStudentId = localStorage.getItem('adaptive_student_id');
     const storedLockedExam = localStorage.getItem('adaptive_locked_exam');
     const storedSubjects = localStorage.getItem('adaptive_locked_subjects');
+    this.hasCompletedFirstQuiz = localStorage.getItem('adaptive_has_first_quiz') === '1';
+
     if (storedSubjects) {
       try { this.lockedSubjects = JSON.parse(storedSubjects); } catch { this.lockedSubjects = []; }
     }
@@ -41,13 +45,21 @@ const AppState = {
       this.isExamLocked = true;
       this.updateHeaderProfile();
       this._showStudentHeader(true);
+      this.buildExamNav(this.currentExam);   // ← exam-specific sidebar/bottom nav
       await this.refreshAllData();
+
       if (this.currentExam === 'UPSC') {
         this.switchTab('upsc');
       } else {
         const history = await API.getAssessmentHistory(storedStudentId);
         if (!history || history.length === 0) {
+          // First quiz not done yet — trigger diagnostic immediately
+          this.hasCompletedFirstQuiz = false;
           await QuizController.startTest(this.currentExam, 'DIAGNOSTIC', 1);
+        } else {
+          this.hasCompletedFirstQuiz = true;
+          localStorage.setItem('adaptive_has_first_quiz', '1');
+          this.switchTab('dashboard');
         }
       }
     } catch (err) {
@@ -59,6 +71,30 @@ const AppState = {
     }
 
     AIAssistantController.renderChat();
+  },
+
+  // ─── Build Exam-Specific Nav (Hides irrelevant tabs) ──────────
+  buildExamNav(examId) {
+    // Map: each nav id → which exams show it
+    const NAV_VISIBILITY = {
+      'nav_dashboard':   ['JEE','NEET','UPSC'],
+      'nav_quiz':        ['JEE','NEET','UPSC'],
+      'nav_assignment':  ['JEE','NEET'],
+      'nav_roadmap':     ['JEE','NEET','UPSC'],
+      'nav_ai':          ['JEE','NEET','UPSC'],
+      'nav_graph':       ['JEE','NEET'],
+      'nav_upsc':        ['UPSC'],
+      // Bottom nav
+      'bnav_dashboard':  ['JEE','NEET','UPSC'],
+      'bnav_quiz':       ['JEE','NEET','UPSC'],
+      'bnav_assignment': ['JEE','NEET'],
+      'bnav_roadmap':    ['JEE','NEET','UPSC'],
+      'bnav_ai':         ['JEE','NEET','UPSC'],
+    };
+    for (const [navId, allowedExams] of Object.entries(NAV_VISIBILITY)) {
+      const el = document.getElementById(navId);
+      if (el) el.style.display = allowedExams.includes(examId) ? '' : 'none';
+    }
   },
 
   // ─── Screen 2: Domain & Subject Customization Panel ─────────
@@ -288,9 +324,11 @@ const AppState = {
     const lockedIndicator = el('examLockedIndicator');
     if (lockedIndicator) lockedIndicator.style.display = 'inline-flex';
 
-    if (this.currentExam === 'NEET') document.body.className = 'theme-neet';
-    else if (this.currentExam === 'UPSC') document.body.className = 'theme-upsc';
-    else document.body.className = 'theme-jee';
+    // Apply exam theme class
+    document.body.className = '';
+    if (this.currentExam === 'NEET') document.body.classList.add('theme-neet');
+    else if (this.currentExam === 'UPSC') document.body.classList.add('theme-upsc');
+    // JEE uses default — no extra class needed
   },
 
   _showStudentHeader(visible) {
@@ -322,8 +360,15 @@ const AppState = {
     }
   },
 
-  // ─── Tab Switcher ────────────────────────────────────────
+  // ─── Tab Switcher (with first-quiz feature gate) ─────────
   switchTab(tabId) {
+    // ── Feature Gate: Block all non-quiz tabs until first quiz complete ──
+    const GATED_TABS = ['roadmap','graph','ai','assignment','upsc'];
+    if (!this.hasCompletedFirstQuiz && GATED_TABS.includes(tabId) && this.student) {
+      this._toast('🔒 Complete your first diagnostic quiz to unlock all features!', 'warn');
+      this._showFirstQuizGate();
+      return;
+    }
     document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.bottom-nav-item').forEach(el => el.classList.remove('active'));
@@ -337,6 +382,51 @@ const AppState = {
     if (tabId === 'upsc' && typeof UPSCController !== 'undefined') {
       UPSCController.init();
     }
+  },
+
+  // ─── First-Quiz Gate Overlay ─────────────────────────────
+  _showFirstQuizGate() {
+    const pane = document.getElementById('pane_quiz');
+    if (!pane) return;
+    const gateEl = document.getElementById('firstQuizGateOverlay');
+    if (gateEl) { gateEl.style.display = 'flex'; return; }
+    // Show quiz pane with a nice info card
+    document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+    pane.classList.add('active');
+    document.getElementById('nav_quiz')?.classList.add('active');
+    document.getElementById('bnav_quiz')?.classList.add('active');
+  },
+
+  markFirstQuizComplete() {
+    this.hasCompletedFirstQuiz = true;
+    localStorage.setItem('adaptive_has_first_quiz', '1');
+    const gate = document.getElementById('firstQuizGateOverlay');
+    if (gate) gate.style.display = 'none';
+    this._toast('🎉 First quiz complete! All features are now unlocked.', 'success');
+  },
+
+  // ─── Quiz Fullscreen Mode ────────────────────────────────
+  enterQuizFullscreen() {
+    document.body.classList.add('quiz-fullscreen');
+    this._quizFullscreen = true;
+    const exitBtn = document.getElementById('quizExitFullscreenBtn');
+    if (exitBtn) exitBtn.style.display = 'flex';
+    // Request browser fullscreen if supported
+    try {
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }
+    } catch (_) {}
+  },
+
+  exitQuizFullscreen() {
+    document.body.classList.remove('quiz-fullscreen');
+    this._quizFullscreen = false;
+    try {
+      if (document.exitFullscreen && document.fullscreenElement) document.exitFullscreen();
+    } catch (_) {}
+    const exitBtn = document.getElementById('quizExitFullscreenBtn');
+    if (exitBtn) exitBtn.style.display = 'none';
   },
 
   // ─── Live Clock ───────────────────────────────────────────
@@ -481,12 +571,18 @@ const AppState = {
   },
 
   _toast(msg, type = 'info') {
-    const colors = { success: '#10b981', warn: '#f59e0b', error: '#f43f5e', info: '#6366f1' };
+    const styles = {
+      success: 'background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.3);color:#4ade80;',
+      warn:    'background:rgba(250,204,21,0.12);border:1px solid rgba(250,204,21,0.3);color:#facc15;',
+      error:   'background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.3);color:#f87171;',
+      info:    'background:rgba(100,255,218,0.08);border:1px solid rgba(100,255,218,0.25);color:#64ffda;'
+    };
+    const style = styles[type] || styles.info;
     const toast = document.createElement('div');
-    toast.style.cssText = `position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(0);background:${colors[type]};color:#fff;padding:10px 22px;border-radius:100px;font-size:0.88rem;font-weight:700;z-index:99999;box-shadow:0 4px 24px rgba(0,0,0,0.5);white-space:nowrap;animation:toastIn 0.35s cubic-bezier(0.34,1.56,0.64,1);`;
+    toast.style.cssText = `position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(0);${style}backdrop-filter:blur(16px);padding:10px 22px;border-radius:100px;font-size:0.88rem;font-weight:700;z-index:99999;box-shadow:0 4px 24px rgba(0,0,0,0.5);white-space:nowrap;animation:toastIn 0.35s cubic-bezier(0.34,1.56,0.64,1);font-family:'Outfit',sans-serif;`;
     toast.innerText = msg;
     document.body.appendChild(toast);
-    setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(-50%) translateY(20px)'; toast.style.transition = 'all 0.3s ease'; setTimeout(() => toast.remove(), 300); }, 3000);
+    setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(-50%) translateY(20px)'; toast.style.transition = 'all 0.3s ease'; setTimeout(() => toast.remove(), 300); }, 3200);
   }
 };
 

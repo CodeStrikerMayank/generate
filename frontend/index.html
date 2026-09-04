@@ -3,129 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="Adaptive Student Intelligence Engine for JEE Main & NEET — AI-powered personalized roadmaps, quiz assessments, and mastery tracking.">
-  <title>Adaptive Engine — JEE Main &amp; NEET</title>
+  <meta name="description" content="Adaptive Student Intelligence Engine — JEE Main, NEET & UPSC Civil Services. AI-powered personalized roadmaps, quiz assessments, and mastery tracking.">
+  <title>Adaptive Engine — v4.3</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/style.css?v=7.0">
-
+  <link rel="stylesheet" href="/static/css/style.css?v=4.3">
 </head>
 <body>
 
-  <!-- ╔══════════════════════════════════════════════════════════╗ -->
-  <!-- ║   ADMIN LOGIN OVERLAY (shown before anything else)      ║ -->
-  <!-- ╚══════════════════════════════════════════════════════════╝ -->
-  <!-- ╔══════════════════════════════════════════════════════════╗ -->
-  <!-- ║   SCREEN 1: UNIFIED 3-ROLE AUTH PORTAL (Student/Guest/Admin)║ -->
-  <!-- ╚══════════════════════════════════════════════════════════╝ -->
-  <div id="portalAuthOverlay" class="admin-overlay active">
-    <canvas id="adminParticleCanvas" class="admin-particle-canvas"></canvas>
-    <div class="admin-login-box" id="portalAuthBox" style="max-width:460px;">
-      <div class="admin-login-logo">Δ</div>
-      <div style="text-align:center;margin-bottom:1.25rem;">
-        <div class="admin-login-badge">🛡️ ADAPTIVE GATEWAY · V4.2</div>
-        <h1 class="admin-login-title">Cognitive Intelligence Portal</h1>
-        <p class="admin-login-sub">Choose your identity to initialize your adaptive learning engine</p>
+  <!-- ══════════════════════════════════════════════════════════
+       SCREEN 1: CREDENTIAL LOGIN (Username + Password)
+       ══════════════════════════════════════════════════════════ -->
+  <div id="credentialLoginOverlay" class="portal-screen active">
+    <canvas id="loginParticleCanvas" class="portal-particle-canvas"></canvas>
+    <div class="login-card" id="loginCard">
+      <div class="login-logo-wrap">
+        <div class="login-delta">Δ</div>
       </div>
-
-      <!-- 3-Role Tab Switcher -->
-      <div class="role-tab-grid">
-        <button type="button" class="role-tab-btn active" id="tabBtnStudent" onclick="AdminAuth.switchRoleTab('student')">
-          <span>🎓</span> Student
-        </button>
-        <button type="button" class="role-tab-btn" id="tabBtnGuest" onclick="AdminAuth.switchRoleTab('guest')">
-          <span>⚡</span> Guest
-        </button>
-        <button type="button" class="role-tab-btn" id="tabBtnAdmin" onclick="AdminAuth.switchRoleTab('admin')">
-          <span>🛡️</span> Admin
-        </button>
+      <div class="login-header">
+        <div class="login-badge">ADAPTIVE ENGINE · V4.3</div>
+        <h1 class="login-title">Cognitive Gateway</h1>
+        <p class="login-subtitle">Enter your credentials to access the intelligence engine</p>
       </div>
-
-      <!-- ── Panel 1: Student ── -->
-      <div class="role-panel active" id="rolePanelStudent">
-        <div class="form-field" style="margin-bottom:0.85rem;">
-          <label class="form-label" style="display:flex;justify-content:space-between;">
-            <span>Candidate Full Name</span>
-            <span style="color:var(--accent-cyan);font-size:0.7rem;">Required</span>
-          </label>
-          <input type="text" id="studentNameInput" class="form-input admin-input" placeholder="e.g. Arjun Sharma" autocomplete="name">
+      <div class="login-form">
+        <div class="lf-field">
+          <label class="lf-label">Username</label>
+          <input type="text" id="credUsername" class="lf-input" placeholder="e.g. student or admin" autocomplete="username">
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;">
-          <div class="form-field">
-            <label class="form-label">Age</label>
-            <input type="number" id="studentAgeInput" class="form-input admin-input" value="17" min="10" max="80">
-          </div>
-          <div class="form-field">
-            <label class="form-label">Passcode <span style="color:var(--text-faint);font-size:0.68rem;">(Optional)</span></label>
-            <input type="password" id="studentPinInput" class="form-input admin-input" placeholder="1234">
-          </div>
-        </div>
-        <button id="studentProceedBtn" class="btn-primary glow-pulse" style="width:100%;justify-content:center;padding:0.9rem;font-size:0.95rem;font-weight:800;border-radius:var(--radius-md);" onclick="AdminAuth.loginStudent()">
-          Proceed to Domain &amp; Subjects →
-        </button>
-      </div>
-
-      <!-- ── Panel 2: Guest ── -->
-      <div class="role-panel" id="rolePanelGuest">
-        <div class="form-field" style="margin-bottom:0.85rem;">
-          <label class="form-label">Guest Alias</label>
-          <input type="text" id="guestNameInput" class="form-input admin-input" value="Guest Aspirant" placeholder="Enter display alias">
-        </div>
-        <div class="form-field" style="margin-bottom:1.1rem;">
-          <label class="form-label">Age</label>
-          <input type="number" id="guestAgeInput" class="form-input admin-input" value="18" min="10" max="80">
-        </div>
-        <button id="guestProceedBtn" class="btn-primary glow-pulse" style="width:100%;justify-content:center;padding:0.9rem;font-size:0.95rem;font-weight:800;border-radius:var(--radius-md);background:linear-gradient(135deg,#06b6d4,#6366f1);" onclick="AdminAuth.loginGuest()">
-          ⚡ Instant Guest Access →
-        </button>
-      </div>
-
-      <!-- ── Panel 3: Admin ── -->
-      <div class="role-panel" id="rolePanelAdmin">
-        <div class="form-field" style="margin-bottom:0.85rem;">
-          <label class="form-label">Admin Username</label>
-          <input type="text" id="adminUsername" class="form-input admin-input" placeholder="Enter admin username (e.g. admin)" autocomplete="username">
-        </div>
-        <div class="form-field" style="margin-bottom:0.75rem;">
-          <label class="form-label">Password</label>
+        <div class="lf-field">
+          <label class="lf-label">Password</label>
           <div style="position:relative;">
-            <input type="password" id="adminPassword" class="form-input admin-input" placeholder="Enter admin password" autocomplete="current-password">
-            <button type="button" onclick="const p=document.getElementById('adminPassword');p.type=p.type==='password'?'text':'password'" 
-              style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:1.1rem;">👁</button>
+            <input type="password" id="credPassword" class="lf-input" placeholder="Enter password" autocomplete="current-password">
+            <button type="button" class="pw-toggle-btn" onclick="const p=document.getElementById('credPassword');p.type=p.type==='password'?'text':'password'">👁</button>
           </div>
-          <div class="quick-pin-row">
-            <span style="font-size:0.68rem;color:var(--text-faint);align-self:center;">Master PINs:</span>
-            <span class="quick-pin-pill" onclick="document.getElementById('adminUsername').value='admin';document.getElementById('adminPassword').value='9999'">admin: 9999</span>
-            <span class="quick-pin-pill" onclick="document.getElementById('adminUsername').value='uncle';document.getElementById('adminPassword').value='unclechan'">unclechan</span>
+          <div class="login-hint-row">
+            <span class="login-hint">Quick access:</span>
+            <span class="login-hint-pill" onclick="document.getElementById('credUsername').value='student';document.getElementById('credPassword').value='student123'">student</span>
+            <span class="login-hint-pill" onclick="document.getElementById('credUsername').value='admin';document.getElementById('credPassword').value='9999'">admin</span>
+            <span class="login-hint-pill" onclick="document.getElementById('credUsername').value='guest';document.getElementById('credPassword').value='guest'">guest</span>
           </div>
         </div>
-        <button id="adminLoginBtn" class="btn-primary glow-pulse" style="width:100%;justify-content:center;padding:0.9rem;font-size:0.95rem;font-weight:800;border-radius:var(--radius-md);margin-top:0.5rem;" onclick="AdminAuth.loginAdmin()">
-          🔐 Authenticate Operator →
+        <div id="credLoginError" class="lf-error" style="display:none;"></div>
+        <button id="credLoginBtn" class="lf-btn" onclick="AdminAuth.handleCredentialLogin()">
+          <span id="credLoginBtnText">Enter System →</span>
         </button>
       </div>
+      <div class="login-footer">Offline-First · SQLite Latent Vector Store · Multi-Domain Security</div>
+    </div>
+  </div>
 
-      <div id="portalAuthError" class="admin-login-error" style="display:none;margin-top:0.85rem;"></div>
+  <!-- ══════════════════════════════════════════════════════════
+       SCREEN 2: ROLE SELECTOR (Guest / Student / Admin)
+       ══════════════════════════════════════════════════════════ -->
+  <div id="roleSelectorOverlay" class="portal-screen">
+    <canvas id="roleParticleCanvas" class="portal-particle-canvas"></canvas>
+    <div class="role-card" id="roleCard">
+      <div class="role-header">
+        <div class="role-welcome-name" id="roleWelcomeName">Welcome back</div>
+        <h2 class="role-title">Choose your mode</h2>
+        <p class="role-subtitle">How would you like to access the system today?</p>
+      </div>
 
-      <div style="text-align:center;margin-top:1.2rem;font-size:0.72rem;color:var(--text-faint);">
-        Offline-First · SQLite Latent Vector Store · Multi-Domain Security
+      <div class="role-grid">
+        <!-- Guest Mode -->
+        <div class="role-option" id="roleOptGuest" onclick="AdminAuth.selectRole('guest')">
+          <div class="role-opt-icon">⚡</div>
+          <div class="role-opt-title">Guest Mode</div>
+          <div class="role-opt-desc">Explore without saving data. Browse features instantly.</div>
+          <div class="role-opt-badge guest">1-click access</div>
+        </div>
+
+        <!-- Student Mode -->
+        <div class="role-option preferred" id="roleOptStudent" onclick="AdminAuth.selectRole('student')">
+          <div class="role-preferred-tag">Recommended</div>
+          <div class="role-opt-icon">🎓</div>
+          <div class="role-opt-title">Student Mode</div>
+          <div class="role-opt-desc">Full adaptive engine with progress tracking and AI roadmap.</div>
+          <div class="role-opt-badge student">Name + Age required</div>
+        </div>
+
+        <!-- Admin Mode -->
+        <div class="role-option" id="roleOptAdmin" onclick="AdminAuth.selectRole('admin')">
+          <div class="role-opt-icon">🛡️</div>
+          <div class="role-opt-title">Admin Mode</div>
+          <div class="role-opt-desc">Full system control. Analytics and database management.</div>
+          <div class="role-opt-badge admin">Operator access</div>
+        </div>
+      </div>
+
+      <!-- Student Sub-form (shown when student selected) -->
+      <div id="studentSubForm" style="display:none;" class="student-sub-form">
+        <div class="lf-field">
+          <label class="lf-label">Your Full Name <span style="color:var(--accent-teal);">Required</span></label>
+          <input type="text" id="studentNameInput" class="lf-input" placeholder="e.g. Arjun Sharma" autocomplete="name">
+        </div>
+        <div class="lf-field" style="max-width:160px;">
+          <label class="lf-label">Your Age</label>
+          <input type="number" id="studentAgeInput" class="lf-input" value="17" min="10" max="80">
+        </div>
+        <div id="studentSubFormError" class="lf-error" style="display:none;"></div>
+        <button class="lf-btn" onclick="AdminAuth.confirmStudentRole()">Proceed as Student →</button>
+      </div>
+
+      <div style="margin-top:1.5rem;text-align:center;">
+        <button class="lf-back-btn" onclick="AdminAuth.backToLogin()">← Back to Login</button>
       </div>
     </div>
   </div>
 
-  <!-- ╔══════════════════════════════════════════════════════════╗ -->
-  <!-- ║   SCREEN 3: ULTRA-AESTHETIC SCI-FI HUD BUFFERING OVERLAY ║ -->
-  <!-- ╚══════════════════════════════════════════════════════════╝ -->
+  <!-- ══════════════════════════════════════════════════════════
+       SCI-FI HUD BUFFERING OVERLAY
+       ══════════════════════════════════════════════════════════ -->
   <div id="systemBufferingOverlay" class="buffering-overlay">
     <div class="buffering-card">
-      <!-- Sci-Fi HUD Accents -->
       <div class="hud-laser-scanner"></div>
       <div class="hud-corner hud-corner-tl"></div>
       <div class="hud-corner hud-corner-tr"></div>
       <div class="hud-corner hud-corner-bl"></div>
       <div class="hud-corner hud-corner-br"></div>
 
-      <!-- Holographic Tri-Ring Gyroscope -->
       <div class="buffering-gyro-wrap">
         <div class="sonar-wave"></div>
         <div class="sonar-wave sonar-wave-2"></div>
@@ -135,37 +132,34 @@
         <div class="buffering-center-logo">Δ</div>
       </div>
 
-      <!-- Header & Title -->
       <div>
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.35);padding:4px 14px;border-radius:var(--radius-full);font-size:0.72rem;font-weight:800;color:var(--accent-cyan);letter-spacing:0.06em;margin-bottom:0.4rem;">
-          <span style="display:inline-block;width:6px;height:6px;background:var(--accent-cyan);border-radius:50%;box-shadow:0 0 8px var(--accent-cyan);"></span>
+        <div class="buff-badge">
+          <span class="buff-badge-dot"></span>
           COGNITIVE CALIBRATION PROTOCOL
         </div>
         <h2 id="bufferingTitle" style="font-size:1.6rem;font-weight:900;letter-spacing:-0.02em;margin:0 0 0.3rem 0;">
           Calibrating Engine Stream…
         </h2>
         <p style="font-size:0.85rem;color:var(--text-secondary);margin:0;">
-          Configuring neural tensors for <strong id="bufferingTargetExamText" style="color:var(--accent-cyan);">Selected Stream</strong>
+          Configuring neural tensors for <strong id="bufferingTargetExamText" style="color:var(--accent-teal);">Selected Stream</strong>
         </p>
       </div>
 
-      <!-- Telemetry Info Grid -->
       <div class="buffering-telemetry-grid">
         <div class="buffering-telemetry-item">
           <div class="buffering-telemetry-label">CANDIDATE</div>
-          <div class="buffering-telemetry-val" id="buffCandidateDisp">Arjun S. (Age 17)</div>
+          <div class="buffering-telemetry-val" id="buffCandidateDisp">Initializing…</div>
         </div>
         <div class="buffering-telemetry-item">
           <div class="buffering-telemetry-label">DOMAIN</div>
-          <div class="buffering-telemetry-val" id="buffDomainDisp">JEE Main (PCM)</div>
+          <div class="buffering-telemetry-val" id="buffDomainDisp">—</div>
         </div>
         <div class="buffering-telemetry-item">
           <div class="buffering-telemetry-label">SECURITY</div>
-          <div class="buffering-telemetry-val" style="color:var(--accent-emerald);">LOCKED_STREAM</div>
+          <div class="buffering-telemetry-val" style="color:#4ade80;">LOCKED_STREAM</div>
         </div>
       </div>
 
-      <!-- Progress Bar & Big Percentage -->
       <div style="width:100%;">
         <div class="buffering-progress-wrap">
           <div id="bufferingProgressBar" class="buffering-progress-fill"></div>
@@ -179,62 +173,56 @@
             <span class="eq-bar" style="animation-delay:0.3s"></span>
             <span class="eq-bar" style="animation-delay:0.5s"></span>
           </div>
-          <span id="bufferingPctText" style="color:var(--accent-cyan);font-weight:900;font-size:1.1rem;letter-spacing:0.04em;">0%</span>
+          <span id="bufferingPctText" style="color:var(--accent-teal);font-weight:900;font-size:1.1rem;letter-spacing:0.04em;">0%</span>
         </div>
       </div>
 
-      <!-- Live Terminal Status Ticker -->
-      <div style="width:100%;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-sm);padding:0.6rem 0.9rem;text-align:left;">
-        <span style="color:var(--accent-cyan);font-family:var(--font-mono);font-size:0.75rem;margin-right:6px;">&gt;</span>
-        <span id="bufferingStatusText" class="buffering-log-ticker" style="font-size:0.78rem;">Initializing cognitive tensors…</span>
+      <div class="buff-terminal">
+        <span class="buff-terminal-prompt">&gt;</span>
+        <span id="bufferingStatusText" class="buffering-log-ticker">Initializing cognitive tensors…</span>
       </div>
     </div>
   </div>
 
-  <!-- ╔══════════════════════════════════════════════════════════╗ -->
-  <!-- ║   SCREEN 2: DOMAIN & SUBJECT SELECTION PANEL             ║ -->
-  <!-- ╚══════════════════════════════════════════════════════════╝ -->
+  <!-- ══════════════════════════════════════════════════════════
+       DOMAIN & SUBJECT SELECTION PANEL
+       ══════════════════════════════════════════════════════════ -->
   <div id="launcherModal" class="modal-backdrop launcher-backdrop">
     <div class="modal-box launcher-box" style="max-width:960px!important;padding:2.2rem 2.4rem!important;">
-      
-      <!-- Top Active Identity Bar -->
-      <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.25);border-radius:var(--radius-sm);padding:0.55rem 1rem;margin-bottom:1.4rem;">
+
+      <div class="launcher-identity-bar">
         <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;">
           <span style="font-size:1.1rem;">👤</span>
-          <span>Aspirant: <strong id="domainProfileName" style="color:var(--accent-cyan);">Arjun Sharma</strong></span>
+          <span>Aspirant: <strong id="domainProfileName" style="color:var(--accent-teal);">—</strong></span>
           <span style="color:var(--text-faint);">•</span>
-          <span>Age: <strong id="domainProfileAge" style="color:var(--text-primary);">17</strong></span>
+          <span>Age: <strong id="domainProfileAge" style="color:var(--text-primary);">—</strong></span>
           <span style="color:var(--text-faint);">•</span>
-          <span class="nba-tag" id="domainProfileRole" style="background:rgba(99,102,241,0.2);color:var(--accent-neon);font-size:0.65rem;">STUDENT</span>
+          <span class="role-tag" id="domainProfileRole">STUDENT</span>
         </div>
-        <button class="btn-secondary" style="font-size:0.72rem;padding:0.25rem 0.75rem;" onclick="AdminAuth.returnToAuthPortal()">
-          ↩ Switch Identity
-        </button>
+        <button class="btn-ghost" onclick="AdminAuth.returnToRoleSelector()">↩ Switch Mode</button>
       </div>
 
       <div style="text-align:center;margin-bottom:1.5rem;">
         <h2 style="font-size:1.8rem;font-weight:900;letter-spacing:-0.02em;margin-bottom:0.35rem;">
-          Choose Domain &amp; Subject Focus
+          Choose Domain & Subject Focus
         </h2>
         <p style="color:var(--text-secondary);font-size:0.86rem;max-width:640px;margin:0 auto;line-height:1.5;">
-          Select your target competitive battlefield and verify your subjects. Your session will <strong>strictly calibrate and lock</strong> to this domain. Changing domains requires logging out.
+          Select your target competitive battlefield. Your session will <strong>strictly calibrate and lock</strong> to this domain.
         </p>
       </div>
 
-      <!-- 3 Exam Domain Cards with Subject Checkboxes -->
       <div class="launcher-card-grid" style="grid-template-columns:repeat(3, 1fr);gap:1.1rem;">
-        
-        <!-- 1. JEE Main Card -->
-        <div class="domain-card active-domain" id="domainCard_JEE" onclick="AppState.setTargetDomain('JEE')" style="border-top:3px solid var(--accent-cyan);">
+
+        <!-- JEE Main Card -->
+        <div class="domain-card active-domain" id="domainCard_JEE" onclick="AppState.setTargetDomain('JEE')" style="border-top:3px solid var(--accent-teal);">
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <span class="launcher-card-icon" style="margin:0;font-size:2rem;">🔭</span>
-            <span class="nba-tag" style="background:rgba(6,182,212,0.15);color:var(--accent-cyan);border:1px solid rgba(6,182,212,0.3);font-size:0.65rem;">PCM TRACK</span>
+            <span class="domain-tag teal">PCM TRACK</span>
           </div>
           <div>
             <div class="launcher-card-title" style="font-size:1.18rem;margin-top:0.2rem;">JEE Main &amp; Adv</div>
-            <div style="font-size:0.75rem;color:var(--accent-cyan);font-weight:700;">Engineering Focus</div>
+            <div style="font-size:0.75rem;color:var(--accent-teal);font-weight:700;">Engineering Focus</div>
           </div>
-          
           <div style="font-size:0.75rem;font-weight:800;color:var(--text-muted);margin-top:2px;">Target Subjects:</div>
           <div class="subject-chip-group">
             <label class="subject-chip" onclick="event.stopPropagation();">
@@ -250,28 +238,26 @@
               <span>📐 Mathematics</span>
             </label>
           </div>
-
           <div class="launcher-card-desc" style="font-size:0.75rem;line-height:1.45;margin-top:0.3rem;">
-            405k ExamBench problems • IRT Latent Ability (θ) • BKT Mastery Models • Reja1 paper crops
+            405k ExamBench problems • IRT Latent Ability (θ) • BKT Mastery Models
           </div>
         </div>
 
-        <!-- 2. NEET-UG Card -->
-        <div class="domain-card" id="domainCard_NEET" onclick="AppState.setTargetDomain('NEET')" style="border-top:3px solid var(--accent-emerald);">
+        <!-- NEET-UG Card -->
+        <div class="domain-card" id="domainCard_NEET" onclick="AppState.setTargetDomain('NEET')" style="border-top:3px solid #4ade80;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <span class="launcher-card-icon" style="margin:0;font-size:2rem;">🧬</span>
-            <span class="nba-tag" style="background:rgba(16,185,129,0.15);color:var(--accent-emerald);border:1px solid rgba(16,185,129,0.3);font-size:0.65rem;">PCB TRACK</span>
+            <span class="domain-tag green">PCB TRACK</span>
           </div>
           <div>
             <div class="launcher-card-title" style="font-size:1.18rem;margin-top:0.2rem;">NEET-UG Medical</div>
-            <div style="font-size:0.75rem;color:var(--accent-emerald);font-weight:700;">Medical Focus</div>
+            <div style="font-size:0.75rem;color:#4ade80;font-weight:700;">Medical Focus</div>
           </div>
-
           <div style="font-size:0.75rem;font-weight:800;color:var(--text-muted);margin-top:2px;">Target Subjects:</div>
           <div class="subject-chip-group">
             <label class="subject-chip" onclick="event.stopPropagation();">
               <input type="checkbox" name="subject_neet" value="Biology" checked>
-              <span>🧬 Biology (Bot/Zoo)</span>
+              <span>🧬 Biology</span>
             </label>
             <label class="subject-chip" onclick="event.stopPropagation();">
               <input type="checkbox" name="subject_neet" value="Physics" checked>
@@ -282,23 +268,21 @@
               <span>🧪 Chemistry</span>
             </label>
           </div>
-
           <div class="launcher-card-desc" style="font-size:0.75rem;line-height:1.45;margin-top:0.3rem;">
-            Official 2024–2025 Paper Image Crops • High-Yield Retention Schedules • Medical Diagnostics
+            Official 2024–2025 Paper Image Crops • High-Yield Retention Schedules
           </div>
         </div>
 
-        <!-- 3. UPSC CSE Card -->
-        <div class="domain-card" id="domainCard_UPSC" onclick="AppState.setTargetDomain('UPSC')" style="border-top:3px solid var(--accent-amber);">
+        <!-- UPSC CSE Card -->
+        <div class="domain-card" id="domainCard_UPSC" onclick="AppState.setTargetDomain('UPSC')" style="border-top:3px solid #facc15;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <span class="launcher-card-icon" style="margin:0;font-size:2rem;">🏛️</span>
-            <span class="nba-tag" style="background:rgba(245,158,11,0.15);color:var(--accent-amber);border:1px solid rgba(245,158,11,0.3);font-size:0.65rem;">CIVIL SERVICES</span>
+            <span class="domain-tag amber">CIVIL SERVICES</span>
           </div>
           <div>
             <div class="launcher-card-title" style="font-size:1.18rem;margin-top:0.2rem;">UPSC Civil Services</div>
-            <div style="font-size:0.75rem;color:var(--accent-amber);font-weight:700;">Administrative Focus</div>
+            <div style="font-size:0.75rem;color:#facc15;font-weight:700;">Administrative Focus</div>
           </div>
-
           <div style="font-size:0.75rem;font-weight:800;color:var(--text-muted);margin-top:2px;">Target Subjects:</div>
           <div class="subject-chip-group">
             <label class="subject-chip" onclick="event.stopPropagation();">
@@ -314,43 +298,36 @@
               <span>✍️ Mains Written</span>
             </label>
           </div>
-
           <div class="launcher-card-desc" style="font-size:0.75rem;line-height:1.45;margin-top:0.3rem;">
-            Prelims MCQ Vault • Mains Analytical Answer Writing with Live Word Counter • 5-Axis AI Rubrics
+            Prelims MCQ Vault • Mains Analytical Answer Writing • 5-Axis AI Rubrics
           </div>
         </div>
 
       </div>
 
-      <!-- Action Confirmation & Lock Button -->
       <div style="margin-top:1.8rem;text-align:center;">
-        <button id="calibrateAndLockBtn" class="btn-primary glow-pulse" style="padding:0.95rem 2.5rem;font-size:1.05rem;font-weight:900;border-radius:var(--radius-md);margin:0 auto;display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#06b6d4,#6366f1);border-color:rgba(6,182,212,0.5);box-shadow:0 0 25px rgba(6,182,212,0.4);" onclick="AppState.calibrateAndLockDomain()">
-          <span>🚀</span> Calibrate Cognitive Engine &amp; Lock Domain →
+        <button id="calibrateAndLockBtn" class="lf-btn" style="padding:0.95rem 2.5rem;font-size:1.05rem;font-weight:900;display:inline-flex;align-items:center;gap:10px;" onclick="AppState.calibrateAndLockDomain()">
+          🚀 Calibrate Engine &amp; Lock Domain →
         </button>
       </div>
 
-      <!-- Lock Notice & Secondary Links -->
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border-subtle);font-size:0.78rem;color:var(--text-muted);">
-        <div style="display:flex;align-items:center;gap:6px;">
+      <div class="launcher-footer-row">
+        <div style="display:flex;align-items:center;gap:6px;font-size:0.78rem;color:var(--text-muted);">
           <span>🔒</span>
-          <span>Session locks permanently to chosen domain &amp; subjects. Changing requires logging out.</span>
+          <span>Session locks permanently to chosen domain. Changing requires logout.</span>
         </div>
         <div style="display:flex;gap:10px;">
-          <button class="btn-secondary" style="font-size:0.75rem;padding:0.35rem 0.85rem;" onclick="AdminAuth.showPanel()">
-            ⚙️ Admin Panel
-          </button>
-          <button class="btn-secondary" style="font-size:0.75rem;padding:0.35rem 0.85rem;" onclick="AdminAuth.hardLogout()">
-            🔓 Full Logout
-          </button>
+          <button class="btn-ghost" style="font-size:0.75rem;" onclick="AdminAuth.showPanel()">⚙️ Admin Panel</button>
+          <button class="btn-ghost" style="font-size:0.75rem;" onclick="AdminAuth.hardLogout()">🔓 Full Logout</button>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- ╔══════════════════════════════════════════════════════════╗ -->
-  <!-- ║   ADMIN PANEL MODAL                                     ║ -->
-  <!-- ╚══════════════════════════════════════════════════════════╝ -->
+  <!-- ══════════════════════════════════════════════════════════
+       ADMIN PANEL MODAL
+       ══════════════════════════════════════════════════════════ -->
   <div class="modal-backdrop" id="adminPanelModal">
     <div class="modal-box" style="max-width:720px;max-height:90vh;overflow-y:auto;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
@@ -358,7 +335,7 @@
           <h2 style="font-size:1.3rem;font-weight:900;">⚙️ Admin Control Panel</h2>
           <div style="font-size:0.78rem;color:var(--text-muted);">Prototype Management Dashboard</div>
         </div>
-        <button class="btn-secondary" style="padding:0.4rem 0.85rem;" onclick="AdminAuth.closePanel()">✕ Close</button>
+        <button class="btn-ghost" onclick="AdminAuth.closePanel()">✕ Close</button>
       </div>
       <div id="adminPanelContent">
         <div style="text-align:center;padding:2rem;color:var(--text-secondary);">Loading…</div>
@@ -366,93 +343,115 @@
     </div>
   </div>
 
-  <!-- ╔═══════════════════════════════════════╗ -->
-  <!-- ║          TOP HEADER BAR               ║ -->
-  <!-- ╚═══════════════════════════════════════╝ -->
+  <!-- ══════════════════════════════════════════════════════════
+       FEATURE GATE LOCK OVERLAY (shown when first quiz not done)
+       ══════════════════════════════════════════════════════════ -->
+  <div id="featureGateOverlay" class="feature-gate-overlay" style="display:none;">
+    <div class="feature-gate-card">
+      <div style="font-size:3rem;margin-bottom:1rem;">🔒</div>
+      <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:0.5rem;">Feature Locked</h3>
+      <p style="color:var(--text-secondary);font-size:0.88rem;max-width:280px;margin:0 auto 1.5rem;">
+        Complete your first <strong>Diagnostic Assessment</strong> to unlock all engine features.
+      </p>
+      <button class="lf-btn" onclick="AppState.goToFirstQuiz()">
+        🎯 Take Diagnostic Quiz →
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       TOP HEADER BAR
+       ══════════════════════════════════════════════════════════ -->
   <header>
     <div class="brand-container">
       <div class="brand-logo">Δ</div>
       <div>
         <div class="brand-title">ADAPTIVE ENGINE</div>
-        <div class="brand-subtitle">JEE Main · NEET Intelligence</div>
+        <div class="brand-subtitle" id="headerExamSubtitle">Initializing…</div>
       </div>
     </div>
 
     <div class="header-controls">
-      <!-- Live Clock -->
-      <div id="liveClock" style="font-family:var(--font-mono);font-size:0.78rem;color:var(--text-muted);font-weight:600;letter-spacing:0.04em;display:flex;align-items:center;gap:4px;">
-        🕐 --:--:--
+      <div id="liveClock" class="live-clock">🕐 --:--:--</div>
+
+      <button class="btn-ghost student-session-only" style="display:none;" onclick="SupportingFeatures.showReviewQueueModal()" title="Review Queue">
+        🔄 Review
+      </button>
+      <button class="btn-ghost student-session-only" style="display:none;" onclick="SupportingFeatures.showReportCardModal()" title="Report Card">
+        📑 Report
+      </button>
+      <button class="btn-ghost student-session-only" style="display:none;border-color:var(--accent-teal);color:var(--accent-teal);" onclick="AppState.goToFirstQuiz()" title="Diagnostic Quiz">
+        🎯 Diagnostic
+      </button>
+
+      <div class="exam-locked-indicator student-session-only" id="examLockedIndicator" style="display:none;" title="Session locked to exam stream">
+        <span>🔒</span>
+        <span id="lockedExamTitle">LOCKED: JEE Main</span>
+        <button class="lock-badge-logout" onclick="AppState.logout()">Switch (Logout)</button>
       </div>
 
-      <button class="btn-secondary student-session-only" style="padding:0.4rem 0.65rem;font-size:0.75rem;font-weight:700;display:none;align-items:center;gap:4px;" onclick="SupportingFeatures.showReviewQueueModal()" title="Spaced-repetition review queue">
-        🔄 Review Queue
-      </button>
-      <button class="btn-secondary student-session-only" style="padding:0.4rem 0.65rem;font-size:0.75rem;font-weight:700;display:none;align-items:center;gap:4px;" onclick="SupportingFeatures.showErrorTrendsModal()" title="Error pattern trends">
-        📉 Errors
-      </button>
-      <button class="btn-secondary student-session-only" style="padding:0.4rem 0.65rem;font-size:0.75rem;font-weight:700;display:none;align-items:center;gap:4px;" onclick="SupportingFeatures.showReportCardModal()" title="Printable performance scorecard">
-        📑 Report Card
-      </button>
-      <button class="btn-secondary student-session-only" style="padding:0.4rem 0.8rem;font-size:0.78rem;font-weight:700;display:none;align-items:center;gap:5px;border-color:var(--border-highlight);" onclick="AppState.showDiagnosticGateway()" title="Take or retake the compulsory diagnostic quiz">
-        🎯 Diagnostic Quiz
-      </button>
-      <div class="exam-locked-indicator student-session-only" id="examLockedIndicator" style="display:none;" title="Session is strictly locked to this exam stream. Logout to switch exams.">
-        <span class="lock-badge-icon">🔒</span>
-        <span class="lock-badge-title" id="lockedExamTitle">LOCKED: JEE Main</span>
-        <button class="lock-badge-logout" onclick="AppState.logout()" title="Logout to change examination stream">
-          Switch (Logout)
-        </button>
-      </div>
-      <div class="user-badge student-session-only" onclick="AppState.showDiagnosticGateway()" id="userBadge" title="Your profile" style="display:none;">
+      <div class="user-badge student-session-only" id="userBadge" style="display:none;" onclick="AppState.goToFirstQuiz()">
         <div class="avatar-circle" id="userAvatarDisplay">A</div>
         <div>
           <div style="font-size:0.82rem;font-weight:700;" id="userNameDisplay">Student</div>
-          <div style="font-size:0.66rem;color:var(--accent-cyan);" id="userExamBadge">JEE Main</div>
+          <div style="font-size:0.66rem;color:var(--accent-teal);" id="userExamBadge">JEE Main</div>
         </div>
       </div>
-      <!-- Logout Button (visible only when student is active) -->
-      <button id="headerLogoutBtn" onclick="AppState.logout()" style="display:none;align-items:center;gap:5px;padding:0.4rem 0.85rem;font-size:0.78rem;font-weight:700;background:rgba(244,63,94,0.12);border:1px solid rgba(244,63,94,0.3);color:var(--accent-rose);border-radius:var(--radius-full);cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(244,63,94,0.22)'" onmouseout="this.style.background='rgba(244,63,94,0.12)'">
+
+      <button id="headerLogoutBtn" onclick="AppState.logout()" class="btn-logout" style="display:none;">
         🚪 Logout
       </button>
     </div>
   </header>
 
-  <!-- ╔═══════════════════════════════════════╗ -->
-  <!-- ║          APP CONTAINER                ║ -->
-  <!-- ╚═══════════════════════════════════════╝ -->
+  <!-- ══════════════════════════════════════════════════════════
+       APP CONTAINER
+       ══════════════════════════════════════════════════════════ -->
   <div class="app-container">
 
     <!-- Desktop Sidebar -->
-    <aside class="sidebar-nav">
-      <div class="nav-item active" id="nav_dashboard" onclick="AppState.switchTab('dashboard')">
+    <aside class="sidebar-nav" id="mainSidebar">
+      <!-- JEE/NEET Nav items -->
+      <div class="nav-item active exam-nav jee-nav neet-nav" id="nav_dashboard" onclick="AppState.switchTab('dashboard')">
         <span class="nav-icon">📊</span> ML Mastery
       </div>
-      <div class="nav-item" id="nav_roadmap" onclick="AppState.switchTab('roadmap')">
+      <div class="nav-item exam-nav jee-nav neet-nav" id="nav_roadmap" onclick="AppState.switchTab('roadmap')">
         <span class="nav-icon">🗺️</span> Roadmap
       </div>
-      <div class="nav-item" id="nav_assessment" onclick="AppState.switchTab('assessment')">
+      <div class="nav-item exam-nav jee-nav neet-nav" id="nav_quiz" onclick="AppState.switchTab('quiz')">
         <span class="nav-icon">🎯</span> Quiz Arena
       </div>
-      <div class="nav-item" id="nav_assignment" onclick="AppState.switchTab('assignment')">
+      <div class="nav-item exam-nav jee-nav neet-nav" id="nav_assignment" onclick="AppState.switchTab('assignment')">
         <span class="nav-icon">📝</span> Daily Assignment
       </div>
-      <div class="nav-item" id="nav_upsc" onclick="AppState.switchTab('upsc')">
-        <span class="nav-icon">🏛️</span> UPSC Civil Services
-      </div>
-      <div class="nav-item" id="nav_graph" onclick="AppState.switchTab('graph')">
+      <div class="nav-item exam-nav jee-nav neet-nav" id="nav_graph" onclick="AppState.switchTab('graph')">
         <span class="nav-icon">🕸️</span> Concept Map
       </div>
-      <div class="nav-item" id="nav_ai" onclick="AppState.switchTab('ai')">
+      <div class="nav-item exam-nav jee-nav neet-nav" id="nav_ai" onclick="AppState.switchTab('ai')">
         <span class="nav-icon">🤖</span> AI Mentor
       </div>
-      <div class="nav-item" id="nav_telemetry" onclick="AppState.switchTab('telemetry')">
+
+      <!-- UPSC-only Nav items -->
+      <div class="nav-item exam-nav upsc-nav" id="nav_upsc" onclick="AppState.switchTab('upsc')" style="display:none;">
+        <span class="nav-icon">🏛️</span> Civil Services
+      </div>
+      <div class="nav-item exam-nav upsc-nav" id="nav_upsc_prelims" onclick="AppState.switchTab('upsc_prelims')" style="display:none;">
+        <span class="nav-icon">📋</span> Prelims GS
+      </div>
+      <div class="nav-item exam-nav upsc-nav" id="nav_upsc_mains" onclick="AppState.switchTab('upsc_mains')" style="display:none;">
+        <span class="nav-icon">✍️</span> Mains Writing
+      </div>
+
+      <!-- Telemetry (shared) -->
+      <div class="nav-item exam-nav jee-nav neet-nav upsc-nav" id="nav_telemetry" onclick="AppState.switchTab('telemetry')">
         <span class="nav-icon">📡</span> Telemetry
       </div>
+
       <div style="margin-top:auto;padding-top:1rem;border-top:1px solid var(--border-subtle);">
         <div class="nav-item" onclick="AdminAuth.showPanel()" style="color:var(--accent-amber);">
           <span class="nav-icon">⚙️</span> Admin
         </div>
-        <div class="nav-item" onclick="AppState.logout()" style="color:var(--accent-rose);">
+        <div class="nav-item" onclick="AppState.logout()" style="color:#f87171;">
           <span class="nav-icon">🚪</span> Logout
         </div>
       </div>
@@ -461,50 +460,42 @@
     <!-- Main Content -->
     <main class="main-content">
 
-      <!-- ═══════════════════════════════════════════════ -->
-      <!-- 1. ML MASTERY DASHBOARD                        -->
-      <!-- ═══════════════════════════════════════════════ -->
+      <!-- ═══════════════ 1. ML MASTERY DASHBOARD ═══════════════ -->
       <section class="tab-pane active" id="pane_dashboard">
-
-        <!-- Next-Best-Action Hero -->
         <div id="nbaHeroContainer"></div>
-
-        <!-- 4 KPI Cards & Mastery Gauge -->
         <div class="grid-4" style="margin-bottom:1rem;">
           <div class="glass-card stat-card" style="display:flex;align-items:center;justify-content:space-between;padding:1rem;">
             <div>
               <div class="stat-label">Overall Mastery</div>
-              <div class="stat-val" id="overallMasteryVal" style="color:#c7d2fe;">--%</div>
+              <div class="stat-val" id="overallMasteryVal">--%</div>
               <div class="stat-sub">Syllabus coverage</div>
             </div>
             <div id="dashboardProgressRingContainer"></div>
           </div>
           <div class="glass-card stat-card">
             <div class="stat-label">Confidence Score</div>
-            <div class="stat-val" id="overallConfidenceVal" style="color:var(--accent-cyan);">--%</div>
+            <div class="stat-val" id="overallConfidenceVal">--%</div>
             <div class="stat-sub">Calibrated uncertainty</div>
           </div>
           <div class="glass-card stat-card">
             <div class="stat-label">IRT Ability (θ)</div>
-            <div class="stat-val" id="irtAbilityVal" style="color:var(--accent-purple);font-size:1.5rem;">+0.00</div>
+            <div class="stat-val" id="irtAbilityVal" style="font-size:1.5rem;">+0.00</div>
             <div class="stat-sub">Item Response Theory</div>
           </div>
           <div class="glass-card stat-card">
             <div class="stat-label">BKT Knowledge P(L)</div>
-            <div class="stat-val" id="bktProbabilityVal" style="color:var(--accent-emerald);">--%</div>
+            <div class="stat-val" id="bktProbabilityVal">--%</div>
             <div class="stat-sub">Bayesian Knowledge Tracing</div>
           </div>
         </div>
-
         <div class="grid-2">
-          <!-- Next 3 Priority Milestones -->
           <div class="glass-card" style="padding:0;">
             <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid var(--border-subtle);">
               <div>
                 <div style="font-size:1rem;font-weight:800;">⚡ Upcoming Study Milestones</div>
                 <div style="font-size:0.75rem;color:var(--text-muted);margin-top:2px;">Dynamic DAG priority sequence</div>
               </div>
-              <button class="btn-secondary" style="font-size:0.75rem;padding:3px 8px;" onclick="AppState.switchTab('roadmap')">View All →</button>
+              <button class="btn-ghost" style="font-size:0.75rem;" onclick="AppState.switchTab('roadmap')">View All →</button>
             </div>
             <div id="dashboardNextActionsContainer" style="padding:0.75rem;">
               <div style="color:var(--text-secondary);padding:1rem;text-align:center;">
@@ -512,46 +503,40 @@
               </div>
             </div>
           </div>
-
-          <!-- Tiered Testing Suite -->
           <div class="glass-card">
             <h3 style="font-size:1rem;font-weight:800;margin-bottom:0.35rem;">Adaptive Testing Arena</h3>
             <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.45;">
               4-tier diagnostic system: screener, topic drills, full scan, and advanced mastery challenges.
             </p>
             <div style="display:flex;flex-direction:column;gap:0.5rem;">
-              <button class="btn-primary" style="width:100%;justify-content:center;padding:0.65rem;" onclick="QuizController.startTest(AppState.currentExam,'DIAGNOSTIC',1)">
+              <button class="lf-btn" style="padding:0.65rem;" onclick="AppState.startQuizSafe(()=>QuizController.startTest(AppState.currentExam,'DIAGNOSTIC',1))">
                 🚀 9-Q Compulsory Screener
               </button>
-              <button class="btn-secondary" style="width:100%;justify-content:center;padding:0.6rem;" onclick="QuizController.startDrill('Physics')">
+              <button class="btn-ghost" style="width:100%;justify-content:center;padding:0.6rem;" onclick="AppState.startQuizSafe(()=>QuizController.startDrill('Physics'))">
                 🎯 5-Q Targeted Topic Drill
               </button>
-              <button class="btn-secondary" style="width:100%;justify-content:center;padding:0.6rem;" onclick="QuizController.startFullScan()">
+              <button class="btn-ghost" style="width:100%;justify-content:center;padding:0.6rem;" onclick="AppState.startQuizSafe(()=>QuizController.startFullScan())">
                 🔬 15-Q Full Syllabus Deep Scan
               </button>
-              <button class="btn-secondary" style="width:100%;justify-content:center;padding:0.6rem;border-color:rgba(168,85,247,0.4);color:var(--accent-purple);font-weight:700;" onclick="QuizController.startAdvancedChallenge()">
+              <button class="btn-ghost" style="width:100%;justify-content:center;padding:0.6rem;" onclick="AppState.startQuizSafe(()=>QuizController.startAdvancedChallenge())">
                 🏆 Tier 4 Advanced Mastery Challenge
               </button>
             </div>
           </div>
         </div>
-
-        <!-- Weakness Rankings -->
         <div class="glass-card" style="margin-top:1rem;padding:0;">
           <div style="padding:1rem 1.25rem;border-bottom:1px solid var(--border-subtle);display:flex;justify-content:space-between;align-items:center;">
             <div>
               <div style="font-size:1rem;font-weight:800;">🧠 AI Weakness Ranking</div>
               <div style="font-size:0.75rem;color:var(--text-muted);">Concepts with highest priority gap</div>
             </div>
-            <button class="btn-secondary" style="font-size:0.75rem;padding:3px 8px;" onclick="AppState.switchTab('roadmap')">View Roadmap →</button>
+            <button class="btn-ghost" style="font-size:0.75rem;" onclick="AppState.switchTab('roadmap')">View Roadmap →</button>
           </div>
           <div id="weaknessRankingList" style="padding:0.5rem;"></div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════════ -->
-      <!-- 2. DYNAMIC ROADMAP TAB                          -->
-      <!-- ═══════════════════════════════════════════════ -->
+      <!-- ═══════════════ 2. DYNAMIC ROADMAP ═══════════════ -->
       <section class="tab-pane" id="pane_roadmap">
         <div class="section-heading" style="margin-bottom:1rem;flex-wrap:wrap;gap:0.75rem;">
           <div>
@@ -559,18 +544,14 @@
             <div class="section-sub">Prerequisite DAG ordering · Adaptive mastery · Topic importance ribbons.</div>
           </div>
           <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
-            <div class="segmented-control" style="background:rgba(255,255,255,0.06);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:2px;display:flex;gap:2px;">
-              <button class="segmented-btn roadmap-view-tab active" data-view="timeline" style="border:none;background:transparent;color:var(--text-primary);padding:4px 10px;font-size:0.78rem;font-weight:700;border-radius:var(--radius-sm);cursor:pointer;" onclick="RoadmapVisualizer.switchView('timeline')">🗺️ Step Sequence</button>
-              <button class="segmented-btn roadmap-view-tab" data-view="dag" style="border:none;background:transparent;color:var(--text-muted);padding:4px 10px;font-size:0.78rem;font-weight:700;border-radius:var(--radius-sm);cursor:pointer;" onclick="RoadmapVisualizer.switchView('dag')">🕸️ Visual DAG Graph</button>
-              <button class="segmented-btn roadmap-view-tab" data-view="heatmap" style="border:none;background:transparent;color:var(--text-muted);padding:4px 10px;font-size:0.78rem;font-weight:700;border-radius:var(--radius-sm);cursor:pointer;" onclick="RoadmapVisualizer.switchView('heatmap')">📊 Chapter Heatmap</button>
+            <div class="segmented-control" style="background:rgba(255,255,255,0.04);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:2px;display:flex;gap:2px;">
+              <button class="segmented-btn roadmap-view-tab active" data-view="timeline" onclick="RoadmapVisualizer.switchView('timeline')">🗺️ Step Sequence</button>
+              <button class="segmented-btn roadmap-view-tab" data-view="dag" onclick="RoadmapVisualizer.switchView('dag')">🕸️ Visual DAG</button>
+              <button class="segmented-btn roadmap-view-tab" data-view="heatmap" onclick="RoadmapVisualizer.switchView('heatmap')">📊 Heatmap</button>
             </div>
-            <button class="btn-secondary" onclick="API.regenerateRoadmap(AppState.student?.student_id).then(()=>AppState.refreshAllData())">
-              ↻ Recalculate
-            </button>
+            <button class="btn-ghost" onclick="API.regenerateRoadmap(AppState.student?.student_id).then(()=>AppState.refreshAllData())">↻ Recalculate</button>
           </div>
         </div>
-
-        <!-- Roadmap + Info Panel side-by-side on desktop -->
         <div style="display:flex;gap:1rem;align-items:flex-start;">
           <div style="flex:1;min-width:0;">
             <div id="roadmapTimelineContainer" class="roadmap-timeline"></div>
@@ -581,10 +562,9 @@
         <div id="roadmapChapterHeatmapContainer" style="display:none;margin-top:1rem;"></div>
       </section>
 
-      <!-- ═══════════════════════════════════════════════ -->
-      <!-- 3. QUIZ ARENA TAB                               -->
-      <!-- ═══════════════════════════════════════════════ -->
-      <section class="tab-pane" id="pane_assessment">
+      <!-- ═══════════════ 3. QUIZ ARENA ═══════════════ -->
+      <section class="tab-pane" id="pane_quiz">
+        <!-- Quiz fullscreen wrapper — sidebar hides when quiz is active -->
         <div id="quizArena">
           <div class="glass-card" style="text-align:center;padding:3rem 1.5rem;">
             <div style="font-size:3rem;margin-bottom:0.75rem;">🎯</div>
@@ -592,44 +572,36 @@
             <p style="color:var(--text-secondary);font-size:0.88rem;margin-bottom:1.5rem;max-width:320px;margin-left:auto;margin-right:auto;">
               Select a quiz mode or launch targeted practice from your Dynamic Roadmap.
             </p>
-            <button class="btn-primary" onclick="QuizController.startTest(AppState.currentExam,'DIAGNOSTIC',1)">
+            <button class="lf-btn" onclick="AppState.startQuizSafe(()=>QuizController.startTest(AppState.currentExam,'DIAGNOSTIC',1))">
               Start Diagnostic Quiz →
             </button>
           </div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════════ -->
-      <!-- 3.5 DAILY 3-SUBJECT ASSIGNMENT (EXAMBENCH)       -->
-      <!-- ═══════════════════════════════════════════════ -->
+      <!-- ═══════════════ 3.5 DAILY ASSIGNMENT ═══════════════ -->
       <section class="tab-pane" id="pane_assignment">
         <div id="assignmentContainer"></div>
       </section>
 
-      <!-- ═══════════════════════════════════════════════ -->
-      <!-- 4. TACTICAL CONCEPT MAP                         -->
-      <!-- ═══════════════════════════════════════════════ -->
+      <!-- ═══════════════ 4. CONCEPT MAP ═══════════════ -->
       <section class="tab-pane" id="pane_graph">
         <div class="section-heading" style="margin-bottom:0.85rem;">
           <div>
             <div class="section-title">Tactical Concept Map</div>
-            <div class="section-sub">
-              🟢 Mastered &nbsp;|&nbsp; 🔵 Progressing &nbsp;|&nbsp; 🟡 Moderate &nbsp;|&nbsp; 🔴 Critical Gap
-            </div>
+            <div class="section-sub">🟢 Mastered &nbsp;|&nbsp; 🔵 Progressing &nbsp;|&nbsp; 🟡 Moderate &nbsp;|&nbsp; 🔴 Critical Gap</div>
           </div>
-          <button class="btn-secondary" onclick="AppState.switchTab('graph');setTimeout(()=>AppState.graphView?.resize(),100)">↗ Resize</button>
+          <button class="btn-ghost" onclick="AppState.switchTab('graph');setTimeout(()=>AppState.graphView?.resize(),100)">↗ Resize</button>
         </div>
         <div class="glass-card" style="padding:0.5rem;">
           <canvas id="graphCanvas"></canvas>
         </div>
-        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+        <div style="margin-top:0.75rem;">
           <span style="font-size:0.75rem;color:var(--text-muted);">Drag nodes to rearrange • Scroll to zoom • Hover for details</span>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════════ -->
-      <!-- 5. AI STUDY MENTOR                              -->
-      <!-- ═══════════════════════════════════════════════ -->
+      <!-- ═══════════════ 5. AI STUDY MENTOR ═══════════════ -->
       <section class="tab-pane" id="pane_ai">
         <div class="section-heading" style="margin-bottom:1.1rem;">
           <div>
@@ -637,257 +609,143 @@
             <div class="section-sub">Offline AI explains your roadmap decisions, diagnoses weak concepts, and provides exam strategy.</div>
           </div>
         </div>
-
-        <!-- Full-width FAQ Chat (no direct text input — FAQ only) -->
         <div class="chat-window" style="max-width:960px;margin:0 auto;">
           <div class="chat-messages" id="chatMessagesContainer"></div>
-
-          <!-- FAQ Category Grid -->
           <div style="margin-top:1.2rem;">
             <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:0.85rem;padding:0 2px;">
               📋 Choose a question to ask the AI Mentor
             </div>
             <div class="faq-grid">
-
-              <!-- Performance Analysis -->
               <div class="faq-category">
                 <div class="faq-cat-label">📊 Performance</div>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Analyze my quiz mistakes and tell me what types of errors I am making')">What mistakes am I making in quizzes?</button>
+                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Analyze my quiz mistakes and tell me what types of errors I am making')">What mistakes am I making?</button>
                 <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('What is my current latent ability theta score and what does it mean?')">What is my ability (θ) score?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('How has my performance improved since I started?')">How have I improved over time?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Compare my Physics, Chemistry and Mathematics scores and tell me where I stand')">Compare my subject scores</button>
+                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('How has my performance improved since I started?')">How have I improved?</button>
               </div>
-
-              <!-- Roadmap & Topics -->
               <div class="faq-category">
                 <div class="faq-cat-label">🗺️ Roadmap</div>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Explain my current roadmap sequence and why these topics are ordered this way')">Why is my roadmap in this order?</button>
+                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Explain my current roadmap sequence and why these topics are ordered this way')">Why is my roadmap ordered this way?</button>
                 <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Which topics should I study first for maximum rank improvement?')">Which topics give max rank improvement?</button>
                 <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('What are my biggest weak areas right now and how should I fix them?')">What are my biggest weak areas?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Which concepts are prerequisites I should master before moving on?')">What prerequisites am I missing?</button>
               </div>
-
-              <!-- Exam Strategy -->
               <div class="faq-category">
                 <div class="faq-cat-label">🎯 Exam Strategy</div>
                 <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Give me a complete JEE Main exam day strategy for time management')">JEE Main exam day strategy?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Give me NEET exam strategy for Biology, Physics and Chemistry section management')">NEET section management strategy?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('How can I improve my speed and accuracy on MCQs?')">How to improve speed &amp; accuracy?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('What is the best revision strategy for the last 30 days before my exam?')">Best 30-day revision plan?</button>
+                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Give me NEET exam strategy for Biology, Physics and Chemistry section management')">NEET section management?</button>
+                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('How can I improve my speed and accuracy on MCQs?')">Improve speed &amp; accuracy?</button>
               </div>
-
-              <!-- Concept Help -->
               <div class="faq-category">
                 <div class="faq-cat-label">💡 Concepts</div>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Explain the most important Physics concepts I need for JEE Main')">Key Physics concepts for JEE?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Explain the most important Organic Chemistry reactions I keep forgetting')">Important Organic Chemistry reactions?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Which Mathematics chapters have the highest weightage in JEE Main?')">Highest weightage Math chapters?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('How do I avoid silly calculation mistakes in Physics and Math?')">How to avoid silly mistakes?</button>
+                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Explain the most important Physics concepts I need for JEE Main')">Key Physics concepts?</button>
+                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Explain the most important Organic Chemistry reactions I keep forgetting')">Key Organic Chemistry reactions?</button>
+                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('What are the high-yield topics for NEET Biology?')">High-yield NEET Biology topics?</button>
               </div>
-
-              <!-- Study Planning -->
-              <div class="faq-category">
-                <div class="faq-cat-label">📅 Study Plan</div>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Create a daily study schedule for me based on my weak areas and exam date')">Create my daily study schedule</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('How many hours should I study each subject per day to maximize my score?')">How many hours per subject daily?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Which topics should I completely skip or deprioritize given my current level?')">Which topics should I skip?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('How should I balance new learning versus revision in my study plan?')">New learning vs revision balance?</button>
-              </div>
-
-              <!-- Motivation & Mindset -->
-              <div class="faq-category">
-                <div class="faq-cat-label">🧠 Mindset</div>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('I am feeling overwhelmed by the syllabus. What should I focus on right now?')">I feel overwhelmed — what to focus on?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('How do I overcome exam anxiety and perform well under pressure?')">How to handle exam anxiety?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('What is a realistic rank I can achieve based on my current performance?')">What rank can I realistically achieve?</button>
-                <button class="faq-btn" onclick="AIAssistantController.sendQuickPrompt('Give me motivational advice and remind me why consistent practice matters')">Motivate me to keep going!</button>
-              </div>
-
             </div>
           </div>
         </div>
       </section>
 
-
-      <!-- ═══════════════════════════════════════════════ -->
-      <!-- 6. TELEMETRY STREAM                             -->
-      <!-- ═══════════════════════════════════════════════ -->
-      <section class="tab-pane" id="pane_telemetry">
-        <div class="section-heading" style="margin-bottom:1.1rem;">
+      <!-- ═══════════════ 6. UPSC CIVIL SERVICES ═══════════════ -->
+      <section class="tab-pane" id="pane_upsc">
+        <div class="section-heading">
           <div>
-            <div class="section-title">Interaction Telemetry</div>
-            <div class="section-sub">Append-only audit trail of every quiz, roadmap, and learning event.</div>
+            <div class="section-title">🏛️ UPSC Civil Services Engine</div>
+            <div class="section-sub">Prelims MCQ Vault · Mains Analytical Writing · GS Papers I–IV</div>
           </div>
-          <button class="btn-secondary" onclick="AppState.refreshAllData()">↻ Refresh</button>
         </div>
-        <div class="glass-card" id="telemetryStreamContainer">
-          <div style="color:var(--text-secondary);padding:1rem;">Loading telemetry stream…</div>
+        <div id="upscContainer"></div>
       </section>
 
-      <!-- ═══════════════════════════════════════════════ -->
-      <!-- 8. UPSC CIVIL SERVICES SUBSYSTEM                -->
-      <!-- ═══════════════════════════════════════════════ -->
-      <section class="tab-pane" id="pane_upsc">
-        <!-- Rendered dynamically by UPSCController -->
+      <section class="tab-pane" id="pane_upsc_prelims">
+        <div class="section-title" style="margin-bottom:1rem;">📋 UPSC Prelims — General Studies</div>
+        <div id="upscPrelimsContainer" class="glass-card" style="padding:2rem;text-align:center;color:var(--text-secondary);">
+          Loading Prelims module…
+        </div>
+      </section>
+
+      <section class="tab-pane" id="pane_upsc_mains">
+        <div class="section-title" style="margin-bottom:1rem;">✍️ UPSC Mains — Answer Writing</div>
+        <div id="upscMainsContainer" class="glass-card" style="padding:2rem;text-align:center;color:var(--text-secondary);">
+          Loading Mains module…
+        </div>
+      </section>
+
+      <!-- ═══════════════ 7. TELEMETRY ═══════════════ -->
+      <section class="tab-pane" id="pane_telemetry">
+        <div class="section-heading">
+          <div>
+            <div class="section-title">📡 System Telemetry</div>
+            <div class="section-sub">Live event log · Performance metrics · API monitoring</div>
+          </div>
+        </div>
+        <div class="glass-card">
+          <div id="telemetryStream" style="max-height:400px;overflow-y:auto;font-family:var(--font-mono);font-size:0.78rem;"></div>
+        </div>
       </section>
 
     </main>
   </div>
 
-  <!-- ╔═══════════════════════════════════════╗ -->
-  <!-- ║        MOBILE BOTTOM NAV              ║ -->
-  <!-- ╚═══════════════════════════════════════╝ -->
-  <nav class="bottom-nav">
-    <div class="bottom-nav-item active" id="bnav_dashboard" onclick="AppState.switchTab('dashboard')">
+  <!-- Mobile Bottom Nav -->
+  <nav class="bottom-nav" id="bottomNav">
+    <div class="bottom-nav-item active exam-nav jee-nav neet-nav" id="bnav_dashboard" onclick="AppState.switchTab('dashboard')">
       <span class="bottom-nav-icon">📊</span>
       <span>Mastery</span>
     </div>
-    <div class="bottom-nav-item" id="bnav_roadmap" onclick="AppState.switchTab('roadmap')">
+    <div class="bottom-nav-item exam-nav jee-nav neet-nav" id="bnav_roadmap" onclick="AppState.switchTab('roadmap')">
       <span class="bottom-nav-icon">🗺️</span>
       <span>Roadmap</span>
     </div>
-    <div class="bottom-nav-item" id="bnav_assessment" onclick="AppState.switchTab('assessment')">
+    <div class="bottom-nav-item exam-nav jee-nav neet-nav" id="bnav_quiz" onclick="AppState.switchTab('quiz')">
       <span class="bottom-nav-icon">🎯</span>
       <span>Quiz</span>
     </div>
-    <div class="bottom-nav-item" id="bnav_graph" onclick="AppState.switchTab('graph')">
-      <span class="bottom-nav-icon">🕸️</span>
-      <span>Map</span>
+    <div class="bottom-nav-item exam-nav jee-nav neet-nav" id="bnav_assignment" onclick="AppState.switchTab('assignment')">
+      <span class="bottom-nav-icon">📝</span>
+      <span>Assign</span>
     </div>
-    <div class="bottom-nav-item" id="bnav_ai" onclick="AppState.switchTab('ai')">
+    <div class="bottom-nav-item exam-nav upsc-nav" id="bnav_upsc" onclick="AppState.switchTab('upsc')" style="display:none;">
+      <span class="bottom-nav-icon">🏛️</span>
+      <span>UPSC</span>
+    </div>
+    <div class="bottom-nav-item exam-nav jee-nav neet-nav upsc-nav" id="bnav_ai" onclick="AppState.switchTab('ai')">
       <span class="bottom-nav-icon">🤖</span>
       <span>AI</span>
     </div>
   </nav>
 
-  <!-- ╔═══════════════════════════════════════╗ -->
-  <!-- ║   COMPULSORY DIAGNOSTIC GATEWAY       ║ -->
-  <!-- ╚═══════════════════════════════════════╝ -->
-  <div class="modal-backdrop" id="onboardingModal">
-    <div class="modal-box" style="max-width: 640px; padding: 1.75rem 2rem;">
-      <div style="text-align:center;margin-bottom:1.25rem;">
-        <div class="onboard-logo">Δ</div>
-        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);padding:3px 10px;border-radius:var(--radius-full);font-size:0.75rem;font-weight:800;color:var(--accent-neon);margin-bottom:0.5rem;">
-          ⚡ COMPULSORY FIRST-TIME EVALUATION
-        </div>
-        <h2 style="font-size:1.6rem;font-weight:900;margin-bottom:0.35rem;letter-spacing:-0.02em;">Welcome to Adaptive Engine</h2>
-        <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.5;max-width:480px;margin:0 auto;">
-          Select your target track to launch your <strong style="color:var(--text-primary);">Compulsory Diagnostic Quiz</strong>. The AI extracts your latent skills and activates your custom Roadmap Engine.
-        </p>
-      </div>
+  <!-- Quiz Fullscreen Exit Button -->
+  <button id="quizExitFullscreenBtn" class="quiz-exit-btn" onclick="AppState.exitQuizFullscreen()">
+    ⛶ Exit Fullscreen
+  </button>
 
-      <!-- Step 1: Select Track -->
-      <div style="margin-bottom: 1.1rem;">
-        <label class="form-label" style="font-size:0.85rem;font-weight:800;display:flex;align-items:center;gap:6px;">
-          <span>Step 1:</span> Choose Your Examination Battleground
-        </label>
-        <div class="gateway-track-grid">
-          <div class="gateway-track-card active" id="trackCardJEE" onclick="AppState.selectGatewayTrack('JEE')">
-            <div class="track-check">✓</div>
-            <div class="track-icon">🔭</div>
-            <div class="track-title">JEE Main (PCM)</div>
-            <div class="track-desc">Physics · Chemistry · Mathematics</div>
-            <div class="track-tags">
-              <span class="track-tag" style="color:var(--accent-cyan);">Mechanics</span>
-              <span class="track-tag" style="color:var(--accent-purple);">Calculus</span>
-              <span class="track-tag" style="color:var(--accent-emerald);">Organic Chem</span>
-            </div>
-          </div>
-          <div class="gateway-track-card" id="trackCardNEET" onclick="AppState.selectGatewayTrack('NEET')">
-            <div class="track-check">✓</div>
-            <div class="track-icon">🧬</div>
-            <div class="track-title">NEET-UG (PCB)</div>
-            <div class="track-desc">Biology (Botany/Zoology) · Physics · Chemistry</div>
-            <div class="track-tags">
-              <span class="track-tag" style="color:var(--accent-amber);">Cell &amp; Genetics</span>
-              <span class="track-tag" style="color:var(--accent-rose);">Physiology</span>
-              <span class="track-tag" style="color:var(--accent-cyan);">Optics</span>
-            </div>
-          </div>
-          <div class="gateway-track-card" id="trackCardUPSC" onclick="AppState.selectGatewayTrack('UPSC')">
-            <div class="track-check">✓</div>
-            <div class="track-icon">🏛️</div>
-            <div class="track-title">UPSC CSE</div>
-            <div class="track-desc">Polity · Governance · Economy · Ethics</div>
-            <div class="track-tags">
-              <span class="track-tag" style="color:var(--accent-amber);">Prelims MCQ</span>
-              <span class="track-tag" style="color:var(--accent-neon);">Mains Written</span>
-              <span class="track-tag" style="color:var(--accent-emerald);">GS I-IV</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Step 2: Name Input -->
-      <div class="form-field" style="margin-bottom: 1.1rem;">
-        <label class="form-label" style="font-size:0.85rem;font-weight:800;display:flex;align-items:center;gap:6px;">
-          <span>Step 2:</span> Candidate Name
-        </label>
-        <input type="text" id="onboardName" class="form-input" placeholder="e.g. Arjun Sharma (or your name)" value="">
-      </div>
-
-      <!-- Step 3: Info Box -->
-      <div class="gateway-info-box">
-        <div style="font-weight:800;color:var(--text-primary);margin-bottom:4px;display:flex;align-items:center;gap:6px;">
-          <span>🧠</span> How the AI Diagnostic Baseline Works:
-        </div>
-        <ul style="padding-left:1.25rem;margin:0;display:flex;flex-direction:column;gap:3px;">
-          <li><strong>9 Authentic PYQs Adapted:</strong> Real past year questions with modified numerical parameters to test true analytical skills.</li>
-          <li><strong>AI Skill Extraction:</strong> Measures Latent Ability (θ), Bayesian mastery P(L), speed, and prerequisite gaps.</li>
-          <li><strong>Roadmap Generation:</strong> Directly calibrates and unlocks your personalized study sequence upon completion.</li>
-        </ul>
-      </div>
-
-      <button class="btn-primary glow-pulse" id="onboardSubmitBtn" style="width:100%;justify-content:center;padding:0.95rem;font-size:1.05rem;border-radius:var(--radius-md);" onclick="AppState.startCompulsoryDiagnostic()">
-        🚀 Launch Compulsory Diagnostic Quiz →
-      </button>
-
-      <div style="display:flex;justify-content:center;gap:0.75rem;margin-top:0.75rem;">
-        <button class="btn-secondary" style="font-size:0.78rem;padding:0.4rem 1rem;" onclick="AppState.showLauncherScreen()">
-          ← Back to Launcher
-        </button>
-      </div>
-
-      <p style="font-size:0.72rem;color:var(--text-muted);text-align:center;margin-top:0.5rem;">
-        Offline-First Engine · Data stored locally · No external API keys required
+  <!-- First Quiz Gate Overlay (shown over locked tabs) -->
+  <div id="firstQuizGateOverlay" style="display:none;position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);align-items:center;justify-content:center;">
+    <div style="text-align:center;padding:2.5rem 2rem;background:rgba(255,255,255,0.04);border:1px solid rgba(100,255,218,0.2);border-radius:22px;max-width:380px;margin:1rem;box-shadow:0 25px 70px rgba(0,0,0,0.8);">
+      <div style="font-size:2.5rem;margin-bottom:1rem;">🔒</div>
+      <div style="font-size:1.2rem;font-weight:900;margin-bottom:0.6rem;">First Quiz Required</div>
+      <p style="font-size:0.85rem;color:#888;line-height:1.6;margin-bottom:1.5rem;">
+        Complete your first diagnostic quiz to calibrate the engine and unlock all features — Roadmap, AI Mentor, Knowledge Graph, and Assignments.
       </p>
+      <button onclick="document.getElementById('firstQuizGateOverlay').style.display='none';AppState.switchTab('quiz');" style="display:inline-flex;align-items:center;gap:8px;background:rgba(100,255,218,0.1);border:1px solid rgba(100,255,218,0.35);color:#64ffda;padding:11px 24px;border-radius:100px;font-size:0.92rem;font-weight:800;cursor:pointer;font-family:Outfit,sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(100,255,218,0.18)'" onmouseout="this.style.background='rgba(100,255,218,0.1)'">
+        🎯 Start Diagnostic Quiz →
+      </button>
     </div>
   </div>
 
-  <!-- ╔═══════════════════════════════════════╗ -->
-  <!-- ║        RESULT MODAL                   ║ -->
-  <!-- ╚═══════════════════════════════════════╝ -->
-  <div class="modal-backdrop" id="resultModal">
-    <div class="modal-box" id="resultModalContent" style="max-width:620px;max-height:90vh;overflow-y:auto;"></div>
-  </div>
+  <!-- Toast Notification -->
+  <div id="toastNotif" class="toast-notif" style="display:none;"></div>
 
-  <!-- Supporting Features Modal -->
-  <div class="modal-backdrop" id="supportingModal">
-    <div class="modal-box" id="supportingModalContent" style="max-width:740px;max-height:90vh;overflow-y:auto;"></div>
-  </div>
-
-  <!-- ╔═══════════════════════════════════════╗ -->
-  <!-- ║   CORESHADOW CREATOR WATERMARK        ║ -->
-  <!-- ╚═══════════════════════════════════════╝ -->
-  <div class="creator-watermark" title="Created by CoreShadow">
-    <div class="watermark-icon">◈</div>
-    <div class="watermark-text">
-      <div class="watermark-name">CoreShadow</div>
-      <div class="watermark-role">Creator &amp; Architect</div>
-    </div>
-  </div>
-
-  <!-- Scripts (admin_auth.js must be FIRST) -->
-  <script src="/static/js/admin_auth.js?v=7.0"></script>
-  <script src="/static/js/api.js?v=7.0"></script>
-  <script src="/static/js/graph_view.js?v=7.0"></script>
-  <script src="/static/js/quiz.js?v=7.0"></script>
-  <script src="/static/js/assignment.js?v=7.0"></script>
-  <script src="/static/js/upsc.js?v=7.0"></script>
-  <script src="/static/js/roadmap.js?v=7.0"></script>
-  <script src="/static/js/roadmap_visual.js?v=7.0"></script>
-  <script src="/static/js/supporting.js?v=7.0"></script>
-  <script src="/static/js/ai_assistant.js?v=7.0"></script>
-  <script src="/static/js/app.js?v=7.0"></script>
+  <!-- Scripts -->
+  <script src="/static/js/api.js?v=4.3"></script>
+  <script src="/static/js/admin_auth.js?v=4.3"></script>
+  <script src="/static/js/app.js?v=4.3"></script>
+  <script src="/static/js/quiz.js?v=4.3"></script>
+  <script src="/static/js/roadmap.js?v=4.3"></script>
+  <script src="/static/js/graph.js?v=4.3"></script>
+  <script src="/static/js/ai_assistant.js?v=4.3"></script>
+  <script src="/static/js/supporting_features.js?v=4.3"></script>
+  <script src="/static/js/assignment.js?v=4.3"></script>
+  <script src="/static/js/upsc.js?v=4.3"></script>
 </body>
 </html>
