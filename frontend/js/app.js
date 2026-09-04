@@ -17,7 +17,9 @@ const AppState = {
   _quizFullscreen: false,
 
   async init() {
-    this.graphView = new KnowledgeGraphView('graphCanvas');
+    if (typeof KnowledgeGraphView !== 'undefined') {
+      this.graphView = new KnowledgeGraphView('graphCanvas');
+    }
     this._startLiveClock();
 
     // ── GATE 1: User Identity Portal (2-Step: Credentials → Role) ──
@@ -80,15 +82,19 @@ const AppState = {
       'nav_dashboard':   ['JEE','NEET','UPSC'],
       'nav_quiz':        ['JEE','NEET','UPSC'],
       'nav_assignment':  ['JEE','NEET'],
-      'nav_roadmap':     ['JEE','NEET','UPSC'],
+      'nav_roadmap':     ['JEE','NEET'],
       'nav_ai':          ['JEE','NEET','UPSC'],
       'nav_graph':       ['JEE','NEET'],
       'nav_upsc':        ['UPSC'],
+      'nav_upsc_prelims':['UPSC'],
+      'nav_upsc_mains':  ['UPSC'],
+      'nav_telemetry':   ['JEE','NEET','UPSC'],
       // Bottom nav
       'bnav_dashboard':  ['JEE','NEET','UPSC'],
       'bnav_quiz':       ['JEE','NEET','UPSC'],
       'bnav_assignment': ['JEE','NEET'],
-      'bnav_roadmap':    ['JEE','NEET','UPSC'],
+      'bnav_roadmap':    ['JEE','NEET'],
+      'bnav_upsc':       ['UPSC'],
       'bnav_ai':         ['JEE','NEET','UPSC'],
     };
     for (const [navId, allowedExams] of Object.entries(NAV_VISIBILITY)) {
@@ -192,6 +198,7 @@ const AppState = {
 
       this.updateHeaderProfile();
       this._showStudentHeader(true);
+      this.buildExamNav(examId);
 
       // Hide buffering overlay
       this._hideBufferingOverlay();
@@ -362,9 +369,25 @@ const AppState = {
 
   // ─── Tab Switcher (with first-quiz feature gate) ─────────
   switchTab(tabId) {
-    // ── Feature Gate: Block all non-quiz tabs until first quiz complete ──
-    const GATED_TABS = ['roadmap','graph','ai','assignment','upsc'];
-    if (!this.hasCompletedFirstQuiz && GATED_TABS.includes(tabId) && this.student) {
+    // ── UPSC Sub-navigation routing ──
+    if (tabId === 'upsc_prelims') {
+      this.switchTab('upsc');
+      if (typeof UPSCController !== 'undefined') {
+        UPSCController.switchSubTab('prelims');
+      }
+      return;
+    }
+    if (tabId === 'upsc_mains') {
+      this.switchTab('upsc');
+      if (typeof UPSCController !== 'undefined') {
+        UPSCController.switchSubTab('mains');
+      }
+      return;
+    }
+
+    // ── Feature Gate: For JEE/NEET only, prompt first diagnostic if roadmap/assignment clicked ──
+    const GATED_TABS = ['roadmap','graph','ai','assignment'];
+    if (this.currentExam !== 'UPSC' && !this.hasCompletedFirstQuiz && GATED_TABS.includes(tabId) && this.student) {
       this._toast('🔒 Complete your first diagnostic quiz to unlock all features!', 'warn');
       this._showFirstQuizGate();
       return;
@@ -382,6 +405,41 @@ const AppState = {
     if (tabId === 'upsc' && typeof UPSCController !== 'undefined') {
       UPSCController.init();
     }
+  },
+
+  // ─── Safe Quiz Launch Handler ─────────────────────────────
+  startQuizSafe(fn) {
+    if (!this.student) {
+      this.showDomainSelectScreen();
+      return;
+    }
+    if (typeof fn === 'function') {
+      fn();
+    }
+  },
+
+  // ─── Direct Navigation to First Diagnostic Quiz ──────────
+  goToFirstQuiz() {
+    const gate = document.getElementById('featureGateOverlay');
+    if (gate) gate.style.display = 'none';
+    const firstGate = document.getElementById('firstQuizGateOverlay');
+    if (firstGate) firstGate.style.display = 'none';
+    if (this.currentExam === 'UPSC') {
+      this.switchTab('upsc');
+      if (typeof UPSCController !== 'undefined') {
+        UPSCController.switchSubTab('prelims');
+      }
+    } else {
+      this.switchTab('quiz');
+      if (typeof QuizController !== 'undefined') {
+        QuizController.startTest(this.currentExam, 'DIAGNOSTIC', 1);
+      }
+    }
+  },
+
+  // ─── Show Diagnostic / Domain Selection Gateway ──────────
+  showDiagnosticGateway() {
+    this.showDomainSelectScreen();
   },
 
   // ─── First-Quiz Gate Overlay ─────────────────────────────

@@ -144,7 +144,7 @@ const QuizController = {
     if (this.keyHandlerBound) return;
     window.addEventListener('keydown', (e) => {
       // Only process when quiz tab is active and attempt exists
-      const pane = document.getElementById('pane_assessment');
+      const pane = document.getElementById('pane_quiz') || document.getElementById('pane_assessment');
       if (!pane || !pane.classList.contains('active') || !this.currentAttempt) return;
 
       // Avoid typing inside inputs

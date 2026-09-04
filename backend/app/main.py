@@ -67,7 +67,7 @@ def health_check():
     return {
         "status": "HEALTHY",
         "engine": "Adaptive Student Intelligence & Dynamic Roadmap Platform",
-        "supported_exams": ["JEE", "NEET"],
+        "supported_exams": ["JEE", "NEET", "UPSC"],
         "models": ["MultiFactor_Mastery", "Ebbinghaus_Decay", "BKT_Knowledge_Tracing", "IRT_2PL", "NetworkX_DAG_Prerequisites"]
     }
 

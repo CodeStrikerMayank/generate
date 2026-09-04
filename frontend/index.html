@@ -512,7 +512,7 @@
               <button class="lf-btn" style="padding:0.65rem;" onclick="AppState.startQuizSafe(()=>QuizController.startTest(AppState.currentExam,'DIAGNOSTIC',1))">
                 🚀 9-Q Compulsory Screener
               </button>
-              <button class="btn-ghost" style="width:100%;justify-content:center;padding:0.6rem;" onclick="AppState.startQuizSafe(()=>QuizController.startDrill('Physics'))">
+              <button class="btn-ghost" style="width:100%;justify-content:center;padding:0.6rem;" onclick="AppState.startQuizSafe(()=>QuizController.startDrill(AppState.currentExam === 'NEET' ? 'Biology' : (AppState.currentExam === 'UPSC' ? 'General Studies' : 'Physics')))">
                 🎯 5-Q Targeted Topic Drill
               </button>
               <button class="btn-ghost" style="width:100%;justify-content:center;padding:0.6rem;" onclick="AppState.startQuizSafe(()=>QuizController.startFullScan())">
@@ -733,19 +733,36 @@
     </div>
   </div>
 
+  <!-- Result Feedback Modal -->
+  <div class="modal-backdrop" id="resultModal">
+    <div class="modal-box" style="max-width:800px;max-height:90vh;overflow-y:auto;position:relative;">
+      <button class="modal-close-btn" onclick="document.getElementById('resultModal').classList.remove('active')" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text-muted);font-size:1.4rem;cursor:pointer;">✕</button>
+      <div id="resultModalContent"></div>
+    </div>
+  </div>
+
+  <!-- Supporting Features Modal (Review Queue / Report Card / Error Trends) -->
+  <div class="modal-backdrop" id="supportingModal">
+    <div class="modal-box" style="max-width:760px;max-height:90vh;overflow-y:auto;position:relative;">
+      <button class="modal-close-btn" onclick="document.getElementById('supportingModal').classList.remove('active')" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text-muted);font-size:1.4rem;cursor:pointer;">✕</button>
+      <div id="supportingModalContent"></div>
+    </div>
+  </div>
+
   <!-- Toast Notification -->
   <div id="toastNotif" class="toast-notif" style="display:none;"></div>
 
   <!-- Scripts -->
   <script src="/static/js/api.js?v=4.3"></script>
   <script src="/static/js/admin_auth.js?v=4.3"></script>
-  <script src="/static/js/app.js?v=4.3"></script>
-  <script src="/static/js/quiz.js?v=4.3"></script>
+  <script src="/static/js/graph_view.js?v=4.3"></script>
+  <script src="/static/js/roadmap_visual.js?v=4.3"></script>
   <script src="/static/js/roadmap.js?v=4.3"></script>
-  <script src="/static/js/graph.js?v=4.3"></script>
-  <script src="/static/js/ai_assistant.js?v=4.3"></script>
-  <script src="/static/js/supporting_features.js?v=4.3"></script>
+  <script src="/static/js/quiz.js?v=4.3"></script>
   <script src="/static/js/assignment.js?v=4.3"></script>
+  <script src="/static/js/supporting.js?v=4.3"></script>
+  <script src="/static/js/ai_assistant.js?v=4.3"></script>
   <script src="/static/js/upsc.js?v=4.3"></script>
+  <script src="/static/js/app.js?v=4.3"></script>
 </body>
 </html>

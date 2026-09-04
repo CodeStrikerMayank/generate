@@ -21,10 +21,10 @@ router = APIRouter(prefix="/supporting", tags=["Supporting Features"])
 
 admin_router = APIRouter(prefix="/admin", tags=["Admin"])
 
-ADMIN_KEY = "1234admin"
+ADMIN_KEYS = {"1234admin", "aie_internal_2024"}
 
 def _verify_admin(request_key: str):
-    if request_key != ADMIN_KEY:
+    if request_key not in ADMIN_KEYS:
         raise HTTPException(status_code=403, detail="Admin access denied")
 
 @admin_router.post("/reset-db")

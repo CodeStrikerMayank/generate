@@ -114,6 +114,21 @@ class QuizEngine:
         self.db.add(assessment)
         self.db.flush()
 
+        # Ensure student exists in database to satisfy foreign key constraint
+        student_rec = self.db.query(Student).filter(Student.student_id == student_id).first()
+        if not student_rec:
+            student_rec = Student(
+                student_id=student_id,
+                name="Aspirant",
+                email=f"{student_id}@adaptive.local",
+                password_hash="temp_hash",
+                target_exam=exam,
+                daily_available_hours=4.0,
+                current_level="BEGINNER"
+            )
+            self.db.add(student_rec)
+            self.db.flush()
+
         attempt = AssessmentAttempt(
             attempt_id=attempt_id,
             assessment_id=assessment_id,
