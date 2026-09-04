@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/style.css?v=6.0">
+  <link rel="stylesheet" href="/static/css/style.css?v=7.0">
 
 </head>
 <body>
@@ -16,157 +16,324 @@
   <!-- ╔══════════════════════════════════════════════════════════╗ -->
   <!-- ║   ADMIN LOGIN OVERLAY (shown before anything else)      ║ -->
   <!-- ╚══════════════════════════════════════════════════════════╝ -->
-  <div id="adminLoginOverlay" class="admin-overlay">
+  <!-- ╔══════════════════════════════════════════════════════════╗ -->
+  <!-- ║   SCREEN 1: UNIFIED 3-ROLE AUTH PORTAL (Student/Guest/Admin)║ -->
+  <!-- ╚══════════════════════════════════════════════════════════╝ -->
+  <div id="portalAuthOverlay" class="admin-overlay active">
     <canvas id="adminParticleCanvas" class="admin-particle-canvas"></canvas>
-    <div class="admin-login-box" id="adminLoginBox">
+    <div class="admin-login-box" id="portalAuthBox" style="max-width:460px;">
       <div class="admin-login-logo">Δ</div>
-      <div style="text-align:center;margin-bottom:1.5rem;">
-        <div class="admin-login-badge">🔐 PROTOTYPE ACCESS CONTROL</div>
-        <h1 class="admin-login-title">Adaptive Intelligence Engine</h1>
-        <p class="admin-login-sub">Admin authentication required to access this prototype</p>
+      <div style="text-align:center;margin-bottom:1.25rem;">
+        <div class="admin-login-badge">🛡️ ADAPTIVE GATEWAY · V4.2</div>
+        <h1 class="admin-login-title">Cognitive Intelligence Portal</h1>
+        <p class="admin-login-sub">Choose your identity to initialize your adaptive learning engine</p>
       </div>
 
-      <div class="form-field" style="margin-bottom:0.85rem;">
-        <label class="form-label">Username</label>
-        <input type="text" id="adminUsername" class="form-input admin-input" placeholder="Enter admin username" autocomplete="username">
+      <!-- 3-Role Tab Switcher -->
+      <div class="role-tab-grid">
+        <button type="button" class="role-tab-btn active" id="tabBtnStudent" onclick="AdminAuth.switchRoleTab('student')">
+          <span>🎓</span> Student
+        </button>
+        <button type="button" class="role-tab-btn" id="tabBtnGuest" onclick="AdminAuth.switchRoleTab('guest')">
+          <span>⚡</span> Guest
+        </button>
+        <button type="button" class="role-tab-btn" id="tabBtnAdmin" onclick="AdminAuth.switchRoleTab('admin')">
+          <span>🛡️</span> Admin
+        </button>
       </div>
-      <div class="form-field" style="margin-bottom:1rem;">
-        <label class="form-label">Password</label>
-        <div style="position:relative;">
-          <input type="password" id="adminPassword" class="form-input admin-input" placeholder="Enter admin password" autocomplete="current-password">
-          <button onclick="const p=document.getElementById('adminPassword');p.type=p.type==='password'?'text':'password'" 
-            style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:1.1rem;">👁</button>
+
+      <!-- ── Panel 1: Student ── -->
+      <div class="role-panel active" id="rolePanelStudent">
+        <div class="form-field" style="margin-bottom:0.85rem;">
+          <label class="form-label" style="display:flex;justify-content:space-between;">
+            <span>Candidate Full Name</span>
+            <span style="color:var(--accent-cyan);font-size:0.7rem;">Required</span>
+          </label>
+          <input type="text" id="studentNameInput" class="form-input admin-input" placeholder="e.g. Arjun Sharma" autocomplete="name">
         </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;">
+          <div class="form-field">
+            <label class="form-label">Age</label>
+            <input type="number" id="studentAgeInput" class="form-input admin-input" value="17" min="10" max="80">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Passcode <span style="color:var(--text-faint);font-size:0.68rem;">(Optional)</span></label>
+            <input type="password" id="studentPinInput" class="form-input admin-input" placeholder="1234">
+          </div>
+        </div>
+        <button id="studentProceedBtn" class="btn-primary glow-pulse" style="width:100%;justify-content:center;padding:0.9rem;font-size:0.95rem;font-weight:800;border-radius:var(--radius-md);" onclick="AdminAuth.loginStudent()">
+          Proceed to Domain &amp; Subjects →
+        </button>
       </div>
 
-      <div id="adminLoginError" class="admin-login-error" style="display:none;"></div>
+      <!-- ── Panel 2: Guest ── -->
+      <div class="role-panel" id="rolePanelGuest">
+        <div class="form-field" style="margin-bottom:0.85rem;">
+          <label class="form-label">Guest Alias</label>
+          <input type="text" id="guestNameInput" class="form-input admin-input" value="Guest Aspirant" placeholder="Enter display alias">
+        </div>
+        <div class="form-field" style="margin-bottom:1.1rem;">
+          <label class="form-label">Age</label>
+          <input type="number" id="guestAgeInput" class="form-input admin-input" value="18" min="10" max="80">
+        </div>
+        <button id="guestProceedBtn" class="btn-primary glow-pulse" style="width:100%;justify-content:center;padding:0.9rem;font-size:0.95rem;font-weight:800;border-radius:var(--radius-md);background:linear-gradient(135deg,#06b6d4,#6366f1);" onclick="AdminAuth.loginGuest()">
+          ⚡ Instant Guest Access →
+        </button>
+      </div>
 
-      <button id="adminLoginBtn" class="btn-primary glow-pulse" style="width:100%;justify-content:center;padding:0.9rem;font-size:1rem;font-weight:800;border-radius:var(--radius-md);letter-spacing:0.02em;" onclick="AdminAuth.login()">
-        🔐 Authenticate →
-      </button>
+      <!-- ── Panel 3: Admin ── -->
+      <div class="role-panel" id="rolePanelAdmin">
+        <div class="form-field" style="margin-bottom:0.85rem;">
+          <label class="form-label">Admin Username</label>
+          <input type="text" id="adminUsername" class="form-input admin-input" placeholder="Enter admin username (e.g. admin)" autocomplete="username">
+        </div>
+        <div class="form-field" style="margin-bottom:0.75rem;">
+          <label class="form-label">Password</label>
+          <div style="position:relative;">
+            <input type="password" id="adminPassword" class="form-input admin-input" placeholder="Enter admin password" autocomplete="current-password">
+            <button type="button" onclick="const p=document.getElementById('adminPassword');p.type=p.type==='password'?'text':'password'" 
+              style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:1.1rem;">👁</button>
+          </div>
+          <div class="quick-pin-row">
+            <span style="font-size:0.68rem;color:var(--text-faint);align-self:center;">Master PINs:</span>
+            <span class="quick-pin-pill" onclick="document.getElementById('adminUsername').value='admin';document.getElementById('adminPassword').value='9999'">admin: 9999</span>
+            <span class="quick-pin-pill" onclick="document.getElementById('adminUsername').value='uncle';document.getElementById('adminPassword').value='unclechan'">unclechan</span>
+          </div>
+        </div>
+        <button id="adminLoginBtn" class="btn-primary glow-pulse" style="width:100%;justify-content:center;padding:0.9rem;font-size:0.95rem;font-weight:800;border-radius:var(--radius-md);margin-top:0.5rem;" onclick="AdminAuth.loginAdmin()">
+          🔐 Authenticate Operator →
+        </button>
+      </div>
 
-      <div style="text-align:center;margin-top:1rem;font-size:0.72rem;color:var(--text-faint);">
-        Prototype access only · Offline-first · No data leaves this machine
+      <div id="portalAuthError" class="admin-login-error" style="display:none;margin-top:0.85rem;"></div>
+
+      <div style="text-align:center;margin-top:1.2rem;font-size:0.72rem;color:var(--text-faint);">
+        Offline-First · SQLite Latent Vector Store · Multi-Domain Security
       </div>
     </div>
   </div>
 
   <!-- ╔══════════════════════════════════════════════════════════╗ -->
-  <!-- ║   BUFFERING / CALIBRATION LOADING SCREEN                 ║ -->
+  <!-- ║   SCREEN 3: ULTRA-AESTHETIC SCI-FI HUD BUFFERING OVERLAY ║ -->
   <!-- ╚══════════════════════════════════════════════════════════╝ -->
   <div id="systemBufferingOverlay" class="buffering-overlay">
     <div class="buffering-card">
-      <div class="buffering-spinner-wrap">
-        <div class="buffering-spinner-outer"></div>
-        <div class="buffering-spinner-inner"></div>
+      <!-- Sci-Fi HUD Accents -->
+      <div class="hud-laser-scanner"></div>
+      <div class="hud-corner hud-corner-tl"></div>
+      <div class="hud-corner hud-corner-tr"></div>
+      <div class="hud-corner hud-corner-bl"></div>
+      <div class="hud-corner hud-corner-br"></div>
+
+      <!-- Holographic Tri-Ring Gyroscope -->
+      <div class="buffering-gyro-wrap">
+        <div class="sonar-wave"></div>
+        <div class="sonar-wave sonar-wave-2"></div>
+        <div class="gyro-ring-outer"></div>
+        <div class="gyro-ring-mid"></div>
+        <div class="gyro-ring-inner"></div>
         <div class="buffering-center-logo">Δ</div>
       </div>
+
+      <!-- Header & Title -->
       <div>
-        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);padding:3px 12px;border-radius:var(--radius-full);font-size:0.75rem;font-weight:800;color:var(--accent-neon);margin-bottom:0.5rem;letter-spacing:0.04em;">
-          ⚙️ STREAM CALIBRATION IN PROGRESS
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(6,182,212,0.12);border:1px solid rgba(6,182,212,0.35);padding:4px 14px;border-radius:var(--radius-full);font-size:0.72rem;font-weight:800;color:var(--accent-cyan);letter-spacing:0.06em;margin-bottom:0.4rem;">
+          <span style="display:inline-block;width:6px;height:6px;background:var(--accent-cyan);border-radius:50%;box-shadow:0 0 8px var(--accent-cyan);"></span>
+          COGNITIVE CALIBRATION PROTOCOL
         </div>
-        <h3 id="bufferingTitle" style="font-size:1.45rem;font-weight:900;letter-spacing:-0.02em;margin:0 0 0.35rem 0;">
-          Configuring Engine Stream…
-        </h3>
-        <p style="font-size:0.84rem;color:var(--text-secondary);margin:0;">
-          Locking entire neural architecture to <strong id="bufferingTargetExamText" style="color:var(--accent-cyan);">Selected Stream</strong>
+        <h2 id="bufferingTitle" style="font-size:1.6rem;font-weight:900;letter-spacing:-0.02em;margin:0 0 0.3rem 0;">
+          Calibrating Engine Stream…
+        </h2>
+        <p style="font-size:0.85rem;color:var(--text-secondary);margin:0;">
+          Configuring neural tensors for <strong id="bufferingTargetExamText" style="color:var(--accent-cyan);">Selected Stream</strong>
         </p>
       </div>
 
-      <div class="buffering-progress-wrap">
-        <div id="bufferingProgressBar" class="buffering-progress-fill"></div>
+      <!-- Telemetry Info Grid -->
+      <div class="buffering-telemetry-grid">
+        <div class="buffering-telemetry-item">
+          <div class="buffering-telemetry-label">CANDIDATE</div>
+          <div class="buffering-telemetry-val" id="buffCandidateDisp">Arjun S. (Age 17)</div>
+        </div>
+        <div class="buffering-telemetry-item">
+          <div class="buffering-telemetry-label">DOMAIN</div>
+          <div class="buffering-telemetry-val" id="buffDomainDisp">JEE Main (PCM)</div>
+        </div>
+        <div class="buffering-telemetry-item">
+          <div class="buffering-telemetry-label">SECURITY</div>
+          <div class="buffering-telemetry-val" style="color:var(--accent-emerald);">LOCKED_STREAM</div>
+        </div>
       </div>
 
-      <div style="display:flex;justify-content:space-between;width:100%;font-size:0.75rem;color:var(--text-muted);font-family:var(--font-mono);">
-        <span id="bufferingStatusText">Initializing stream parameters…</span>
-        <span id="bufferingPctText" style="color:var(--accent-neon);font-weight:700;">0%</span>
+      <!-- Progress Bar & Big Percentage -->
+      <div style="width:100%;">
+        <div class="buffering-progress-wrap">
+          <div id="bufferingProgressBar" class="buffering-progress-fill"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.4rem;font-family:var(--font-mono);font-size:0.78rem;">
+          <div class="buffering-equalizer">
+            <span class="eq-bar" style="animation-delay:0.1s"></span>
+            <span class="eq-bar" style="animation-delay:0.4s"></span>
+            <span class="eq-bar" style="animation-delay:0.2s"></span>
+            <span class="eq-bar" style="animation-delay:0.6s"></span>
+            <span class="eq-bar" style="animation-delay:0.3s"></span>
+            <span class="eq-bar" style="animation-delay:0.5s"></span>
+          </div>
+          <span id="bufferingPctText" style="color:var(--accent-cyan);font-weight:900;font-size:1.1rem;letter-spacing:0.04em;">0%</span>
+        </div>
+      </div>
+
+      <!-- Live Terminal Status Ticker -->
+      <div style="width:100%;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-sm);padding:0.6rem 0.9rem;text-align:left;">
+        <span style="color:var(--accent-cyan);font-family:var(--font-mono);font-size:0.75rem;margin-right:6px;">&gt;</span>
+        <span id="bufferingStatusText" class="buffering-log-ticker" style="font-size:0.78rem;">Initializing cognitive tensors…</span>
       </div>
     </div>
   </div>
 
   <!-- ╔══════════════════════════════════════════════════════════╗ -->
-  <!-- ║   EXAM SELECTION & SYSTEM STREAM LOCK PANEL             ║ -->
+  <!-- ║   SCREEN 2: DOMAIN & SUBJECT SELECTION PANEL             ║ -->
   <!-- ╚══════════════════════════════════════════════════════════╝ -->
   <div id="launcherModal" class="modal-backdrop launcher-backdrop">
-    <div class="modal-box launcher-box" style="max-width:920px!important;padding:2.25rem 2.5rem!important;">
+    <div class="modal-box launcher-box" style="max-width:960px!important;padding:2.2rem 2.4rem!important;">
+      
+      <!-- Top Active Identity Bar -->
+      <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.25);border-radius:var(--radius-sm);padding:0.55rem 1rem;margin-bottom:1.4rem;">
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;">
+          <span style="font-size:1.1rem;">👤</span>
+          <span>Aspirant: <strong id="domainProfileName" style="color:var(--accent-cyan);">Arjun Sharma</strong></span>
+          <span style="color:var(--text-faint);">•</span>
+          <span>Age: <strong id="domainProfileAge" style="color:var(--text-primary);">17</strong></span>
+          <span style="color:var(--text-faint);">•</span>
+          <span class="nba-tag" id="domainProfileRole" style="background:rgba(99,102,241,0.2);color:var(--accent-neon);font-size:0.65rem;">STUDENT</span>
+        </div>
+        <button class="btn-secondary" style="font-size:0.72rem;padding:0.25rem 0.75rem;" onclick="AdminAuth.returnToAuthPortal()">
+          ↩ Switch Identity
+        </button>
+      </div>
+
       <div style="text-align:center;margin-bottom:1.5rem;">
-        <div class="onboard-logo" style="width:52px;height:52px;font-size:1.6rem;margin-bottom:0.75rem;">Δ</div>
-        <div class="admin-login-badge" style="display:inline-flex;margin-bottom:0.4rem;">✅ SESSION AUTHENTICATED</div>
-        <h2 style="font-size:1.75rem;font-weight:900;letter-spacing:-0.02em;margin-bottom:0.35rem;">
-          Select Examination Battlefield
+        <h2 style="font-size:1.8rem;font-weight:900;letter-spacing:-0.02em;margin-bottom:0.35rem;">
+          Choose Domain &amp; Subject Focus
         </h2>
-        <p style="color:var(--text-secondary);font-size:0.88rem;max-width:620px;margin:0 auto;line-height:1.5;">
-          Choose your competitive track. The platform will <strong>permanently calibrate &amp; lock</strong> to your selected stream for this session. Switching exams requires logging out.
+        <p style="color:var(--text-secondary);font-size:0.86rem;max-width:640px;margin:0 auto;line-height:1.5;">
+          Select your target competitive battlefield and verify your subjects. Your session will <strong>strictly calibrate and lock</strong> to this domain. Changing domains requires logging out.
         </p>
       </div>
 
-      <!-- Candidate Name Bar -->
-      <div style="max-width:480px;margin:0 auto 1.5rem auto;background:rgba(255,255,255,0.02);padding:0.75rem 1.25rem;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);">
-        <label class="form-label" style="font-size:0.78rem;font-weight:700;margin-bottom:4px;display:flex;justify-content:space-between;">
-          <span>Candidate / Aspirant Name</span>
-          <span style="color:var(--text-faint);font-size:0.72rem;">(Optional — default: Aspirant)</span>
-        </label>
-        <input type="text" id="launcherCandidateName" class="form-input" placeholder="e.g. Arjun Sharma (or leave empty for guest)" style="font-size:0.9rem;text-align:center;">
-      </div>
-
-      <!-- 3 Exam Stream Cards Grid -->
+      <!-- 3 Exam Domain Cards with Subject Checkboxes -->
       <div class="launcher-card-grid" style="grid-template-columns:repeat(3, 1fr);gap:1.1rem;">
         
         <!-- 1. JEE Main Card -->
-        <div class="launcher-card" onclick="AppState.selectAndLockExam('JEE')" style="border-top:3px solid var(--accent-cyan);">
+        <div class="domain-card active-domain" id="domainCard_JEE" onclick="AppState.setTargetDomain('JEE')" style="border-top:3px solid var(--accent-cyan);">
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span class="launcher-card-icon" style="margin:0;">🔭</span>
+            <span class="launcher-card-icon" style="margin:0;font-size:2rem;">🔭</span>
             <span class="nba-tag" style="background:rgba(6,182,212,0.15);color:var(--accent-cyan);border:1px solid rgba(6,182,212,0.3);font-size:0.65rem;">PCM TRACK</span>
           </div>
-          <div class="launcher-card-title" style="font-size:1.15rem;margin-top:0.4rem;">JEE Main &amp; Adv</div>
-          <div style="font-size:0.78rem;color:var(--accent-cyan);font-weight:700;margin-bottom:0.25rem;">Physics · Chemistry · Math</div>
-          <div class="launcher-card-desc" style="font-size:0.78rem;line-height:1.5;">
-            405k ExamBench Question Vault • IRT Latent Ability (θ) • BKT Mastery Models • 4-Tier Adaptive Drills
+          <div>
+            <div class="launcher-card-title" style="font-size:1.18rem;margin-top:0.2rem;">JEE Main &amp; Adv</div>
+            <div style="font-size:0.75rem;color:var(--accent-cyan);font-weight:700;">Engineering Focus</div>
           </div>
-          <button class="btn-primary" style="margin-top:0.75rem;padding:0.65rem;font-size:0.8rem;justify-content:center;background:linear-gradient(135deg,rgba(6,182,212,0.3),rgba(99,102,241,0.4));border-color:rgba(6,182,212,0.4);">
-            🚀 Lock &amp; Enter JEE Main →
-          </button>
+          
+          <div style="font-size:0.75rem;font-weight:800;color:var(--text-muted);margin-top:2px;">Target Subjects:</div>
+          <div class="subject-chip-group">
+            <label class="subject-chip" onclick="event.stopPropagation();">
+              <input type="checkbox" name="subject_jee" value="Physics" checked>
+              <span>⚡ Physics</span>
+            </label>
+            <label class="subject-chip" onclick="event.stopPropagation();">
+              <input type="checkbox" name="subject_jee" value="Chemistry" checked>
+              <span>🧪 Chemistry</span>
+            </label>
+            <label class="subject-chip" onclick="event.stopPropagation();">
+              <input type="checkbox" name="subject_jee" value="Mathematics" checked>
+              <span>📐 Mathematics</span>
+            </label>
+          </div>
+
+          <div class="launcher-card-desc" style="font-size:0.75rem;line-height:1.45;margin-top:0.3rem;">
+            405k ExamBench problems • IRT Latent Ability (θ) • BKT Mastery Models • Reja1 paper crops
+          </div>
         </div>
 
         <!-- 2. NEET-UG Card -->
-        <div class="launcher-card" onclick="AppState.selectAndLockExam('NEET')" style="border-top:3px solid var(--accent-emerald);">
+        <div class="domain-card" id="domainCard_NEET" onclick="AppState.setTargetDomain('NEET')" style="border-top:3px solid var(--accent-emerald);">
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span class="launcher-card-icon" style="margin:0;">🧬</span>
+            <span class="launcher-card-icon" style="margin:0;font-size:2rem;">🧬</span>
             <span class="nba-tag" style="background:rgba(16,185,129,0.15);color:var(--accent-emerald);border:1px solid rgba(16,185,129,0.3);font-size:0.65rem;">PCB TRACK</span>
           </div>
-          <div class="launcher-card-title" style="font-size:1.15rem;margin-top:0.4rem;">NEET-UG Medical</div>
-          <div style="font-size:0.78rem;color:var(--accent-emerald);font-weight:700;margin-bottom:0.25rem;">Biology · Physics · Chemistry</div>
-          <div class="launcher-card-desc" style="font-size:0.78rem;line-height:1.5;">
-            Official 2024–2025 Paper Image Crops • High-Yield Retention Schedules • Bio Botany &amp; Zoology Calibrations
+          <div>
+            <div class="launcher-card-title" style="font-size:1.18rem;margin-top:0.2rem;">NEET-UG Medical</div>
+            <div style="font-size:0.75rem;color:var(--accent-emerald);font-weight:700;">Medical Focus</div>
           </div>
-          <button class="btn-primary" style="margin-top:0.75rem;padding:0.65rem;font-size:0.8rem;justify-content:center;background:linear-gradient(135deg,rgba(16,185,129,0.3),rgba(99,102,241,0.4));border-color:rgba(16,185,129,0.4);">
-            🧬 Lock &amp; Enter NEET-UG →
-          </button>
+
+          <div style="font-size:0.75rem;font-weight:800;color:var(--text-muted);margin-top:2px;">Target Subjects:</div>
+          <div class="subject-chip-group">
+            <label class="subject-chip" onclick="event.stopPropagation();">
+              <input type="checkbox" name="subject_neet" value="Biology" checked>
+              <span>🧬 Biology (Bot/Zoo)</span>
+            </label>
+            <label class="subject-chip" onclick="event.stopPropagation();">
+              <input type="checkbox" name="subject_neet" value="Physics" checked>
+              <span>⚡ Physics</span>
+            </label>
+            <label class="subject-chip" onclick="event.stopPropagation();">
+              <input type="checkbox" name="subject_neet" value="Chemistry" checked>
+              <span>🧪 Chemistry</span>
+            </label>
+          </div>
+
+          <div class="launcher-card-desc" style="font-size:0.75rem;line-height:1.45;margin-top:0.3rem;">
+            Official 2024–2025 Paper Image Crops • High-Yield Retention Schedules • Medical Diagnostics
+          </div>
         </div>
 
         <!-- 3. UPSC CSE Card -->
-        <div class="launcher-card" onclick="AppState.selectAndLockExam('UPSC')" style="border-top:3px solid var(--accent-amber);">
+        <div class="domain-card" id="domainCard_UPSC" onclick="AppState.setTargetDomain('UPSC')" style="border-top:3px solid var(--accent-amber);">
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span class="launcher-card-icon" style="margin:0;">🏛️</span>
+            <span class="launcher-card-icon" style="margin:0;font-size:2rem;">🏛️</span>
             <span class="nba-tag" style="background:rgba(245,158,11,0.15);color:var(--accent-amber);border:1px solid rgba(245,158,11,0.3);font-size:0.65rem;">CIVIL SERVICES</span>
           </div>
-          <div class="launcher-card-title" style="font-size:1.15rem;margin-top:0.4rem;">UPSC Civil Services</div>
-          <div style="font-size:0.78rem;color:var(--accent-amber);font-weight:700;margin-bottom:0.25rem;">GS I–IV · CSAT · Prelims &amp; Mains</div>
-          <div class="launcher-card-desc" style="font-size:0.78rem;line-height:1.5;">
-            Prelims MCQ Vault • Mains Analytical Answer Writing with Live Word Counter • 5-Axis AI Rubric Evaluator (/15)
+          <div>
+            <div class="launcher-card-title" style="font-size:1.18rem;margin-top:0.2rem;">UPSC Civil Services</div>
+            <div style="font-size:0.75rem;color:var(--accent-amber);font-weight:700;">Administrative Focus</div>
           </div>
-          <button class="btn-primary" style="margin-top:0.75rem;padding:0.65rem;font-size:0.8rem;justify-content:center;background:linear-gradient(135deg,rgba(245,158,11,0.3),rgba(239,68,68,0.3));border-color:rgba(245,158,11,0.4);color:#fff;">
-            🏛️ Lock &amp; Enter UPSC CSE →
-          </button>
+
+          <div style="font-size:0.75rem;font-weight:800;color:var(--text-muted);margin-top:2px;">Target Subjects:</div>
+          <div class="subject-chip-group">
+            <label class="subject-chip" onclick="event.stopPropagation();">
+              <input type="checkbox" name="subject_upsc" value="General Studies" checked>
+              <span>🏛️ GS Papers I–IV</span>
+            </label>
+            <label class="subject-chip" onclick="event.stopPropagation();">
+              <input type="checkbox" name="subject_upsc" value="CSAT" checked>
+              <span>📊 CSAT Aptitude</span>
+            </label>
+            <label class="subject-chip" onclick="event.stopPropagation();">
+              <input type="checkbox" name="subject_upsc" value="Mains Written" checked>
+              <span>✍️ Mains Written</span>
+            </label>
+          </div>
+
+          <div class="launcher-card-desc" style="font-size:0.75rem;line-height:1.45;margin-top:0.3rem;">
+            Prelims MCQ Vault • Mains Analytical Answer Writing with Live Word Counter • 5-Axis AI Rubrics
+          </div>
         </div>
 
       </div>
 
+      <!-- Action Confirmation & Lock Button -->
+      <div style="margin-top:1.8rem;text-align:center;">
+        <button id="calibrateAndLockBtn" class="btn-primary glow-pulse" style="padding:0.95rem 2.5rem;font-size:1.05rem;font-weight:900;border-radius:var(--radius-md);margin:0 auto;display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#06b6d4,#6366f1);border-color:rgba(6,182,212,0.5);box-shadow:0 0 25px rgba(6,182,212,0.4);" onclick="AppState.calibrateAndLockDomain()">
+          <span>🚀</span> Calibrate Cognitive Engine &amp; Lock Domain →
+        </button>
+      </div>
+
       <!-- Lock Notice & Secondary Links -->
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:1.75rem;padding-top:1rem;border-top:1px solid var(--border-subtle);font-size:0.78rem;color:var(--text-muted);">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border-subtle);font-size:0.78rem;color:var(--text-muted);">
         <div style="display:flex;align-items:center;gap:6px;">
           <span>🔒</span>
-          <span>System locks to the chosen exam. Switching requires logging out.</span>
+          <span>Session locks permanently to chosen domain &amp; subjects. Changing requires logging out.</span>
         </div>
         <div style="display:flex;gap:10px;">
           <button class="btn-secondary" style="font-size:0.75rem;padding:0.35rem 0.85rem;" onclick="AdminAuth.showPanel()">
@@ -711,16 +878,16 @@
   </div>
 
   <!-- Scripts (admin_auth.js must be FIRST) -->
-  <script src="/static/js/admin_auth.js?v=6.0"></script>
-  <script src="/static/js/api.js?v=6.0"></script>
-  <script src="/static/js/graph_view.js?v=6.0"></script>
-  <script src="/static/js/quiz.js?v=6.0"></script>
-  <script src="/static/js/assignment.js?v=6.0"></script>
-  <script src="/static/js/upsc.js?v=6.0"></script>
-  <script src="/static/js/roadmap.js?v=6.0"></script>
-  <script src="/static/js/roadmap_visual.js?v=6.0"></script>
-  <script src="/static/js/supporting.js?v=6.0"></script>
-  <script src="/static/js/ai_assistant.js?v=6.0"></script>
-  <script src="/static/js/app.js?v=6.0"></script>
+  <script src="/static/js/admin_auth.js?v=7.0"></script>
+  <script src="/static/js/api.js?v=7.0"></script>
+  <script src="/static/js/graph_view.js?v=7.0"></script>
+  <script src="/static/js/quiz.js?v=7.0"></script>
+  <script src="/static/js/assignment.js?v=7.0"></script>
+  <script src="/static/js/upsc.js?v=7.0"></script>
+  <script src="/static/js/roadmap.js?v=7.0"></script>
+  <script src="/static/js/roadmap_visual.js?v=7.0"></script>
+  <script src="/static/js/supporting.js?v=7.0"></script>
+  <script src="/static/js/ai_assistant.js?v=7.0"></script>
+  <script src="/static/js/app.js?v=7.0"></script>
 </body>
 </html>

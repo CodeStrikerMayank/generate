@@ -7,11 +7,13 @@
 const AdminAuth = {
   SESSION_KEY: 'aie_admin_authed',
   SESSION_USER_KEY: 'aie_admin_user',
+  SESSION_ROLE_KEY: 'aie_user_role',
+  SESSION_NAME_KEY: 'aie_user_name',
+  SESSION_AGE_KEY: 'aie_user_age',
 
   /**
    * Credential table: username → SHA-256 hash of password.
    * Passwords: admin→9999, uncle→unclechan, lovehell→9999, striker→7777, core→unclechan
-   * Generated via: await crypto.subtle.digest('SHA-256', new TextEncoder().encode(password))
    */
   _CREDENTIAL_TABLE: {
     admin:    '888df25ae35772424a560c7152a1de794440e0ea5cfee62828333a456a506e05', // 9999
@@ -27,12 +29,20 @@ const AdminAuth = {
     return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
   },
 
-  /** Returns the currently logged-in username (or null) */
+  /** Returns current active identity details */
+  getUserProfile() {
+    return {
+      role: sessionStorage.getItem(this.SESSION_ROLE_KEY) || 'STUDENT',
+      name: sessionStorage.getItem(this.SESSION_NAME_KEY) || 'Aspirant',
+      age:  sessionStorage.getItem(this.SESSION_AGE_KEY) || '17'
+    };
+  },
+
   getLoggedInUser() {
     return sessionStorage.getItem(this.SESSION_USER_KEY) || null;
   },
 
-  /** Check session — if not authenticated show login gate */
+  /** Check session — if not authenticated show login portal */
   check() {
     if (sessionStorage.getItem(this.SESSION_KEY) === '1') {
       this._hideOverlay();
@@ -43,32 +53,91 @@ const AdminAuth = {
   },
 
   _showOverlay() {
-    const overlay = document.getElementById('adminLoginOverlay');
+    const overlay = document.getElementById('portalAuthOverlay') || document.getElementById('adminLoginOverlay');
     if (overlay) overlay.classList.add('active');
     setTimeout(() => this._startParticles(), 100);
-    setTimeout(() => {
-      const u = document.getElementById('adminUsername');
-      if (u) u.focus();
-    }, 200);
   },
 
   _hideOverlay() {
-    const overlay = document.getElementById('adminLoginOverlay');
+    const overlay = document.getElementById('portalAuthOverlay') || document.getElementById('adminLoginOverlay');
     if (overlay) overlay.classList.remove('active');
   },
 
-  async login() {
-    const u = (document.getElementById('adminUsername')?.value || '').trim().toLowerCase();
-    const p = document.getElementById('adminPassword')?.value || '';
-    const errEl = document.getElementById('adminLoginError');
-    const btn = document.getElementById('adminLoginBtn');
+  /** Role Tab Switcher: 'student' | 'guest' | 'admin' */
+  switchRoleTab(role) {
+    ['student', 'guest', 'admin'].forEach(r => {
+      const btn = document.getElementById(`tabBtn${r.charAt(0).toUpperCase() + r.slice(1)}`);
+      const panel = document.getElementById(`rolePanel${r.charAt(0).toUpperCase() + r.slice(1)}`);
+      if (btn) btn.classList.toggle('active', r === role);
+      if (panel) panel.classList.toggle('active', r === role);
+    });
+    const errEl = document.getElementById('portalAuthError');
+    if (errEl) errEl.style.display = 'none';
+  },
 
-    if (!u || !p) {
-      if (errEl) { errEl.innerText = '⚠️ Please enter both username and password.'; errEl.style.display = 'block'; }
+  /** 1. Student Login */
+  loginStudent() {
+    const nameInput = document.getElementById('studentNameInput');
+    const ageInput = document.getElementById('studentAgeInput');
+    const errEl = document.getElementById('portalAuthError');
+
+    const name = (nameInput?.value || '').trim();
+    const age = parseInt(ageInput?.value || '17', 10);
+
+    if (!name) {
+      if (errEl) {
+        errEl.innerText = '⚠️ Please enter your candidate name.';
+        errEl.style.display = 'block';
+      }
+      if (nameInput) nameInput.focus();
       return;
     }
 
-    // Disable button during async hash check
+    if (isNaN(age) || age < 10 || age > 99) {
+      if (errEl) {
+        errEl.innerText = '⚠️ Please enter a valid candidate age (10-99).';
+        errEl.style.display = 'block';
+      }
+      return;
+    }
+
+    sessionStorage.setItem(this.SESSION_KEY, '1');
+    sessionStorage.setItem(this.SESSION_ROLE_KEY, 'STUDENT');
+    sessionStorage.setItem(this.SESSION_NAME_KEY, name);
+    sessionStorage.setItem(this.SESSION_AGE_KEY, String(age));
+    sessionStorage.setItem(this.SESSION_USER_KEY, name);
+
+    this._hideOverlay();
+    AppState.showDomainSelectScreen({ role: 'STUDENT', name, age });
+  },
+
+  /** 2. Guest Login */
+  loginGuest() {
+    const name = (document.getElementById('guestNameInput')?.value || '').trim() || 'Guest Aspirant';
+    const age = parseInt(document.getElementById('guestAgeInput')?.value || '18', 10) || 18;
+
+    sessionStorage.setItem(this.SESSION_KEY, '1');
+    sessionStorage.setItem(this.SESSION_ROLE_KEY, 'GUEST');
+    sessionStorage.setItem(this.SESSION_NAME_KEY, name);
+    sessionStorage.setItem(this.SESSION_AGE_KEY, String(age));
+    sessionStorage.setItem(this.SESSION_USER_KEY, name);
+
+    this._hideOverlay();
+    AppState.showDomainSelectScreen({ role: 'GUEST', name, age });
+  },
+
+  /** 3. Admin Login */
+  async loginAdmin() {
+    const u = (document.getElementById('adminUsername')?.value || '').trim().toLowerCase();
+    const p = document.getElementById('adminPassword')?.value || '';
+    const errEl = document.getElementById('portalAuthError');
+    const btn = document.getElementById('adminLoginBtn');
+
+    if (!u || !p) {
+      if (errEl) { errEl.innerText = '⚠️ Please enter both admin username and password.'; errEl.style.display = 'block'; }
+      return;
+    }
+
     if (btn) { btn.disabled = true; btn.innerText = '🔒 Verifying…'; }
 
     try {
@@ -76,51 +145,67 @@ const AdminAuth = {
       const expectedHash = this._CREDENTIAL_TABLE[u];
 
       if (expectedHash && hash === expectedHash) {
-        // ── Success ──
         sessionStorage.setItem(this.SESSION_KEY, '1');
+        sessionStorage.setItem(this.SESSION_ROLE_KEY, 'ADMIN');
         sessionStorage.setItem(this.SESSION_USER_KEY, u);
+        sessionStorage.setItem(this.SESSION_NAME_KEY, `Admin ${u.toUpperCase()}`);
+        sessionStorage.setItem(this.SESSION_AGE_KEY, 'Operator');
 
         if (btn) { btn.innerText = '✅ Authenticated!'; btn.style.background = 'var(--grad-emerald)'; }
         setTimeout(() => {
           this._hideOverlay();
-          AppState.showLauncherScreen();
-        }, 700);
+          AppState.showDomainSelectScreen({ role: 'ADMIN', name: `Admin ${u.toUpperCase()}`, age: 'Operator' });
+        }, 500);
       } else {
-        // ── Failure — no credential hints ──
         if (errEl) {
-          errEl.innerText = '❌ Invalid credentials. Please try again.';
+          errEl.innerText = '❌ Invalid operator credentials. Please try again.';
           errEl.style.display = 'block';
         }
-        const box = document.getElementById('adminLoginBox');
+        const box = document.getElementById('portalAuthBox') || document.getElementById('adminLoginBox');
         if (box) {
           box.classList.add('shake');
           setTimeout(() => box.classList.remove('shake'), 600);
         }
         if (btn) {
           btn.disabled = false;
-          btn.innerText = '🔐 Authenticate →';
+          btn.innerText = '🔐 Authenticate Operator →';
         }
       }
     } catch (err) {
-      if (errEl) { errEl.innerText = '⚠️ Authentication error. Please refresh.'; errEl.style.display = 'block'; }
-      if (btn) { btn.disabled = false; btn.innerText = '🔐 Authenticate →'; }
+      if (errEl) { errEl.innerText = '⚠️ Verification error. Please refresh.'; errEl.style.display = 'block'; }
+      if (btn) { btn.disabled = false; btn.innerText = '🔐 Authenticate Operator →'; }
     }
+  },
+
+  // Alias for backward compatibility
+  login() {
+    return this.loginAdmin();
+  },
+
+  returnToAuthPortal() {
+    AppState.closeLauncher();
+    this._showOverlay();
   },
 
   logout() {
     localStorage.removeItem('adaptive_student_id');
     localStorage.removeItem('adaptive_locked_exam');
+    localStorage.removeItem('adaptive_locked_subjects');
     AppState.student = null;
     AppState.lockedExam = null;
     AppState.isExamLocked = false;
-    AppState.showLauncherScreen();
+    this.returnToAuthPortal();
   },
 
   hardLogout() {
     sessionStorage.removeItem(this.SESSION_KEY);
     sessionStorage.removeItem(this.SESSION_USER_KEY);
+    sessionStorage.removeItem(this.SESSION_ROLE_KEY);
+    sessionStorage.removeItem(this.SESSION_NAME_KEY);
+    sessionStorage.removeItem(this.SESSION_AGE_KEY);
     localStorage.removeItem('adaptive_student_id');
     localStorage.removeItem('adaptive_locked_exam');
+    localStorage.removeItem('adaptive_locked_subjects');
     location.reload();
   },
 
@@ -270,7 +355,8 @@ const AdminAuth = {
 
     let animId;
     const draw = () => {
-      if (!document.getElementById('adminLoginOverlay')?.classList.contains('active')) {
+      const ov = document.getElementById('portalAuthOverlay') || document.getElementById('adminLoginOverlay');
+      if (!ov || !ov.classList.contains('active')) {
         cancelAnimationFrame(animId);
         return;
       }
@@ -314,6 +400,20 @@ const AdminAuth = {
 document.addEventListener('DOMContentLoaded', () => {
   ['adminUsername', 'adminPassword'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') AdminAuth.login(); });
+    if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') AdminAuth.loginAdmin(); });
+  });
+
+  ['studentNameInput', 'studentAgeInput', 'studentPinInput'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') AdminAuth.loginStudent(); });
+  });
+
+  ['guestNameInput', 'guestAgeInput'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') AdminAuth.loginGuest(); });
   });
 });
+
+// Explicitly bind to window for inline HTML onclick handlers
+window.AdminAuth = AdminAuth;
+

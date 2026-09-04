@@ -1,13 +1,15 @@
 /**
- * Master Application Controller — Adaptive Student Intelligence Engine v4.0
- * JEE Main & NEET | Admin-Gated | Hyper-Realistic Gen-Z Mobile-First UI
+ * Master Application Controller — Adaptive Student Intelligence Engine v4.2
+ * JEE Main, NEET-UG & UPSC CSE | 3-Role Portal (Student/Guest/Admin) | Sci-Fi HUD Engine
  */
 const AppState = {
   student: null,
   currentExam: 'JEE',
   lockedExam: null,
+  lockedSubjects: [],
   isExamLocked: false,
-  gatewaySelectedTrack: 'JEE',
+  targetDomain: 'JEE',
+  activeUserProfile: { role: 'STUDENT', name: 'Aspirant', age: '17' },
   graphView: null,
   _liveClockInterval: null,
   _kpiAnimInterval: null,
@@ -16,14 +18,19 @@ const AppState = {
     this.graphView = new KnowledgeGraphView('graphCanvas');
     this._startLiveClock();
 
-    // ── GATE 1: Admin must be authenticated first ──
+    // ── GATE 1: User Identity Portal (Student, Guest, Admin) ──
     if (!AdminAuth.check()) return;
 
-    // ── GATE 2: Student session with locked exam ──
+    // ── GATE 2: Student session with locked exam & subjects ──
     const storedStudentId = localStorage.getItem('adaptive_student_id');
     const storedLockedExam = localStorage.getItem('adaptive_locked_exam');
+    const storedSubjects = localStorage.getItem('adaptive_locked_subjects');
+    if (storedSubjects) {
+      try { this.lockedSubjects = JSON.parse(storedSubjects); } catch { this.lockedSubjects = []; }
+    }
+
     if (!storedStudentId) {
-      this.showLauncherScreen();
+      this.showDomainSelectScreen();
       return;
     }
 
@@ -47,28 +54,39 @@ const AppState = {
       console.warn('Profile load failed:', err);
       localStorage.removeItem('adaptive_student_id');
       localStorage.removeItem('adaptive_locked_exam');
-      this.showLauncherScreen();
+      localStorage.removeItem('adaptive_locked_subjects');
+      this.showDomainSelectScreen();
     }
 
     AIAssistantController.renderChat();
   },
 
-  // ─── Launcher (Post-Admin-Login Exam Chooser) ───────────────
-  showLauncherScreen() {
-    const currentUser = (typeof AdminAuth !== 'undefined' && AdminAuth.getLoggedInUser)
-      ? AdminAuth.getLoggedInUser() : null;
-    const usernameEl = document.getElementById('launcherUsername');
-    if (usernameEl) usernameEl.innerText = currentUser
-      ? currentUser.charAt(0).toUpperCase() + currentUser.slice(1)
-      : 'Operator';
+  // ─── Screen 2: Domain & Subject Customization Panel ─────────
+  showDomainSelectScreen(userProfile) {
+    if (userProfile) {
+      this.activeUserProfile = userProfile;
+    } else if (typeof AdminAuth !== 'undefined' && AdminAuth.getUserProfile) {
+      this.activeUserProfile = AdminAuth.getUserProfile();
+    }
+
+    const nameEl = document.getElementById('domainProfileName');
+    const ageEl = document.getElementById('domainProfileAge');
+    const roleEl = document.getElementById('domainProfileRole');
+    if (nameEl) nameEl.innerText = this.activeUserProfile.name || 'Aspirant';
+    if (ageEl) ageEl.innerText = this.activeUserProfile.age || '17';
+    if (roleEl) roleEl.innerText = (this.activeUserProfile.role || 'STUDENT').toUpperCase();
 
     const launcher = document.getElementById('launcherModal');
     if (launcher) launcher.classList.add('active');
-    ['onboardingModal','resultModal','supportingModal','adminPanelModal','systemBufferingOverlay'].forEach(id => {
+    ['onboardingModal','resultModal','supportingModal','adminPanelModal','systemBufferingOverlay','portalAuthOverlay'].forEach(id => {
       const m = document.getElementById(id);
-      if (m) m.classList.remove('active');
+      if (m && id !== 'launcherModal') m.classList.remove('active');
     });
     this._showStudentHeader(false);
+  },
+
+  showLauncherScreen() {
+    this.showDomainSelectScreen();
   },
 
   closeLauncher() {
@@ -76,28 +94,50 @@ const AppState = {
     if (launcher) launcher.classList.remove('active');
   },
 
-  // ─── One-Click Exam Stream Selection & Lock ────────────────
-  async selectAndLockExam(examId) {
+  setTargetDomain(domain) {
+    this.targetDomain = domain;
+    ['JEE', 'NEET', 'UPSC'].forEach(d => {
+      const card = document.getElementById(`domainCard_${d}`);
+      if (card) card.classList.toggle('active-domain', d === domain);
+    });
+  },
+
+  getSelectedSubjectsForDomain(domain) {
+    let selector = 'input[name="subject_jee"]:checked';
+    if (domain === 'NEET') selector = 'input[name="subject_neet"]:checked';
+    else if (domain === 'UPSC') selector = 'input[name="subject_upsc"]:checked';
+
+    const checkedNodes = document.querySelectorAll(selector);
+    const subjects = Array.from(checkedNodes).map(cb => cb.value);
+    return subjects.length > 0 ? subjects : (domain === 'JEE' ? ['Physics','Chemistry','Mathematics'] : domain === 'NEET' ? ['Biology','Physics','Chemistry'] : ['General Studies','CSAT','Mains Written']);
+  },
+
+  // ─── Calibrate Engine & Lock Domain ───────────────────────
+  async calibrateAndLockDomain() {
+    const examId = this.targetDomain || 'JEE';
+    const subjects = this.getSelectedSubjectsForDomain(examId);
+    const name = this.activeUserProfile.name || 'Aspirant';
+    const age = this.activeUserProfile.age || '17';
+    const role = this.activeUserProfile.role || 'STUDENT';
+
     this.closeLauncher();
-    let name = document.getElementById('launcherCandidateName')?.value.trim();
-    if (!name) name = 'Aspirant_' + Math.floor(1000 + Math.random() * 9000);
 
     const examTitles = {
-      JEE: 'JEE Main & Advanced (PCM)',
-      NEET: 'NEET-UG Medical (PCB)',
-      UPSC: 'UPSC Civil Services (CSE)'
+      JEE: 'JEE Main & Advanced',
+      NEET: 'NEET-UG Medical',
+      UPSC: 'UPSC Civil Services'
     };
     const examTitle = examTitles[examId] || examId;
 
-    // 1. Show Buffering Animation Overlay
-    this._showBufferingOverlay(examTitle);
+    // 1. Show Ultra-Aesthetic Sci-Fi HUD Buffering Animation
+    this._showBufferingOverlay({ examId, examTitle, subjects, name, age, role });
 
     // 2. Perform cybernetic calibration steps with animated progress bar and logs
-    await this._runBufferingCalibrationSequence(examId, examTitle);
+    await this._runBufferingCalibrationSequence({ examId, examTitle, subjects, name, age, role });
 
-    // 3. Register or setup student in background
+    // 3. Register or setup student in backend
     try {
-      const email = `aspirant_${Date.now()}_${Math.floor(Math.random() * 1000)}@adaptive.local`;
+      const email = `candidate_${Date.now()}_${Math.floor(Math.random() * 1000)}@adaptive.local`;
       let reg;
       try {
         reg = await API.register({ name, email, password: 'student_pass', target_exam: examId, daily_available_hours: 4.0 });
@@ -108,9 +148,11 @@ const AppState = {
       this.student = reg;
       this.currentExam = examId;
       this.lockedExam = examId;
+      this.lockedSubjects = subjects;
       this.isExamLocked = true;
       localStorage.setItem('adaptive_student_id', reg.student_id);
       localStorage.setItem('adaptive_locked_exam', examId);
+      localStorage.setItem('adaptive_locked_subjects', JSON.stringify(subjects));
 
       this.updateHeaderProfile();
       this._showStudentHeader(true);
@@ -118,7 +160,7 @@ const AppState = {
       // Hide buffering overlay
       this._hideBufferingOverlay();
 
-      this._toast(`🔒 System locked to ${examTitle}! Welcome ${name}.`, 'success');
+      this._toast(`🔒 Engine locked to ${examTitle} (${subjects.join(', ')})! Welcome ${name}.`, 'success');
 
       // 4. Navigate into tailored workspace
       if (examId === 'UPSC') {
@@ -137,21 +179,31 @@ const AppState = {
     } catch (err) {
       this._hideBufferingOverlay();
       this._toast('Error calibrating stream: ' + err.message, 'error');
-      this.showLauncherScreen();
+      this.showDomainSelectScreen();
     }
   },
 
-  // ─── Buffering / Calibration Screen Controls ────────────────
-  _showBufferingOverlay(examTitle) {
+  // Backwards compatibility alias
+  selectAndLockExam(examId) {
+    this.setTargetDomain(examId);
+    return this.calibrateAndLockDomain();
+  },
+
+  // ─── Ultra-Aesthetic Sci-Fi HUD Buffering Controls ────────
+  _showBufferingOverlay({ examId, examTitle, subjects, name, age, role }) {
     const overlay = document.getElementById('systemBufferingOverlay');
     const targetText = document.getElementById('bufferingTargetExamText');
+    const candDisp = document.getElementById('buffCandidateDisp');
+    const domDisp = document.getElementById('buffDomainDisp');
     const bar = document.getElementById('bufferingProgressBar');
     const status = document.getElementById('bufferingStatusText');
     const pct = document.getElementById('bufferingPctText');
 
-    if (targetText) targetText.innerText = examTitle;
+    if (targetText) targetText.innerText = `${examTitle} (${subjects.join(', ')})`;
+    if (candDisp) candDisp.innerText = `${name} (${role}, Age ${age})`;
+    if (domDisp) domDisp.innerText = `${examTitle}`;
     if (bar) bar.style.width = '0%';
-    if (status) status.innerText = 'Initializing stream parameters…';
+    if (status) status.innerText = 'Initializing cognitive neural parameters…';
     if (pct) pct.innerText = '0%';
 
     if (overlay) overlay.classList.add('active');
@@ -164,21 +216,21 @@ const AppState = {
       setTimeout(() => {
         overlay.classList.remove('active');
         overlay.style.opacity = '';
-      }, 350);
+      }, 400);
     }
   },
 
-  async _runBufferingCalibrationSequence(examId, examTitle) {
+  async _runBufferingCalibrationSequence({ examId, examTitle, subjects, name, age, role }) {
     const bar = document.getElementById('bufferingProgressBar');
     const status = document.getElementById('bufferingStatusText');
     const pct = document.getElementById('bufferingPctText');
 
     const steps = [
-      { progress: 20, log: `[01/05] Establishing offline encryption & local SQLite store…`, delay: 350 },
-      { progress: 45, log: `[02/05] Locking session security token to ${examId} stream…`, delay: 400 },
-      { progress: 70, log: `[03/05] Ingesting 405k ExamBench items & official benchmark paper crops…`, delay: 400 },
-      { progress: 90, log: `[04/05] Calibrating Bayesian Knowledge Tracing & IRT parameter matrices…`, delay: 350 },
-      { progress: 100, log: `[05/05] Stream calibrated & locked! Launching workspace…`, delay: 300 }
+      { progress: 18, log: `[0.10s] IDENTITY_VERIFIED // Aspirant: ${name} (${role}, Age: ${age}) authenticated`, delay: 360 },
+      { progress: 42, log: `[0.45s] DOMAIN_MOUNT // Initializing ${examTitle} curriculum vector matrix…`, delay: 380 },
+      { progress: 68, log: `[0.85s] SUBJECT_SCOPE // Binding target focus modules: [${subjects.join(', ')}]…`, delay: 380 },
+      { progress: 88, log: `[1.30s] VAULT_LINK // Mounting 405k ExamBench items & authentic paper crops…`, delay: 360 },
+      { progress: 100, log: `[1.75s] COGNITIVE_LOCK // BKT/IRT tensors calibrated. Session locked to ${examId}!`, delay: 320 }
     ];
 
     for (const s of steps) {
@@ -189,20 +241,26 @@ const AppState = {
     }
   },
 
-  // ─── Logout (Clears Lock & Returns to Exam Chooser) ─────────
+  // ─── Logout (Clears Lock & Returns to Auth Portal) ─────────
   logout() {
     localStorage.removeItem('adaptive_student_id');
     localStorage.removeItem('adaptive_locked_exam');
+    localStorage.removeItem('adaptive_locked_subjects');
     this.student = null;
     this.lockedExam = null;
+    this.lockedSubjects = [];
     this.isExamLocked = false;
     this._showStudentHeader(false);
-    this.showLauncherScreen();
-    this._toast('👋 Logged out. Choose an examination to begin a new locked session.', 'info');
+    if (typeof AdminAuth !== 'undefined' && AdminAuth.returnToAuthPortal) {
+      AdminAuth.returnToAuthPortal();
+    } else {
+      this.showDomainSelectScreen();
+    }
+    this._toast('👋 Logged out. Choose your identity to initiate a new session.', 'info');
   },
 
   promptLogoutToSwitch() {
-    if (confirm(`Switching exam streams requires ending your current session and re-authenticating.\n\nLogout now to choose a different examination?`)) {
+    if (confirm(`Switching domains requires ending your current session and re-authenticating.\n\nLogout now to select a new identity and domain?`)) {
       this.logout();
     }
   },
@@ -222,9 +280,10 @@ const AppState = {
     // Locked Indicator Header
     const lockedTitle = el('lockedExamTitle');
     if (lockedTitle) {
-      if (this.currentExam === 'JEE') lockedTitle.innerText = 'LOCKED: JEE Main (PCM)';
-      else if (this.currentExam === 'NEET') lockedTitle.innerText = 'LOCKED: NEET-UG (PCB)';
-      else if (this.currentExam === 'UPSC') lockedTitle.innerText = 'LOCKED: UPSC Civil Services';
+      const subjStr = this.lockedSubjects.length ? ` (${this.lockedSubjects.join(', ')})` : '';
+      if (this.currentExam === 'JEE') lockedTitle.innerText = `LOCKED: JEE Main${subjStr}`;
+      else if (this.currentExam === 'NEET') lockedTitle.innerText = `LOCKED: NEET-UG${subjStr}`;
+      else if (this.currentExam === 'UPSC') lockedTitle.innerText = `LOCKED: UPSC CSE${subjStr}`;
     }
     const lockedIndicator = el('examLockedIndicator');
     if (lockedIndicator) lockedIndicator.style.display = 'inline-flex';
@@ -431,4 +490,6 @@ const AppState = {
   }
 };
 
+window.AppState = AppState;
 window.addEventListener('DOMContentLoaded', () => { AppState.init(); });
+
