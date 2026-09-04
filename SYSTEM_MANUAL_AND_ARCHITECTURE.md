@@ -377,3 +377,61 @@ python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
 * **Cognitive Error Trends (`GET /api/supporting/error-trends/{id}`)**: Aggregates distractor tendencies across subjects and categories (time pressure, calculation slips, conceptual confusion).
 * **Printable / Exportable Report Card (`GET /api/supporting/report-card/{id}`)**: Official audit scorecard with clean `@media print` CSS for PDF generation.
 
+---
+
+## 14. Platform Upgrade v3.1: HuggingFace ExamBench Integration & Daily Assignment Engine
+
+### 14.1. The 405k-Question ExamBench Repository
+To eliminate reliance on static question files and broaden coverage across all competitive and Central Government examinations, the platform connects to the Hugging Face `169Pi/exambench` dataset:
+* **API Endpoint**: `https://datasets-server.huggingface.co/rows?dataset=169Pi%2Fexambench&config=default&split=train&offset={offset}&length={length}`
+* **Dataset Scale**: 405,906 multi-disciplinary competitive examination items (2.70 GB corpus).
+* **Data Fields**: `prompt` (question statement), `complex_cot` (chain-of-thought derivations), and `response` (comprehensive solutions and final results).
+
+### 14.2. Resilient Offline-First Caching Architecture
+Network latency is insulated from the user interface via an intelligent two-tier caching strategy:
+1. **Local Persistent Cache (`data/exambench_cache.json`)**: Pre-populated with verified questions for instant startup and 100% offline capability.
+2. **On-Demand Live Sync**: Automatically fetches new batches from Hugging Face when network is available and merges them into the local cache.
+
+### 14.3. Stream-Aware Classification & Strict Scoping
+Questions are dynamically classified by subject and curriculum domain based on text and chain-of-thought analysis:
+* **JEE Main Track (PCM)**: Strictly constrained to **Physics**, **Chemistry**, and **Mathematics**.
+* **NEET-UG Track (PCB)**: Strictly constrained to **Biology**, **Physics**, and **Chemistry**.
+* **Central Government / UPSC**: General Studies, Governance, and Quantitative Reasoning.
+
+### 14.4. Cognitive Distractor Synthesis Pipeline
+For each ExamBench item, the engine extracts the verified answer from `response` and generates three distinct distractors with clinical cognitive error mappings:
+* `CALCULATION_ERROR`: Magnitude inversions or multiplier errors.
+* `CONCEPTUAL_ERROR`: Disregards boundary conditions or field conservation.
+* `FORMULA_SELECTION_ERROR`: Inappropriate static approximation without non-linear gradient corrections.
+
+### 14.5. Daily 3-Subject Assignment Engine
+A dedicated daily assignment module delivers structured daily practice:
+* **Volume**: **20 to 25 questions per subject** across the three stream subjects (total **60 to 75 questions daily**).
+* **Subject Tabs**: Interactive tabs for seamless switching between Physics, Chemistry, and Mathematics/Biology.
+* **Palette Navigation**: Full 20-item visual grid with Answered (green), Marked for Review (yellow), and Unvisited states.
+* **Debounced Autosaving**: Student selections are automatically synchronized to `POST /api/assignments/save-progress`.
+* **Grading & Mastery Updates**: Upon submission, scores are computed per subject and overall, feeding directly into Bayesian Knowledge Tracing and IRT calibration.
+* **Daily Streak Tracker**: Automatically calculates consecutive days of completed daily assignments.
+
+### 14.6. Daily Assignment REST API Reference
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/assignments/today/{student_id}` | Fetch or auto-generate today's 60-75 question assignment |
+| `POST` | `/api/assignments/save-progress` | Autosave answers and marked-for-review items |
+| `POST` | `/api/assignments/submit` | Finalize and grade assignment, update BKT and IRT ability |
+| `GET` | `/api/assignments/history/{student_id}` | Retrieve past assignments and daily consistency streak |
+
+### 14.7. Updated Database Entity Relationships
+```
++------------------+       +-------------------+       +-----------------------+
+|     students     | 1---* | daily_assignments | 1---* | daily_assignment_items|
++------------------+       +-------------------+       +-----------------------+
+        |                            |                             |
+        | 1                          |                             v *
+        |                            |                     +-------------------+
+        | *                          v 1                   |     questions     |
++-----------------------+  +-------------------+           | (ExamBench Bank)  |
+|student_concept_mastery|  |    assessments    |           +-------------------+
++-----------------------+  +-------------------+
+```
+

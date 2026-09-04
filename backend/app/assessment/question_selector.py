@@ -4,10 +4,18 @@ from sqlalchemy.orm import Session
 from backend.app.models.schema import Question, StudentAttemptItem
 from backend.app.student_model.irt import ItemResponseTheory
 
+STREAM_SUBJECTS = {
+    "JEE": ["Physics", "Chemistry", "Mathematics"],
+    "NEET": ["Biology", "Physics", "Chemistry"],
+    "CENTRAL_GOVT": ["General Studies", "Mathematics", "Science & Technology"],
+    "UPSC": ["General Studies", "History & Heritage", "Polity & Governance"]
+}
+
 class QuestionSelector:
     """
     Intelligent question selection engine based on curriculum coverage, diagnostic goal,
     information gain (IRT), prerequisite state, and exposure history.
+    Strictly filters questions by student stream (JEE -> PCM; NEET -> PCB).
     """
     def __init__(self, db: Session):
         self.db = db
@@ -32,11 +40,16 @@ class QuestionSelector:
         count: int = 5
     ) -> List[Question]:
         """
-        Selects optimal questions maximizing diagnostic value for the specific assessment mode.
+        Selects optimal questions maximizing diagnostic value for the specific assessment mode,
+        strictly scoped to the student's exam stream subjects.
         """
         exposed_ids = self.get_exposed_question_ids(student_id) if student_id else set()
+        allowed_subjects = STREAM_SUBJECTS.get(exam, ["Physics", "Chemistry", "Mathematics"])
 
-        query = self.db.query(Question).filter(Question.exam == exam)
+        query = self.db.query(Question).filter(
+            Question.exam == exam,
+            Question.subject.in_(allowed_subjects)
+        )
 
         if target_concept_id:
             query = query.filter(Question.concept_id == target_concept_id)
@@ -53,8 +66,10 @@ class QuestionSelector:
         candidate_pool = unexposed if len(unexposed) >= count else available_questions
 
         if not candidate_pool:
-            # Fallback to any questions for this exam
-            candidate_pool = self.db.query(Question).filter(Question.exam == exam).all()
+            # Fallback strictly within allowed subjects for this exam stream
+            candidate_pool = self.db.query(Question).filter(
+                Question.subject.in_(allowed_subjects)
+            ).all()
 
         if not candidate_pool:
             return []
@@ -175,19 +190,25 @@ class QuestionSelector:
         student_id: Optional[str] = None,
         count: int = 6
     ) -> List[Question]:
-        """Selects high-difficulty Tier 4 Advanced Mastery Challenge questions (difficulty 0.75 - 0.92)."""
+        """Selects high-difficulty Tier 4 Advanced Mastery Challenge questions (difficulty 0.75 - 0.92) scoped to stream."""
+        allowed_subjects = STREAM_SUBJECTS.get(exam, ["Physics", "Chemistry", "Mathematics"])
+
         query = self.db.query(Question).filter(
             Question.exam == exam,
-            Question.tier == "ADVANCED"
+            Question.tier == "ADVANCED",
+            Question.subject.in_(allowed_subjects)
         )
-        if subject:
+        if subject and subject in allowed_subjects:
             query = query.filter(Question.subject == subject)
 
         candidates = query.all()
         if not candidates:
-            # Fallback to highest difficulty questions for this exam
-            fallback_query = self.db.query(Question).filter(Question.exam == exam)
-            if subject:
+            # Fallback to highest difficulty questions for this exam stream
+            fallback_query = self.db.query(Question).filter(
+                Question.exam == exam,
+                Question.subject.in_(allowed_subjects)
+            )
+            if subject and subject in allowed_subjects:
                 fallback_query = fallback_query.filter(Question.subject == subject)
             candidates = fallback_query.order_by(Question.difficulty.desc()).limit(count * 2).all()
 

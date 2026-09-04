@@ -1,10 +1,11 @@
 import pytest
 import datetime
-from backend.app.database.connection import SessionLocal
+from backend.app.database.connection import SessionLocal, Base, engine
 from backend.app.models.schema import Student, StudentConceptMastery, StudentErrorLog, Concept, Question
 from backend.app.api.supporting import get_review_queue, get_error_trends, get_report_card
 
 def test_supporting_endpoints():
+    Base.metadata.create_all(bind=engine)
     db = SessionLocal()
     try:
         # Create test student

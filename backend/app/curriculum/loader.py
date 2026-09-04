@@ -169,4 +169,12 @@ def seed_curriculum_and_questions(db: Session):
                     existing_q.concept_id = q_data.get("concept_id", existing_q.concept_id)
                     existing_q.tier = q_data.get("tier", getattr(existing_q, "tier", "STANDARD"))
 
+    # Seed and enrich database with HuggingFace ExamBench 405k question bank
+    try:
+        from backend.app.curriculum.exambench_service import ExamBenchService
+        eb_service = ExamBenchService()
+        eb_service.seed_to_database(db, max_items=150)
+    except Exception as e:
+        print(f"[CurriculumLoader] ExamBench seeding notice: {e}")
+
     db.commit()

@@ -179,6 +179,9 @@
       <div class="nav-item" id="nav_assessment" onclick="AppState.switchTab('assessment')">
         <span class="nav-icon">🎯</span> Quiz Arena
       </div>
+      <div class="nav-item" id="nav_assignment" onclick="AppState.switchTab('assignment')">
+        <span class="nav-icon">📝</span> Daily Assignment
+      </div>
       <div class="nav-item" id="nav_graph" onclick="AppState.switchTab('graph')">
         <span class="nav-icon">🕸️</span> Concept Map
       </div>
@@ -337,6 +340,13 @@
             </button>
           </div>
         </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- 3.5 DAILY 3-SUBJECT ASSIGNMENT (EXAMBENCH)       -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <section class="tab-pane" id="pane_assignment">
+        <div id="assignmentContainer"></div>
       </section>
 
       <!-- ═══════════════════════════════════════════════ -->
@@ -598,6 +608,7 @@
   <script src="/static/js/api.js?v=6.0"></script>
   <script src="/static/js/graph_view.js?v=6.0"></script>
   <script src="/static/js/quiz.js?v=6.0"></script>
+  <script src="/static/js/assignment.js?v=6.0"></script>
   <script src="/static/js/roadmap.js?v=6.0"></script>
   <script src="/static/js/roadmap_visual.js?v=6.0"></script>
   <script src="/static/js/supporting.js?v=6.0"></script>

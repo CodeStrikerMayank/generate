@@ -27,6 +27,7 @@ class Student(Base):
     events = relationship("LearningEvent", back_populates="student", cascade="all, delete-orphan")
     errors = relationship("StudentErrorLog", back_populates="student", cascade="all, delete-orphan")
     upsc_submissions = relationship("UPSCWrittenSubmission", back_populates="student", cascade="all, delete-orphan")
+    assignments = relationship("DailyAssignment", back_populates="student", cascade="all, delete-orphan")
 
 
 class Exam(Base):
@@ -301,3 +302,42 @@ class UPSCWrittenSubmission(Base):
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
     student = relationship("Student", back_populates="upsc_submissions")
+
+
+class DailyAssignment(Base):
+    __tablename__ = "daily_assignments"
+
+    assignment_id = Column(String(64), primary_key=True, index=True)
+    student_id = Column(String(64), ForeignKey("students.student_id"), nullable=False, index=True)
+    exam = Column(String(32), nullable=False, index=True)  # JEE, NEET, etc.
+    assignment_date = Column(String(16), nullable=False, index=True)  # YYYY-MM-DD
+    title = Column(String(128), nullable=False)
+    status = Column(String(32), default="IN_PROGRESS")  # IN_PROGRESS, COMPLETED
+    total_questions = Column(Integer, default=60)
+    completed_count = Column(Integer, default=0)
+    correct_count = Column(Integer, default=0)
+    score_percentage = Column(Float, default=0.0)
+    time_taken_seconds = Column(Integer, default=0)
+    subject_scores = Column(JSON, default=dict)  # {"Physics": {"correct": 16, "total": 20, "score_pct": 80.0}, ...}
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    submitted_at = Column(DateTime, nullable=True)
+
+    student = relationship("Student", back_populates="assignments")
+    items = relationship("DailyAssignmentItem", back_populates="assignment", cascade="all, delete-orphan")
+
+
+class DailyAssignmentItem(Base):
+    __tablename__ = "daily_assignment_items"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    assignment_id = Column(String(64), ForeignKey("daily_assignments.assignment_id"), nullable=False, index=True)
+    question_id = Column(String(64), ForeignKey("questions.question_id"), nullable=False, index=True)
+    subject = Column(String(64), nullable=False, index=True)
+    sequence_index = Column(Integer, nullable=False)
+    student_answer = Column(String(8), nullable=True)
+    is_correct = Column(Boolean, nullable=True)
+    is_marked_review = Column(Boolean, default=False)
+    time_taken_seconds = Column(Integer, default=0)
+
+    assignment = relationship("DailyAssignment", back_populates="items")
+    question = relationship("Question")

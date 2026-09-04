@@ -183,5 +183,44 @@ const API = {
     const res = await fetch(`${API_BASE}/supporting/report-card/${studentId}`);
     if (!res.ok) throw new Error('Failed to load report card');
     return res.json();
+  },
+
+  async getTodayAssignment(studentId, questionsPerSubject = 20) {
+    const res = await fetch(`${API_BASE}/assignments/today/${studentId}?questions_per_subject=${questionsPerSubject}`);
+    if (!res.ok) throw new Error('Failed to load today assignment');
+    return res.json();
+  },
+
+  async saveAssignmentProgress(assignmentId, responses) {
+    const res = await fetch(`${API_BASE}/assignments/save-progress`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        assignment_id: assignmentId,
+        responses: responses
+      })
+    });
+    if (!res.ok) throw new Error('Failed to save assignment progress');
+    return res.json();
+  },
+
+  async submitAssignment(assignmentId, responses, timeTakenSeconds = 0) {
+    const res = await fetch(`${API_BASE}/assignments/submit`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        assignment_id: assignmentId,
+        responses: responses,
+        time_taken_seconds: timeTakenSeconds
+      })
+    });
+    if (!res.ok) throw new Error('Failed to submit assignment');
+    return res.json();
+  },
+
+  async getAssignmentHistory(studentId) {
+    const res = await fetch(`${API_BASE}/assignments/history/${studentId}`);
+    if (!res.ok) throw new Error('Failed to load assignment history');
+    return res.json();
   }
 };

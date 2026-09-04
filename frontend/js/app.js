@@ -187,6 +187,9 @@ const AppState = {
     document.getElementById(`nav_${tabId}`)?.classList.add('active');
     document.getElementById(`bnav_${tabId}`)?.classList.add('active');
     if (tabId === 'graph' && this.graphView) setTimeout(() => this.graphView.resize(), 50);
+    if (tabId === 'assignment' && typeof AssignmentController !== 'undefined') {
+      AssignmentController.init();
+    }
   },
 
   // ─── Live Clock ───────────────────────────────────────────
